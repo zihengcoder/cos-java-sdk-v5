@@ -10,7 +10,8 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 
-public class BucketTaggingTest extends AbstractCOSClientTest{
+public class BucketTaggingTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();

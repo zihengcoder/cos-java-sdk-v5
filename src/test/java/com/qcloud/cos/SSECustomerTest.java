@@ -4,12 +4,15 @@ import com.qcloud.cos.http.HttpProtocol;
 import com.qcloud.cos.model.*;
 import com.qcloud.cos.utils.Md5Utils;
 import java.io.File;
+
 import static org.junit.Assert.assertEquals;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class SSECustomerTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -21,7 +24,7 @@ public class SSECustomerTest extends AbstractCOSClientTest {
     }
 
     @Test
-    public void testSSECustomerUploadDownload() throws Exception{
+    public void testSSECustomerUploadDownload() throws Exception {
         clientConfig.setHttpProtocol(HttpProtocol.https);
 
         String key = "images/tiger.jpg";

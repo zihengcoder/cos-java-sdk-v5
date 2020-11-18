@@ -108,7 +108,8 @@ public class SelectObjectContentEventStream implements Closeable {
     }
 
     /**
-     * Retrieve an iterator over the {@link SelectObjectContentEvent}s in this stream, in the order they are returned by
+     * Retrieve an iterator over the {@link SelectObjectContentEvent}s in this stream, in the order they are returned
+     * by
      * COS. This
      * will lazily-load the events from COS, minimizing the amount of memory used.
      *

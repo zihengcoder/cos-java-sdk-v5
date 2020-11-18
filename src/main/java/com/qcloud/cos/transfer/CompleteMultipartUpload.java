@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -38,7 +38,9 @@ import com.qcloud.cos.model.UploadResult;
  */
 public class CompleteMultipartUpload implements Callable<UploadResult> {
 
-    /** The upload id associated with the multi-part upload. */
+    /**
+     * The upload id associated with the multi-part upload.
+     */
     private final String uploadId;
 
     /**
@@ -47,10 +49,14 @@ public class CompleteMultipartUpload implements Callable<UploadResult> {
      */
     private final COS cos;
 
-    /** The reference to the request initiated by the user. */
+    /**
+     * The reference to the request initiated by the user.
+     */
     private final PutObjectRequest origReq;
 
-    /** The futures of threads that upload individual parts. */
+    /**
+     * The futures of threads that upload individual parts.
+     */
     private final List<Future<PartETag>> futures;
 
     /**
@@ -59,10 +65,14 @@ public class CompleteMultipartUpload implements Callable<UploadResult> {
      */
     private final List<PartETag> eTagsBeforeResume;
 
-    /** The monitor to which the upload progress has to be communicated. */
+    /**
+     * The monitor to which the upload progress has to be communicated.
+     */
     private final UploadMonitor monitor;
 
-    /** The listener where progress of the upload needs to be published. */
+    /**
+     * The listener where progress of the upload needs to be published.
+     */
     private final ProgressListenerChain listener;
 
     public CompleteMultipartUpload(String uploadId, COS cos,
@@ -86,8 +96,7 @@ public class CompleteMultipartUpload implements Callable<UploadResult> {
             CompleteMultipartUploadRequest req = new CompleteMultipartUploadRequest(
                     origReq.getBucketName(), origReq.getKey(), uploadId,
                     collectPartETags())
-                .withGeneralProgressListener(origReq.getGeneralProgressListener())
-                ;
+                    .withGeneralProgressListener(origReq.getGeneralProgressListener());
             res = cos.completeMultipartUpload(req);
         } catch (Exception e) {
             monitor.uploadFailed();

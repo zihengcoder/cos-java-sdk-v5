@@ -19,6 +19,7 @@ public class MediaQueueTest extends AbstractCOSClientTest {
     public static final String QUEUE_NAME = "test-queue";
     public static final String QUEUE_URL = "cloud.tencent.com";
     public static final String QUEUE_STATE = "Active";
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();

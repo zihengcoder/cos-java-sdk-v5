@@ -31,7 +31,7 @@ public class BucketVersioningTest extends AbstractCOSClientTest {
                 new BucketVersioningConfiguration(BucketVersioningConfiguration.ENABLED);
         cosclient.setBucketVersioningConfiguration(
                 new SetBucketVersioningConfigurationRequest(bucket, bucketVersioningEnabled));
-        
+
         try {
             Thread.sleep(5000L);
         } catch (InterruptedException e) {
@@ -52,7 +52,7 @@ public class BucketVersioningTest extends AbstractCOSClientTest {
                 new BucketVersioningConfiguration(BucketVersioningConfiguration.SUSPENDED);
         cosclient.setBucketVersioningConfiguration(
                 new SetBucketVersioningConfigurationRequest(bucket, bucketVersioningEnabled));
-        
+
         try {
             Thread.sleep(5000L);
         } catch (InterruptedException e) {

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -33,6 +33,11 @@ import com.qcloud.cos.retry.RetryPolicy;
 import com.qcloud.cos.utils.VersionInfoUtils;
 
 public class ClientConfig {
+
+    /**
+     * The sleep time interval between exception occured and retry
+     **/
+    public static final BackoffStrategy DEFAULT_BACKOFF_STRATEGY = PredefinedBackoffStrategies.DEFAULT;
     // 默认的获取连接的超时时间, 单位ms
     private static final int DEFAULT_CONNECTION_REQUEST_TIMEOUT = -1;
     // 默认连接超时, 单位ms
@@ -47,14 +52,18 @@ public class ClientConfig {
     private static final String DEFAULT_USER_AGENT = VersionInfoUtils.getUserAgent();
     // Read Limit
     private static final int DEFAULT_READ_LIMIT = (2 << 17) + 1;
-    /** default retry times is 3 when retryable exception occured **/
+    /**
+     * default retry times is 3 when retryable exception occured
+     **/
     private static final int DEFAULT_RETRY_TIMES = 3;
-    /** The max retry times if retryable exception occured **/
-    private int maxErrorRetry = DEFAULT_RETRY_TIMES;
-    /** The retry policy if exception occured **/
+    /**
+     * The retry policy if exception occured
+     **/
     private static final RetryPolicy DEFAULT_RETRY_POLICY = PredefinedRetryPolicies.DEFAULT;
-    /** The sleep time interval between exception occured and retry **/
-    public static final BackoffStrategy DEFAULT_BACKOFF_STRATEGY = PredefinedBackoffStrategies.DEFAULT;
+    /**
+     * The max retry times if retryable exception occured
+     **/
+    private int maxErrorRetry = DEFAULT_RETRY_TIMES;
     private Region region;
     private HttpProtocol httpProtocol = HttpProtocol.http;
     private String endPointSuffix = null;
@@ -165,12 +174,12 @@ public class ClientConfig {
         this.maxConnectionsCount = maxConnectionsCount;
     }
 
-    public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
-    }
-
     public String getUserAgent() {
         return userAgent;
+    }
+
+    public void setUserAgent(String userAgent) {
+        this.userAgent = userAgent;
     }
 
     /**
@@ -215,17 +224,29 @@ public class ClientConfig {
         this.endpointResolver = endpointResolver;
     }
 
-    public String getProxyUsername() { return proxyUsername; }
+    public String getProxyUsername() {
+        return proxyUsername;
+    }
 
-    public void setProxyUsername(String proxyUsername) { this.proxyUsername = proxyUsername; }
+    public void setProxyUsername(String proxyUsername) {
+        this.proxyUsername = proxyUsername;
+    }
 
-    public String getProxyPassword() { return proxyPassword; }
+    public String getProxyPassword() {
+        return proxyPassword;
+    }
 
-    public void setProxyPassword(String proxyPassword) { this.proxyPassword = proxyPassword; }
-    
-    public void setUseBasicAuth(boolean useBasicAuth) { this.useBasicAuth = useBasicAuth; }
+    public void setProxyPassword(String proxyPassword) {
+        this.proxyPassword = proxyPassword;
+    }
 
-    public boolean useBasicAuth() { return useBasicAuth; }
+    public void setUseBasicAuth(boolean useBasicAuth) {
+        this.useBasicAuth = useBasicAuth;
+    }
+
+    public boolean useBasicAuth() {
+        return useBasicAuth;
+    }
 
     public int getMaxErrorRetry() {
         return maxErrorRetry;
@@ -259,7 +280,6 @@ public class ClientConfig {
     }
 
     /**
-     *
      * @param cosSigner signature algorithm implementation
      */
     public void setCosSigner(COSSigner cosSigner) {

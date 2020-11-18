@@ -5,6 +5,7 @@ import static org.junit.Assert.*;
 import org.junit.Test;
 
 public class DefaultEndpointResolverTest {
+
     @Test
     public void test() {
         DefaultEndpointResolver resolver = new DefaultEndpointResolver();

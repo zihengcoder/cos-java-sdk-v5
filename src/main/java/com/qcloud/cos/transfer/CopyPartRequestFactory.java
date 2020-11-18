@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -30,17 +30,29 @@ import com.qcloud.cos.model.CopyPartRequest;
  */
 public class CopyPartRequestFactory {
 
-    /** Upload id to be used in each copy part request. */
+    /**
+     * Upload id to be used in each copy part request.
+     */
     private final String uploadId;
-    /** Optimal size of each part in the copy request. */
+    /**
+     * Optimal size of each part in the copy request.
+     */
     private final long optimalPartSize;
-    /** The original copy object request. */
+    /**
+     * The original copy object request.
+     */
     private final CopyObjectRequest origReq;
-    /** Part Number to be specified in each copy part request. */
+    /**
+     * Part Number to be specified in each copy part request.
+     */
     private int partNumber = 1;
-    /** Starting byte for each part. */
+    /**
+     * Starting byte for each part.
+     */
     private long offset = 0;
-    /** The number of remaining bytes to be copied. */
+    /**
+     * The number of remaining bytes to be copied.
+     */
     private long remainingBytes;
 
     public CopyPartRequestFactory(CopyObjectRequest origReq, String uploadId, long optimalPartSize,
@@ -82,7 +94,7 @@ public class CopyPartRequestFactory {
                 .withUnmodifiedSinceConstraint(origReq.getUnmodifiedSinceConstraint())
                 // general meta data
                 .withGeneralProgressListener(origReq.getGeneralProgressListener());
-        if(origReq.getFixedEndpointAddr() != null) {
+        if (origReq.getFixedEndpointAddr() != null) {
             req.setFixedEndpointAddr(origReq.getFixedEndpointAddr());
         }
         offset += partSize;

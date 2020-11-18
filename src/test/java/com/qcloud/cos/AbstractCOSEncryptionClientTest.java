@@ -26,6 +26,7 @@ import com.qcloud.cos.transfer.Upload;
 import com.qcloud.cos.utils.Md5Utils;
 
 public abstract class AbstractCOSEncryptionClientTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         if (cryptoConfiguration == null && qcloudkms == null && encryptionMaterials == null) {
@@ -40,8 +41,8 @@ public abstract class AbstractCOSEncryptionClientTest extends AbstractCOSClientT
         AbstractCOSClientTest.destoryCosClient();
         useClientEncryption = false;
     }
-    
-    
+
+
     // 测试从本地上传文件
     @Test
     public void testPutGetDelObjectEmpty() throws CosServiceException, IOException {
@@ -72,22 +73,22 @@ public abstract class AbstractCOSEncryptionClientTest extends AbstractCOSClientT
     public void testPutGetDelObject100M() throws CosServiceException, IOException {
         testPutGetDelObjectDiffSize(100 * 1024 * 1024L);
     }
-    
+
     @Test
     public void testMultipartUploadObjectSize_32M_Part_1M() throws IOException {
         testMultiPartUploadObject(4 * 1024 * 1024L, 1 * 1024 * 1024L);
     }
-    
+
     @Test
     public void testMultipartUploadObjectSize_32M_Part_3M() throws IOException {
         testMultiPartUploadObject(32 * 1024 * 1024L, 32 * 1024 * 1024L);
     }
-    
+
     @Test
     public void testStreamUpload_10M() throws IOException {
         testPutObjectByStreamDiffSize(10 * 1024 * 1024, new ObjectMetadata());
     }
-    
+
     @Test
     public void testTransferManagerUploadDownBigFile()
             throws IOException, CosServiceException, CosClientException, InterruptedException {

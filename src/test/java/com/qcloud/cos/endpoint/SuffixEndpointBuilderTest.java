@@ -17,7 +17,7 @@ public class SuffixEndpointBuilderTest {
         }
         fail();
     }
-    
+
     @Test
     public void testbuildGeneralApiEndpointCase1() {
         try {
@@ -29,7 +29,7 @@ public class SuffixEndpointBuilderTest {
             fail(e.toString());
         }
     }
-    
+
     @Test
     public void testbuildGeneralApiEndpointCase2() {
         try {

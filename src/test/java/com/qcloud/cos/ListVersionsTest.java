@@ -27,6 +27,7 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertNotNull;
 
 public class ListVersionsTest extends AbstractCOSClientTest {
+
     private static final String keyPrefix = "ut/list_versions";
     private static final int fileNum = 1;
     private static final int eachFileVersionNum = 17;
@@ -78,7 +79,7 @@ public class ListVersionsTest extends AbstractCOSClientTest {
 
     private void headAndGetVersion(String key, String versionId, String expectedEtag,
             long expectedLength, File downloadLocalFile)
-                    throws CosServiceException, FileNotFoundException, IOException {
+            throws CosServiceException, FileNotFoundException, IOException {
         GetObjectMetadataRequest getObjectMetadataRequest =
                 new GetObjectMetadataRequest(bucket, key, versionId);
         ObjectMetadata objectMetadata = cosclient.getObjectMetadata(getObjectMetadataRequest);

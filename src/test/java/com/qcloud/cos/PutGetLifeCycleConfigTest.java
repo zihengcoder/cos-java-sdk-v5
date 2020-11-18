@@ -35,7 +35,7 @@ public class PutGetLifeCycleConfigTest extends AbstractCOSClientTest {
     public static void tearDownAfterClass() throws Exception {
         AbstractCOSClientTest.destoryCosClient();
     }
-    
+
 
     private void testPutGetDelRules(List<Rule> rules) {
         BucketLifecycleConfiguration bucketLifecycleConfiguration =
@@ -77,11 +77,11 @@ public class PutGetLifeCycleConfigTest extends AbstractCOSClientTest {
         if (!judgeUserInfoValid()) {
             return;
         }
-        
+
         BucketLifecycleConfiguration blcf = cosclient.getBucketLifecycleConfiguration(bucket);
         assertNull(blcf);
     }
-    
+
     @Test
     public void testPutGetDelExpirationDateLifeCycle() throws Exception {
         if (!judgeUserInfoValid()) {
@@ -162,7 +162,7 @@ public class PutGetLifeCycleConfigTest extends AbstractCOSClientTest {
         noncurrentVersionTransition.setStorageClass(StorageClass.Standard_IA);
         standardIaRule.setNoncurrentVersionTransitions(noncurrentVersionTransitions);
         standardIaRule.setExpirationInDays(120);
-        
+
         rules.add(standardIaRule);
         testPutGetDelRules(rules);
 

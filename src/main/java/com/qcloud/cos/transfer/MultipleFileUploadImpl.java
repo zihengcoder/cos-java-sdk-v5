@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -34,7 +34,8 @@ public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> impleme
     private final String bucketName;
 
     public MultipleFileUploadImpl(String description, TransferProgress transferProgress,
-            ProgressListenerChain progressListenerChain, String keyPrefix, String bucketName, Collection<? extends Upload> subTransfers) {
+            ProgressListenerChain progressListenerChain, String keyPrefix, String bucketName,
+            Collection<? extends Upload> subTransfers) {
         super(description, transferProgress, progressListenerChain, subTransfers);
         this.keyPrefix = keyPrefix;
         this.bucketName = bucketName;
@@ -58,21 +59,19 @@ public class MultipleFileUploadImpl extends MultipleFileTransfer<Upload> impleme
      * Waits for this transfer to complete. This is a blocking call; the current
      * thread is suspended until this transfer completes.
      *
-     * @throws CosClientException
-     *             If any errors were encountered in the client while making the
-     *             request or handling the response.
-     * @throws CosServiceException
-     *             If any errors occurred in Qcloud COS while processing the
-     *             request.
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the transfer
-     *             to complete.
+     * @throws CosClientException If any errors were encountered in the client while making the
+     *         request or handling the response.
+     * @throws CosServiceException If any errors occurred in Qcloud COS while processing the
+     *         request.
+     * @throws InterruptedException If this thread is interrupted while waiting for the transfer
+     *         to complete.
      */
     @Override
     public void waitForCompletion()
             throws CosClientException, CosServiceException, InterruptedException {
-        if (subTransfers.isEmpty())
+        if (subTransfers.isEmpty()) {
             return;
+        }
         super.waitForCompletion();
     }
 

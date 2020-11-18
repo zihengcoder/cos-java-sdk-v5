@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class BucketLoggingTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -27,7 +28,8 @@ public class BucketLoggingTest extends AbstractCOSClientTest {
                 new SetBucketLoggingConfigurationRequest(bucket, bucketLoggingConfiguration);
         cosclient.setBucketLoggingConfiguration(setBucketLoggingConfigurationRequest);
         BucketLoggingConfiguration bucketLoggingConfiguration1 = cosclient.getBucketLoggingConfiguration(bucket);
-        assertEquals(bucketLoggingConfiguration1.getDestinationBucketName(), bucketLoggingConfiguration1.getDestinationBucketName());
+        assertEquals(bucketLoggingConfiguration1.getDestinationBucketName(),
+                bucketLoggingConfiguration1.getDestinationBucketName());
         assertEquals(bucketLoggingConfiguration.getLogFilePrefix(), bucketLoggingConfiguration1.getLogFilePrefix());
     }
 }

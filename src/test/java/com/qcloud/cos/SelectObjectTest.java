@@ -6,11 +6,14 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.concurrent.atomic.AtomicBoolean;
+
 import static org.junit.Assert.assertEquals;
+
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
-public class SelectObjectTest extends AbstractCOSClientTest{
+public class SelectObjectTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -20,6 +23,7 @@ public class SelectObjectTest extends AbstractCOSClientTest{
     public static void tearDownAfterClass() throws Exception {
         AbstractCOSClientTest.destoryCosClient();
     }
+
     @Test
     public void testSelectCsvObject() throws Exception {
         String key = "test/my_test.csv";
@@ -50,15 +54,14 @@ public class SelectObjectTest extends AbstractCOSClientTest{
         InputStream resultInputStream = result.getPayload().getRecordsInputStream(
                 new SelectObjectContentEventVisitor() {
                     @Override
-                    public void visit(SelectObjectContentEvent.StatsEvent event)
-                    {
+                    public void visit(SelectObjectContentEvent.StatsEvent event) {
                         System.out.println(
                                 "Received Stats, Bytes Scanned: " + event.getDetails().getBytesScanned()
-                                        +  " Bytes Processed: " + event.getDetails().getBytesProcessed());
+                                        + " Bytes Processed: " + event.getDetails().getBytesProcessed());
                     }
+
                     @Override
-                    public void visit(SelectObjectContentEvent.EndEvent event)
-                    {
+                    public void visit(SelectObjectContentEvent.EndEvent event) {
                         isResultComplete.set(true);
                         System.out.println("Received End Event. Result is complete.");
                     }
@@ -67,7 +70,7 @@ public class SelectObjectTest extends AbstractCOSClientTest{
         BufferedReader reader = new BufferedReader(new InputStreamReader(resultInputStream));
         StringBuffer stringBuffer = new StringBuffer();
         String line;
-        while((line = reader.readLine())!= null){
+        while ((line = reader.readLine()) != null) {
             stringBuffer.append(line).append("\n");
         }
         assertEquals(stringBuffer.toString(), "HuNan,ChangSha\n");
@@ -105,15 +108,14 @@ public class SelectObjectTest extends AbstractCOSClientTest{
         InputStream resultInputStream = result.getPayload().getRecordsInputStream(
                 new SelectObjectContentEventVisitor() {
                     @Override
-                    public void visit(SelectObjectContentEvent.StatsEvent event)
-                    {
+                    public void visit(SelectObjectContentEvent.StatsEvent event) {
                         System.out.println(
                                 "Received Stats, Bytes Scanned: " + event.getDetails().getBytesScanned()
-                                        +  " Bytes Processed: " + event.getDetails().getBytesProcessed());
+                                        + " Bytes Processed: " + event.getDetails().getBytesProcessed());
                     }
+
                     @Override
-                    public void visit(SelectObjectContentEvent.EndEvent event)
-                    {
+                    public void visit(SelectObjectContentEvent.EndEvent event) {
                         isResultComplete.set(true);
                         System.out.println("Received End Event. Result is complete.");
                     }
@@ -122,7 +124,7 @@ public class SelectObjectTest extends AbstractCOSClientTest{
         BufferedReader reader = new BufferedReader(new InputStreamReader(resultInputStream));
         StringBuffer stringBuffer = new StringBuffer();
         String line;
-        while((line = reader.readLine())!= null){
+        while ((line = reader.readLine()) != null) {
             stringBuffer.append(line).append("\n");
         }
         assertEquals(stringBuffer.toString(), "{\"name\":\"xiaowang\",\"mathScore\":93,\"musicScore\":85}\n");

@@ -7,8 +7,8 @@ import com.qcloud.cos.auth.COSSessionCredentials;
 
 public class CachedTemporyTokenCredentialsProvider extends AbstractCOSCachedCredentialsProvider {
 
-    private long temporyTokenDuration = 30; 
-    
+    private long temporyTokenDuration = 30;
+
     public CachedTemporyTokenCredentialsProvider(long refreshPeriodSeconds, long temporyTokenDuration) {
         super(refreshPeriodSeconds);
         this.temporyTokenDuration = temporyTokenDuration;

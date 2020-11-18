@@ -10,7 +10,7 @@ public class BucketNameUtilsTest {
     public void testBucketNameNormal() {
         BucketNameUtils.validateBucketName("a1234");
     }
-    
+
     @Test
     public void testBucketNameLongerThan40() {
         try {
@@ -20,7 +20,7 @@ public class BucketNameUtilsTest {
         }
         fail("test long bucket name fail");
     }
-    
+
     @Test
     public void testBucketNameEmpty() {
         try {
@@ -30,7 +30,7 @@ public class BucketNameUtilsTest {
         }
         fail("test empty bucket name fail");
     }
-    
+
     @Test
     public void testBucketNameContailUpperCase() {
         try {
@@ -40,7 +40,7 @@ public class BucketNameUtilsTest {
         }
         fail("test bucket name contain upper case fail");
     }
-    
+
     @Test
     public void testBucketNameContainSpace() {
         try {
@@ -50,7 +50,7 @@ public class BucketNameUtilsTest {
         }
         fail("test bucket name contain space fail");
     }
-    
+
     @Test
     public void testBucketNameContainTab() {
         try {
@@ -60,7 +60,7 @@ public class BucketNameUtilsTest {
         }
         fail("test bucket name contain tab fail");
     }
-    
+
     @Test
     public void testBucketNameContainCarriageReturn() {
         try {
@@ -80,7 +80,7 @@ public class BucketNameUtilsTest {
         }
         fail("test bucket name contain line break fail");
     }
-    
+
     @Test
     public void testBucketNameContainOtherInvalidLetter() {
         try {
@@ -90,5 +90,5 @@ public class BucketNameUtilsTest {
         }
         fail("test bucket name contain invalid letter fail");
     }
-    
+
 }

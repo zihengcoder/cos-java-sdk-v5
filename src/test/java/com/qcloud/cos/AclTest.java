@@ -53,12 +53,12 @@ public class AclTest extends AbstractCOSClientTest {
             assertNotNull(aclGet.getOwner());
             assertNotNull(aclGet.getOwner().getId());
             assertNotNull(aclGet.getOwner().getDisplayName());
-            
+
             assertEquals(2, aclGet.getGrantsAsList().size());
             Grant firstGrant = aclGet.getGrantsAsList().get(0);
             assertEquals(Permission.Read.toString(), firstGrant.getPermission().toString());
             assertTrue(firstGrant.getGrantee() instanceof GroupGrantee);
-            
+
             Grant secondGrant = aclGet.getGrantsAsList().get(1);
             assertEquals(Permission.FullControl.toString(), secondGrant.getPermission().toString());
             assertTrue(secondGrant.getGrantee() instanceof UinGrantee);

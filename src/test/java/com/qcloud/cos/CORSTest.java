@@ -44,7 +44,7 @@ public class CORSTest extends AbstractCOSClientTest {
         corsRules.add(corsRule);
         bucketCORS.setRules(corsRules);
         cosclient.setBucketCrossOriginConfiguration(bucket, bucketCORS);
-        
+
         Thread.sleep(5000L);
 
         BucketCrossOriginConfiguration corsGet =
@@ -56,10 +56,10 @@ public class CORSTest extends AbstractCOSClientTest {
         assertEquals(3, corsRuleGet.getAllowedOrigins().size());
         assertEquals(1, corsRuleGet.getExposedHeaders().size());
         assertEquals(60, corsRuleGet.getMaxAgeSeconds());
-        
+
         cosclient.deleteBucketCrossOriginConfiguration(bucket);
     }
-    
+
     @Test
     public void putAndGetNotExistBucketCORSTest() {
         if (!judgeUserInfoValid()) {

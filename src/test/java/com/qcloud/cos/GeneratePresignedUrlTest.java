@@ -13,6 +13,7 @@ import java.util.Date;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
@@ -30,6 +31,7 @@ import com.qcloud.cos.utils.DateUtils;
 import com.qcloud.cos.utils.Md5Utils;
 
 public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -39,7 +41,7 @@ public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
     public static void tearDownAfterClass() throws Exception {
         AbstractCOSClientTest.destoryCosClient();
     }
-    
+
     @Test
     public void testGetFile() throws IOException {
         if (!judgeUserInfoValid()) {
@@ -98,7 +100,7 @@ public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
         int responseCode = connection.getResponseCode();
         assertEquals(200, responseCode);
     }
-    
+
     private void testGetFileWithUrl(URL getUrl, File downloadFile) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) getUrl.openConnection();
         connection.setDoOutput(false);
@@ -115,7 +117,7 @@ public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
         int responseCode = connection.getResponseCode();
         assertEquals(200, responseCode);
     }
-    
+
     private void testDelFileWithUrl(URL delUrl) throws IOException {
         HttpURLConnection connection = (HttpURLConnection) delUrl.openConnection();
         connection.setDoOutput(false);
@@ -124,7 +126,7 @@ public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
         int responseCode = connection.getResponseCode();
         assertEquals(204, responseCode);
     }
-    
+
     @Test
     public void testGeneralUrl() throws IOException {
         if (!judgeUserInfoValid()) {
@@ -151,17 +153,16 @@ public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
             assertEquals(localFile.length(), downLoadFile.length());
             assertEquals(Md5Utils.md5Hex(localFile), Md5Utils.md5Hex(downLoadFile));
             testDelFileWithUrl(delUrl);
-            assertFalse(cosclient.doesObjectExist(bucket, key));          
+            assertFalse(cosclient.doesObjectExist(bucket, key));
         } finally {
             clearObject(key);
             assertTrue(localFile.delete());
-            assertTrue(downLoadFile.delete()); 
+            assertTrue(downLoadFile.delete());
             clientConfig.setHttpProtocol(HttpProtocol.http);
         }
     }
-    
-    
-    
+
+
     @Test
     public void testAnonymousUrl() throws InterruptedException, IOException {
         if (!judgeUserInfoValid()) {
@@ -173,7 +174,6 @@ public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
         COSCredentials cred = new AnonymousCOSCredentials();
         ClientConfig anoyClientConfig = new ClientConfig(new Region(region));
         COSClient anoyCOSClient = new COSClient(cred, anoyClientConfig);
-
 
         String key = "ut/generate_url_test_upload.txt";
         File localFile = buildTestFile(1024);
@@ -195,17 +195,17 @@ public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
             assertEquals(localFile.length(), downLoadFile.length());
             assertEquals(Md5Utils.md5Hex(localFile), Md5Utils.md5Hex(downLoadFile));
             testDelFileWithUrl(delUrl);
-            assertFalse(cosclient.doesObjectExist(bucket, key));          
+            assertFalse(cosclient.doesObjectExist(bucket, key));
         } finally {
             clearObject(key);
             assertTrue(localFile.delete());
-            assertTrue(downLoadFile.delete()); 
+            assertTrue(downLoadFile.delete());
             anoyCOSClient.shutdown();
             cosclient.setBucketAcl(bucket, oldAcl);
             Thread.sleep(5000L);
         }
     }
-    
+
     @Test
     public void testTemporyTokenUrl() throws InterruptedException, IOException {
         if (!judgeUserInfoValid()) {
@@ -235,11 +235,11 @@ public class GeneratePresignedUrlTest extends AbstractCOSClientTest {
             assertEquals(localFile.length(), downLoadFile.length());
             assertEquals(Md5Utils.md5Hex(localFile), Md5Utils.md5Hex(downLoadFile));
             testDelFileWithUrl(delUrl);
-            assertFalse(cosclient.doesObjectExist(bucket, key));          
+            assertFalse(cosclient.doesObjectExist(bucket, key));
         } finally {
             clearObject(key);
             assertTrue(localFile.delete());
-            assertTrue(downLoadFile.delete()); 
+            assertTrue(downLoadFile.delete());
             temporyCOSClient.shutdown();
         }
     }

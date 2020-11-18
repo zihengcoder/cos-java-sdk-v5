@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -32,6 +32,7 @@ import java.util.Map;
  * server side while processing it.
  */
 public class CosServiceException extends CosClientException {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -84,7 +85,9 @@ public class CosServiceException extends CosClientException {
      */
     private String errorMessage;
 
-    /** The HTTP status code that was returned with this error */
+    /**
+     * The HTTP status code that was returned with this error
+     */
     private int statusCode;
 
     /**
@@ -138,7 +141,6 @@ public class CosServiceException extends CosClientException {
      *
      * @param message The error message describing why this exception was thrown.
      * @param errorResponseXml The original error response XML received from Qcloud COS
-     *
      * @see CosServiceException#CosServiceException(String)
      */
     public CosServiceException(String message, String errorResponseXml) {
@@ -167,6 +169,7 @@ public class CosServiceException extends CosClientException {
     public String getRequestId() {
         return requestId;
     }
+
     /**
      * Sets the COS error code represented by this exception.
      *
@@ -190,7 +193,7 @@ public class CosServiceException extends CosClientException {
      * indicating if this exception was the caller's fault, or the service's fault.
      *
      * @param errorType The type of error represented by this exception (sender or receiver),
-     *        indicating if this exception was the caller's fault or the service's fault.
+     *         indicating if this exception was the caller's fault or the service's fault.
      */
     public void setErrorType(ErrorType errorType) {
         this.errorType = errorType;
@@ -243,7 +246,7 @@ public class CosServiceException extends CosClientException {
     public int getStatusCode() {
         return statusCode;
     }
-    
+
     public String getTraceId() {
         return traceId;
     }

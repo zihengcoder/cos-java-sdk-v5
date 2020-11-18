@@ -7,8 +7,7 @@ import org.junit.BeforeClass;
 import org.junit.Test;
 
 
-
-public class BucketIntelligentTest extends AbstractCOSClientTest{
+public class BucketIntelligentTest extends AbstractCOSClientTest {
 
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
@@ -27,9 +26,11 @@ public class BucketIntelligentTest extends AbstractCOSClientTest{
         bucketIntelligentTierConfiguration.setTransition(new BucketIntelligentTierConfiguration.Transition(30));
         SetBucketIntelligentTierConfigurationRequest setBucketIntelligentTierConfigurationRequest = new SetBucketIntelligentTierConfigurationRequest();
         setBucketIntelligentTierConfigurationRequest.setBucketName(bucket);
-        setBucketIntelligentTierConfigurationRequest.setIntelligentTierConfiguration(bucketIntelligentTierConfiguration);
+        setBucketIntelligentTierConfigurationRequest
+                .setIntelligentTierConfiguration(bucketIntelligentTierConfiguration);
         cosclient.setBucketIntelligentTieringConfiguration(setBucketIntelligentTierConfigurationRequest);
-        BucketIntelligentTierConfiguration bucketIntelligentTierConfiguration1 = cosclient.getBucketIntelligentTierConfiguration(bucket);
+        BucketIntelligentTierConfiguration bucketIntelligentTierConfiguration1 = cosclient
+                .getBucketIntelligentTierConfiguration(bucket);
         System.out.println(bucketIntelligentTierConfiguration1.getStatus());
         System.out.println(bucketIntelligentTierConfiguration1.getTransition().getDays());
     }

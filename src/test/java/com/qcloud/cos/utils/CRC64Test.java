@@ -7,6 +7,7 @@ import java.math.BigInteger;
 import static org.junit.Assert.assertEquals;
 
 public class CRC64Test {
+
     @Test
     public void testCrc64() {
         String str1 = "hello ";

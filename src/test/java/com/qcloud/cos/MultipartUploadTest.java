@@ -86,7 +86,7 @@ public class MultipartUploadTest extends AbstractCOSClientTest {
             listMultipartUploadsRequest.setUploadIdMarker(multipartUploadListing.getNextUploadIdMarker());
         }
     }
-    
+
     @Test
     public void testAbortMultipartUploads() {
         if (!judgeUserInfoValid()) {
@@ -94,7 +94,8 @@ public class MultipartUploadTest extends AbstractCOSClientTest {
         }
         String key = "ut/testAbortMultipart.txt";
         String uploadId = testInitMultipart(key);
-        AbortMultipartUploadRequest abortMultipartUploadRequest = new AbortMultipartUploadRequest(bucket, key, uploadId);
+        AbortMultipartUploadRequest abortMultipartUploadRequest = new AbortMultipartUploadRequest(bucket, key,
+                uploadId);
         cosclient.abortMultipartUpload(abortMultipartUploadRequest);
         try {
             testListMultipart(key, uploadId, 1, new ArrayList<String>());

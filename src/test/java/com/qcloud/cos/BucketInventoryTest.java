@@ -13,6 +13,7 @@ import java.util.List;
 import static org.junit.Assert.assertEquals;
 
 public class BucketInventoryTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -25,7 +26,7 @@ public class BucketInventoryTest extends AbstractCOSClientTest {
 
     @Test
     public void setGetDelBucketInventoryTest() {
-        if(accountId == null) {
+        if (accountId == null) {
             return;
         }
         InventoryConfiguration inventoryConfiguration = new InventoryConfiguration();
@@ -64,12 +65,17 @@ public class BucketInventoryTest extends AbstractCOSClientTest {
         cosclient.setBucketInventoryConfiguration(setBucketInventoryConfigurationRequest);
 
         // 获取指定id的清单配置
-        GetBucketInventoryConfigurationResult getBucketInventoryConfigurationResult = cosclient.getBucketInventoryConfiguration(bucket, "2");
-        InventoryConfiguration inventoryConfiguration1 = getBucketInventoryConfigurationResult.getInventoryConfiguration();
-        InventoryCosBucketDestination inventoryCosBucketDestination1 = inventoryConfiguration1.getDestination().getCosBucketDestination();
+        GetBucketInventoryConfigurationResult getBucketInventoryConfigurationResult = cosclient
+                .getBucketInventoryConfiguration(bucket, "2");
+        InventoryConfiguration inventoryConfiguration1 = getBucketInventoryConfigurationResult
+                .getInventoryConfiguration();
+        InventoryCosBucketDestination inventoryCosBucketDestination1 = inventoryConfiguration1.getDestination()
+                .getCosBucketDestination();
         assertEquals(inventoryConfiguration.getId(), inventoryConfiguration1.getId());
-        assertEquals(inventoryConfiguration.getIncludedObjectVersions(), inventoryConfiguration1.getIncludedObjectVersions());
-        assertEquals(inventoryConfiguration.getSchedule().getFrequency(), inventoryConfiguration1.getSchedule().getFrequency());
+        assertEquals(inventoryConfiguration.getIncludedObjectVersions(),
+                inventoryConfiguration1.getIncludedObjectVersions());
+        assertEquals(inventoryConfiguration.getSchedule().getFrequency(),
+                inventoryConfiguration1.getSchedule().getFrequency());
         assertEquals(inventoryConfiguration.getOptionalFields(), inventoryConfiguration1.getOptionalFields());
 
         assertEquals(inventoryCosBucketDestination.getAccountId(), inventoryCosBucketDestination1.getAccountId());
@@ -80,7 +86,8 @@ public class BucketInventoryTest extends AbstractCOSClientTest {
         // 批量获取清单
         ListBucketInventoryConfigurationsRequest listBucketInventoryConfigurationsRequest = new ListBucketInventoryConfigurationsRequest();
         listBucketInventoryConfigurationsRequest.setBucketName(bucket);
-        ListBucketInventoryConfigurationsResult listBucketInventoryConfigurationsResult = cosclient.listBucketInventoryConfigurations(listBucketInventoryConfigurationsRequest);
+        ListBucketInventoryConfigurationsResult listBucketInventoryConfigurationsResult = cosclient
+                .listBucketInventoryConfigurations(listBucketInventoryConfigurationsRequest);
         assertEquals(2, listBucketInventoryConfigurationsResult.getInventoryConfigurationList().size());
 
         // 删除指定清单
@@ -90,7 +97,8 @@ public class BucketInventoryTest extends AbstractCOSClientTest {
         cosclient.deleteBucketInventoryConfiguration(deleteBucketInventoryConfigurationRequest);
 
         // 获取剩余清单
-        ListBucketInventoryConfigurationsResult listBucketInventoryConfigurationsResult1 = cosclient.listBucketInventoryConfigurations(listBucketInventoryConfigurationsRequest);
+        ListBucketInventoryConfigurationsResult listBucketInventoryConfigurationsResult1 = cosclient
+                .listBucketInventoryConfigurations(listBucketInventoryConfigurationsRequest);
         assertEquals(1, listBucketInventoryConfigurationsResult1.getInventoryConfigurationList().size());
     }
 }

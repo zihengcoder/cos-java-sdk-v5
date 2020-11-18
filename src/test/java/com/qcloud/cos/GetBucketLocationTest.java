@@ -9,6 +9,7 @@ import org.junit.Test;
 import com.qcloud.cos.exception.CosServiceException;
 
 public class GetBucketLocationTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -18,7 +19,7 @@ public class GetBucketLocationTest extends AbstractCOSClientTest {
     public static void tearDownAfterClass() throws Exception {
         AbstractCOSClientTest.destoryCosClient();
     }
-    
+
     @Test
     public void getbucketLocationTest() {
         if (!judgeUserInfoValid()) {
@@ -27,7 +28,7 @@ public class GetBucketLocationTest extends AbstractCOSClientTest {
         String location = cosclient.getBucketLocation(bucket);
         assertEquals(clientConfig.getRegion().getRegionName(), location);
     }
-    
+
     @Test
     public void getNotExistedbucketLocationTest() {
         if (!judgeUserInfoValid()) {
@@ -40,5 +41,5 @@ public class GetBucketLocationTest extends AbstractCOSClientTest {
             assertEquals(404, cse.getStatusCode());
         }
     }
-    
+
 }

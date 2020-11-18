@@ -41,7 +41,7 @@ public class MediaWorkflowTest extends AbstractCOSClientTest {
         List<MediaWorkflowObject> mediaWorkflowList = response.getMediaWorkflowList();
         if (mediaWorkflowList.size() != 0) {
             for (MediaWorkflowObject mediaWorkflowObject : mediaWorkflowList) {
-                assertEquals(bucket,mediaWorkflowObject.getBucketId());
+                assertEquals(bucket, mediaWorkflowObject.getBucketId());
                 assertFalse(mediaWorkflowObject.getName().isEmpty());
                 assertFalse(mediaWorkflowObject.getState().isEmpty());
             }

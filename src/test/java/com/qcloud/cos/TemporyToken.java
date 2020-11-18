@@ -1,6 +1,7 @@
 package com.qcloud.cos;
 
 class TemporyToken {
+
     private String tempSecretId;
     private String tempSecretKey;
     private String tempToken;

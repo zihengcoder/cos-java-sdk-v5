@@ -15,6 +15,7 @@ import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
 public class BucketWebsiteTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -46,7 +47,8 @@ public class BucketWebsiteTest extends AbstractCOSClientTest {
 
         // 获取bucket website
         BucketWebsiteConfiguration bucketWebsiteConfiguration1 = cosclient.getBucketWebsiteConfiguration(bucket);
-        assertEquals(bucketWebsiteConfiguration.getIndexDocumentSuffix(), bucketWebsiteConfiguration1.getIndexDocumentSuffix());
+        assertEquals(bucketWebsiteConfiguration.getIndexDocumentSuffix(),
+                bucketWebsiteConfiguration1.getIndexDocumentSuffix());
         assertEquals(bucketWebsiteConfiguration.getErrorDocument(), bucketWebsiteConfiguration1.getErrorDocument());
         assertTrue(1 == bucketWebsiteConfiguration1.getRoutingRules().size());
 
@@ -54,7 +56,8 @@ public class BucketWebsiteTest extends AbstractCOSClientTest {
         assertEquals(routingRule.getCondition().getHttpErrorCodeReturnedEquals(),
                 routingRule1.getCondition().getHttpErrorCodeReturnedEquals());
         assertEquals(routingRule.getRedirect().getprotocol(), routingRule1.getRedirect().getprotocol());
-        assertEquals(routingRule.getRedirect().getReplaceKeyPrefixWith(), routingRule1.getRedirect().getReplaceKeyPrefixWith());
+        assertEquals(routingRule.getRedirect().getReplaceKeyPrefixWith(),
+                routingRule1.getRedirect().getReplaceKeyPrefixWith());
 
         // 删除bucket website
         cosclient.deleteBucketWebsiteConfiguration(bucket);

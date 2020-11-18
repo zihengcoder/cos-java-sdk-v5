@@ -4,6 +4,51 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+## [5.6.32] - 2020-11-18
+
+### Added
+- add bucket intelligent support
+- optimize ignore case compare code
+- add local time delta offset
+- add log for retreive instance credentials and high level api support
+
+## [5.6.31] - 2020-10-14
+
+### Added
+- add emr instance meta cred provider instance
+
+## [5.6.30] - 2020-10-12
+
+### Added
+- add Cloud Infinite media handling interface code
+
+## [5.6.29] - 2020-9-20
+
+### Added
+- add new storage class type
+- add ClientProtocalException to retryable error codes
+
+## [5.6.28] - 2020-7-19
+
+### Added
+- add object tagging support
+
+## [5.6.27] - 2020-7-9
+
+### Added
+- add select support and test case
+
+## [5.6.26] - 2020-6-16
+
+### Added
+- fix initiateMultipartUpload content-length bug
+- add request related key information
+
+## [5.6.25] - 2020-6-16
+
+### Added
+- add signed header
+
 ## [5.6.24] - 2020-6-3
 
 ### Added

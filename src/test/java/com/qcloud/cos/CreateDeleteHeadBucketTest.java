@@ -119,7 +119,7 @@ public class CreateDeleteHeadBucketTest extends AbstractCOSClientTest {
             fail(cse.toString());
         }
     }
-    
+
     @Test
     public void testCreateBucketWithNameWithUpperCaseLetter() throws Exception {
         if (!judgeUserInfoValid()) {
@@ -134,7 +134,7 @@ public class CreateDeleteHeadBucketTest extends AbstractCOSClientTest {
             fail(e.toString());
         }
     }
-    
+
     @Test
     public void testCreateBucketWithNameStartWithDelimiter() throws Exception {
         if (!judgeUserInfoValid()) {

@@ -1,6 +1,7 @@
 package com.qcloud.cos.internal;
 
 import org.junit.Test;
+
 import static org.junit.Assert.fail;
 
 public class UrlComponentUtilsTest {
@@ -19,7 +20,7 @@ public class UrlComponentUtilsTest {
         }
         fail("testRegionNameContainWhiteSpace failed");
     }
-    
+
     @Test
     public void testRegionNameContainQuestionMark() {
         try {
@@ -29,7 +30,7 @@ public class UrlComponentUtilsTest {
         }
         fail("testRegionNameContainQuestionMark failed");
     }
-    
+
     @Test
     public void testRegionNameContainUpperCaseLetter() {
         try {
@@ -38,6 +39,6 @@ public class UrlComponentUtilsTest {
             return;
         }
         fail("testRegionNameContainUpperCaseLetter failed");
-    }    
-    
+    }
+
 }

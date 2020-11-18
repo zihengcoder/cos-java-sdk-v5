@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,18 +28,18 @@ import com.qcloud.cos.model.ObjectMetadata;
  * <code>TransferManager</code> and given an opportunity to specify the metadata for each file.
  */
 public interface ObjectMetadataProvider {
-    
+
     /*
      * This method is called for every file that is uploaded by <code>TransferManager</code>
      * and gives an opportunity to specify the metadata for the file.
-     * 
+     *
      * @param file
-     *          The file being uploaded. 
-     * 
+     *          The file being uploaded.
+     *
      * @param metadata
      *          The default metadata for the file. You can modify this object to specify
      * your own metadata.
      */
     public void provideObjectMetadata(final File file, final ObjectMetadata metadata);
-    
+
 }

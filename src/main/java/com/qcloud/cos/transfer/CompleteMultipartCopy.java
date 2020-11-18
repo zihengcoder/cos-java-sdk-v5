@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -41,7 +41,9 @@ import com.qcloud.cos.model.PartETag;
  */
 public class CompleteMultipartCopy implements Callable<CopyResult> {
 
-    /** The upload id associated with the multi-part copy. */
+    /**
+     * The upload id associated with the multi-part copy.
+     */
     private final String uploadId;
 
     /**
@@ -49,16 +51,24 @@ public class CompleteMultipartCopy implements Callable<CopyResult> {
      */
     private final COS cos;
 
-    /** The reference to the request initiated by the user. */
+    /**
+     * The reference to the request initiated by the user.
+     */
     private final CopyObjectRequest origReq;
 
-    /** The futures of threads that copies individual parts. */
+    /**
+     * The futures of threads that copies individual parts.
+     */
     private final List<Future<PartETag>> futures;
 
-    /** The monitor to which the copy progress has to be communicated. */
+    /**
+     * The monitor to which the copy progress has to be communicated.
+     */
     private final CopyMonitor monitor;
 
-    /** The listener where progress of the copy needs to be published. */
+    /**
+     * The listener where progress of the copy needs to be published.
+     */
     private final ProgressListenerChain listener;
 
     public CompleteMultipartCopy(String uploadId, COS cos, CopyObjectRequest copyObjectRequest,
@@ -80,8 +90,8 @@ public class CompleteMultipartCopy implements Callable<CopyResult> {
             CompleteMultipartUploadRequest req =
                     new CompleteMultipartUploadRequest(origReq.getDestinationBucketName(),
                             origReq.getDestinationKey(), uploadId, collectPartETags())
-                                    .withGeneralProgressListener(
-                                            origReq.getGeneralProgressListener());
+                            .withGeneralProgressListener(
+                                    origReq.getGeneralProgressListener());
             res = cos.completeMultipartUpload(req);
         } catch (Exception e) {
             publishProgress(listener, ProgressEventType.TRANSFER_FAILED_EVENT);

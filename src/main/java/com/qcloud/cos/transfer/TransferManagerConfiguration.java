@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -30,18 +30,26 @@ import static com.qcloud.cos.internal.Constants.MB;
  */
 public class TransferManagerConfiguration {
 
-    /** Default minimum part size for upload parts. */
+    /**
+     * Default minimum part size for upload parts.
+     */
     private static final int DEFAULT_MINIMUM_UPLOAD_PART_SIZE = 5 * MB;
 
-    /** Default size threshold for when to use multipart uploads. */
+    /**
+     * Default size threshold for when to use multipart uploads.
+     */
     private static final long DEFAULT_MULTIPART_UPLOAD_THRESHOLD = 5 * MB;
 
-    /** Default size threshold for COS object after which multi-part copy is initiated. */
+    /**
+     * Default size threshold for COS object after which multi-part copy is initiated.
+     */
     private static final long DEFAULT_MULTIPART_COPY_THRESHOLD = 5 * GB;
 
-    /** Default minimum size of each part for multi-part copy. */
+    /**
+     * Default minimum size of each part for multi-part copy.
+     */
     private static final long DEFAULT_MINIMUM_COPY_PART_SIZE = 100 * MB;
-    
+
     /**
      * The minimum part size for upload parts. Decreasing the minimum part size will cause multipart
      * uploads to be split into a larger number of smaller parts. Setting this value too low can
@@ -75,7 +83,7 @@ public class TransferManagerConfiguration {
      * initiated.
      */
     private long multipartCopyPartSize = DEFAULT_MINIMUM_COPY_PART_SIZE;
-    
+
     /**
      * Returns the minimum part size for upload parts. Decreasing the minimum part size causes
      * multipart uploads to be split into a larger number of smaller parts. Setting this value too
@@ -125,7 +133,7 @@ public class TransferManagerConfiguration {
      * network communication, small uploads should use a single connection for the upload.
      *
      * @param multipartUploadThreshold The size threshold in bytes for when to use multipart
-     *        uploads.
+     *         uploads.
      */
     public void setMultipartUploadThreshold(long multipartUploadThreshold) {
         this.multipartUploadThreshold = multipartUploadThreshold;
@@ -146,7 +154,7 @@ public class TransferManagerConfiguration {
      * this size will result in increase in the number of copy part requests to the server.
      *
      * @param multipartCopyPartSize The minimum size in bytes for each part in a multi part copy
-     *        request.
+     *         request.
      */
     public void setMultipartCopyPartSize(long multipartCopyPartSize) {
         this.multipartCopyPartSize = multipartCopyPartSize;

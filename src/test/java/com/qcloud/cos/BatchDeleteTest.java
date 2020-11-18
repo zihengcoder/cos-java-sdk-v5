@@ -25,6 +25,7 @@ import com.qcloud.cos.model.DeleteObjectsResult.DeletedObject;
 import static org.junit.Assert.assertEquals;
 
 public class BatchDeleteTest extends AbstractCOSClientTest {
+
     private static final Logger log = org.slf4j.LoggerFactory.getLogger(BatchDeleteTest.class);
 
     @BeforeClass
@@ -48,7 +49,7 @@ public class BatchDeleteTest extends AbstractCOSClientTest {
                 new SetBucketVersioningConfigurationRequest(bucket, bucketVersioningEnabled));
 
         Thread.sleep(5000L);
-        
+
         DeleteObjectsRequest deleteObjectsRequest = new DeleteObjectsRequest(bucket);
         ArrayList<KeyVersion> keyList = new ArrayList<>();
 
@@ -64,7 +65,7 @@ public class BatchDeleteTest extends AbstractCOSClientTest {
         DeleteObjectsResult deleteObjectsResult = cosclient.deleteObjects(deleteObjectsRequest);
         assertEquals(deleteFileCount, deleteObjectsResult.getDeletedObjects().size());
     }
-    
+
     @Test
     public void batchDeletePartExistFileForVersionSuspended() throws IOException, InterruptedException {
         if (!judgeUserInfoValid()) {
@@ -76,7 +77,7 @@ public class BatchDeleteTest extends AbstractCOSClientTest {
                 new SetBucketVersioningConfigurationRequest(bucket, bucketVersioningEnabled));
 
         Thread.sleep(5000L);
-        
+
         DeleteObjectsRequest deleteObjectsRequest = new DeleteObjectsRequest(bucket);
         ArrayList<KeyVersion> keyList = new ArrayList<>();
 

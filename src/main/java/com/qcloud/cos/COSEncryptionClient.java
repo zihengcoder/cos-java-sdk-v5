@@ -11,14 +11,12 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
 
 package com.qcloud.cos;
-
-import java.io.File;
 
 import com.qcloud.cos.auth.COSCredentialsProvider;
 import com.qcloud.cos.exception.CosClientException;
@@ -48,6 +46,7 @@ import com.qcloud.cos.model.PutObjectRequest;
 import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.model.UploadPartRequest;
 import com.qcloud.cos.model.UploadPartResult;
+import java.io.File;
 
 public class COSEncryptionClient extends COSClient implements COSEncryption {
 
@@ -78,8 +77,9 @@ public class COSEncryptionClient extends COSClient implements COSEncryption {
     }
 
     private void assertParameterNotNull(Object parameterValue, String errorMessage) {
-        if (parameterValue == null)
+        if (parameterValue == null) {
             throw new IllegalArgumentException(errorMessage);
+        }
     }
 
     @Override
@@ -160,7 +160,7 @@ public class COSEncryptionClient extends COSClient implements COSEncryption {
      * <p>
      * User of this method is responsible for explicitly deleting/updating the instruction file so
      * created should the corresponding COS object is deleted/created.
-     * 
+     *
      * @return the result of the put (instruction file) operation.
      */
     public PutObjectResult putInstructionFile(PutInstructionFileRequest req) {
@@ -182,11 +182,13 @@ public class COSEncryptionClient extends COSClient implements COSEncryption {
     }
 
     // /////////////////// Access to the methods in the super class //////////
+
     /**
      * An internal implementation used to provide limited but direct access to the underlying
      * methods of COSClient without any encryption or decryption operations.
      */
     private final class COSDirectImpl extends COSDirect {
+
         @Override
         public PutObjectResult putObject(PutObjectRequest req) {
             return COSEncryptionClient.super.putObject(req);

@@ -467,7 +467,8 @@ public class PutGetDelTest extends AbstractCOSClientTest {
     }
 
     @Test
-    public void testCachedTemporyTokenCredentialsProviderPutGetDel() throws CosServiceException, IOException, InterruptedException {
+    public void testCachedTemporyTokenCredentialsProviderPutGetDel()
+            throws CosServiceException, IOException, InterruptedException {
         COSClient normalClient = cosclient;
         CachedTemporyTokenCredentialsProvider credentialsProvider = new CachedTemporyTokenCredentialsProvider(5, 10);
         COSClient temporyCOSClient = new COSClient(credentialsProvider, new ClientConfig(new Region(region)));
@@ -486,7 +487,8 @@ public class PutGetDelTest extends AbstractCOSClientTest {
     }
 
     @Test
-    public void testRequestSpecifiedTmpKeyInfoPutGetDel() throws CosServiceException, IOException, InterruptedException {
+    public void testRequestSpecifiedTmpKeyInfoPutGetDel()
+            throws CosServiceException, IOException, InterruptedException {
         COSClient cosclient = buildTemporyCredentialsCOSClient(1800L);
         File localFile = buildTestFile(1024L);
         COSCredentials cosCredentials = new BasicCOSCredentials(secretId, secretKey);
@@ -508,7 +510,7 @@ public class PutGetDelTest extends AbstractCOSClientTest {
     }
 
     @Test
-    public void testRequestSpecifiedKeyInfoPutGetDel() throws CosServiceException, IOException, InterruptedException { 
+    public void testRequestSpecifiedKeyInfoPutGetDel() throws CosServiceException, IOException, InterruptedException {
         COSClient cosclient = new COSClient(new AnonymousCOSCredentials(), clientConfig);
         File localFile = buildTestFile(1024L);
         COSCredentials cosCredentials = new BasicCOSCredentials(secretId, secretKey);

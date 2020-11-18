@@ -8,9 +8,11 @@ import org.junit.Test;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+
 import static org.junit.Assert.assertEquals;
 
-public class ObjecTaggingTest extends AbstractCOSClientTest  {
+public class ObjecTaggingTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -35,7 +37,8 @@ public class ObjecTaggingTest extends AbstractCOSClientTest  {
             cosclient.setObjectTagging(setObjectTaggingRequest);
             GetObjectTaggingResult getObjectTaggingResult = cosclient.getObjectTagging(
                     new GetObjectTaggingRequest(bucket, key));
-            assertEquals(getObjectTaggingResult.getTagSet(), tags);;
+            assertEquals(getObjectTaggingResult.getTagSet(), tags);
+            ;
             cosclient.deleteObjectTagging(new DeleteObjectTaggingRequest(bucket, key));
             GetObjectTaggingResult getObjectTaggingResultSecond = cosclient.getObjectTagging(
                     new GetObjectTaggingRequest(bucket, key));

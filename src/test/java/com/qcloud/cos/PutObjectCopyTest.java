@@ -21,6 +21,7 @@ import static org.junit.Assert.fail;
 import static org.junit.Assert.assertNotNull;
 
 public class PutObjectCopyTest extends AbstractCOSClientTest {
+
     @BeforeClass
     public static void setUpBeforeClass() throws Exception {
         AbstractCOSClientTest.initCosClient();
@@ -60,7 +61,7 @@ public class PutObjectCopyTest extends AbstractCOSClientTest {
                 checkMetaData(newObjectMetaData, destObjectMetadata);
             }
             */
-            
+
         } finally {
             // delete file on cos
             clearObject(srcKey);
@@ -71,7 +72,7 @@ public class PutObjectCopyTest extends AbstractCOSClientTest {
             }
         }
     }
-    
+
     private void testUpdateDiffSize(long fileSize, ObjectMetadata newObjectMetaData) throws IOException {
         if (!judgeUserInfoValid()) {
             return;
@@ -87,7 +88,7 @@ public class PutObjectCopyTest extends AbstractCOSClientTest {
             if (newObjectMetaData != null) {
                 checkMetaData(newObjectMetaData, destObjectMetadata);
             }
-            
+
         } finally {
             // delete file on cos
             clearObject(srcKey);
@@ -107,12 +108,12 @@ public class PutObjectCopyTest extends AbstractCOSClientTest {
     public void testCopySameRegion1M() throws IOException {
         testCopySameRegionDiffSize(1 * 1024 * 1024L, null);
     }
-    
+
     @Test
     public void testCopySameRegion10M() throws IOException {
         testCopySameRegionDiffSize(10 * 1024 * 1024L, null);
     }
-    
+
     @Test
     public void testCopySameRegionEmptyWithNewMetaData() throws IOException {
         ObjectMetadata newObjectMetadata = new ObjectMetadata();
@@ -120,7 +121,7 @@ public class PutObjectCopyTest extends AbstractCOSClientTest {
         newObjectMetadata.setContentType("image/tiff");
         testCopySameRegionDiffSize(0, newObjectMetadata);
     }
-    
+
     @Test
     public void testCopySameRegion10MWithNewMetaData() throws IOException {
         ObjectMetadata newObjectMetadata = new ObjectMetadata();
@@ -129,7 +130,7 @@ public class PutObjectCopyTest extends AbstractCOSClientTest {
         newObjectMetadata.setCacheControl("no-cache");
         testCopySameRegionDiffSize(10 * 1024 * 1024L, newObjectMetadata);
     }
-    
+
     @Test
     public void testUpdateObjectAttr() throws IOException {
         ObjectMetadata newMetadata = new ObjectMetadata();
@@ -141,5 +142,5 @@ public class PutObjectCopyTest extends AbstractCOSClientTest {
         testUpdateDiffSize(0, newMetadata);
     }
 
-    
+
 }

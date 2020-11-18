@@ -14,9 +14,11 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import java.io.Serializable;
 
 public class ParquetInput implements Serializable {
+
 }

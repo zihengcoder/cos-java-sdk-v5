@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,20 +26,22 @@ public class SetBucketPolicyRequest extends CosServiceRequest implements Seriali
 
     private static final long serialVersionUID = 1L;
 
-    /** The name of the COS bucket whose policy is being set. */
+    /**
+     * The name of the COS bucket whose policy is being set.
+     */
     private String bucketName;
 
-    /** The policy to apply to the specified bucket. */
+    /**
+     * The policy to apply to the specified bucket.
+     */
     private String policyText;
-    
+
     /**
      * Creates a new request object, ready to be executed to set COS
      * bucket's policy.
      *
-     * @param bucketName
-     *            The name of the COS bucket whose policy is being set.
-     * @param policyText
-     *            The policy to apply to the specified bucket.
+     * @param bucketName The name of the COS bucket whose policy is being set.
+     * @param policyText The policy to apply to the specified bucket.
      */
     public SetBucketPolicyRequest(String bucketName, String policyText) {
         this.bucketName = bucketName;
@@ -58,8 +60,7 @@ public class SetBucketPolicyRequest extends CosServiceRequest implements Seriali
     /**
      * Sets the name of the COS bucket whose policy is being set.
      *
-     * @param bucketName
-     *            The name of the COS bucket whose policy is being set.
+     * @param bucketName The name of the COS bucket whose policy is being set.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -70,9 +71,7 @@ public class SetBucketPolicyRequest extends CosServiceRequest implements Seriali
      * returns the updated request object so that additional method calls can be
      * chained together.
      *
-     * @param bucketName
-     *            The name of the COS bucket whose policy is being set.
-     *
+     * @param bucketName The name of the COS bucket whose policy is being set.
      * @return The updated request object so that additional method calls can be
      *         chained together.
      */
@@ -93,8 +92,7 @@ public class SetBucketPolicyRequest extends CosServiceRequest implements Seriali
     /**
      * Sets the policy to apply to the specified bucket.
      *
-     * @param policyText
-     *            The policy to apply to the specified bucket.
+     * @param policyText The policy to apply to the specified bucket.
      */
     public void setPolicyText(String policyText) {
         this.policyText = policyText;
@@ -104,9 +102,7 @@ public class SetBucketPolicyRequest extends CosServiceRequest implements Seriali
      * Sets the policy to apply to the specified bucket, and returns the updated
      * request object so that additional method calls can be chained together.
      *
-     * @param policyText
-     *            The policy to apply to the specified bucket.
-     *
+     * @param policyText The policy to apply to the specified bucket.
      * @return The updated request object, so that additional method calls can
      *         be chained together.
      */

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -25,26 +25,30 @@ import java.util.List;
 import com.qcloud.cos.internal.CosServiceRequest;
 
 public class AbortMultipartUploadRequest extends CosServiceRequest implements Serializable {
-    /** The name of the bucket containing the multipart upload to abort */
+
+    /**
+     * The name of the bucket containing the multipart upload to abort
+     */
     private String bucketName;
 
-    /** The key of the multipart upload to abort */
+    /**
+     * The key of the multipart upload to abort
+     */
     private String key;
 
-    /** The ID of the multipart upload to abort */
+    /**
+     * The ID of the multipart upload to abort
+     */
     private String uploadId;
-    
+
 
     /**
      * Constructs a new request to abort a multipart upload.
      *
-     * @param bucketName
-     *            The name of the bucket containing the multipart upload to
-     *            abort.
-     * @param key
-     *            The key of the multipart upload to abort.
-     * @param uploadId
-     *            The ID of the multipart upload to abort.
+     * @param bucketName The name of the bucket containing the multipart upload to
+     *         abort.
+     * @param key The key of the multipart upload to abort.
+     * @param uploadId The ID of the multipart upload to abort.
      */
     public AbortMultipartUploadRequest(String bucketName, String key, String uploadId) {
         this.bucketName = bucketName;
@@ -72,10 +76,8 @@ public class AbortMultipartUploadRequest extends CosServiceRequest implements Se
      * returns the updated object so that additional calls can be chained
      * together.
      *
-     * @param bucketName
-     *            The name of the bucket containing the multipart upload to
-     *            abort.
-     *
+     * @param bucketName The name of the bucket containing the multipart upload to
+     *         abort.
      * @return The updated AbortMultipartUploadRequest object.
      */
     public AbortMultipartUploadRequest withBucketName(String bucketName) {
@@ -95,8 +97,7 @@ public class AbortMultipartUploadRequest extends CosServiceRequest implements Se
     /**
      * Sets the key of the multipart upload to abort.
      *
-     * @param key
-     *            The key of the multipart upload to abort.
+     * @param key The key of the multipart upload to abort.
      */
     public void setKey(String key) {
         this.key = key;
@@ -107,9 +108,7 @@ public class AbortMultipartUploadRequest extends CosServiceRequest implements Se
      * AbortMultipartUploadRequest object so that additional method calls can be
      * chained together.
      *
-     * @param key
-     *            The key of the multipart upload to abort.
-     *
+     * @param key The key of the multipart upload to abort.
      * @return The updated AbortMultipartUploadRequest.
      */
     public AbortMultipartUploadRequest withKey(String key) {
@@ -138,9 +137,7 @@ public class AbortMultipartUploadRequest extends CosServiceRequest implements Se
      * AbortMultipartUploadRequest object so that additional method calls can be
      * chained together.
      *
-     * @param uploadId
-     *            The ID of the multipart upload to abort.
-     *
+     * @param uploadId The ID of the multipart upload to abort.
      * @return The updated AbortMultipartUploadRequest object.
      */
     public AbortMultipartUploadRequest withUploadId(String uploadId) {

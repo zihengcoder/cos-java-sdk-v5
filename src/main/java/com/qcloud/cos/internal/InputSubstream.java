@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,6 +28,7 @@ import com.qcloud.cos.exception.CosClientException;
  * as a new input stream.
  */
 public final class InputSubstream extends SdkFilterInputStream {
+
     private static final int MAX_SKIPS = 100;
     private long currentPosition;
     private final long requestedOffset;
@@ -40,17 +41,13 @@ public final class InputSubstream extends SdkFilterInputStream {
      * this stream they'll start at the specified offset in the real stream and
      * after they've read the specified length, this stream will look empty.
      *
-     * @param in
-     *            The input stream to wrap.
-     * @param offset
-     *            The offset, in bytes, into the specified input stream at which
-     *            to start reading data.
-     * @param length
-     *            The length, in bytes, of the specified input stream to return
-     *            through this stream.
-     * @param closeSourceStream
-     *            True if the wrapped InputStream should be closed when this
-     *            InputSubstream is closed.
+     * @param in The input stream to wrap.
+     * @param offset The offset, in bytes, into the specified input stream at which
+     *         to start reading data.
+     * @param length The length, in bytes, of the specified input stream to return
+     *         through this stream.
+     * @param closeSourceStream True if the wrapped InputStream should be closed when this
+     *         InputSubstream is closed.
      */
     public InputSubstream(InputStream in, long offset, long length,
             boolean closeSourceStream) {
@@ -67,8 +64,9 @@ public final class InputSubstream extends SdkFilterInputStream {
         byte[] b = new byte[1];
         int bytesRead = read(b, 0, 1);
 
-        if (bytesRead == -1)
+        if (bytesRead == -1) {
             return bytesRead;
+        }
         return b[0];
     }
 
@@ -90,9 +88,10 @@ public final class InputSubstream extends SdkFilterInputStream {
         }
 
         long bytesRemaining =
-            (requestedLength + requestedOffset) - currentPosition;
-        if (bytesRemaining <= 0)
+                (requestedLength + requestedOffset) - currentPosition;
+        if (bytesRemaining <= 0) {
             return -1;
+        }
 
         len = (int) Math.min(len, bytesRemaining);
         int bytesRead = super.read(b, off, len);
@@ -118,24 +117,27 @@ public final class InputSubstream extends SdkFilterInputStream {
         // Only close the wrapped input stream if we're at the end of
         // the wrapped stream. We don't want to close the wrapped input
         // stream just because we've reached the end of one subsection.
-        if (closeSourceStream)
+        if (closeSourceStream) {
             super.close();
+        }
     }
 
     @Override
     public int available() throws IOException {
         long bytesRemaining;
-        if (currentPosition < requestedOffset)
+        if (currentPosition < requestedOffset) {
             bytesRemaining = requestedLength;
-        else {
+        } else {
             bytesRemaining =
-                (requestedLength + requestedOffset) - currentPosition;
+                    (requestedLength + requestedOffset) - currentPosition;
         }
 
         return (int) Math.min(bytesRemaining, super.available());
     }
 
-    /** Strictly used for testing only. */
+    /**
+     * Strictly used for testing only.
+     */
     InputStream getWrappedInputStream() {
         return in;
     }

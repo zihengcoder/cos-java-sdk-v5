@@ -5,7 +5,8 @@ import com.qcloud.cos.model.ciModel.job.*;
 /**
  * @descript 媒体模板响应实体类。 注释详情请参见 https://cloud.tencent.com/document/product/460/46989
  */
-public class MediaTemplateTransTplObject  {
+public class MediaTemplateTransTplObject {
+
     /**
      * 容器格式
      */
@@ -32,7 +33,7 @@ public class MediaTemplateTransTplObject  {
     private MediaTransConfigObject transConfig;
 
     public MediaContainerObject getContainer() {
-        if (container==null){
+        if (container == null) {
             container = new MediaContainerObject();
         }
         return container;
@@ -43,7 +44,7 @@ public class MediaTemplateTransTplObject  {
     }
 
     public MediaVideoObject getVideo() {
-        if (video==null){
+        if (video == null) {
             video = new MediaVideoObject();
         }
         return video;
@@ -70,7 +71,7 @@ public class MediaTemplateTransTplObject  {
     }
 
     public MediaAudioObject getAudio() {
-        if (audio==null){
+        if (audio == null) {
             audio = new MediaAudioObject();
         }
         return audio;
@@ -81,7 +82,7 @@ public class MediaTemplateTransTplObject  {
     }
 
     public MediaTransConfigObject getTransConfig() {
-        if (transConfig==null){
+        if (transConfig == null) {
             transConfig = new MediaTransConfigObject();
         }
         return transConfig;

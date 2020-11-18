@@ -4,6 +4,7 @@ package com.qcloud.cos.model.ciModel.workflow;
  * 工作流响应实体类 请见：https://cloud.tencent.com/document/product/460/45947
  */
 public class MediaWorkflowExecutionResponse {
+
     private String requestId;
     /**
      * 工作流实例详细信息

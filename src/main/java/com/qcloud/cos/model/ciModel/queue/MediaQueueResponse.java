@@ -1,12 +1,13 @@
 package com.qcloud.cos.model.ciModel.queue;
 
 public class MediaQueueResponse {
+
     private MediaQueueObject queue;
     private String requestId;
 
 
     public MediaQueueObject getQueue() {
-        if (queue==null){
+        if (queue == null) {
             queue = new MediaQueueObject();
         }
         return queue;

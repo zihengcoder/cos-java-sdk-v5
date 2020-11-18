@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -39,16 +39,23 @@ import com.qcloud.cos.model.PartETag;
 import com.qcloud.cos.transfer.Transfer.TransferState;
 
 public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
+
     /**
      * Reference to the COS client object that is used to initiate the copy
      * or copy part request.
      */
     private final COS cos;
-    /** Thread pool used during multi-part copy is performed. */
+    /**
+     * Thread pool used during multi-part copy is performed.
+     */
     private final ExecutorService threadPool;
-    /** A reference to the original copy request received. */
+    /**
+     * A reference to the original copy request received.
+     */
     private final CopyObjectRequest origReq;
-    /** Reference to the CopyCallable that is used for initiating copy requests. */
+    /**
+     * Reference to the CopyCallable that is used for initiating copy requests.
+     */
     private final CopyCallable multipartCopyCallable;
     private final CopyImpl transfer;
     private final ProgressListenerChain listener;
@@ -77,16 +84,12 @@ public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
      * Constructs a new watcher for copy operation, and then immediately submits
      * it to the thread pool.
      *
-     * @param manager
-     *            The {@link TransferManager} that owns this copy request.
-     * @param threadPool
-     *            The {@link ExecutorService} to which we should submit new
-     *            tasks.
-     * @param multipartCopyCallable
-     *            The callable responsible for processing the copy
-     *            asynchronously
-     * @param copyObjectRequest
-     *            The original CopyObject request
+     * @param manager The {@link TransferManager} that owns this copy request.
+     * @param threadPool The {@link ExecutorService} to which we should submit new
+     *         tasks.
+     * @param multipartCopyCallable The callable responsible for processing the copy
+     *         asynchronously
+     * @param copyObjectRequest The original CopyObject request
      */
     public static CopyMonitor create(
             TransferManager manager,
@@ -111,9 +114,9 @@ public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
     }
 
     private CopyMonitor(TransferManager manager, CopyImpl transfer,
-                        ExecutorService threadPool, CopyCallable multipartCopyCallable,
-                        CopyObjectRequest copyObjectRequest,
-                        ProgressListenerChain progressListenerChain) {
+            ExecutorService threadPool, CopyCallable multipartCopyCallable,
+            CopyObjectRequest copyObjectRequest,
+            ProgressListenerChain progressListenerChain) {
 
         this.cos = manager.getCOSClient();
         this.multipartCopyCallable = multipartCopyCallable;
@@ -130,8 +133,9 @@ public class CopyMonitor implements Callable<CopyResult>, TransferMonitor {
 
             if (result == null) {
                 futures.addAll(multipartCopyCallable.getFutures());
-                futureReference.set(threadPool.submit(new CompleteMultipartCopy(multipartCopyCallable.getMultipartUploadId(), cos, origReq,
-                        futures, listener, this)));
+                futureReference.set(threadPool
+                        .submit(new CompleteMultipartCopy(multipartCopyCallable.getMultipartUploadId(), cos, origReq,
+                                futures, listener, this)));
             } else {
                 copyComplete();
             }

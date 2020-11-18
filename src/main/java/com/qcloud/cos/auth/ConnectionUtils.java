@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.auth;
 
 import java.io.IOException;
@@ -26,6 +27,7 @@ import java.util.Map;
  * Connect the specified endpoint
  */
 public class ConnectionUtils {
+
     private static final int CONNECT_TIMEOUT = 5 * 1000;
     private static final int READ_TIMEOUT = 10 * 1000;
     private static final String DEFAULT_HTTP_METHOD = "GET";

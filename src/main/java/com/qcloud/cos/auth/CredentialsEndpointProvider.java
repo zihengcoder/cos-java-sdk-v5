@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public abstract class CredentialsEndpointProvider {
+
     public abstract URI getCredentialsEndpoint() throws URISyntaxException, IOException;
 
     public CredentialsEndpointRetryPolicy getRetryPolicy() {

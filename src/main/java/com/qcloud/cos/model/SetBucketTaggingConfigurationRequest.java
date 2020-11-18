@@ -11,11 +11,12 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
 package com.qcloud.cos.model;
+
 import com.qcloud.cos.internal.CosServiceRequest;
 
 import java.io.Serializable;
@@ -42,12 +43,10 @@ public class SetBucketTaggingConfigurationRequest extends CosServiceRequest impl
      * to set the bucket tagging configuration of
      * the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket for which to set the tagging
-     *            configuration.
-     * @param taggingConfiguration
-     *            The new tagging configuration for this bucket, which
-     *            completely replaces any existing configuration.
+     * @param bucketName The name of the bucket for which to set the tagging
+     *         configuration.
+     * @param taggingConfiguration The new tagging configuration for this bucket, which
+     *         completely replaces any existing configuration.
      */
     public SetBucketTaggingConfigurationRequest(
             String bucketName, BucketTaggingConfiguration taggingConfiguration) {
@@ -61,7 +60,6 @@ public class SetBucketTaggingConfigurationRequest extends CosServiceRequest impl
      *
      * @return The name of the bucket whose tagging configuration is being
      *         set.
-     *
      * @see SetBucketTaggingConfigurationRequest#setBucketName(String)
      */
     public String getBucketName() {
@@ -71,10 +69,8 @@ public class SetBucketTaggingConfigurationRequest extends CosServiceRequest impl
     /**
      * Sets the name of the bucket whose tagging configuration is being set.
      *
-     * @param bucketName
-     *            The name of the bucket whose tagging configuration is being
-     *            set.
-     *
+     * @param bucketName The name of the bucket whose tagging configuration is being
+     *         set.
      * @see SetBucketTaggingConfigurationRequest#getBucketName()
      */
     public void setBucketName(String bucketName) {
@@ -86,13 +82,10 @@ public class SetBucketTaggingConfigurationRequest extends CosServiceRequest impl
      * and returns this object so that additional method calls may be chained
      * together.
      *
-     * @param bucketName
-     *            The name of the bucket whose tagging configuration is being
-     *            set.
-     *
+     * @param bucketName The name of the bucket whose tagging configuration is being
+     *         set.
      * @return This {@link SetBucketTaggingConfigurationRequest} object so that
      *         additional method calls may be chained together.
-     *
      * @see SetBucketTaggingConfigurationRequest#setBucketName(String)
      */
     public SetBucketTaggingConfigurationRequest withBucketName(String bucketName) {
@@ -104,7 +97,6 @@ public class SetBucketTaggingConfigurationRequest extends CosServiceRequest impl
      * Gets the new tagging configuration for the specified bucket.
      *
      * @return The new tagging configuration for the specified bucket.
-     *
      * @see SetBucketTaggingConfigurationRequest#withTaggingConfiguration(BucketTaggingConfiguration)
      */
     public BucketTaggingConfiguration getTaggingConfiguration() {
@@ -114,9 +106,7 @@ public class SetBucketTaggingConfigurationRequest extends CosServiceRequest impl
     /**
      * Sets the new tagging configuration for the specified bucket.
      *
-     * @param taggingConfiguration
-     *            The new tagging configuration for the specified bucket.
-     *
+     * @param taggingConfiguration The new tagging configuration for the specified bucket.
      * @see SetBucketTaggingConfigurationRequest#getTaggingConfiguration()
      * @see SetBucketTaggingConfigurationRequest#withTaggingConfiguration(BucketTaggingConfiguration)
      */
@@ -130,12 +120,9 @@ public class SetBucketTaggingConfigurationRequest extends CosServiceRequest impl
      * returns this object, enabling additional method calls to be chained
      * together.
      *
-     * @param taggingConfiguration
-     *            The new tagging configuration for the specified bucket.
-     *
+     * @param taggingConfiguration The new tagging configuration for the specified bucket.
      * @return This {@link SetBucketTaggingConfigurationRequest} object, enabling that
      *         additional method calls may be chained together.
-     *
      * @see SetBucketTaggingConfigurationRequest#getTaggingConfiguration()
      */
     public SetBucketTaggingConfigurationRequest withTaggingConfiguration(

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -42,11 +42,13 @@ public class BucketVersioningConfiguration implements Serializable {
      * bucket.
      */
     public static final String ENABLED = "Enabled";
-   
-    
-    /** The current status of versioning */
+
+
+    /**
+     * The current status of versioning
+     */
     private String status;
-    
+
     /**
      * Creates a new bucket versioning configuration object which defaults to
      * {@link #OFF} status.
@@ -62,11 +64,9 @@ public class BucketVersioningConfiguration implements Serializable {
      * Note that once versioning has been enabled for a bucket, its status can
      * only be {@link #SUSPENDED suspended} and can never be set back to
      * {@link #OFF off}.
-     * 
-     * @param status
-     *            The desired bucket versioning status for the new configuration
-     *            object.
-     * 
+     *
+     * @param status The desired bucket versioning status for the new configuration
+     *         object.
      * @see #ENABLED
      * @see #SUSPENDED
      */
@@ -78,10 +78,9 @@ public class BucketVersioningConfiguration implements Serializable {
      * Returns the current status of versioning for this bucket versioning
      * configuration object, indicating if versioning is enabled or not for a
      * bucket.
-     * 
+     *
      * @return The current status of versioning for this bucket versioning
      *         configuration.
-     * 
      * @see #OFF
      * @see #ENABLED
      * @see #SUSPENDED
@@ -97,11 +96,9 @@ public class BucketVersioningConfiguration implements Serializable {
      * Note that once versioning has been enabled for a bucket, its status can
      * only be {@link #SUSPENDED suspended} and can never be set back to
      * {@link #OFF off}.
-     * 
-     * @param status
-     *            The desired status of versioning for this bucket versioning
-     *            configuration.
-     * 
+     *
+     * @param status The desired status of versioning for this bucket versioning
+     *         configuration.
      * @see #ENABLED
      * @see #SUSPENDED
      */
@@ -117,14 +114,11 @@ public class BucketVersioningConfiguration implements Serializable {
      * Note that once versioning has been enabled for a bucket, its status can
      * only be {@link #SUSPENDED suspended} and can never be set back to
      * {@link #OFF off}.
-     * 
-     * @param status
-     *            The desired status of versioning for this bucket versioning
-     *            configuration.
-     * 
+     *
+     * @param status The desired status of versioning for this bucket versioning
+     *         configuration.
      * @return The updated BucketVersioningConfiguration object so that
      *         additional method calls may be chained together.
-     * 
      * @see #ENABLED
      * @see #SUSPENDED
      */

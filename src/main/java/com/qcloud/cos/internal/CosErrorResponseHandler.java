@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -45,12 +45,16 @@ public class CosErrorResponseHandler implements HttpResponseHandler<CosServiceEx
 
     private static final Logger log = LoggerFactory.getLogger(CosErrorResponseHandler.class);
 
-    /** Shared factory for creating XML event readers */
+    /**
+     * Shared factory for creating XML event readers
+     */
     private static final XMLInputFactory xmlInputFactory = XMLInputFactory.newInstance();
 
     private static enum COSErrorTags {
         Error, Code, Message, Resource, RequestId, TraceId;
-    };
+    }
+
+    ;
 
     private CosServiceException createExceptionFromHeaders(CosHttpResponse errorResponse,
             String errorResponseXml) {
@@ -112,18 +116,20 @@ public class CosErrorResponseHandler implements HttpResponseHandler<CosServiceEx
                     case XMLStreamConstants.START_ELEMENT:
                         targetDepth++;
                         String tagName = reader.getLocalName();
-                        if (targetDepth == 1 && !COSErrorTags.Error.toString().equals(tagName))
+                        if (targetDepth == 1 && !COSErrorTags.Error.toString().equals(tagName)) {
                             return createExceptionFromHeaders(httpResponse,
                                     "Unable to parse error response. Error XML Not in proper format."
                                             + content);
+                        }
                         if (COSErrorTags.Error.toString().equals(tagName)) {
                             hasErrorTagVisited = true;
                         }
                         continue;
                     case XMLStreamConstants.CHARACTERS:
                         xmlContent = reader.getText();
-                        if (xmlContent != null)
+                        if (xmlContent != null) {
                             xmlContent = xmlContent.trim();
+                        }
                         continue;
                     case XMLStreamConstants.END_ELEMENT:
                         tagName = reader.getLocalName();

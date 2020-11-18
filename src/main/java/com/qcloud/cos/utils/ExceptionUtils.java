@@ -40,7 +40,7 @@ public class ExceptionUtils {
             errorCode = ClientExceptionConstants.HOST_CONNECT;
         } else if (ex instanceof SocketTimeoutException) {
             errorCode = ClientExceptionConstants.SOCKET_TIMEOUT;
-        } else if(ex instanceof ClientProtocolException) {
+        } else if (ex instanceof ClientProtocolException) {
             errorCode = ClientExceptionConstants.CLIENT_PROTOCAL_EXCEPTION;
         }
 

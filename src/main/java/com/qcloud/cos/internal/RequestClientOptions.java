@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,6 +26,7 @@ import java.util.EnumMap;
  * {@link QcloudWebServiceRequest}s.
  */
 public final class RequestClientOptions {
+
     /**
      * Used to enable mark-and-reset for
      * non-mark-and-resettable non-file input stream for up to 128K memory
@@ -35,9 +36,9 @@ public final class RequestClientOptions {
      * Retries after reading {@link #DEFAULT_STREAM_BUFFER_SIZE} bytes would
      * fail to reset the underlying input stream as the mark position would
      * have been invalidated.
-     *
      */
-    public static final int DEFAULT_STREAM_BUFFER_SIZE = (1 << 17)+1;
+    public static final int DEFAULT_STREAM_BUFFER_SIZE = (1 << 17) + 1;
+
     public static enum Marker {
         /**
          * Used to specify the http user_agent value.
@@ -47,7 +48,7 @@ public final class RequestClientOptions {
         ;
     }
 
-    private final EnumMap<Marker,String> markers = new EnumMap<Marker,String>(Marker.class);
+    private final EnumMap<Marker, String> markers = new EnumMap<Marker, String>(Marker.class);
     /**
      * Used for mark-and-reset purposes during retry.
      */
@@ -76,8 +77,9 @@ public final class RequestClientOptions {
      */
     public void appendUserAgent(String userAgent) {
         String marker = markers.get(Marker.USER_AGENT);
-        if (marker == null)
+        if (marker == null) {
             marker = "";
+        }
         marker = createUserAgentMarkerString(marker, userAgent);
         putClientMarker(Marker.USER_AGENT, marker);
     }
@@ -115,7 +117,8 @@ public final class RequestClientOptions {
      */
     void copyTo(RequestClientOptions target) {
         target.setReadLimit(getReadLimit());
-        for (Marker marker: Marker.values())
+        for (Marker marker : Marker.values()) {
             target.putClientMarker(marker, getClientMarker(marker));
+        }
     }
 }

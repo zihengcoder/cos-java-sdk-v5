@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -37,16 +37,19 @@ public enum BucketNameUtils {
 
         for (int i = 0; i < bucketNameNotContainAppid.length(); ++i) {
             char next = bucketNameNotContainAppid.charAt(i);
-            if (i == 0 && next == '-') { 
+            if (i == 0 && next == '-') {
                 throw new IllegalArgumentException("Bucket name can not start with -");
             }
-            if (next == '-') 
+            if (next == '-') {
                 continue;
-            if (next >= 'a' && next <= 'z')
+            }
+            if (next >= 'a' && next <= 'z') {
                 continue;
+            }
 
-            if (next >= '0' && next <= '9')
+            if (next >= '0' && next <= '9') {
                 continue;
+            }
 
             if (next >= 'A' && next <= 'Z') {
                 throw new IllegalArgumentException(
@@ -56,7 +59,7 @@ public enum BucketNameUtils {
             if (next == ' ' || next == '\t' || next == '\r' || next == '\n') {
                 throw new IllegalArgumentException("Bucket name should not contain whitespace");
             }
-            
+
             throw new IllegalArgumentException(
                     "Bucket name only should contain lowercase characters, num and -");
         }

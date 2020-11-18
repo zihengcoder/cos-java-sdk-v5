@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -21,32 +21,45 @@ package com.qcloud.cos.transfer;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public final class PersistableUpload extends PersistableTransfer {
+
     static final String TYPE = "upload";
 
     @JsonProperty
     private final String pauseType = TYPE;
 
-    /** The bucket name in Qcloud COS from where the object has to be uploaded. */
+    /**
+     * The bucket name in Qcloud COS from where the object has to be uploaded.
+     */
     @JsonProperty
     private final String bucketName;
 
-    /** The name of the object in Qcloud COS. */
+    /**
+     * The name of the object in Qcloud COS.
+     */
     @JsonProperty
     private final String key;
 
-    /** The file to upload. */
+    /**
+     * The file to upload.
+     */
     @JsonProperty
     private final String file;
 
-    /** The multi-part upload id associated with this upload. */
+    /**
+     * The multi-part upload id associated with this upload.
+     */
     @JsonProperty
     private final String multipartUploadId;
 
-    /** The part size to be used for the multi-part upload. */
+    /**
+     * The part size to be used for the multi-part upload.
+     */
     @JsonProperty
     private final long partSize;
 
-    /** The upper threshold of the file to use multi part upload. */
+    /**
+     * The upper threshold of the file to use multi part upload.
+     */
     @JsonProperty
     private final long mutlipartUploadThreshold;
 

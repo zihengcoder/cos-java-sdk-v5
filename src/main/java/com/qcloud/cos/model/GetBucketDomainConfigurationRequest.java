@@ -16,16 +16,20 @@
  */
 
 package com.qcloud.cos.model;
+
 import java.io.Serializable;
 
 import com.qcloud.cos.internal.CosServiceRequest;
+
 /**
  * Request object for the parameters to retrieve a bucket's domain
  * configuration.
  */
 public class GetBucketDomainConfigurationRequest extends CosServiceRequest implements Serializable {
 
-    /** The name of the bucket whose website configuration is being retrieved. */
+    /**
+     * The name of the bucket whose website configuration is being retrieved.
+     */
     private String bucketName;
 
 
@@ -33,8 +37,7 @@ public class GetBucketDomainConfigurationRequest extends CosServiceRequest imple
      * Creates a new request object, ready to be executed to retrieve the bucket
      * domain configuration for the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket whose domain configuration is being retrieved.
+     * @param bucketName The name of the bucket whose domain configuration is being retrieved.
      */
     public GetBucketDomainConfigurationRequest(String bucketName) {
         this.bucketName = bucketName;
@@ -43,8 +46,7 @@ public class GetBucketDomainConfigurationRequest extends CosServiceRequest imple
     /**
      * Sets the name of the bucket whose domain configuration is being retrieved.
      *
-     * @param bucketName
-     *            The name of the bucket whose domain configuration is being retrieved.
+     * @param bucketName The name of the bucket whose domain configuration is being retrieved.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -64,10 +66,8 @@ public class GetBucketDomainConfigurationRequest extends CosServiceRequest imple
      * retrieved, and returns this updated request object so that additional
      * method calls can be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket whose domain configuration is being
-     *            retrieved.
-     *
+     * @param bucketName The name of the bucket whose domain configuration is being
+     *         retrieved.
      * @return This updated request object, so that additional method calls can
      *         be chained together.
      */

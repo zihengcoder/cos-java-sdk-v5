@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import java.io.Serializable;
@@ -23,6 +24,7 @@ import java.io.Serializable;
  * https://tools.ietf.org/html/rfc2616#section-14.35.1
  */
 public class ScanRange implements Serializable, Cloneable {
+
     private Long start = null;
     private Long end = null;
 
@@ -56,10 +58,12 @@ public class ScanRange implements Serializable, Cloneable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getStart() != null)
+        if (getStart() != null) {
             sb.append("Start: ").append(getStart()).append(',');
-        if (getEnd() != null)
+        }
+        if (getEnd() != null) {
             sb.append("End: ").append(getEnd());
+        }
         sb.append("}");
         return sb.toString();
     }
@@ -79,7 +83,8 @@ public class ScanRange implements Serializable, Cloneable {
         try {
             return (ScanRange) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
+            throw new IllegalStateException(
+                    "Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
         }
     }
 

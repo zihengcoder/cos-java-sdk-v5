@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model.transform;
 
 import com.qcloud.cos.internal.XmlWriter;
@@ -21,6 +22,7 @@ import com.qcloud.cos.model.ObjectTagging;
 import com.qcloud.cos.model.Tag.Tag;
 
 public class ObjectTaggingXmlFactory {
+
     public byte[] convertToXmlByteArray(ObjectTagging tagging) {
         XmlWriter writer = new XmlWriter();
         writer.start("Tagging").start("TagSet");

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -37,9 +37,9 @@ import com.qcloud.cos.utils.Base64;
  * This class allows you to specify your own encryption key for Qcloud COS to use
  * when encrypting your data on the server-side, instead of allowing Qcloud to
  * automatically generate an encryption key for you.
- *
  */
 public class SSECustomerKey implements Serializable {
+
     private final String base64EncodedKey;
     private String base64EncodedMd5;
     private String algorithm;
@@ -54,12 +54,12 @@ public class SSECustomerKey implements Serializable {
      *
      * Currently, Qcloud COS only supports AES-256 encryption keys.
      *
-     * @param base64EncodedKey
-     *            The base 64 encoded encryption key material.
+     * @param base64EncodedKey The base 64 encoded encryption key material.
      */
     public SSECustomerKey(String base64EncodedKey) {
-        if (base64EncodedKey == null || base64EncodedKey.length() == 0)
+        if (base64EncodedKey == null || base64EncodedKey.length() == 0) {
             throw new IllegalArgumentException("Encryption key must be specified");
+        }
 
         // Default to AES-256 encryption
         this.algorithm = SSEAlgorithm.AES256.getAlgorithm();
@@ -75,12 +75,12 @@ public class SSECustomerKey implements Serializable {
      *
      * Currently, Qcloud COS only supports AES-256 encryption keys.
      *
-     * @param rawKeyMaterial
-     *            The raw bytes of the customer provided encryption key.
+     * @param rawKeyMaterial The raw bytes of the customer provided encryption key.
      */
     public SSECustomerKey(byte[] rawKeyMaterial) {
-        if (rawKeyMaterial == null || rawKeyMaterial.length == 0)
+        if (rawKeyMaterial == null || rawKeyMaterial.length == 0) {
             throw new IllegalArgumentException("Encryption key must be specified");
+        }
 
         // Default to AES-256 encryption
         this.algorithm = SSEAlgorithm.AES256.getAlgorithm();
@@ -96,12 +96,12 @@ public class SSECustomerKey implements Serializable {
      *
      * Currently, Qcloud COS only supports AES-256 encryption keys.
      *
-     * @param key
-     *            The customer provided server-side encryption key.
+     * @param key The customer provided server-side encryption key.
      */
     public SSECustomerKey(SecretKey key) {
-        if (key == null)
+        if (key == null) {
             throw new IllegalArgumentException("Encryption key must be specified");
+        }
 
         // Default to AES-256 encryption
         this.algorithm = SSEAlgorithm.AES256.getAlgorithm();
@@ -145,11 +145,9 @@ public class SSECustomerKey implements Serializable {
      *
      * Currently, "AES256" is the only supported algorithm.
      *
+     * @param algorithm The server-side encryption algorithm to use with this
+     *         customer-provided server-side encryption key.
      * @see SSEAlgorithm#AES256
-     *
-     * @param algorithm
-     *            The server-side encryption algorithm to use with this
-     *            customer-provided server-side encryption key.
      */
     public void setAlgorithm(String algorithm) {
         this.algorithm = algorithm;
@@ -162,14 +160,11 @@ public class SSECustomerKey implements Serializable {
      *
      * Currently, "AES256" is the only supported algorithm.
      *
-     * @see SSEAlgorithm#AES256
-     *
-     * @param algorithm
-     *            The server-side encryption algorithm to use with this
-     *            customer-provided server-side encryption key.
-     *
+     * @param algorithm The server-side encryption algorithm to use with this
+     *         customer-provided server-side encryption key.
      * @return The updated ServerSideEncryptionKey object, so that method calls
      *         may be chained together.
+     * @see SSEAlgorithm#AES256
      */
     public SSECustomerKey withAlgorithm(String algorithm) {
         setAlgorithm(algorithm);
@@ -198,9 +193,8 @@ public class SSECustomerKey implements Serializable {
      * in this value by calculating the MD5 digest of the secret key, before
      * sending the request.
      *
-     * @param md5Digest
-     *            The MD5 digest (base64-encoded) of the encryption key to use
-     *            when encrypting the object.
+     * @param md5Digest The MD5 digest (base64-encoded) of the encryption key to use
+     *         when encrypting the object.
      */
     public void setMd5(String md5Digest) {
         this.base64EncodedMd5 = md5Digest;
@@ -214,10 +208,8 @@ public class SSECustomerKey implements Serializable {
      * not set, the SDK will fill in this value by calculating the MD5 digest of
      * the secret key, before sending the request.
      *
-     * @param md5Digest
-     *            The MD5 digest (base64-encoded) of the encryption key to use
-     *            when encrypting the object.
-     *
+     * @param md5Digest The MD5 digest (base64-encoded) of the encryption key to use
+     *         when encrypting the object.
      * @return The updated object, so that additional method calls can be
      *         chained together.
      */
@@ -232,20 +224,17 @@ public class SSECustomerKey implements Serializable {
      *
      * Currently, "AES256" is the only supported algorithm.
      *
+     * @param algorithm The server-side encryption algorithm to use with this
+     *         customer-provided server-side encryption key; must not be
+     *         null.
+     * @throws IllegalArgumentException if the input parameter is null.
      * @see SSEAlgorithm#AES256
-     *
-     * @param algorithm
-     *            The server-side encryption algorithm to use with this
-     *            customer-provided server-side encryption key; must not be
-     *            null.
-     *
-     * @throws IllegalArgumentException
-     *             if the input parameter is null.
      */
     public static SSECustomerKey generateSSECustomerKeyForPresignUrl(
             String algorithm) {
-        if (algorithm == null)
+        if (algorithm == null) {
             throw new IllegalArgumentException();
+        }
         return new SSECustomerKey().withAlgorithm(algorithm);
     }
 }

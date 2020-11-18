@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -22,7 +22,6 @@ import java.io.Serializable;
 
 /**
  * Request object for the parameters to get a bucket's versioning configuration.
- *
  */
 public class GetBucketVersioningConfigurationRequest extends GenericBucketRequest implements Serializable {
 
@@ -30,9 +29,8 @@ public class GetBucketVersioningConfigurationRequest extends GenericBucketReques
      * Creates a request object, ready to be executed to fetch the versioning
      * configuration for the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket whose versioning configuration is being
-     *            fetched.
+     * @param bucketName The name of the bucket whose versioning configuration is being
+     *         fetched.
      */
     public GetBucketVersioningConfigurationRequest(String bucketName) {
         super(bucketName);

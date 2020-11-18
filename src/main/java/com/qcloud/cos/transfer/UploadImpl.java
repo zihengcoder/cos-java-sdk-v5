@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -30,6 +30,7 @@ import com.qcloud.cos.model.UploadResult;
 
 
 public class UploadImpl extends AbstractTransfer implements Upload {
+
     private boolean isResumeableMultipartUploadAfterFailed = false;
     private PersistableUpload persistableUploadInfo = null;
 
@@ -44,7 +45,6 @@ public class UploadImpl extends AbstractTransfer implements Upload {
      * the asynchronous transfer will be re-thrown through this method.
      *
      * @return The result of this transfer.
-     *
      * @throws CosClientException If any errors were encountered in the client while making the
      *         request or handling the response.
      * @throws CosServiceException If any errors occurred in Qcloud COS while processing the

@@ -40,7 +40,7 @@ public class DelFileDemo {
             e.printStackTrace();
         } catch (CosClientException e) { // 如果是客户端错误，比如连接不上COS
             e.printStackTrace();
-        } catch(IllegalArgumentException e) { // 该测试用例的预期结果
+        } catch (IllegalArgumentException e) { // 该测试用例的预期结果
             e.printStackTrace();
         }
 
@@ -52,7 +52,7 @@ public class DelFileDemo {
         } catch (CosClientException e) { // 如果是客户端错误，比如连接不上COS
             e.printStackTrace();
         }
-        
+
         // 关闭客户端
         cosclient.shutdown();
     }
@@ -89,7 +89,7 @@ public class DelFileDemo {
         } catch (CosClientException e) { // 如果是客户端错误，比如连接不上COS
             e.printStackTrace();
         }
-        
+
         // 关闭客户端
         cosclient.shutdown();
     }
@@ -126,7 +126,7 @@ public class DelFileDemo {
         } catch (CosClientException e) { // 如果是客户端错误，比如连接不上COS
             e.printStackTrace();
         }
-        
+
         // 关闭客户端
         cosclient.shutdown();
     }

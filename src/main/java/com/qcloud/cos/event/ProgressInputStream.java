@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,12 +26,13 @@ import com.qcloud.cos.internal.SdkFilterInputStream;
 
 
 public class ProgressInputStream extends SdkFilterInputStream {
+
     /**
-     * @param is               the request content input stream
+     * @param is the request content input stream
      * @param progressListener Optional progress listener
      * @return If the progress listener is non null returns a new input stream decorated with
-     * progress reporting functionality. If progress listener is null it returns the same input
-     * stream.
+     *         progress reporting functionality. If progress listener is null it returns the same input
+     *         stream.
      */
     public static InputStream inputStreamForRequest(InputStream is, ProgressListener progressListener) {
         return progressListener == null
@@ -43,23 +44,25 @@ public class ProgressInputStream extends SdkFilterInputStream {
      * Returns an input stream for response progress tracking purposes. If
      * request/response progress tracking is not enabled, this method simply
      * return the given input stream as is.
-     * 
+     *
      * @param is the response content input stream
      */
     public static InputStream inputStreamForResponse(InputStream is, CosServiceRequest req) {
         return req == null
-             ? is
-             : new ResponseProgressInputStream(is, req.getGeneralProgressListener());
+                ? is
+                : new ResponseProgressInputStream(is, req.getGeneralProgressListener());
     }
 
     /**
-     * Returns an input stream for response progress tracking purposes. If request/response progress tracking is not enabled, this
+     * Returns an input stream for response progress tracking purposes. If request/response progress tracking is not
+     * enabled, this
      * method simply return the given input stream as is.
      *
-     * @param is               the response content input stream
+     * @param is the response content input stream
      * @param progressListener Optional progress listener
-     * @return If the progress listener is non null returns a new input stream decorated with progress reporting functionality. If
-     * progress listener is null it returns the same input stream.
+     * @return If the progress listener is non null returns a new input stream decorated with progress reporting
+     *         functionality. If
+     *         progress listener is null it returns the same input stream.
      */
     public static InputStream inputStreamForResponse(InputStream is, ProgressListener progressListener) {
         return progressListener == null
@@ -67,12 +70,16 @@ public class ProgressInputStream extends SdkFilterInputStream {
                 : new ResponseProgressInputStream(is, progressListener);
     }
 
-    /** The threshold of bytes between notifications. */
+    /**
+     * The threshold of bytes between notifications.
+     */
     private static final int DEFAULT_NOTIFICATION_THRESHOLD = 8 * 1024;
 
     private final ProgressListener listener;
     private final int notifyThresHold;
-    /** The number of bytes read that the listener hasn't been notified about yet. */
+    /**
+     * The number of bytes read that the listener hasn't been notified about yet.
+     */
     private int unnotifiedByteCount;
     private boolean hasBeenRead;
     private boolean doneEOF;
@@ -84,8 +91,9 @@ public class ProgressInputStream extends SdkFilterInputStream {
 
     public ProgressInputStream(InputStream is, ProgressListener listener, int notifyThresHold) {
         super(is);
-        if (is == null || listener == null)
+        if (is == null || listener == null) {
             throw new IllegalArgumentException();
+        }
         this.notifyThresHold = notifyThresHold;
         this.listener = listener;
     }
@@ -94,12 +102,15 @@ public class ProgressInputStream extends SdkFilterInputStream {
      * The read method is called for the very first time.
      * Defaults to do nothing.
      */
-    protected void onFirstRead() {}
+    protected void onFirstRead() {
+    }
+
     /**
      * An end-of-file event is to be notified.
      * Defaults to do nothing.
      */
-    protected void onEOF() {}
+    protected void onEOF() {
+    }
 
     /**
      * Defaults to behave the same as {@link #onEOF()}.
@@ -107,15 +118,19 @@ public class ProgressInputStream extends SdkFilterInputStream {
     protected void onClose() {
         eof();
     }
+
     /**
      * A reset event is to be notified.  Default to do nothing.
      */
-    protected void onReset() {}
+    protected void onReset() {
+    }
+
     /**
      * Upon notification of the number of bytes transferred since last
      * notification.  Default to do nothing.
      */
-    protected void onNotifyBytesRead() {}
+    protected void onNotifyBytesRead() {
+    }
 
     /**
      * Upon reading the given number of bytes.
@@ -139,10 +154,11 @@ public class ProgressInputStream extends SdkFilterInputStream {
             hasBeenRead = true;
         }
         int ch = super.read();
-        if (ch == -1)
+        if (ch == -1) {
             eof();
-        else
+        } else {
             onBytesRead(1);
+        }
         return ch;
     }
 
@@ -161,16 +177,18 @@ public class ProgressInputStream extends SdkFilterInputStream {
             hasBeenRead = true;
         }
         int bytesRead = super.read(b, off, len);
-        if (bytesRead == -1)
+        if (bytesRead == -1) {
             eof();
-        else
+        } else {
             onBytesRead(bytesRead);
+        }
         return bytesRead;
     }
 
     private void eof() {
-        if (doneEOF)
+        if (doneEOF) {
             return;
+        }
         onEOF();
         unnotifiedByteCount = 0;
         doneEOF = true;

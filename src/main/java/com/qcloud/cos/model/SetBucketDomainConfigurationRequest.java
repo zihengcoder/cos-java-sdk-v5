@@ -27,10 +27,14 @@ import com.qcloud.cos.model.BucketDomainConfiguration;
  */
 public class SetBucketDomainConfigurationRequest extends CosServiceRequest implements Serializable {
 
-    /** The name of the bucket whose domain configuration is being set. */
+    /**
+     * The name of the bucket whose domain configuration is being set.
+     */
     private String bucketName;
 
-    /** The domain configuration for the specified bucket. */
+    /**
+     * The domain configuration for the specified bucket.
+     */
     private BucketDomainConfiguration configuration;
 
 
@@ -38,10 +42,8 @@ public class SetBucketDomainConfigurationRequest extends CosServiceRequest imple
      * Creates a new request object, ready to be executed to set the specified
      * bucket's domain configuration.
      *
-     * @param bucketName
-     *            The name of the bucket whose domain configuration is being set.
-     * @param configuration
-     *            The new domain configuration for the specified bucket.
+     * @param bucketName The name of the bucket whose domain configuration is being set.
+     * @param configuration The new domain configuration for the specified bucket.
      */
     public SetBucketDomainConfigurationRequest(String bucketName, BucketDomainConfiguration configuration) {
         this.bucketName = bucketName;
@@ -51,8 +53,7 @@ public class SetBucketDomainConfigurationRequest extends CosServiceRequest imple
     /**
      * Sets the name of the bucket whose domain configuration is to be updated.
      *
-     * @param bucketName
-     *            The name of the bucket whose domain configuration is being set.
+     * @param bucketName The name of the bucket whose domain configuration is being set.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -72,9 +73,8 @@ public class SetBucketDomainConfigurationRequest extends CosServiceRequest imple
      * returns this updated request object so that additional method calls can
      * be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket whose domain configuration is being
-     *            set.
+     * @param bucketName The name of the bucket whose domain configuration is being
+     *         set.
      * @return This updated request object so that additional method calls can
      *         be chained together.
      */
@@ -86,8 +86,7 @@ public class SetBucketDomainConfigurationRequest extends CosServiceRequest imple
     /**
      * Sets the domain configuration to send as part of this request.
      *
-     * @param configuration
-     *            The domain configuration to set for the specified bucket.
+     * @param configuration The domain configuration to set for the specified bucket.
      */
     public void setConfiguration(BucketDomainConfiguration configuration) {
         this.configuration = configuration;
@@ -107,9 +106,7 @@ public class SetBucketDomainConfigurationRequest extends CosServiceRequest imple
      * returns this updated request object so that additional method calls can
      * be chained together.
      *
-     * @param configuration
-     *            The domain configuration to set for the specified bucket.
-     *
+     * @param configuration The domain configuration to set for the specified bucket.
      * @return This updated request object so that additional method calls can
      *         be chained together.
      */

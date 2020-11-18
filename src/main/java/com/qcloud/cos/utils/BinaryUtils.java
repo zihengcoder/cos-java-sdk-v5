@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -29,11 +29,11 @@ import org.apache.commons.codec.binary.Hex;
  * Utilities for encoding and decoding binary data to and from different forms.
  */
 public class BinaryUtils {
+
     /**
      * Converts byte data to a Hex-encoded string in lower case.
      *
      * @param data data to hex encode.
-     *
      * @return hex-encoded string.
      */
     public static String toHex(byte[] data) {
@@ -65,7 +65,6 @@ public class BinaryUtils {
      * Converts a Base64-encoded string to the original byte data.
      *
      * @param b64Data a Base64-encoded string to decode.
-     *
      * @return bytes decoded from a Base64 string.
      */
     public static byte[] fromBase64(String b64Data) {
@@ -77,7 +76,6 @@ public class BinaryUtils {
      * empty stream.
      *
      * @param byteBuffer The ByteBuffer to wrap.
-     *
      * @return An InputStream wrapping the ByteBuffer content.
      */
     public static ByteArrayInputStream toStream(ByteBuffer byteBuffer) {

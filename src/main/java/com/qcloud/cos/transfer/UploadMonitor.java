@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -89,7 +89,7 @@ public class UploadMonitor implements Callable<UploadResult>, TransferMonitor {
      * @param transfer The transfer being processed.
      * @param threadPool The {@link ExecutorService} to which we should submit new tasks.
      * @param multipartUploadCallable The callable responsible for processing the upload
-     *        asynchronously
+     *         asynchronously
      * @param putObjectRequest The original putObject request
      * @param progressListenerChain A chain of listeners that wish to be notified of upload progress
      */
@@ -163,7 +163,7 @@ public class UploadMonitor implements Callable<UploadResult>, TransferMonitor {
             publishProgress(listener, ProgressEventType.TRANSFER_COMPLETED_EVENT);
         }
     }
-    
+
     void uploadFailed() {
         transfer.setState(TransferState.Failed);
         if (multipartUploadCallable.isMultipartUpload()) {

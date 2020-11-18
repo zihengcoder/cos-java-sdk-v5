@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -76,21 +76,25 @@ import static com.qcloud.cos.model.InstructionFileId.DOT;
 import static com.qcloud.cos.utils.StringUtils.UTF8;
 
 
-
 /**
  * Common implementation for different COS cryptographic modules.
  */
 public abstract class COSCryptoModuleBase extends COSCryptoModule {
+
     private static final boolean IS_MULTI_PART = true;
     protected static final int DEFAULT_BUFFER_SIZE = 1024 * 2; // 2K
     protected final EncryptionMaterialsProvider kekMaterialsProvider;
     protected final Logger log = LoggerFactory.getLogger(getClass());
     protected final COSCryptoScheme cryptoScheme;
     protected final ContentCryptoScheme contentCryptoScheme;
-    /** A read-only copy of the crypto configuration. */
+    /**
+     * A read-only copy of the crypto configuration.
+     */
     protected final CryptoConfiguration cryptoConfig;
 
-    /** Map of data about in progress encrypted multipart uploads. */
+    /**
+     * Map of data about in progress encrypted multipart uploads.
+     */
     protected final Map<String, MultipartUploadCryptoContext> multipartUploadContexts =
             Collections.synchronizedMap(new HashMap<String, MultipartUploadCryptoContext>());
     protected final COSDirect cos;
@@ -102,9 +106,10 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
     protected COSCryptoModuleBase(QCLOUDKMS kms, COSDirect cos,
             COSCredentialsProvider credentialsProvider,
             EncryptionMaterialsProvider kekMaterialsProvider, CryptoConfiguration cryptoConfig) {
-        if (!cryptoConfig.isReadOnly())
+        if (!cryptoConfig.isReadOnly()) {
             throw new IllegalArgumentException(
                     "The cryto configuration parameter is required to be read-only");
+        }
         this.kekMaterialsProvider = kekMaterialsProvider;
         this.cos = cos;
         this.cryptoConfig = cryptoConfig;
@@ -163,7 +168,7 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
      * stored in the instruction file.
      *
      * @param putObjectRequest The request object containing all the parameters to upload a new
-     *        object to COS.
+     *         object to COS.
      * @return A {@link PutObjectResult} object containing the information returned by COS for
      *         the new, created object.
      */
@@ -204,8 +209,9 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
         MultipartUploadCryptoContext uploadContext = multipartUploadContexts.get(uploadId);
         CopyPartResult result = cos.copyPart(copyPartRequest);
 
-        if (uploadContext != null && !uploadContext.hasFinalPartBeenSeen())
+        if (uploadContext != null && !uploadContext.hasFinalPartBeenSeen()) {
             uploadContext.setHasFinalPartBeenSeen(true);
+        }
         return result;
     }
 
@@ -220,8 +226,9 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
         ContentCryptoMaterial cekMaterial = createContentCryptoMaterial(req);
         if (cryptoConfig.getStorageMode() == ObjectMetadata) {
             ObjectMetadata metadata = req.getObjectMetadata();
-            if (metadata == null)
+            if (metadata == null) {
                 metadata = new ObjectMetadata();
+            }
             // Store encryption info in metadata
             req.setObjectMetadata(
                     updateMetadataWithContentCryptoMaterial(metadata, null, cekMaterial));
@@ -289,8 +296,9 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
             if (isLastPart) {
                 // We only change the size of the last part
                 long lastPartSize = computeLastPartSize(req);
-                if (lastPartSize > -1)
+                if (lastPartSize > -1) {
                     req.setPartSize(lastPartSize);
+                }
                 if (uploadContext.hasFinalPartBeenSeen()) {
                     throw new CosClientException(
                             "This part was specified as the last part in a multipart upload, but a previous part was already marked as the last part.  "
@@ -303,8 +311,9 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
             cleanupDataSource(req, fileOrig, isOrig, isCurr, log);
             uploadContext.endPartUpload();
         }
-        if (isLastPart)
+        if (isLastPart) {
             uploadContext.setHasFinalPartBeenSeen(true);
+        }
         return result;
     }
 
@@ -327,7 +336,7 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
                     req.isLastPart());
             return cipherLite.markSupported()
                     ? new CipherLiteInputStream(isCurr, cipherLite, DEFAULT_BUFFER_SIZE,
-                            IS_MULTI_PART, req.isLastPart())
+                    IS_MULTI_PART, req.isLastPart())
                     : new RenewableCipherLiteInputStream(isCurr, cipherLite, DEFAULT_BUFFER_SIZE,
                             IS_MULTI_PART, req.isLastPart());
         } catch (Exception e) {
@@ -362,8 +371,9 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
 
     protected final ObjectMetadata updateMetadataWithContentCryptoMaterial(ObjectMetadata metadata,
             File file, ContentCryptoMaterial instruction) {
-        if (metadata == null)
+        if (metadata == null) {
             metadata = new ObjectMetadata();
+        }
         return instruction.toObjectMetadata(metadata, cryptoConfig.getCryptoMode());
     }
 
@@ -387,8 +397,9 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
             Map<String, String> matdesc_req = mdp.getMaterialsDescription();
             ContentCryptoMaterial ccm = newContentCryptoMaterial(kekMaterialsProvider, matdesc_req,
                     cryptoConfig.getCryptoProvider(), req);
-            if (ccm != null)
+            if (ccm != null) {
                 return ccm;
+            }
             if (matdesc_req != null) {
                 // check to see if KMS is in use and if so we should fall thru
                 // to the COS client level encryption material
@@ -434,9 +445,10 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
             EncryptionMaterialsProvider kekMaterialProvider, Provider provider,
             CosServiceRequest req) {
         EncryptionMaterials kekMaterials = kekMaterialProvider.getEncryptionMaterials();
-        if (kekMaterials == null)
+        if (kekMaterials == null) {
             throw new CosClientException(
                     "No material available from the encryption material provider");
+        }
         return buildContentCryptoMaterial(kekMaterials, provider, req);
     }
 
@@ -499,12 +511,14 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
                 }
             }
             SecretKey secretKey = generator.generateKey();
-            if (!involvesBCPublicKey || secretKey.getEncoded()[0] != 0)
+            if (!involvesBCPublicKey || secretKey.getEncoded()[0] != 0) {
                 return secretKey;
+            }
             for (int retry = 0; retry < 10; retry++) {
                 secretKey = generator.generateKey();
-                if (secretKey.getEncoded()[0] != 0)
+                if (secretKey.getEncoded()[0] != 0) {
                     return secretKey;
+                }
             }
             // The probability of getting here is 2^80, which is impossible in practice.
             throw new CosClientException("Failed to generate secret key");
@@ -649,14 +663,15 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
      * @throws SecurityException if the crypto scheme used in the given content crypto material is
      *         not allowed in this crypto module.
      */
-    protected void securityCheck(ContentCryptoMaterial cekMaterial, COSObjectWrapper retrieved) {}
+    protected void securityCheck(ContentCryptoMaterial cekMaterial, COSObjectWrapper retrieved) {
+    }
 
     /**
      * Retrieves an instruction file from COS; or null if no instruction file is found.
      *
      * @param cosObjectId the COS object id (not the instruction file id)
      * @param instFileSuffix suffix of the instruction file to be retrieved; or null to use the
-     *        default suffix.
+     *         default suffix.
      * @return an instruction file, or null if no instruction file is found.
      */
     final COSObjectWrapper fetchInstructionFile(COSObjectId cosObjectId, String instFileSuffix) {
@@ -718,7 +733,6 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
      * Returns the content crypto material of an existing COS object.
      *
      * @param cosObjWrap an existing COS object (wrapper)
-     *
      * @return a non-null content crypto material.
      */
     private ContentCryptoMaterial contentCryptoMaterialOf(COSObjectWrapper cosObjWrap) {
@@ -726,9 +740,9 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
         if (cosObjWrap.hasEncryptionInfo()) {
             return ContentCryptoMaterial.fromObjectMetadata(cosObjWrap.getObjectMetadata(),
                     kekMaterialsProvider, cryptoConfig.getCryptoProvider(), false, // existing CEK
-                                                                                   // not
-                                                                                   // necessarily
-                                                                                   // key-wrapped
+                    // not
+                    // necessarily
+                    // key-wrapped
                     kms);
         }
         COSObjectWrapper orig_ifile = fetchInstructionFile(cosObjWrap.getCOSObjectId(), null);
@@ -764,7 +778,7 @@ public abstract class COSCryptoModuleBase extends COSCryptoModule {
      *
      * @param cosobjectId an COS object id (not the instruction file id)
      * @param instFileSuffix suffix of the specific instruction file to be used, or null if the
-     *        default instruction file is to be used.
+     *         default instruction file is to be used.
      */
     final GetObjectRequest createInstructionGetRequest(COSObjectId cosobjectId,
             String instFileSuffix) {

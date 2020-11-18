@@ -10,6 +10,7 @@ import java.io.Serializable;
  * 媒体截图请求实体  详情见：https://cloud.tencent.com/document/product/460/38934
  */
 public class SnapshotRequest extends CIServiceRequest implements Serializable {
+
     /**
      * 媒体文件的位置信息
      */
@@ -55,8 +56,9 @@ public class SnapshotRequest extends CIServiceRequest implements Serializable {
     private String rotate;
 
     public MediaInputObject getInput() {
-        if (input==null)
+        if (input == null) {
             this.input = new MediaInputObject();
+        }
         return input;
     }
 
@@ -65,8 +67,9 @@ public class SnapshotRequest extends CIServiceRequest implements Serializable {
     }
 
     public MediaOutputObject getOutput() {
-        if (output==null)
+        if (output == null) {
             this.output = new MediaOutputObject();
+        }
         return output;
     }
 

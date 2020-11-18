@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.internal;
 
 import com.qcloud.cos.Headers;
@@ -25,6 +26,7 @@ import com.qcloud.cos.model.GetObjectTaggingResult;
  * com.qcloud.cos.model.GetObjectTaggingRequest} response.
  */
 public class GetObjectTaggingResponseHeaderHandler implements HeaderHandler<GetObjectTaggingResult> {
+
     @Override
     public void handle(GetObjectTaggingResult result, CosHttpResponse response) {
         result.setVersionId(response.getHeaders().get(Headers.COS_VERSION_ID));

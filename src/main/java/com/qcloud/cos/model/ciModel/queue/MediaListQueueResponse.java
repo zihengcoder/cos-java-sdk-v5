@@ -4,10 +4,12 @@ import com.qcloud.cos.model.ciModel.common.MediaCommonResponse;
 
 import java.util.ArrayList;
 import java.util.List;
+
 /**
  * 媒体处理 队列列表响应实体 https://cloud.tencent.com/document/product/460/48234
  */
 public class MediaListQueueResponse extends MediaCommonResponse {
+
     private List<MediaQueueObject> queueList;
     private List<String> nonExistPIDs;
 

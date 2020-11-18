@@ -6,7 +6,7 @@ public class MediaSnapshotObject {
     /**
      * 模式
      */
-    private String mode ;
+    private String mode;
     /**
      * 开始时间
      */

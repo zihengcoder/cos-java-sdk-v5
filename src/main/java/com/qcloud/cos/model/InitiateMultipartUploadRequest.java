@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -24,6 +24,7 @@ import com.qcloud.cos.internal.CosServiceRequest;
 
 public class InitiateMultipartUploadRequest extends CosServiceRequest
         implements SSECustomerKeyProvider, SSECOSKeyManagementParamsProvider, Serializable {
+
     /**
      * The name of the bucket in which to create the new multipart upload, and hence, the eventual
      * object created from the multipart upload.
@@ -82,9 +83,9 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * the specified key.
      *
      * @param bucketName The name of the bucket in which to create the new multipart upload, and
-     *        hence, the eventual object created from the multipart upload.
+     *         hence, the eventual object created from the multipart upload.
      * @param key The key by which to store the new multipart upload, and hence, the eventual object
-     *        created from the multipart upload.
+     *         created from the multipart upload.
      */
     public InitiateMultipartUploadRequest(String bucketName, String key) {
         this.bucketName = bucketName;
@@ -96,11 +97,11 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * the specified key, and with the additional specified object metadata.
      *
      * @param bucketName The name of the bucket in which to create the new multipart upload, and
-     *        hence, the eventual object created from the multipart upload.
+     *         hence, the eventual object created from the multipart upload.
      * @param key The key by which to store the new multipart upload, and hence, the eventual object
-     *        created from the multipart upload.
+     *         created from the multipart upload.
      * @param objectMetadata Additional information about the new object being created, such as
-     *        content type, content encoding, user metadata, etc.
+     *         content type, content encoding, user metadata, etc.
      */
     public InitiateMultipartUploadRequest(String bucketName, String key,
             ObjectMetadata objectMetadata) {
@@ -126,7 +127,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * eventual object created from the multipart upload.
      *
      * @param bucketName The name of the bucket in which to create the new multipart upload, and
-     *        hence, the eventual object created from the multipart upload.
+     *         hence, the eventual object created from the multipart upload.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -140,8 +141,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * can be chained together.
      *
      * @param bucketName The name of the bucket in which to create the new multipart upload, and
-     *        hence, the eventual object created from the multipart upload.
-     *
+     *         hence, the eventual object created from the multipart upload.
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withBucketName(String bucketName) {
@@ -165,7 +165,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * created from the multipart upload.
      *
      * @param key The key by which to store the new multipart upload, and hence, the eventual object
-     *        created from the multipart upload.
+     *         created from the multipart upload.
      */
     public void setKey(String key) {
         this.key = key;
@@ -179,8 +179,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * can be chained together.
      *
      * @param key The key by which to store the new multipart upload, and hence, the eventual object
-     *        created from the multipart upload.
-     *
+     *         created from the multipart upload.
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withKey(String key) {
@@ -194,7 +193,6 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      *
      * @return The optional canned Access Control List (ACL) to set permissions for the new object
      *         created when the multipart upload is completed.
-     *
      * @see CannedAccessControlList
      */
     public CannedAccessControlList getCannedACL() {
@@ -206,8 +204,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * created when the multipart upload is completed.
      *
      * @param cannedACL The canned Access Control List (ACL) to set permissions for the new object
-     *        created when the multipart upload is completed.
-     *
+     *         created when the multipart upload is completed.
      * @see CannedAccessControlList
      */
     public void setCannedACL(CannedAccessControlList cannedACL) {
@@ -222,8 +219,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * can be chained together.
      *
      * @param acl The optional canned Access Control List (ACL) to set permissions for the new
-     *        object created when the multipart upload is completed.
-     *
+     *         object created when the multipart upload is completed.
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withCannedACL(CannedAccessControlList acl) {
@@ -270,7 +266,6 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      *
      * @return The optional storage class to use when storing this upload's data in COS. If not
      *         specified, the default storage class is used.
-     *
      * @see StorageClass
      */
     public StorageClass getStorageClass() {
@@ -284,8 +279,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * If not specified, the default is {@link StorageClass#Standard}.
      *
      * @param storageClass The optional storage class to use when storing this upload's data in COS.
-     *        If not specified, the default storage class is used.
-     *
+     *         If not specified, the default storage class is used.
      * @see StorageClass
      */
     public void setStorageClass(StorageClass storageClass) {
@@ -300,8 +294,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * can be chained together.
      *
      * @param storageClass The optional storage class to use when storing this upload's data in COS.
-     *        If not specified, the default storage class is used.
-     *
+     *         If not specified, the default storage class is used.
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withStorageClass(StorageClass storageClass) {
@@ -310,10 +303,11 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
     }
 
     public InitiateMultipartUploadRequest withStorageClass(String storageClass) {
-        if (storageClass != null)
+        if (storageClass != null) {
             this.storageClass = StorageClass.fromValue(storageClass);
-        else
+        } else {
             this.storageClass = null;
+        }
         return this;
     }
 
@@ -333,7 +327,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * content encoding, user metadata, etc.
      *
      * @param objectMetadata Additional information about the new object being created, such as
-     *        content type, content encoding, user metadata, etc.
+     *         content type, content encoding, user metadata, etc.
      */
     public void setObjectMetadata(ObjectMetadata objectMetadata) {
         this.objectMetadata = objectMetadata;
@@ -347,8 +341,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * can be chained together.
      *
      * @param objectMetadata Additional information about the new object being created, such as
-     *        content type, content encoding, user metadata, etc.
-     *
+     *         content type, content encoding, user metadata, etc.
      * @return This updated InitiateMultipartUploadRequest object.
      */
     public InitiateMultipartUploadRequest withObjectMetadata(ObjectMetadata objectMetadata) {
@@ -376,7 +369,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * Sets the optional redirect location for the new object. Returns this
      * {@link InitiateMultipartUploadRequest}, enabling additional method calls to be chained
      * together.
-     * 
+     *
      * @param redirectLocation The redirect location for the new object.
      */
     public InitiateMultipartUploadRequest withRedirectLocation(String redirectLocation) {
@@ -394,7 +387,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * being started.
      *
      * @param sseKey The optional customer-provided server-side encryption key to use to encrypt the
-     *        upload being started.
+     *         upload being started.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
         if (sseKey != null && this.sseCOSKeyManagementParams != null) {
@@ -410,8 +403,7 @@ public class InitiateMultipartUploadRequest extends CosServiceRequest
      * method calls may be chained together.
      *
      * @param sseKey The optional customer-provided server-side encryption key to use to encrypt the
-     *        upload being started.
-     *
+     *         upload being started.
      * @return The updated request object, so that additional method calls can be chained together.
      */
     public InitiateMultipartUploadRequest withSSECustomerKey(SSECustomerKey sseKey) {

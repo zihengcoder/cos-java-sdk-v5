@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -29,21 +29,26 @@ import com.qcloud.cos.http.CosHttpResponse;
 
 public class COSXmlResponseHandler<T> extends AbstractCosResponseHandler<T> {
 
-    /** The SAX unmarshaller to use when handling the response from COS */
+    /**
+     * The SAX unmarshaller to use when handling the response from COS
+     */
     private Unmarshaller<T, InputStream> responseUnmarshaller;
 
-    /** Shared logger for profiling information */
+    /**
+     * Shared logger for profiling information
+     */
     private static final Logger log = LoggerFactory.getLogger(COSXmlResponseHandler.class);
 
-    /** Response headers from the processed response */
+    /**
+     * Response headers from the processed response
+     */
     private Map<String, String> responseHeaders;
 
     /**
      * Constructs a new COS response handler that will use the specified SAX
      * unmarshaller to turn the response into an object.
      *
-     * @param responseUnmarshaller
-     *            The SAX unmarshaller to use on the response from COS.
+     * @param responseUnmarshaller The SAX unmarshaller to use on the response from COS.
      */
     public COSXmlResponseHandler(Unmarshaller<T, InputStream> responseUnmarshaller) {
         this.responseUnmarshaller = responseUnmarshaller;
@@ -57,7 +62,7 @@ public class COSXmlResponseHandler<T> extends AbstractCosResponseHandler<T> {
         if (responseUnmarshaller != null) {
             log.trace("Beginning to parse service response XML");
             T result = responseUnmarshaller.unmarshall(response.getContent());
-            if(result instanceof BucketDomainConfiguration &&
+            if (result instanceof BucketDomainConfiguration &&
                     responseHeaders.containsKey("x-cos-domain-txt-verification")) {
                 ((BucketDomainConfiguration) result).setDomainTxtVerification(
                         responseHeaders.get("x-cos-domain-txt-verification"));

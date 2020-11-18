@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,10 +27,12 @@ import java.io.Serializable;
  * {@link LifecyclePrefixPredicate}, {@link LifecycleTagPredicate}, or
  * {@link LifecycleAndOperator}.
  */
-public class LifecycleFilter implements Serializable{
+public class LifecycleFilter implements Serializable {
+
     private LifecycleFilterPredicate predicate;
 
-    public LifecycleFilter() {}
+    public LifecycleFilter() {
+    }
 
     public LifecycleFilter(LifecycleFilterPredicate predicate) {
         this.predicate = predicate;
@@ -61,7 +63,8 @@ public class LifecycleFilter implements Serializable{
     }
 
     /**
-     * Sets the {@link LifecycleFilterPredicate} to be applied to {@link BucketLifecycleConfiguration.Rule} and returns the object
+     * Sets the {@link LifecycleFilterPredicate} to be applied to {@link BucketLifecycleConfiguration.Rule} and returns
+     * the object
      * for method chaining.
      *
      * The predicate should be one of {@link LifecyclePrefixPredicate},
@@ -69,7 +72,6 @@ public class LifecycleFilter implements Serializable{
      * {@link LifecycleAndOperator} type.
      *
      * @param predicate An object of type {@link LifecycleFilterPredicate}.
-     *
      * @return This object for method chaining.
      */
     public LifecycleFilter withPredicate(LifecycleFilterPredicate predicate) {

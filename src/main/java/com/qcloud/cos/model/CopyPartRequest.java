@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -50,7 +50,9 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
     // The Soure Bucket Region
     private Region sourceBucketRegion;
 
-    /** The name of the bucket containing the object to be copied */
+    /**
+     * The name of the bucket containing the object to be copied
+     */
     private String sourceBucketName;
 
     /**
@@ -63,13 +65,15 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * the most recent version of the source object will be copied.
      */
     private String sourceVersionId;
-    
+
     /**
      * source endpoint builder to generate the source endpoint.
      */
     private EndpointBuilder sourceEndpointBuilder;
 
-    /** The name of the bucket to contain the copy of the source object */
+    /**
+     * The name of the bucket to contain the copy of the source object
+     */
     private String destinationBucketName;
 
     /**
@@ -142,7 +146,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * associated.
      *
      * @param uploadId the ID of the existing, initiated multipart upload with which this new part
-     *        will be associated.
+     *         will be associated.
      */
     public void setUploadId(String uploadId) {
         this.uploadId = uploadId;
@@ -153,7 +157,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * associated.
      *
      * @param uploadId the ID of the existing, initiated multipart upload with which this new part
-     *        will be associated.
+     *         will be associated.
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
      */
@@ -178,7 +182,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * multipart upload. Part number must be between 1 and 10,000 (inclusive).
      *
      * @param partNumber the part number describing this part's position relative to the other parts
-     *        in the multipart upload. Part number must be between 1 and 10,000 (inclusive).
+     *         in the multipart upload. Part number must be between 1 and 10,000 (inclusive).
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -189,7 +193,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * multipart upload. Part number must be between 1 and 10,000 (inclusive).
      *
      * @param partNumber the part number describing this part's position relative to the other parts
-     *        in the multipart upload. Part number must be between 1 and 10,000 (inclusive).
+     *         in the multipart upload. Part number must be between 1 and 10,000 (inclusive).
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
      */
@@ -248,9 +252,9 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * Sets the name of the bucket containing the source object to be copied.
      *
      * @param sourceBucketName The name of the bucket containing the source object to be copied.
-     * @see CopyPartRequest#getSourceBucketName()
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
+     * @see CopyPartRequest#getSourceBucketName()
      */
     public CopyPartRequest withSourceBucketName(String sourceBucketName) {
         this.sourceBucketName = sourceBucketName;
@@ -281,9 +285,9 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * Sets the source bucket key under which the source object to be copied is stored.
      *
      * @param sourceKey The source bucket key under which the source object to be copied is stored.
-     * @see CopyPartRequest#setSourceKey(String sourceKey)
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
+     * @see CopyPartRequest#setSourceKey(String sourceKey)
      */
     public CopyPartRequest withSourceKey(String sourceKey) {
         this.sourceKey = sourceKey;
@@ -331,7 +335,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * </p>
      *
      * @param sourceVersionId The optional version ID specifying which version of the source object
-     *        to copy.
+     *         to copy.
      */
     public void setSourceVersionId(String sourceVersionId) {
         this.sourceVersionId = sourceVersionId;
@@ -354,7 +358,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * </p>
      *
      * @param sourceVersionId The optional version ID specifying which version of the source object
-     *        to copy.
+     *         to copy.
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
      */
@@ -367,7 +371,6 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * Gets the destination bucket name which will contain the new, copied object.
      *
      * @return The name of the destination bucket which will contain the new, copied object.
-     *
      * @see CopyPartRequest#setDestinationBucketName(String destinationBucketName)
      */
     public String getDestinationBucketName() {
@@ -378,8 +381,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * Sets the destination bucket name which will contain the new, copied object.
      *
      * @param destinationBucketName The name of the destination bucket which will contain the new,
-     *        copied object.
-     *
+     *         copied object.
      * @see CopyPartRequest#getDestinationBucketName()
      */
     public void setDestinationBucketName(String destinationBucketName) {
@@ -391,8 +393,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * this object, enabling additional method calls to be chained together.
      *
      * @param destinationBucketName The name of the destination bucket which will contain the new,
-     *        copied object.
-     *
+     *         copied object.
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
      */
@@ -405,7 +406,6 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * Gets the destination bucket key under which the new, copied object will be stored.
      *
      * @return The destination bucket key under which the new, copied object will be stored.
-     *
      * @see CopyPartRequest#setDestinationKey(String destinationKey)
      */
     public String getDestinationKey() {
@@ -416,8 +416,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * Sets the destination bucket key under which the new, copied object will be stored.
      *
      * @param destinationKey The destination bucket key under which the new, copied object will be
-     *        stored.
-     *
+     *         stored.
      * @see CopyPartRequest#getDestinationKey()
      */
     public void setDestinationKey(String destinationKey) {
@@ -429,8 +428,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * this object, enabling additional method calls can be chained together.
      *
      * @param destinationKey The destination bucket key under which the new, copied object will be
-     *        stored.
-     *
+     *         stored.
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
      */
@@ -545,7 +543,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * </p>
      *
      * @param eTagList The optional list of ETag constraints that must include a match for the
-     *        source object's current ETag in order for this request to be executed.
+     *         source object's current ETag in order for this request to be executed.
      */
     public void setMatchingETagConstraints(List<String> eTagList) {
         this.matchingETagConstraints.clear();
@@ -614,7 +612,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * </p>
      *
      * @param eTagList The list of ETag constraints that, when present, <b>must not</b> include a
-     *        match for the source object's current ETag in order for this request to be executed.
+     *         match for the source object's current ETag in order for this request to be executed.
      */
     public void setNonmatchingETagConstraints(List<String> eTagList) {
         this.nonmatchingEtagConstraints.clear();
@@ -683,7 +681,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * </p>
      *
      * @param date The unmodified constraint that restricts this request to executing only if the
-     *        source object has <b>not</b> been modified after this date.
+     *         source object has <b>not</b> been modified after this date.
      */
     public void setUnmodifiedSinceConstraint(Date date) {
         this.unmodifiedSinceConstraint = date;
@@ -704,7 +702,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * </p>
      *
      * @param date The unmodified constraint that restricts this request to executing only if the
-     *        source object has <b>not</b> been modified after this date.
+     *         source object has <b>not</b> been modified after this date.
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
      */
@@ -744,7 +742,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * </p>
      *
      * @param date The modified constraint that restricts this request to executing only if the
-     *        source object <b>has</b> been modified after the specified date.
+     *         source object <b>has</b> been modified after the specified date.
      */
     public void setModifiedSinceConstraint(Date date) {
         this.modifiedSinceConstraint = date;
@@ -765,7 +763,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
      * </p>
      *
      * @param date The modified constraint that restricts this request to executing only if the
-     *        source object <b>has</b> been modified after the specified date.
+     *         source object <b>has</b> been modified after the specified date.
      * @return This <code>CopyPartRequest</code>, enabling additional method calls to be chained
      *         together.
      */
@@ -781,7 +779,7 @@ public class CopyPartRequest extends CosServiceRequest implements Serializable {
     public void setSourceEndpointBuilder(EndpointBuilder sourceEndpointBuilder) {
         this.sourceEndpointBuilder = sourceEndpointBuilder;
     }
-    
+
     public CopyPartRequest withSourceEndpointBuilder(EndpointBuilder sourceEndpointBuilder) {
         setSourceEndpointBuilder(sourceEndpointBuilder);
         return this;

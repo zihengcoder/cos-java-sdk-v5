@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -23,6 +23,7 @@ import java.io.Serializable;
 import com.qcloud.cos.internal.CosServiceRequest;
 
 public class DeleteBucketRequest extends CosServiceRequest implements Serializable {
+
     /**
      * The name of the Qcloud COS bucket to delete.
      */
@@ -31,7 +32,7 @@ public class DeleteBucketRequest extends CosServiceRequest implements Serializab
     /**
      * Constructs a new {@link DeleteBucketRequest}, ready to be executed to delete the specified
      * bucket.
-     * 
+     *
      * @param bucketName The name of the Qcloud COS bucket to delete.
      */
     public DeleteBucketRequest(String bucketName) {
@@ -40,9 +41,8 @@ public class DeleteBucketRequest extends CosServiceRequest implements Serializab
 
     /**
      * Sets the name of the Qcloud COS bucket to delete.
-     * 
+     *
      * @param bucketName The name of the Qcloud COS bucket to delete.
-     * 
      * @see DeleteBucketRequest#getBucketName()
      */
     public void setBucketName(String bucketName) {
@@ -51,9 +51,8 @@ public class DeleteBucketRequest extends CosServiceRequest implements Serializab
 
     /**
      * Gets the name of the Qcloud COS bucket to delete.
-     * 
+     *
      * @return The name of the Qcloud COS bucket to delete.
-     * 
      * @see DeleteBucketRequest#setBucketName(String)
      */
     public String getBucketName() {

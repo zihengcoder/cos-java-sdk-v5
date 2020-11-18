@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -23,10 +23,15 @@ import java.io.Serializable;
 import com.qcloud.cos.internal.SSEResultBase;
 
 public class UploadPartResult extends SSEResultBase implements Serializable {
-    /** The part number of the newly uploaded part */
+
+    /**
+     * The part number of the newly uploaded part
+     */
     private int partNumber;
 
-    /** The entity tag generated from the content of the upload part */
+    /**
+     * The entity tag generated from the content of the upload part
+     */
     private String eTag;
 
     private String crc64Ecma;
@@ -43,8 +48,7 @@ public class UploadPartResult extends SSEResultBase implements Serializable {
     /**
      * Sets the part number of the newly uploaded part.
      *
-     * @param partNumber
-     *            the part number of the newly uploaded part.
+     * @param partNumber the part number of the newly uploaded part.
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -63,8 +67,7 @@ public class UploadPartResult extends SSEResultBase implements Serializable {
     /**
      * Sets the entity tag of the newly uploaded part.
      *
-     * @param eTag
-     *            the entity tag of the newly uploaded part.
+     * @param eTag the entity tag of the newly uploaded part.
      */
     public void setETag(String eTag) {
         this.eTag = eTag;

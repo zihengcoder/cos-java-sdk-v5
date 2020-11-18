@@ -11,9 +11,10 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -46,11 +47,9 @@ public class SetBucketLoggingConfigurationRequest extends CosServiceRequest impl
      * to set the bucket logging configuration of
      * the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket whose logging configuration is being
-     *            set.
-     * @param loggingConfiguration
-     *            The new logging configuration for the specified bucket.
+     * @param bucketName The name of the bucket whose logging configuration is being
+     *         set.
+     * @param loggingConfiguration The new logging configuration for the specified bucket.
      */
     public SetBucketLoggingConfigurationRequest(String bucketName, BucketLoggingConfiguration loggingConfiguration) {
         this.bucketName = bucketName;
@@ -61,7 +60,6 @@ public class SetBucketLoggingConfigurationRequest extends CosServiceRequest impl
      * Gets the name of the bucket whose logging configuration is being set.
      *
      * @return The name of the bucket whose logging configuration is being set.
-     *
      * @see SetBucketLoggingConfigurationRequest#setBucketName(String)
      * @see SetBucketLoggingConfigurationRequest#withLoggingConfiguration(BucketLoggingConfiguration)
      */
@@ -72,10 +70,8 @@ public class SetBucketLoggingConfigurationRequest extends CosServiceRequest impl
     /**
      * Sets the name of the bucket whose logging configuration is being set.
      *
-     * @param bucketName
-     *            The name of the bucket whose logging configuration is being
-     *            set.
-     *
+     * @param bucketName The name of the bucket whose logging configuration is being
+     *         set.
      * @see SetBucketLoggingConfigurationRequest#getBucketName()
      * @see SetBucketLoggingConfigurationRequest#withBucketName(String)
      */
@@ -88,13 +84,10 @@ public class SetBucketLoggingConfigurationRequest extends CosServiceRequest impl
      * and returns this object, enabling additional method calls to be
      * chained together.
      *
-     * @param bucketName
-     *            The name of the bucket whose logging configuration is being
-     *            set.
-     *
+     * @param bucketName The name of the bucket whose logging configuration is being
+     *         set.
      * @return This {@link SetBucketLoggingConfigurationRequest} object, enabling
      *         additional method calls may to be chained together.
-     *
      * @see SetBucketLoggingConfigurationRequest#getBucketName()
      * @see SetBucketLoggingConfigurationRequest#setBucketName(String)
      */
@@ -107,7 +100,6 @@ public class SetBucketLoggingConfigurationRequest extends CosServiceRequest impl
      * Gets the logging configuration for the specified bucket.
      *
      * @return The logging configuration for the specified bucket.
-     *
      * @see SetBucketLoggingConfigurationRequest#setLoggingConfiguration(BucketLoggingConfiguration)
      * @see SetBucketLoggingConfigurationRequest#withLoggingConfiguration(BucketLoggingConfiguration)
      */
@@ -118,9 +110,7 @@ public class SetBucketLoggingConfigurationRequest extends CosServiceRequest impl
     /**
      * Sets the logging configuration for the specified bucket.
      *
-     * @param loggingConfiguration
-     *            The logging configuration for the specified bucket.
-     *
+     * @param loggingConfiguration The logging configuration for the specified bucket.
      * @see SetBucketLoggingConfigurationRequest#getLoggingConfiguration()
      * @see SetBucketLoggingConfigurationRequest#withLoggingConfiguration(BucketLoggingConfiguration)
      */
@@ -133,16 +123,14 @@ public class SetBucketLoggingConfigurationRequest extends CosServiceRequest impl
      * the updated object, enabling additional method calls to be chained
      * together.
      *
-     * @param loggingConfiguration
-     *            The logging configuration for the specified bucket.
-     *
+     * @param loggingConfiguration The logging configuration for the specified bucket.
      * @return This {@link SetBucketLoggingConfigurationRequest} object, enabling
      *         additional method calls to be chained together.
-     *
      * @see SetBucketLoggingConfigurationRequest#getLoggingConfiguration()
      * @see SetBucketLoggingConfigurationRequest#setLoggingConfiguration(BucketLoggingConfiguration)
      */
-    public SetBucketLoggingConfigurationRequest withLoggingConfiguration(BucketLoggingConfiguration loggingConfiguration) {
+    public SetBucketLoggingConfigurationRequest withLoggingConfiguration(
+            BucketLoggingConfiguration loggingConfiguration) {
         setLoggingConfiguration(loggingConfiguration);
         return this;
     }

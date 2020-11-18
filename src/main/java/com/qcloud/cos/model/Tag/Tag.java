@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -24,16 +24,15 @@ import java.io.Serializable;
  * Represents a tag on a resource.
  */
 public class Tag implements Serializable {
+
     private String key;
     private String value;
 
     /**
      * Constructs an instance of this object.
      *
-     * @param key
-     *            The tag key.
-     * @param value
-     *            The tag value.
+     * @param key The tag key.
+     * @param value The tag value.
      */
     public Tag(String key, String value) {
         this.key = key;
@@ -50,8 +49,7 @@ public class Tag implements Serializable {
     /**
      * Set the tag key.
      *
-     * @param key
-     *            The tag key.
+     * @param key The tag key.
      */
     public void setKey(String key) {
         this.key = key;
@@ -60,10 +58,8 @@ public class Tag implements Serializable {
     /**
      * Set the tag key.
      *
-     * @param key
-     *            The tag key.
-     * @return
-     *            This object for chaining.
+     * @param key The tag key.
+     * @return This object for chaining.
      */
     public Tag withKey(String key) {
         setKey(key);
@@ -80,8 +76,7 @@ public class Tag implements Serializable {
     /**
      * Set the tag value.
      *
-     * @param value
-     *            The tag value.
+     * @param value The tag value.
      */
     public void setValue(String value) {
         this.value = value;
@@ -90,10 +85,8 @@ public class Tag implements Serializable {
     /**
      * Set the tag value.
      *
-     * @param value
-     *            The tag value.
-     * @return
-     *            This object for chaining.
+     * @param value The tag value.
+     * @return This object for chaining.
      */
     public Tag withValue(String value) {
         setValue(value);
@@ -102,12 +95,18 @@ public class Tag implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Tag tag = (Tag) o;
 
-        if (key != null ? !key.equals(tag.key) : tag.key != null) return false;
+        if (key != null ? !key.equals(tag.key) : tag.key != null) {
+            return false;
+        }
         return value != null ? value.equals(tag.value) : tag.value == null;
 
     }

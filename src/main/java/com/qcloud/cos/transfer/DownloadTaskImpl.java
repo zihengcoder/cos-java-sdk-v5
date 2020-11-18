@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,6 +26,7 @@ import com.qcloud.cos.model.GetObjectRequest;
 import com.qcloud.cos.utils.ServiceUtils;
 
 final class DownloadTaskImpl implements ServiceUtils.RetryableCOSDownloadTask {
+
     private final COS cos;
     private final DownloadImpl download;
     private final GetObjectRequest getObjectRequest;
@@ -36,7 +37,7 @@ final class DownloadTaskImpl implements ServiceUtils.RetryableCOSDownloadTask {
         this.download = download;
         this.getObjectRequest = getObjectRequest;
     }
-    
+
     @Override
     public COSObject getCOSObjectStream() {
         COSObject cosObject = cos.getObject(getObjectRequest);

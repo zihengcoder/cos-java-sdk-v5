@@ -14,21 +14,28 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model.transform;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import com.qcloud.cos.internal.Unmarshaller;
+
 /**
  * Collection of StAX unmarshallers for simple data types.
  */
 public class SimpleTypeStaxUnmarshallers {
-    /** Shared logger */
+
+    /**
+     * Shared logger
+     */
     private static Log log = LogFactory.getLog(SimpleTypeStaxUnmarshallers.class);
+
     /**
      * Unmarshaller for Long values.
      */
     public static class LongStaxUnmarshaller implements Unmarshaller<Long, StaxUnmarshallerContext> {
+
         public Long unmarshall(StaxUnmarshallerContext unmarshallerContext) throws Exception {
             String longString = unmarshallerContext.readText();
             return (longString == null) ? null : Long.parseLong(longString);

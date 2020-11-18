@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -40,7 +40,9 @@ public abstract class AbstractCosResponseHandler<T>
 
     private static final Logger log = LoggerFactory.getLogger(AbstractCosResponseHandler.class);
 
-    /** The set of response headers that aren't part of the object's metadata */
+    /**
+     * The set of response headers that aren't part of the object's metadata
+     */
     private static final Set<String> ignoredHeaders;
 
     static {
@@ -54,7 +56,6 @@ public abstract class AbstractCosResponseHandler<T>
     /**
      * The majority of COS response handlers read the complete response while handling it, and don't
      * need to manually manage the underlying HTTP connection.
-     *
      */
     public boolean needsConnectionLeftOpen() {
         return false;
@@ -65,7 +66,6 @@ public abstract class AbstractCosResponseHandler<T>
      * returns a CosServiceResponse<T> object ready for the result to be plugged in.
      *
      * @param response The response containing the response metadata to pull out.
-     *
      * @return A new, populated CosServiceResponse<T> object, ready for the result to be plugged in.
      */
     protected CosServiceResponse<T> parseResponseMetadata(CosHttpResponse response) {

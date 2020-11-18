@@ -14,12 +14,13 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 /**
  * The type of the provided expression (e.g., SQL).
  */
-public enum  ExpressionType {
+public enum ExpressionType {
     SQL("SQL");
 
     private final String expressionType;

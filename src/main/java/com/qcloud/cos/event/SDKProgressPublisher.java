@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -39,6 +39,7 @@ import org.apache.commons.logging.LogFactory;
  * single thread.
  */
 public class SDKProgressPublisher {
+
     protected static final boolean SYNC = false;  // for testing purposes only
     protected static final boolean ASYNC = false; // for testing purposes only
     /**
@@ -48,16 +49,16 @@ public class SDKProgressPublisher {
 
     /**
      * Used to deliver a progress event to the given listener.
-     * 
+     *
      * @return the future of a submitted task; or null if the delivery is
-     * synchronous with no future task involved.  Note a listener should never
-     * block, and therefore returning null is the typical case.
+     *         synchronous with no future task involved.  Note a listener should never
+     *         block, and therefore returning null is the typical case.
      */
     public static Future<?> publishProgress(
             final ProgressListener listener,
             final ProgressEventType type) {
         if (listener == ProgressListener.NOOP || listener == null
-        ||  type == null) {
+                || type == null) {
             return null;
         }
         return deliverEvent(listener, new ProgressEvent(type));
@@ -93,11 +94,11 @@ public class SDKProgressPublisher {
             final ProgressEvent event) {
         try {
             listener.progressChanged(event);
-        } catch(Throwable t) {
+        } catch (Throwable t) {
             // That's right, we need to suppress all errors so as to be on par
             // with the async mode where all failures will be ignored.
             LogFactory.getLog(SDKProgressPublisher.class)
-                .debug("Failure from the event listener", t);
+                    .debug("Failure from the event listener", t);
         }
         return null;
     }
@@ -105,11 +106,9 @@ public class SDKProgressPublisher {
     /**
      * Convenient method to publish a request content length event to the given
      * listener.
-     * 
-     * @param listener
-     *            must not be null or else the publication will be skipped
-     * @param bytes
-     *            must be non-negative or else the publication will be skipped
+     *
+     * @param listener must not be null or else the publication will be skipped
+     * @param bytes must be non-negative or else the publication will be skipped
      */
     public static Future<?> publishRequestContentLength(
             final ProgressListener listener,
@@ -120,11 +119,9 @@ public class SDKProgressPublisher {
     /**
      * Convenient method to publish a response content length event to the given
      * listener.
-     * 
-     * @param listener
-     *            must not be null or else the publication will be skipped
-     * @param bytes
-     *            must be non-negative or else the publication will be skipped
+     *
+     * @param listener must not be null or else the publication will be skipped
+     * @param bytes must be non-negative or else the publication will be skipped
      */
     public static Future<?> publishResponseContentLength(
             final ProgressListener listener,
@@ -135,11 +132,9 @@ public class SDKProgressPublisher {
     /**
      * Convenient method to publish a request byte transfer event to the given
      * listener.
-     * 
-     * @param listener
-     *            must not be null or else the publication will be skipped
-     * @param bytes
-     *            must be non-negative or else the publication will be skipped
+     *
+     * @param listener must not be null or else the publication will be skipped
+     * @param bytes must be non-negative or else the publication will be skipped
      */
     public static Future<?> publishRequestBytesTransferred(
             final ProgressListener listener,
@@ -150,11 +145,9 @@ public class SDKProgressPublisher {
     /**
      * Convenient method to publish a response byte transfer event to the given
      * listener.
-     * 
-     * @param listener
-     *            must not be null or else the publication will be skipped
-     * @param bytes
-     *            must be non-negative or else the publication will be skipped
+     *
+     * @param listener must not be null or else the publication will be skipped
+     * @param bytes must be non-negative or else the publication will be skipped
      */
     public static Future<?> publishResponseBytesTransferred(
             final ProgressListener listener,
@@ -166,18 +159,17 @@ public class SDKProgressPublisher {
             final ProgressListener listener,
             final ProgressEventType type,
             final long bytes) {
-        if (listener == ProgressListener.NOOP || listener == null || bytes <= 0)
+        if (listener == ProgressListener.NOOP || listener == null || bytes <= 0) {
             return null;
+        }
         return deliverEvent(listener, new ProgressEvent(type, bytes));
     }
 
     /**
      * Convenient method to publish a request reset event to the given listener.
-     * 
-     * @param listener
-     *            must not be null or else the publication will be skipped
-     * @param bytesReset
-     *            must be non-negative or else the publication will be skipped
+     *
+     * @param listener must not be null or else the publication will be skipped
+     * @param bytesReset must be non-negative or else the publication will be skipped
      */
     public static Future<?> publishRequestReset(
             final ProgressListener listener,
@@ -205,20 +197,20 @@ public class SDKProgressPublisher {
     }
 
     /**
-     * @param listener
-     *            must not be null or else the publication will be skipped
-     * @param bytesReset
-     *            the publication will be skipped unless the number of bytes
-     *            reset is positive
+     * @param listener must not be null or else the publication will be skipped
+     * @param bytesReset the publication will be skipped unless the number of bytes
+     *         reset is positive
      */
     private static Future<?> publishResetEvent(
             final ProgressListener listener,
             final ProgressEventType resetEventType,
             final long bytesReset) {
-        if (bytesReset <= 0)
+        if (bytesReset <= 0) {
             return null;
-        if (listener == ProgressListener.NOOP || listener == null)
+        }
+        if (listener == ProgressListener.NOOP || listener == null) {
             return null;
+        }
         return deliverEvent(listener, new ProgressEvent(resetEventType, bytesReset));
     }
 
@@ -228,7 +220,7 @@ public class SDKProgressPublisher {
     protected static ExecutorService getExecutorService() {
         return LazyHolder.executor;
     }
-    
+
     protected static Future<?> setLatestFutureTask(Future<?> f) {
         return latestFutureTask = f;
     }
@@ -250,7 +242,10 @@ public class SDKProgressPublisher {
      * Used to avoid creating the extra thread until absolutely necessary.
      */
     private static final class LazyHolder {
-        /** A single thread pool for executing all ProgressListener callbacks. **/
+
+        /**
+         * A single thread pool for executing all ProgressListener callbacks.
+         **/
         private static final ExecutorService executor = createNewExecutorService();
 
         /**
@@ -276,13 +271,14 @@ public class SDKProgressPublisher {
      * listeners that are short-lived (ie do not block) and are subclasses of
      * {@link SyncProgressListener}. That way, the progress publisher
      * (legacy) thread will never be activated in the first place.
-     * 
+     *
      * @param now true if shutdown now; false otherwise.
      */
     public static void shutdown(boolean now) {
-        if (now)
+        if (now) {
             LazyHolder.executor.shutdownNow();
-        else
+        } else {
             LazyHolder.executor.shutdown();
+        }
     }
 }

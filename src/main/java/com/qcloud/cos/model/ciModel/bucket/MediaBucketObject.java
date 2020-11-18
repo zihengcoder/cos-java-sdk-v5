@@ -4,6 +4,7 @@ package com.qcloud.cos.model.ciModel.bucket;
  * 数据万象媒体bucket实体类 字段详情见 https://cloud.tencent.com/document/product/460/38914
  */
 public class MediaBucketObject {
+
     private String bucketId;
     private String Name;
     private String Region;

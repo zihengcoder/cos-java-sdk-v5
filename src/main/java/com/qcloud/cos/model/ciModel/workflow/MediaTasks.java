@@ -1,6 +1,7 @@
 package com.qcloud.cos.model.ciModel.workflow;
 
 public class MediaTasks {
+
     private String type;
     private String createTime;
     private String endTime;

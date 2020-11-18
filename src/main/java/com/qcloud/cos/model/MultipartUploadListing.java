@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -88,7 +88,9 @@ public class MultipartUploadListing implements Serializable {
      */
     private String nextUploadIdMarker;
 
-    /** The list of multipart uploads. */
+    /**
+     * The list of multipart uploads.
+     */
     private List<MultipartUpload> multipartUploads;
 
     /**
@@ -115,9 +117,8 @@ public class MultipartUploadListing implements Serializable {
      * Sets the name of the bucket containing the listed multipart uploads, as
      * specified in the original request.
      *
-     * @param bucketName
-     *            The name of the bucket containing the listed multipart
-     *            uploads, as specified in the original request.
+     * @param bucketName The name of the bucket containing the listed multipart
+     *         uploads, as specified in the original request.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -138,10 +139,9 @@ public class MultipartUploadListing implements Serializable {
      * Sets the optional key marker specified in the original request to specify
      * where in the results to begin listing multipart uploads.
      *
-     * @param keyMarker
-     *            The optional key marker specified in the original request to
-     *            specify where in the results to begin listing multipart
-     *            uploads.
+     * @param keyMarker The optional key marker specified in the original request to
+     *         specify where in the results to begin listing multipart
+     *         uploads.
      */
     public void setKeyMarker(String keyMarker) {
         this.keyMarker = keyMarker;
@@ -163,10 +163,9 @@ public class MultipartUploadListing implements Serializable {
      * Sets the optional upload ID marker specified in the original request to
      * specify where in the results to begin listing multipart uploads.
      *
-     * @param uploadIdMarker
-     *            The optional upload ID marker specified in the original
-     *            request to specify where in the results to begin listing
-     *            multipart uploads.
+     * @param uploadIdMarker The optional upload ID marker specified in the original
+     *         request to specify where in the results to begin listing
+     *         multipart uploads.
      */
     public void setUploadIdMarker(String uploadIdMarker) {
         this.uploadIdMarker = uploadIdMarker;
@@ -189,9 +188,8 @@ public class MultipartUploadListing implements Serializable {
      * Sets the next key marker that should be used in the next request to get
      * the next page of results.
      *
-     * @param nextKeyMarker
-     *            the next key marker that should be used in the next request to
-     *            get the next page of results.
+     * @param nextKeyMarker the next key marker that should be used in the next request to
+     *         get the next page of results.
      */
     public void setNextKeyMarker(String nextKeyMarker) {
         this.nextKeyMarker = nextKeyMarker;
@@ -213,9 +211,8 @@ public class MultipartUploadListing implements Serializable {
      * Sets the next upload ID marker that should be used in the next request to
      * get the next page of results.
      *
-     * @param nextUploadIdMarker
-     *            The next upload ID marker that should be used in the next
-     *            request to get the next page of results.
+     * @param nextUploadIdMarker The next upload ID marker that should be used in the next
+     *         request to get the next page of results.
      */
     public void setNextUploadIdMarker(String nextUploadIdMarker) {
         this.nextUploadIdMarker = nextUploadIdMarker;
@@ -236,9 +233,8 @@ public class MultipartUploadListing implements Serializable {
      * Sets the optional maximum number of uploads to be listed, as specified in
      * the original request.
      *
-     * @param maxUploads
-     *            The optional maximum number of uploads to be listed, as
-     *            specified in the original request.
+     * @param maxUploads The optional maximum number of uploads to be listed, as
+     *         specified in the original request.
      */
     public void setMaxUploads(int maxUploads) {
         this.maxUploads = maxUploads;
@@ -250,7 +246,7 @@ public class MultipartUploadListing implements Serializable {
      * parameter, Qcloud COS includes this element in the response, and returns
      * encoded key name values in the following response elements:
      * <code>Delimiter, KeyMarker, Prefix, NextKeyMarker, Key</code>.
-     * 
+     *
      * @return <code>Null</code> if <code>encodingType</code> is not specified
      *         in the request parameter.
      */
@@ -261,10 +257,9 @@ public class MultipartUploadListing implements Serializable {
     /**
      * For internal use only. Sets the encoding type used by Qcloud COS to encode
      * object key names in the XML response.
-     * 
-     * @param encodingType
-     *            <code>Null</code> if <code>encodingType</code> is not
-     *            specified in the request parameter.
+     *
+     * @param encodingType <code>Null</code> if <code>encodingType</code> is not
+     *         specified in the request parameter.
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
@@ -285,9 +280,8 @@ public class MultipartUploadListing implements Serializable {
      * Sets whether this listing is truncated, and additional requests need to
      * be made to get more results.
      *
-     * @param isTruncated
-     *            true if the listing is truncated, and additional requests need
-     *            to be made to get more results.
+     * @param isTruncated true if the listing is truncated, and additional requests need
+     *         to be made to get more results.
      */
     public void setTruncated(boolean isTruncated) {
         this.isTruncated = isTruncated;
@@ -299,15 +293,16 @@ public class MultipartUploadListing implements Serializable {
      * @return The list of multipart uploads.
      */
     public List<MultipartUpload> getMultipartUploads() {
-        if (multipartUploads == null) multipartUploads = new ArrayList<MultipartUpload>();
+        if (multipartUploads == null) {
+            multipartUploads = new ArrayList<MultipartUpload>();
+        }
         return multipartUploads;
     }
 
     /**
      * Sets the list of multipart uploads.
      *
-     * @param multipartUploads
-     *            The list of multipart uploads.
+     * @param multipartUploads The list of multipart uploads.
      */
     public void setMultipartUploads(List<MultipartUpload> multipartUploads) {
         this.multipartUploads = multipartUploads;
@@ -352,8 +347,7 @@ public class MultipartUploadListing implements Serializable {
      * listing, representing the uploads for key prefixes that were rolled up
      * because of the request's delimiter parameter.
      *
-     * @param commonPrefixes
-     *            The common prefixes for this multipart upload listing.
+     * @param commonPrefixes The common prefixes for this multipart upload listing.
      */
     public void setCommonPrefixes(List<String> commonPrefixes) {
         this.commonPrefixes = commonPrefixes;
@@ -384,9 +378,8 @@ public class MultipartUploadListing implements Serializable {
      * For internal use only. Sets the delimiter parameter originally used to
      * request this multipart upload listing.
      *
-     * @param delimiter
-     *            The delimiter parameter originally used to request this
-     *            multipart upload listing.
+     * @param delimiter The delimiter parameter originally used to request this
+     *         multipart upload listing.
      */
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
@@ -409,9 +402,8 @@ public class MultipartUploadListing implements Serializable {
      * For internal use only. Sets the prefix parameter originally used to
      * request this multipart upload listing.
      *
-     * @param prefix
-     *            The prefix parameter originally used to request this multipart
-     *            upload listing.
+     * @param prefix The prefix parameter originally used to request this multipart
+     *         upload listing.
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;

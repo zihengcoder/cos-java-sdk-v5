@@ -20,6 +20,7 @@ import java.util.Map;
  * The utils for CPM and CVM credentials fetcher
  */
 public class InstanceCredentialsUtils {
+
     private static final Logger LOG = LoggerFactory.getLogger(InstanceCredentialsUtils.class);
 
     private static InstanceCredentialsUtils instance = new InstanceCredentialsUtils(ConnectionUtils.getInstance());
@@ -39,7 +40,8 @@ public class InstanceCredentialsUtils {
         return readResource(endpoint, CredentialsEndpointRetryPolicy.NO_RETRY_POLICY, null);
     }
 
-    public String readResource(URI endpoint, CredentialsEndpointRetryPolicy retryPolicy, Map<String, String> headers) throws IOException {
+    public String readResource(URI endpoint, CredentialsEndpointRetryPolicy retryPolicy, Map<String, String> headers)
+            throws IOException {
         int retriesAttempted = 0;
         InputStream inputStream = null;
 
@@ -110,9 +112,9 @@ public class InstanceCredentialsUtils {
             map.putAll(headers);
         }
 
-        putIfAbsent(map,"User-Agent", USER_AGENT);
-        putIfAbsent(map,"Accept", "*/*");
-        putIfAbsent(map,"Connection", "keep-alive");
+        putIfAbsent(map, "User-Agent", USER_AGENT);
+        putIfAbsent(map, "Accept", "*/*");
+        putIfAbsent(map, "Connection", "keep-alive");
         return map;
     }
 

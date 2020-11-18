@@ -12,22 +12,22 @@ import com.qcloud.cos.model.PutObjectResult;
 import com.qcloud.cos.region.Region;
 
 public class TemporyTokenDemo {
-	// 该例子介绍使用临时秘钥来访问COS上的资源
-	// 临时秘钥通过云API向腾讯云权限管理系统CAM申请，java云api可以在此获取：https://github.com/QcloudApi/qcloudapi-sdk-java
+    // 该例子介绍使用临时秘钥来访问COS上的资源
+    // 临时秘钥通过云API向腾讯云权限管理系统CAM申请，java云api可以在此获取：https://github.com/QcloudApi/qcloudapi-sdk-java
 
-	public static BasicSessionCredentials getSessionCredential() {
-		// 实际应用中，这里通过云api请求得到临时秘钥后，构造BasicSessionCredential
-		BasicSessionCredentials cred =
-				new BasicSessionCredentials("111111111111122222",
-						"333333334afafafaa", "efd2f92e6b35562d387971ec7e78cfa051d058ad3");
-		return cred;
-	}
+    public static BasicSessionCredentials getSessionCredential() {
+        // 实际应用中，这里通过云api请求得到临时秘钥后，构造BasicSessionCredential
+        BasicSessionCredentials cred =
+                new BasicSessionCredentials("111111111111122222",
+                        "333333334afafafaa", "efd2f92e6b35562d387971ec7e78cfa051d058ad3");
+        return cred;
+    }
 
-	// 使用临时秘钥进行上传和下载
-	public static void UseTemporyTokenUploadAndDownload() {
-		// 使用云api秘钥，可以获取一个临时secret id，secret key和session token,
-		BasicSessionCredentials cred = getSessionCredential();
-		// 设置区域, 这里设置为北京一区
+    // 使用临时秘钥进行上传和下载
+    public static void UseTemporyTokenUploadAndDownload() {
+        // 使用云api秘钥，可以获取一个临时secret id，secret key和session token,
+        BasicSessionCredentials cred = getSessionCredential();
+        // 设置区域, 这里设置为北京一区
         ClientConfig clientConfig = new ClientConfig(new Region("ap-beijing-1"));
         // 生成cos客户端对象
         COSClient cosClient = new COSClient(cred, clientConfig);
@@ -49,10 +49,10 @@ public class TemporyTokenDemo {
         ObjectMetadata downObjectMeta = cosClient.getObject(getObjectRequest, downFile);
         // 关闭客户端(关闭后台线程)
         cosClient.shutdown();
-	}
-	
-	public static void main(String[] args) throws Exception {
-	    UseTemporyTokenUploadAndDownload();
-	}
+    }
+
+    public static void main(String[] args) throws Exception {
+        UseTemporyTokenUploadAndDownload();
+    }
 
 }

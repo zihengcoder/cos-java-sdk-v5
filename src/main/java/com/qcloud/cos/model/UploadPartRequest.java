@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -24,7 +24,9 @@ import java.io.Serializable;
 
 import com.qcloud.cos.internal.CosServiceRequest;
 
-public class UploadPartRequest extends CosServiceRequest implements SSECustomerKeyProvider, CosDataSource, Serializable {
+public class UploadPartRequest extends CosServiceRequest implements SSECustomerKeyProvider, CosDataSource,
+        Serializable {
+
     private static final long serialVersionUID = 1L;
     /**
      * Additional information about the part being uploaded, such as
@@ -37,7 +39,9 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      */
     private String bucketName;
 
-    /** The key of the initiated multipart upload */
+    /**
+     * The key of the initiated multipart upload
+     */
     private String key;
 
     /**
@@ -53,7 +57,9 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      */
     private int partNumber;
 
-    /** The size of this part, in bytes. */
+    /**
+     * The size of this part, in bytes.
+     */
     private long partSize;
 
     /**
@@ -92,7 +98,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * a multipart upload.
      */
     private boolean isLastPart;
-    
+
     /**
      * The optional customer-provided server-side encryption key to use to
      * encrypt the object part being uploaded.
@@ -103,8 +109,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
     /**
      * Sets the stream containing the data to upload for the new part.
      *
-     * @param inputStream
-     *            the stream containing the data to upload for the new part.
+     * @param inputStream the stream containing the data to upload for the new part.
      */
     @Override
     public void setInputStream(InputStream inputStream) {
@@ -126,9 +131,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * returns this updated object so that additional method calls can be
      * chained together.
      *
-     * @param inputStream
-     *            the stream containing the data to upload for the new part.
-     *
+     * @param inputStream the stream containing the data to upload for the new part.
      * @return The updated UploadPartRequest object.
      */
     public UploadPartRequest withInputStream(InputStream inputStream) {
@@ -151,9 +154,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * Sets the name of the bucket containing the existing, initiated multipart
      * upload, with which this new part will be associated.
      *
-     * @param bucketName
-     *            the name of the bucket containing the existing, initiated
-     *            multipart upload, with which this new part will be associated.
+     * @param bucketName the name of the bucket containing the existing, initiated
+     *         multipart upload, with which this new part will be associated.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -164,10 +166,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * upload, with which this new part will be associated, and returns this
      * updated object so that additional method calls can be chained together.
      *
-     * @param bucketName
-     *            the name of the bucket containing the existing, initiated
-     *            multipart upload, with which this new part will be associated.
-     *
+     * @param bucketName the name of the bucket containing the existing, initiated
+     *         multipart upload, with which this new part will be associated.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withBucketName(String bucketName) {
@@ -187,8 +187,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
     /**
      * Sets the key of the initiated multipart upload.
      *
-     * @param key
-     *            the key of the initiated multipart upload.
+     * @param key the key of the initiated multipart upload.
      */
     public void setKey(String key) {
         this.key = key;
@@ -198,9 +197,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * Sets the key of the initiated multipart upload, and returns this updated
      * object so that additional method calls can be chained together.
      *
-     * @param key
-     *            the key of the initiated multipart upload.
-     *
+     * @param key the key of the initiated multipart upload.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withKey(String key) {
@@ -223,9 +220,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * Sets the ID of the existing, initiated multipart upload with which this
      * new part will be associated.
      *
-     * @param uploadId
-     *            the ID of the existing, initiated multipart upload with which
-     *            this new part will be associated.
+     * @param uploadId the ID of the existing, initiated multipart upload with which
+     *         this new part will be associated.
      */
     public void setUploadId(String uploadId) {
         this.uploadId = uploadId;
@@ -236,10 +232,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * new part will be associated, and returns this updated UploadPartRequest
      * object so that additional method calls can be chained together.
      *
-     * @param uploadId
-     *            the ID of the existing, initiated multipart upload with which
-     *            this new part will be associated.
-     *
+     * @param uploadId the ID of the existing, initiated multipart upload with which
+     *         this new part will be associated.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withUploadId(String uploadId) {
@@ -265,10 +259,9 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * other parts in the multipart upload. Part number must be between 1 and
      * 10,000 (inclusive).
      *
-     * @param partNumber
-     *            the part number describing this part's position relative to
-     *            the other parts in the multipart upload. Part number must be
-     *            between 1 and 10,000 (inclusive).
+     * @param partNumber the part number describing this part's position relative to
+     *         the other parts in the multipart upload. Part number must be
+     *         between 1 and 10,000 (inclusive).
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -282,11 +275,9 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * Returns this updated UploadPartRequest object so that additional method
      * calls can be chained together.
      *
-     * @param partNumber
-     *            the part number describing this part's position relative to
-     *            the other parts in the multipart upload. Part number must be
-     *            between 1 and 10,000 (inclusive).
-     *
+     * @param partNumber the part number describing this part's position relative to
+     *         the other parts in the multipart upload. Part number must be
+     *         between 1 and 10,000 (inclusive).
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withPartNumber(int partNumber) {
@@ -306,8 +297,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
     /**
      * Sets the size of this part, in bytes.
      *
-     * @param partSize
-     *            the size of this part, in bytes.
+     * @param partSize the size of this part, in bytes.
      */
     public void setPartSize(long partSize) {
         this.partSize = partSize;
@@ -318,9 +308,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * UploadPartRequest object so that additional method calls can be chained
      * together.
      *
-     * @param partSize
-     *            the size of this part, in bytes.
-     *
+     * @param partSize the size of this part, in bytes.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withPartSize(long partSize) {
@@ -333,9 +321,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * UploadPartRequest object so that additional method calls can be chained
      * together.
      *
-     * @param trafficLimit
-     *            the speed of upload, in bit/s.
-     *
+     * @param trafficLimit the speed of upload, in bit/s.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withTrafficLimit(int trafficLimit) {
@@ -361,10 +347,9 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * If specified, this value will be sent to Qcloud COS to verify the data
      * integrity when the data reaches Qcloud COS.
      *
-     * @param md5Digest
-     *            The optional, but recommended, MD5 hash of the content of this
-     *            part. If specified, this value will be sent to Qcloud COS to
-     *            verify the data integrity when the data reaches Qcloud COS.
+     * @param md5Digest The optional, but recommended, MD5 hash of the content of this
+     *         part. If specified, this value will be sent to Qcloud COS to
+     *         verify the data integrity when the data reaches Qcloud COS.
      */
     public void setMd5Digest(String md5Digest) {
         this.md5Digest = md5Digest;
@@ -378,11 +363,9 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * Returns this updated UploadPartRequest object so that additional method
      * calls can be chained together.
      *
-     * @param md5Digest
-     *            The optional, but recommended, MD5 hash of the content of this
-     *            part. If specified, this value will be sent to Qcloud COS to
-     *            verify the data integrity when the data reaches Qcloud COS.
-     *
+     * @param md5Digest The optional, but recommended, MD5 hash of the content of this
+     *         part. If specified, this value will be sent to Qcloud COS to
+     *         verify the data integrity when the data reaches Qcloud COS.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withMD5Digest(String md5Digest) {
@@ -406,9 +389,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * Sets the file containing the data to upload. Exactly one File or
      * InputStream must be specified as the input to this operation.
      *
-     * @param file
-     *            The file containing the data to upload. Exactly one File or
-     *            InputStream must be specified as the input to this operation.
+     * @param file The file containing the data to upload. Exactly one File or
+     *         InputStream must be specified as the input to this operation.
      */
     @Override
     public void setFile(File file) {
@@ -423,10 +405,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * Exactly one File or InputStream must be specified as the input to this
      * operation.
      *
-     * @param file
-     *            The file containing the data to upload. Exactly one File or
-     *            InputStream must be specified as the input to this operation.
-     *
+     * @param file The file containing the data to upload. Exactly one File or
+     *         InputStream must be specified as the input to this operation.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withFile(File file) {
@@ -452,10 +432,9 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * uploading data for this part. If not specified, data will be read from
      * the beginning of the file.
      *
-     * @param fileOffset
-     *            The optional offset in the specified file, at which to begin
-     *            uploading data for this part. If not specified, data will be
-     *            read from the beginning of the file.
+     * @param fileOffset The optional offset in the specified file, at which to begin
+     *         uploading data for this part. If not specified, data will be
+     *         read from the beginning of the file.
      */
     public void setFileOffset(long fileOffset) {
         this.fileOffset = fileOffset;
@@ -468,11 +447,9 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * <p>
      * If not specified, data will be read from the beginning of the file.
      *
-     * @param fileOffset
-     *            The optional offset in the specified file, at which to begin
-     *            uploading data for this part. If not specified, data will be
-     *            read from the beginning of the file.
-     *
+     * @param fileOffset The optional offset in the specified file, at which to begin
+     *         uploading data for this part. If not specified, data will be
+     *         read from the beginning of the file.
      * @return This updated UploadPartRequest object.
      */
     public UploadPartRequest withFileOffset(long fileOffset) {
@@ -493,12 +470,11 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
     }
 
     /**
-    * Marks this part as the last part being uploaded in a multipart upload.
-    *
-    * @param isLastPart
-    *            Whether or not this is the last part being uploaded in a
-    *            multipart upload.
-    */
+     * Marks this part as the last part being uploaded in a multipart upload.
+     *
+     * @param isLastPart Whether or not this is the last part being uploaded in a
+     *         multipart upload.
+     */
     public void setLastPart(boolean isLastPart) {
         this.isLastPart = isLastPart;
     }
@@ -508,10 +484,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * and returns this updated request object so that additional method calls
      * can be chained together.
      *
-     * @param isLastPart
-     *            Whether or not this is the last part being uploaded in a
-     *            multipart upload.
-     *
+     * @param isLastPart Whether or not this is the last part being uploaded in a
+     *         multipart upload.
      * @return This updated request object so that additional method calls can
      *         be chained together.
      */
@@ -519,7 +493,7 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
         setLastPart(isLastPart);
         return this;
     }
-    
+
     @Override
     public SSECustomerKey getSSECustomerKey() {
         return sseCustomerKey;
@@ -529,9 +503,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * Sets the optional customer-provided server-side encryption key to use to
      * encrypt the object part being uploaded.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to encrypt the object part being uploaded.
+     * @param sseKey The optional customer-provided server-side encryption key to
+     *         use to encrypt the object part being uploaded.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
         this.sseCustomerKey = sseKey;
@@ -542,10 +515,8 @@ public class UploadPartRequest extends CosServiceRequest implements SSECustomerK
      * encrypt the object part being uploaded, and returns the updated request
      * object so that additional method calls can be chained together.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use to encrypt the object part being uploaded.
-     *
+     * @param sseKey The optional customer-provided server-side encryption key to
+     *         use to encrypt the object part being uploaded.
      * @return This updated request object so that additional method calls can
      *         be chained together.
      */

@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -23,12 +24,14 @@ import java.io.Serializable;
 
 /**
  * Request to filter the contents of an COS object based on a simple Structured Query Language (SQL) statement.
- * In the request, along with the SQL expression, you must also specify a data serialization format (JSON or CSV) of the object.
+ * In the request, along with the SQL expression, you must also specify a data serialization format (JSON or CSV) of the
+ * object.
  * COS uses this to parse object data into records, and returns only records that match the specified SQL expression.
  * You must also specify the data serialization format for the response.
- *
  */
-public class SelectObjectContentRequest extends CosServiceRequest implements SSECustomerKeyProvider, Serializable, Cloneable {
+public class SelectObjectContentRequest extends CosServiceRequest implements SSECustomerKeyProvider, Serializable,
+        Cloneable {
+
     private String bucketName;
     private String key;
     private SSECustomerKey sseCustomerKey;

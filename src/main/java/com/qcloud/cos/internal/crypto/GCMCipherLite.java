@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,9 +26,12 @@ import javax.crypto.IllegalBlockSizeException;
 import javax.crypto.SecretKey;
 
 final class GCMCipherLite extends CipherLite {
+
     private static final int TAG_LENGTH = ContentCryptoScheme.AES_GCM
             .getTagLengthInBits() / 8;
-    /** Applicable only for encryption; set to zero otherwise. */
+    /**
+     * Applicable only for encryption; set to zero otherwise.
+     */
     private final int tagLen;
     /**
      * The total number of bytes (excluding the final tag) that has been output
@@ -86,15 +89,17 @@ final class GCMCipherLite extends CipherLite {
     byte[] doFinal() throws IllegalBlockSizeException,
             BadPaddingException {
         if (doneFinal) {
-            if (securityViolated)
+            if (securityViolated) {
                 throw new SecurityException();
+            }
             // final bytes can only be null for decryption
             return finalBytes == null ? null : finalBytes.clone();
         }
         doneFinal = true;
         finalBytes = super.doFinal();
-        if (finalBytes == null)
+        if (finalBytes == null) {
             return null;    // only possible for decryption
+        }
         outputByteCount += checkMax(finalBytes.length - tagLen);
         return finalBytes.clone();
     }
@@ -112,14 +117,17 @@ final class GCMCipherLite extends CipherLite {
     private final byte[] doFinal0(byte[] input, int inputOffset, int inputLen)
             throws IllegalBlockSizeException, BadPaddingException {
         if (doneFinal) {
-            if (securityViolated)
+            if (securityViolated) {
                 throw new SecurityException();
-            if (Cipher.DECRYPT_MODE == getCipherMode())
+            }
+            if (Cipher.DECRYPT_MODE == getCipherMode()) {
                 return finalBytes == null ? null : finalBytes.clone();
+            }
             // final bytes must have been previously computed via encryption
             int finalDataLen = finalBytes.length - tagLen;
-            if (inputLen == finalDataLen)
+            if (inputLen == finalDataLen) {
                 return finalBytes.clone();
+            }
             if (inputLen < finalDataLen) {
                 if (inputLen + currentCount == outputByteCount) {
                     int from = finalBytes.length - tagLen - inputLen;
@@ -131,17 +139,17 @@ final class GCMCipherLite extends CipherLite {
         doneFinal = true;
         // compute final bytes for the first time
         finalBytes = super.doFinal(input, inputOffset, inputLen);
-        if (finalBytes == null)
+        if (finalBytes == null) {
             return null;    // only possible for decryption
+        }
         outputByteCount += checkMax(finalBytes.length - tagLen);
         return finalBytes.clone();
     }
 
     /**
-     * @param inputLen
-     *            for {@link #mark()} and {@link #reset()} to work correctly,
-     *            inputLen should always be in multiple of 16 bytes except for
-     *            the very last part of the plaintext.
+     * @param inputLen for {@link #mark()} and {@link #reset()} to work correctly,
+     *         inputLen should always be in multiple of 16 bytes except for
+     *         the very last part of the plaintext.
      */
     byte[] update(byte[] input, int inputOffset, int inputLen) {
         byte[] out;
@@ -158,15 +166,16 @@ final class GCMCipherLite extends CipherLite {
             invisiblyProcessed = out.length == 0 && inputLen > 0;
         } else {
             out = aux.update(input, inputOffset, inputLen);
-            if (out == null)
+            if (out == null) {
                 return null;    // possible even for encryption
+            }
             currentCount += out.length;
             if (currentCount == outputByteCount) {
                 aux = null; // flip back to the original GCM cipher
             } else if (currentCount > outputByteCount) {
                 if (Cipher.ENCRYPT_MODE == getCipherMode()) {
                     throw new IllegalStateException("currentCount=" + currentCount
-                        + " > outputByteCount=" + outputByteCount);
+                            + " > outputByteCount=" + outputByteCount);
                 }
                 // For decryption, this is possible since AES/CTR doesn't know
                 // about the tag at the end
@@ -174,7 +183,7 @@ final class GCMCipherLite extends CipherLite {
                 long diff = outputByteCount - (currentCount - out.length) - finalBytesLen;
                 currentCount = outputByteCount - finalBytesLen;
                 aux = null; // flip back to the original GCM cipher
-                return Arrays.copyOf(out, (int)diff);
+                return Arrays.copyOf(out, (int) diff);
             }
         }
         return out;
@@ -183,10 +192,9 @@ final class GCMCipherLite extends CipherLite {
     /**
      * Returns the input delta but only if it will not result in exceeding the
      * limit of the maximum number of bytes that can be processed by AES/GCM.
-     * 
-     * @throws SecurityException
-     *             if the number of bytes processed has exceeded the maximum
-     *             allowed by AES/GCM.
+     *
+     * @throws SecurityException if the number of bytes processed has exceeded the maximum
+     *         allowed by AES/GCM.
      */
     private int checkMax(int delta) {
         if (outputByteCount + delta > ContentCryptoScheme.MAX_GCM_BYTES) {
@@ -198,13 +206,18 @@ final class GCMCipherLite extends CipherLite {
         return delta;
     }
 
-    @Override long mark() {
+    @Override
+    long mark() {
         return this.markedCount = aux == null ? outputByteCount : currentCount;
     }
 
-    @Override boolean markSupported() { return true; }
+    @Override
+    boolean markSupported() {
+        return true;
+    }
 
-    @Override void reset() {
+    @Override
+    void reset() {
         if (markedCount < outputByteCount || invisiblyProcessed) {
             try {
                 aux = createAuxiliary(markedCount);
@@ -213,9 +226,9 @@ final class GCMCipherLite extends CipherLite {
                 currentCount = markedCount;
             } catch (Exception e) {
                 throw ((e instanceof RuntimeException)
-                    ? (RuntimeException)e
-                    : new IllegalStateException(e))
-                    ;
+                        ? (RuntimeException) e
+                        : new IllegalStateException(e))
+                        ;
             }
         }
     }
@@ -234,10 +247,10 @@ final class GCMCipherLite extends CipherLite {
      */
     byte[] getTag() {
         return getCipherMode() != Cipher.ENCRYPT_MODE || finalBytes == null
-             ? null
-             : Arrays.copyOfRange(finalBytes,
-                 finalBytes.length - tagLen, finalBytes.length)
-             ;
+                ? null
+                : Arrays.copyOfRange(finalBytes,
+                        finalBytes.length - tagLen, finalBytes.length)
+                ;
     }
 
     /**

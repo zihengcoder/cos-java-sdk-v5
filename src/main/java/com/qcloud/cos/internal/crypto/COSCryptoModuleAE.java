@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -74,18 +74,21 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
         // desired
         // range of bytes.
         long[] desiredRange = req.getRange();
-        if (isStrict() && (desiredRange != null))
+        if (isStrict() && (desiredRange != null)) {
             throw new SecurityException(
                     "Range get and getting a part are not allowed in strict crypto mode");
+        }
         long[] adjustedCryptoRange = getAdjustedCryptoRange(desiredRange);
-        if (adjustedCryptoRange != null)
+        if (adjustedCryptoRange != null) {
             req.setRange(adjustedCryptoRange[0], adjustedCryptoRange[1]);
+        }
         // Get the object from COS
         COSObject retrieved = cos.getObject(req);
         // If the caller has specified constraints, it's possible that super.getObject(...)
         // would return null, so we simply return null as well.
-        if (retrieved == null)
+        if (retrieved == null) {
             return null;
+        }
         String suffix = null;
         if (req instanceof EncryptedGetObjectRequest) {
             EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest) req;
@@ -111,8 +114,9 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
             COSObject retrieved) {
         COSObjectWrapper wrapped = new COSObjectWrapper(retrieved, req.getCOSObjectId());
         // Check if encryption info is in object metadata
-        if (wrapped.hasEncryptionInfo())
+        if (wrapped.hasEncryptionInfo()) {
             return decipherWithMetadata(req, desiredRange, cryptoRange, wrapped);
+        }
         // Check if encrypted info is in an instruction file
         COSObjectWrapper ifile = fetchInstructionFile(req.getCOSObjectId(), null);
         if (ifile != null) {
@@ -143,7 +147,7 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
     /**
      * Same as {@link #decipher(GetObjectRequest, long[], long[], COSObject)} but makes use of an
      * instruction file with the specified suffix.
-     * 
+     *
      * @param instFileSuffix never null or empty (which is assumed to have been sanitized upstream.)
      */
     private COSObject decipherWithInstFileSuffix(GetObjectRequest req, long[] desiredRange,
@@ -168,8 +172,9 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
         boolean keyWrapExpected = isStrict();
         if (req instanceof EncryptedGetObjectRequest) {
             EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest) req;
-            if (!keyWrapExpected)
+            if (!keyWrapExpected) {
                 keyWrapExpected = ereq.isKeyWrapExpected();
+            }
         }
         String json = instructionFile.toJsonString();
         @SuppressWarnings("unchecked")
@@ -177,10 +182,10 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
                 Collections.unmodifiableMap(Jackson.fromJsonString(json, Map.class));
         ContentCryptoMaterial cekMaterial = ContentCryptoMaterial.fromInstructionFile(matdesc,
                 kekMaterialsProvider, cryptoConfig.getCryptoProvider(), cryptoRange, // range is
-                                                                                     // sometimes
-                                                                                     // necessary to
-                                                                                     // compute the
-                                                                                     // adjusted IV
+                // sometimes
+                // necessary to
+                // compute the
+                // adjusted IV
                 keyWrapExpected, kms);
         securityCheck(cekMaterial, retrieved);
         COSObjectWrapper decrypted = decrypt(retrieved, cekMaterial, cryptoRange);
@@ -194,8 +199,9 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
         boolean keyWrapExpected = isStrict();
         if (req instanceof EncryptedGetObjectRequest) {
             EncryptedGetObjectRequest ereq = (EncryptedGetObjectRequest) req;
-            if (!keyWrapExpected)
+            if (!keyWrapExpected) {
                 keyWrapExpected = ereq.isKeyWrapExpected();
+            }
         }
         ContentCryptoMaterial cekMaterial =
                 ContentCryptoMaterial.fromObjectMetadata(retrieved.getObjectMetadata(),
@@ -216,9 +222,9 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
      * adjusts the contents range.
      *
      * @param cosObject The COSObject retrieved from COS that could possibly contain more bytes than
-     *        desired by the user.
+     *         desired by the user.
      * @param range A two-element array of longs corresponding to the start and finish (inclusive)
-     *        of a desired range of bytes.
+     *         of a desired range of bytes.
      * @param instruction Instruction file in JSON or null if no instruction file is involved
      * @return The COSObject with adjusted object contents containing only the range desired by the
      *         user. If the range specified is invalid, then the COSObject is returned without any
@@ -226,8 +232,9 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
      */
     protected final COSObjectWrapper adjustToDesiredRange(COSObjectWrapper cosObject, long[] range,
             Map<String, String> instruction) {
-        if (range == null)
+        if (range == null) {
             return cosObject;
+        }
         // Figure out the original encryption scheme used, which can be
         // different from the crypto scheme used for decryption.
         ContentCryptoScheme encryptionScheme = cosObject.encryptionSchemeOf(instruction);
@@ -270,8 +277,9 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
 
         COSObject cosObject = getObjectSecurely(getObjectRequest);
         // getObject can return null if constraints were specified but not met
-        if (cosObject == null)
+        if (cosObject == null) {
             return null;
+        }
 
         OutputStream outputStream = null;
         try {
@@ -342,11 +350,12 @@ public class COSCryptoModuleAE extends COSCryptoModuleBase {
      *
      * @param parameterValue The parameter value being checked.
      * @param errorMessage The error message to include in the IllegalArgumentException if the
-     *        specified parameter is null.
+     *         specified parameter is null.
      */
     private void assertParameterNotNull(Object parameterValue, String errorMessage) {
-        if (parameterValue == null)
+        if (parameterValue == null) {
             throw new IllegalArgumentException(errorMessage);
+        }
     }
 
     @Override

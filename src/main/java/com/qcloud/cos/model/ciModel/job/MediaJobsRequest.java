@@ -9,6 +9,7 @@ import java.io.Serializable;
  * 媒体处理 任务请求实体 https://cloud.tencent.com/document/product/460/48234
  */
 public class MediaJobsRequest extends CIServiceRequest implements Serializable {
+
     /**
      * bucket名称
      */

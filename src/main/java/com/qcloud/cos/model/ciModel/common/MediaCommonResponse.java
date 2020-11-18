@@ -5,6 +5,7 @@ package com.qcloud.cos.model.ciModel.common;
  * 媒体处理 公用返回实体
  */
 public class MediaCommonResponse {
+
     /**
      * 请求id
      */

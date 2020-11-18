@@ -4,6 +4,7 @@ package com.qcloud.cos.model.ciModel.mediaInfo;
  * MediaInfo 格式详情实体类 详情见：https://cloud.tencent.com/document/product/460/38935
  */
 public class MediaStream {
+
     /**
      * 视频信息
      */
@@ -18,7 +19,7 @@ public class MediaStream {
     private MediaInfoSubtitle subtitle;
 
     public MediaInfoVideo getVideo() {
-        if (video==null){
+        if (video == null) {
             video = new MediaInfoVideo();
         }
         return video;
@@ -29,7 +30,7 @@ public class MediaStream {
     }
 
     public MediaInfoAudio getAudio() {
-        if (audio == null){
+        if (audio == null) {
             audio = new MediaInfoAudio();
         }
         return audio;
@@ -40,7 +41,7 @@ public class MediaStream {
     }
 
     public MediaInfoSubtitle getSubtitle() {
-        if (subtitle==null){
+        if (subtitle == null) {
             subtitle = new MediaInfoSubtitle();
         }
         return subtitle;

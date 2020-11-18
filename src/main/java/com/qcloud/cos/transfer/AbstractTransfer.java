@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -37,23 +37,32 @@ import com.qcloud.cos.exception.CosServiceException;
  */
 public abstract class AbstractTransfer implements Transfer {
 
-    /** The current state of this transfer. */
+    /**
+     * The current state of this transfer.
+     */
     protected volatile TransferState state = TransferState.Waiting;
 
     protected TransferMonitor monitor;
 
-    /** The progress of this transfer. */
+    /**
+     * The progress of this transfer.
+     */
     private final TransferProgress transferProgress;
 
     private final String description;
 
-    /** Hook for adding/removing more progress listeners. */
+    /**
+     * Hook for adding/removing more progress listeners.
+     */
     protected final ProgressListenerChain listenerChain;
 
-    /** Collection of listeners to be notified for changes to the state of this transfer via setState() */
+    /**
+     * Collection of listeners to be notified for changes to the state of this transfer via setState()
+     */
     protected final Collection<TransferStateChangeListener> stateChangeListeners = new LinkedList<TransferStateChangeListener>();
 
-    public AbstractTransfer(String description, TransferProgress transferProgress, ProgressListenerChain progressListenerChain) {
+    public AbstractTransfer(String description, TransferProgress transferProgress,
+            ProgressListenerChain progressListenerChain) {
         this(description, transferProgress, progressListenerChain, null);
     }
 
@@ -82,15 +91,12 @@ public abstract class AbstractTransfer implements Transfer {
      * Waits for this transfer to complete. This is a blocking call; the current
      * thread is suspended until this transfer completes.
      *
-     * @throws CosClientException
-     *             If any errors were encountered in the client while making the
-     *             request or handling the response.
-     * @throws CosServiceException
-     *             If any errors occurred in Qcloud COS while processing the
-     *             request.
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the transfer
-     *             to complete.
+     * @throws CosClientException If any errors were encountered in the client while making the
+     *         request or handling the response.
+     * @throws CosServiceException If any errors occurred in Qcloud COS while processing the
+     *         request.
+     * @throws InterruptedException If this thread is interrupted while waiting for the transfer
+     *         to complete.
      */
     public void waitForCompletion()
             throws CosClientException, CosServiceException, InterruptedException {
@@ -115,10 +121,8 @@ public abstract class AbstractTransfer implements Transfer {
      *
      * @return Any error that occurred while processing this transfer.
      *         Otherwise returns <code>null</code> if no errors occurred.
-     *
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the transfer
-     *             to complete.
+     * @throws InterruptedException If this thread is interrupted while waiting for the transfer
+     *         to complete.
      */
     public CosClientException waitForException() throws InterruptedException {
         try {
@@ -158,7 +162,7 @@ public abstract class AbstractTransfer implements Transfer {
         synchronized (this) {
             this.state = state;
         }
-        for ( TransferStateChangeListener listener : stateChangeListeners ) {
+        for (TransferStateChangeListener listener : stateChangeListeners) {
             listener.transferStateChanged(this, state);
         }
     }
@@ -167,7 +171,7 @@ public abstract class AbstractTransfer implements Transfer {
      * Notifies all the registered state change listeners of the state update.
      */
     public void notifyStateChangeListeners(TransferState state) {
-        for ( TransferStateChangeListener listener : stateChangeListeners ) {
+        for (TransferStateChangeListener listener : stateChangeListeners) {
             listener.transferStateChanged(this, state);
         }
     }
@@ -176,8 +180,7 @@ public abstract class AbstractTransfer implements Transfer {
      * Adds the specified progress listener to the list of listeners
      * receiving updates about this transfer's progress.
      *
-     * @param listener
-     *            The progress listener to add.
+     * @param listener The progress listener to add.
      */
     public synchronized void addProgressListener(ProgressListener listener) {
         listenerChain.addProgressListener(listener);
@@ -187,8 +190,7 @@ public abstract class AbstractTransfer implements Transfer {
      * Removes the specified progress listener from the list of progress
      * listeners receiving updates about this transfer's progress.
      *
-     * @param listener
-     *            The progress listener to remove.
+     * @param listener The progress listener to remove.
      */
     public synchronized void removeProgressListener(ProgressListener listener) {
         listenerChain.removeProgressListener(listener);
@@ -198,16 +200,18 @@ public abstract class AbstractTransfer implements Transfer {
      * Adds the given state change listener to the collection of listeners.
      */
     public synchronized void addStateChangeListener(TransferStateChangeListener listener) {
-        if ( listener != null )
+        if (listener != null) {
             stateChangeListeners.add(listener);
+        }
     }
 
     /**
      * Removes the given state change listener from the collection of listeners.
      */
     public synchronized void removeStateChangeListener(TransferStateChangeListener listener) {
-        if ( listener != null )
+        if (listener != null) {
             stateChangeListeners.remove(listener);
+        }
     }
 
     /**
@@ -239,8 +243,7 @@ public abstract class AbstractTransfer implements Transfer {
      * rethrows it directly (if it's a type of CosClientException) or wraps
      * it in an CosClientException and rethrows it.
      *
-     * @param e
-     *            The execution exception to examine.
+     * @param e The execution exception to examine.
      */
     protected void rethrowExecutionException(ExecutionException e) {
         throw unwrapExecutionException(e);
@@ -251,14 +254,14 @@ public abstract class AbstractTransfer implements Transfer {
      * and returns it. If it was not an instance of CosClientException, it is
      * wrapped as an CosClientException.
      *
-     * @param e
-     *            The ExecutionException to unwrap.
-     *
+     * @param e The ExecutionException to unwrap.
      * @return The root exception that caused the specified ExecutionException.
      */
     protected CosClientException unwrapExecutionException(ExecutionException e) {
         Throwable t = e.getCause();
-        if (t instanceof CosClientException) return (CosClientException)t;
+        if (t instanceof CosClientException) {
+            return (CosClientException) t;
+        }
         return new CosClientException("Unable to complete transfer: " + t.getMessage(), t);
     }
 

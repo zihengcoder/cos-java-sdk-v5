@@ -9,6 +9,7 @@ import java.io.Serializable;
  * @descript 本类为模板实体类。 注释详情请参见 https://cloud.tencent.com/document/product/460/46989
  */
 public class MediaTemplateRequest extends CIServiceRequest implements Serializable {
+
     /**
      * 模板id
      */
@@ -100,8 +101,9 @@ public class MediaTemplateRequest extends CIServiceRequest implements Serializab
     }
 
     public MediaContainerObject getContainer() {
-        if (container == null)
+        if (container == null) {
             container = new MediaContainerObject();
+        }
         return container;
     }
 
@@ -110,8 +112,9 @@ public class MediaTemplateRequest extends CIServiceRequest implements Serializab
     }
 
     public MediaTimeIntervalObject getTimeInterval() {
-        if (timeInterval == null)
+        if (timeInterval == null) {
             timeInterval = new MediaTimeIntervalObject();
+        }
         return timeInterval;
     }
 
@@ -120,8 +123,9 @@ public class MediaTemplateRequest extends CIServiceRequest implements Serializab
     }
 
     public MediaVideoObject getVideo() {
-        if (video == null)
+        if (video == null) {
             video = new MediaVideoObject();
+        }
         return video;
     }
 
@@ -130,8 +134,9 @@ public class MediaTemplateRequest extends CIServiceRequest implements Serializab
     }
 
     public MediaSnapshotObject getSnapshot() {
-        if (snapshot == null)
+        if (snapshot == null) {
             snapshot = new MediaSnapshotObject();
+        }
         return snapshot;
     }
 

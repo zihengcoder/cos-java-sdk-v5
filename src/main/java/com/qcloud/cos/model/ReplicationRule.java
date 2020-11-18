@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -53,8 +53,7 @@ public class ReplicationRule implements Serializable {
     /**
      * Sets the QCloud Object prefix for the replication rule.
      *
-     * @throws IllegalArgumentException
-     *             if the prefix is null.
+     * @throws IllegalArgumentException if the prefix is null.
      */
     public void setPrefix(String prefix) {
         if (prefix == null) {
@@ -69,8 +68,7 @@ public class ReplicationRule implements Serializable {
      * updated object.
      *
      * @return the updated {@link ReplicationRule} object.
-     * @throws IllegalArgumentException
-     *             if the prefix is null.
+     * @throws IllegalArgumentException if the prefix is null.
      */
     public ReplicationRule withPrefix(String prefix) {
         setPrefix(prefix);
@@ -88,8 +86,7 @@ public class ReplicationRule implements Serializable {
      * Sets the status of this replication rule. Valid values are Enabled,
      * Disabled. The rule will be applied only if the status is Enabled.
      *
-     * @param status
-     *            the status of the replication rule.
+     * @param status the status of the replication rule.
      */
     public void setStatus(String status) {
         this.status = status;
@@ -99,9 +96,7 @@ public class ReplicationRule implements Serializable {
      * Sets the status of this replication rule. Valid values are Enabled,
      * Disabled. The rule will be applied only if the status is Enabled.
      *
-     * @param status
-     *            the status of replication rule.
-     *
+     * @param status the status of replication rule.
      * @return the updated {@link ReplicationRule} object.
      */
     public ReplicationRule withStatus(String status) {
@@ -113,8 +108,7 @@ public class ReplicationRule implements Serializable {
      * Sets the status of this replication rule. Valid values are Enabled,
      * Disabled. The rule will be applied only if the status is Enabled.
      *
-     * @param status
-     *            the status of the replication rule.
+     * @param status the status of the replication rule.
      */
     public void setStatus(ReplicationRuleStatus status) {
         setStatus(status.getStatus());
@@ -124,9 +118,7 @@ public class ReplicationRule implements Serializable {
      * Sets the status of this replication rule. Valid values are Enabled,
      * Disabled. The rule will be applied only if the status is Enabled.
      *
-     * @param status
-     *            the status of replication rule.
-     *
+     * @param status the status of replication rule.
      * @return the updated {@link ReplicationRule} object.
      */
     public ReplicationRule withStatus(ReplicationRuleStatus status) {
@@ -144,8 +136,7 @@ public class ReplicationRule implements Serializable {
     /**
      * Sets the destination configuration for the replication rule.
      *
-     * @throws IllegalArgumentException
-     *             if the destinationConfig is null.
+     * @throws IllegalArgumentException if the destinationConfig is null.
      */
     public void setDestinationConfig(
             ReplicationDestinationConfig destinationConfig) {
@@ -160,9 +151,8 @@ public class ReplicationRule implements Serializable {
      * Sets the destination configuration for the replication rule.Returns the
      * updated object.
      *
-     * @throws IllegalArgumentException
-     *             if the destinationConfig is null.
      * @return the updated {@link ReplicationRule} object.
+     * @throws IllegalArgumentException if the destinationConfig is null.
      */
     public ReplicationRule withDestinationConfig(
             ReplicationDestinationConfig destinationConfig) {

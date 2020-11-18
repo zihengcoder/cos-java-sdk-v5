@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class InstanceCredentialsFetcher extends HttpCredentialsFetcher {
+
     private static final Logger LOG = LoggerFactory.getLogger(InstanceCredentialsFetcher.class);
 
     private static final ObjectMapper mapper = new ObjectMapper();
@@ -19,6 +20,7 @@ public class InstanceCredentialsFetcher extends HttpCredentialsFetcher {
     }
 
     private static class CAMSecurityCredentials {
+
         public String tmpSecretId;
         public String tmpSecretKey;
         public String token;

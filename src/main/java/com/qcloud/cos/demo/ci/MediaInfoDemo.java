@@ -11,6 +11,7 @@ import java.io.UnsupportedEncodingException;
  * 请求详情参见：https://cloud.tencent.com/document/product/460/38935
  */
 public class MediaInfoDemo {
+
     public static void main(String[] args) {
         // 1 初始化用户身份信息（secretId, secretKey）。
         COSClient client = ClientUtils.getTestClient();
@@ -20,9 +21,10 @@ public class MediaInfoDemo {
 
     /**
      * GenerateMediainfo 接口用于获取媒体文件的信息。
+     *
      * @param client
      */
-    public static void generateMediainfo(COSClient client)  {
+    public static void generateMediainfo(COSClient client) {
         //1.创建媒体信息请求对象
         MediaInfoRequest request = new MediaInfoRequest();
         //2.添加请求参数 参数详情请见api接口文档

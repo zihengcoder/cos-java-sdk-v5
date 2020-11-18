@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -23,6 +23,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DeleteObjectsResult implements Serializable {
+
     private final List<DeletedObject> deletedObjects =
             new ArrayList<DeleteObjectsResult.DeletedObject>();
 

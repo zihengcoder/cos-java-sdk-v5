@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -76,22 +76,20 @@ import java.io.InputStream;
  *
  * @see PutObjectRequest#PutObjectRequest(String, String, File)
  * @see PutObjectRequest#PutObjectRequest(String, String, InputStream,
- *      ObjectMetadata)
+ *         ObjectMetadata)
  */
 public class PutObjectRequest extends AbstractPutObjectRequest implements Serializable {
+
     /**
      * Constructs a new
      * {@link PutObjectRequest} object to upload a file to the
      * specified bucket and key. After constructing the request,
      * users may optionally specify object metadata or a canned ACL as well.
      *
-     * @param bucketName
-     *            The name of an existing bucket to which the new object will be
-     *            uploaded.
-     * @param key
-     *            The key under which to store the new object.
-     * @param file
-     *            The path of the file to upload to Qcloud COS.
+     * @param bucketName The name of an existing bucket to which the new object will be
+     *         uploaded.
+     * @param key The key under which to store the new object.
+     * @param file The path of the file to upload to Qcloud COS.
      */
     public PutObjectRequest(String bucketName, String key, File file) {
         super(bucketName, key, file);
@@ -109,10 +107,10 @@ public class PutObjectRequest extends AbstractPutObjectRequest implements Serial
      * @param key
      *            The key under which to store the new object.
      * @param redirectLocation
-     public PutObjectRequest(String bucketName, String key, String redirectLocation) {
-        super(bucketName, key, redirectLocation);
-     }
-     */ 
+    public PutObjectRequest(String bucketName, String key, String redirectLocation) {
+    super(bucketName, key, redirectLocation);
+    }
+     */
 
     /**
      * Constructs a new
@@ -128,16 +126,12 @@ public class PutObjectRequest extends AbstractPutObjectRequest implements Serial
      * result in negative performance problems.
      * </p>
      *
-     * @param bucketName
-     *            The name of an existing bucket to which the new object will be
-     *            uploaded.
-     * @param key
-     *            The key under which to store the new object.
-     * @param input
-     *            The stream of data to upload to Qcloud COS.
-     * @param metadata
-     *            The object metadata. At minimum this specifies the
-     *            content length for the stream of data being uploaded.
+     * @param bucketName The name of an existing bucket to which the new object will be
+     *         uploaded.
+     * @param key The key under which to store the new object.
+     * @param input The stream of data to upload to Qcloud COS.
+     * @param metadata The object metadata. At minimum this specifies the
+     *         content length for the stream of data being uploaded.
      */
     public PutObjectRequest(String bucketName, String key, InputStream input,
             ObjectMetadata metadata) {
@@ -150,7 +144,7 @@ public class PutObjectRequest extends AbstractPutObjectRequest implements Serial
     @Override
     public PutObjectRequest clone() {
         return this.copyPutObjectBaseTo(new PutObjectRequest(
-            getBucketName(), getKey(), getFile()));
+                getBucketName(), getKey(), getFile()));
     }
 
     @Override
@@ -180,7 +174,7 @@ public class PutObjectRequest extends AbstractPutObjectRequest implements Serial
 
     @Override
     @SuppressWarnings("unchecked")
-    public PutObjectRequest  withFile(File file) {
+    public PutObjectRequest withFile(File file) {
         return super.withFile(file);
     }
 
@@ -192,7 +186,7 @@ public class PutObjectRequest extends AbstractPutObjectRequest implements Serial
 
     @Override
     @SuppressWarnings("unchecked")
-    public PutObjectRequest  withCannedAcl(CannedAccessControlList cannedAcl) {
+    public PutObjectRequest withCannedAcl(CannedAccessControlList cannedAcl) {
         return super.withCannedAcl(cannedAcl);
     }
 
@@ -205,7 +199,7 @@ public class PutObjectRequest extends AbstractPutObjectRequest implements Serial
 
     @Override
     @SuppressWarnings("unchecked")
-    public PutObjectRequest  withInputStream(InputStream inputStream) {
+    public PutObjectRequest withInputStream(InputStream inputStream) {
         return super.withInputStream(inputStream);
     }
 
@@ -220,13 +214,13 @@ public class PutObjectRequest extends AbstractPutObjectRequest implements Serial
     public PutObjectRequest withSSECustomerKey(SSECustomerKey sseKey) {
         return super.withSSECustomerKey(sseKey);
     }
-    
+
     @Override
     @SuppressWarnings("unchecked")
     public PutObjectRequest withSSECOSKeyManagementParams(
             SSECOSKeyManagementParams sseCOSKeyManagementParams) {
         return super.withSSECOSKeyManagementParams(sseCOSKeyManagementParams);
     }
-    
-    
+
+
 }

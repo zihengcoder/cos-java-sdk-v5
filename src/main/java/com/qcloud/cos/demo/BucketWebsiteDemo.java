@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BucketWebsiteDemo {
+
     public static void SetGetDeleteWebisteDemo() {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("AKIDXXXXXXXX", "1A2Z3YYYYYYYYYY");

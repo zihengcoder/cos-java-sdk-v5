@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -22,14 +23,16 @@ import java.io.IOException;
 import java.io.InputStream;
 
 /**
- * An implementation of {@link InputStream} that loads the content from the COS object that matched the select query. This is
+ * An implementation of {@link InputStream} that loads the content from the COS object that matched the select query.
+ * This is
  * usually acquired by a call to {@link SelectObjectContentEventStream#getRecordsInputStream()}.
  */
 public class SelectRecordsInputStream extends SdkFilterInputStream {
+
     private final SdkFilterInputStream abortableHttpStream;
 
     SelectRecordsInputStream(InputStream selectResultStream,
-                             SdkFilterInputStream abortableHttpStream) {
+            SdkFilterInputStream abortableHttpStream) {
         super(selectResultStream);
         this.abortableHttpStream = abortableHttpStream;
     }

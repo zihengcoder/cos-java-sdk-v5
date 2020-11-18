@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -29,25 +29,31 @@ import org.joda.time.tz.FixedDateTimeZone;
 
 
 public class DateUtils {
+
     private static final DateTimeZone GMT = new FixedDateTimeZone("GMT", "GMT", 0, 0);
-    private static final long MILLI_SECONDS_OF_365_DAYS = 365L*24*60*60*1000;
-    /** RFC 822 format */
+    private static final long MILLI_SECONDS_OF_365_DAYS = 365L * 24 * 60 * 60 * 1000;
+    /**
+     * RFC 822 format
+     */
     protected static final DateTimeFormatter rfc822DateFormat = DateTimeFormat
             .forPattern("EEE, dd MMM yyyy HH:mm:ss 'GMT'").withLocale(Locale.US).withZone(GMT);
 
-    /** ISO 8601 format */
+    /**
+     * ISO 8601 format
+     */
     protected static final DateTimeFormatter iso8601DateFormat =
             ISODateTimeFormat.dateTime().withZone(GMT);
-    
-    /** Alternate ISO 8601 format without fractional seconds */
+
+    /**
+     * Alternate ISO 8601 format without fractional seconds
+     */
     protected static final DateTimeFormatter alternateIso8601DateFormat =
-        DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").withZone(GMT);
+            DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'").withZone(GMT);
 
     /**
      * Formats the specified date as an RFC 822 string.
      *
      * @param date The date to format.
-     *
      * @return The RFC 822 string representing the specified date.
      */
     public static String formatRFC822Date(Date date) {
@@ -58,7 +64,6 @@ public class DateUtils {
      * Parses the specified date string as an RFC 822 date and returns the Date object.
      *
      * @param dateString The date string to parse.
-     *
      * @return The parsed Date object.
      */
     public static Date parseRFC822Date(String dateString) {
@@ -69,20 +74,17 @@ public class DateUtils {
      * Formats the specified date as an ISO 8601 string.
      *
      * @param date The date to format.
-     *
      * @return The ISO 8601 string representing the specified date.
      */
     public static String formatISO8601Date(Date date) {
         return iso8601DateFormat.print(date.getTime());
     }
-    
+
     /**
      * Parses the specified date string as an ISO 8601 date and returns the Date
      * object.
      *
-     * @param dateString
-     *            The date string to parse.
-     *
+     * @param dateString The date string to parse.
      * @return The parsed Date object.
      */
     public static Date parseISO8601Date(String dateString) {
@@ -117,13 +119,13 @@ public class DateUtils {
                 return new Date(alternateIso8601DateFormat.parseMillis(dateString));
                 // If the first ISO 8601 parser didn't work, try the alternate
                 // version which doesn't include fractional seconds
-            } catch(Exception oops) {
+            } catch (Exception oops) {
                 // no the alternative route doesn't work; let's bubble up the original exception
                 throw e;
             }
         }
     }
-    
+
     /**
      * Returns a date string with the prefix temporarily substituted, if
      * applicable, so that JodaTime can handle it.  Otherwise, if not applicable,
@@ -131,9 +133,9 @@ public class DateUtils {
      */
     private static String tempDateStringForJodaTime(String dateString) {
         final String fromPrefix = "292278994-";
-        final String toPrefix   = "292278993-";
+        final String toPrefix = "292278993-";
         return dateString.startsWith(fromPrefix)
-             ? toPrefix + dateString.substring(fromPrefix.length())
-             : dateString;
+                ? toPrefix + dateString.substring(fromPrefix.length())
+                : dateString;
     }
 }

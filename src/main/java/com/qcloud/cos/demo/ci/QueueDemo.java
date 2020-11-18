@@ -21,9 +21,10 @@ public class QueueDemo {
 
     /**
      * DescribeMediaQueues 接口用于搜索队列。
+     *
      * @param client
      */
-    public static void describeMediaQueues(COSClient client){
+    public static void describeMediaQueues(COSClient client) {
         //1.创建队列请求对象
         MediaQueueRequest request = new MediaQueueRequest();
         //2.添加请求参数 参数详情请见api接口文档
@@ -36,9 +37,10 @@ public class QueueDemo {
     /**
      * UpdateMediaQueue 接口用于更新队列
      * Request中 Name,QueueID,State,NotifyConfig 为必填字段
+     *
      * @param client
      */
-    public static void updateMediaQueue(COSClient client){
+    public static void updateMediaQueue(COSClient client) {
         //1.创建队列请求对象
         MediaQueueRequest request = new MediaQueueRequest();
         //2.添加请求参数 参数详情请见api接口文档

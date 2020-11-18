@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,9 +28,9 @@ public class COSProgressListenerChain extends ProgressListenerChain implements C
     /**
      * Create a listener chain that directly passes all the progress events to the specified
      * listeners.
-     * 
+     *
      * @param listeners only listeners of type {@link COSProgressListener} will be notified with the
-     *        COS transfer events.
+     *         COS transfer events.
      */
     public COSProgressListenerChain(ProgressListener... listeners) {
         super(listeners);

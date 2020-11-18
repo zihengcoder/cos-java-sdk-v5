@@ -11,11 +11,12 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
 package com.qcloud.cos.model;
+
 import java.io.Serializable;
 
 import java.util.ArrayList;
@@ -34,14 +35,14 @@ public class BucketTaggingConfiguration implements Serializable {
      * </p>
      * <p>
      * Passing the new configuration directly to
-     * {@link com.qcloud.cos.COSClient#setBucketTaggingConfiguration(String,BucketTaggingConfiguration)}
+     * {@link com.qcloud.cos.COSClient#setBucketTaggingConfiguration(String, BucketTaggingConfiguration)}
      * will remove any existing bucket tagging configuration.
      * </p>
      *
      * @see BucketTaggingConfiguration#BucketTaggingConfiguration(Collection)
      */
     public BucketTaggingConfiguration() {
-        this.tagSets = new ArrayList<TagSet>( 1 );
+        this.tagSets = new ArrayList<TagSet>(1);
     }
 
     /**
@@ -51,15 +52,15 @@ public class BucketTaggingConfiguration implements Serializable {
      * </p>
      * <p>
      * Passing the new configuration directly to
-     * {@link com.qcloud.cos.COSClient#setBucketTaggingConfiguration(String,BucketTaggingConfiguration)}
+     * {@link com.qcloud.cos.COSClient#setBucketTaggingConfiguration(String, BucketTaggingConfiguration)}
      * will set the bucket's Tagging configuration and overwrite any existing configuration.
      * </p>
      *
      * @see BucketTaggingConfiguration#BucketTaggingConfiguration()
      */
-    public BucketTaggingConfiguration( Collection<TagSet> tagSets ) {
-        this.tagSets = new ArrayList<TagSet>( 1 );
-        this.tagSets.addAll( tagSets );
+    public BucketTaggingConfiguration(Collection<TagSet> tagSets) {
+        this.tagSets = new ArrayList<TagSet>(1);
+        this.tagSets.addAll(tagSets);
     }
 
     /**
@@ -73,19 +74,16 @@ public class BucketTaggingConfiguration implements Serializable {
      * previously set <code>TagSets</code> for this object.
      * </p>
      *
-     * @param tagSets
-     *            A set of TagSet objects.
-     *
+     * @param tagSets A set of TagSet objects.
      * @return The updated {@link BucketTaggingConfiguration} object,
-     * 		   enabling additional method calls to be chained together.
-     *
+     *         enabling additional method calls to be chained together.
      * @see BucketTaggingConfiguration#setTagSets(Collection)
      */
-    public BucketTaggingConfiguration withTagSets( TagSet... tagSets ) {
+    public BucketTaggingConfiguration withTagSets(TagSet... tagSets) {
         this.tagSets.clear();
 
-        for ( int index = 0; index < tagSets.length; index++ ) {
-            this.tagSets.add( tagSets[ index ] );
+        for (int index = 0; index < tagSets.length; index++) {
+            this.tagSets.add(tagSets[index]);
         }
 
         return this;
@@ -100,14 +98,12 @@ public class BucketTaggingConfiguration implements Serializable {
      * previously set <code>TagSets</code> for this object.
      * </p>
      *
-     * @param tagSets
-     *            A collection of TagSet objects.
-     *
+     * @param tagSets A collection of TagSet objects.
      * @see BucketTaggingConfiguration#withTagSets(TagSet...)
      */
-    public void setTagSets( Collection<TagSet> tagSets ) {
+    public void setTagSets(Collection<TagSet> tagSets) {
         this.tagSets.clear();
-        this.tagSets.addAll( tagSets );
+        this.tagSets.addAll(tagSets);
     }
 
     /**
@@ -118,7 +114,7 @@ public class BucketTaggingConfiguration implements Serializable {
      * </p>
      *
      * @return The list of <code>TagSet</code> objects contained in this object.
-     *   May return an empty list.
+     *         May return an empty list.
      */
     public List<TagSet> getAllTagSets() {
         return this.tagSets;
@@ -129,10 +125,11 @@ public class BucketTaggingConfiguration implements Serializable {
      * Gets the first {@link TagSet} object contained in this object. This method may return null
      * list if no <code>TagSet</code> objects are present.
      * </p>
+     *
      * @return The first <code>TagSet</code> object contained in the object
      */
     public TagSet getTagSet() {
-        return this.tagSets.get( 0 );
+        return this.tagSets.get(0);
     }
 
     /**
@@ -140,19 +137,17 @@ public class BucketTaggingConfiguration implements Serializable {
      * Gets the {@link TagSet} object at the specified index contained in this object.
      * </p>
      *
-     * @param index
-     * 			The index of the <code>TagSet</code> object to return
-     *
+     * @param index The index of the <code>TagSet</code> object to return
      * @return The <code>TagSet</code> object contained in the object
      */
-    public TagSet getTagSetAtIndex( int index ) {
-        return this.tagSets.get( index );
+    public TagSet getTagSetAtIndex(int index) {
+        return this.tagSets.get(index);
     }
 
     public String toString() {
         StringBuffer sb = new StringBuffer();
         sb.append("{");
-        sb.append("TagSets: " + this.getAllTagSets() );
+        sb.append("TagSets: " + this.getAllTagSets());
         sb.append("}");
         return sb.toString();
     }

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,6 +28,7 @@ import com.qcloud.cos.utils.IOUtils;
  * Reads only a specific range of bytes from the underlying input stream.
  */
 public class AdjustedRangeInputStream extends SdkInputStream {
+
     private InputStream decryptedContents;
     private long virtualAvailable;
     private boolean closed;
@@ -35,14 +36,10 @@ public class AdjustedRangeInputStream extends SdkInputStream {
     /**
      * Creates a new DecryptedContentsInputStream object.
      *
-     * @param objectContents
-     *      The input stream containing the object contents retrieved from COS
-     * @param rangeBeginning
-     *      The position of the left-most byte desired by the user
-     * @param rangeEnd
-     *      The position of the right-most byte desired by the user
-     * @throws IOException
-     *      If there are errors skipping to the left-most byte desired by the user.
+     * @param objectContents The input stream containing the object contents retrieved from COS
+     * @param rangeBeginning The position of the left-most byte desired by the user
+     * @param rangeEnd The position of the right-most byte desired by the user
+     * @throws IOException If there are errors skipping to the left-most byte desired by the user.
      */
     public AdjustedRangeInputStream(InputStream objectContents, long rangeBeginning, long rangeEnd) throws IOException {
         this.decryptedContents = objectContents;
@@ -58,16 +55,16 @@ public class AdjustedRangeInputStream extends SdkInputStream {
         // preliminary cipher block, and then possibly skip a few more bytes into the next block
         // to where the the left-most byte is located.
         int numBytesToSkip;
-        if(rangeBeginning < JceEncryptionConstants.SYMMETRIC_CIPHER_BLOCK_SIZE) {
-            numBytesToSkip = (int)rangeBeginning;
+        if (rangeBeginning < JceEncryptionConstants.SYMMETRIC_CIPHER_BLOCK_SIZE) {
+            numBytesToSkip = (int) rangeBeginning;
         } else {
-            int offsetIntoBlock = (int)(rangeBeginning % JceEncryptionConstants.SYMMETRIC_CIPHER_BLOCK_SIZE);
+            int offsetIntoBlock = (int) (rangeBeginning % JceEncryptionConstants.SYMMETRIC_CIPHER_BLOCK_SIZE);
             numBytesToSkip = JceEncryptionConstants.SYMMETRIC_CIPHER_BLOCK_SIZE + offsetIntoBlock;
         }
-        if(numBytesToSkip != 0) {
+        if (numBytesToSkip != 0) {
             // Skip to the left-most desired byte.  The read() method is used instead of the skip() method
             // since the skip() method will not block if the underlying input stream is waiting for more input.
-            while(numBytesToSkip > 0) {
+            while (numBytesToSkip > 0) {
                 this.decryptedContents.read();
                 numBytesToSkip--;
             }
@@ -112,21 +109,21 @@ public class AdjustedRangeInputStream extends SdkInputStream {
         abortIfNeeded();
         int numBytesRead;
         // If no more bytes are available, do not read any bytes into the buffer
-        if(this.virtualAvailable <= 0) {
+        if (this.virtualAvailable <= 0) {
             numBytesRead = -1;
         } else {
             // If the desired read length is greater than the number of available bytes,
             // shorten the read length to the number of available bytes.
-            if(length > this.virtualAvailable) {
+            if (length > this.virtualAvailable) {
                 // If the number of available bytes is greater than the maximum value of a 32 bit int, then
                 // read as many bytes as an int can.
-                length = (this.virtualAvailable < Integer.MAX_VALUE) ? (int)this.virtualAvailable : Integer.MAX_VALUE;
+                length = (this.virtualAvailable < Integer.MAX_VALUE) ? (int) this.virtualAvailable : Integer.MAX_VALUE;
             }
             // Read bytes into the buffer.
             numBytesRead = this.decryptedContents.read(buffer, offset, length);
         }
         // If we were able to read bytes, decrement the number of bytes available to be read.
-        if(numBytesRead != -1) {
+        if (numBytesRead != -1) {
             this.virtualAvailable -= numBytesRead;
         } else {
             // If we've reached the end of the stream, close it
@@ -143,12 +140,12 @@ public class AdjustedRangeInputStream extends SdkInputStream {
     public int available() throws IOException {
         abortIfNeeded();
         int available = this.decryptedContents.available();
-        if(available < this.virtualAvailable) {
+        if (available < this.virtualAvailable) {
             return available;
         } else {
             // Limit the number of bytes available to the number
             // of bytes remaining in the range.
-            return (int)this.virtualAvailable;
+            return (int) this.virtualAvailable;
         }
     }
 
@@ -158,7 +155,7 @@ public class AdjustedRangeInputStream extends SdkInputStream {
     @Override
     public void close() throws IOException {
         // If not already closed, then close the input stream.
-        if(!this.closed) {
+        if (!this.closed) {
             this.closed = true;
             // if the user read to the end of the virtual stream, then drain
             // the wrapped stream so the HTTP client can keep this connection
@@ -168,8 +165,8 @@ public class AdjustedRangeInputStream extends SdkInputStream {
             // (2 * JceEncryptionConstants.SYMMETRIC_CIPHER_BLOCK_SIZE - 1) in the
             // stream.
             // See: COSCryptoModuleBase#getCipherBlockUpperBound
-             if (this.virtualAvailable == 0) {
-                 IOUtils.drainInputStream(decryptedContents);
+            if (this.virtualAvailable == 0) {
+                IOUtils.drainInputStream(decryptedContents);
             }
             this.decryptedContents.close();
         }

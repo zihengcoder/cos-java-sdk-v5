@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,6 +28,7 @@ import java.io.InputStream;
  * the very beginning of the stream (but not anywhere else).
  */
 public final class RenewableCipherLiteInputStream extends CipherLiteInputStream {
+
     private boolean hasBeenAccessed;
 
     public RenewableCipherLiteInputStream(InputStream is, CipherLite cipherLite) {
@@ -65,9 +66,8 @@ public final class RenewableCipherLiteInputStream extends CipherLiteInputStream 
      * if the underlying input stream supports mark-and-reset, this input stream
      * can then be marked at and get reset back to the very beginning of the
      * stream (but not anywhere else).
-     * 
-     * @throws UnsupportedOperationException
-     *             if mark is called after this stream has been accessed.
+     *
+     * @throws UnsupportedOperationException if mark is called after this stream has been accessed.
      */
     @Override
     public void mark(final int readlimit) {

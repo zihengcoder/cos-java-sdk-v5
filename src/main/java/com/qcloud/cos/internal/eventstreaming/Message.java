@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.internal.eventstreaming;
 
 import static java.lang.String.format;
@@ -40,6 +41,7 @@ import java.util.zip.Checksum;
  * An eventstream message.
  */
 public class Message {
+
     private static final int TRAILING_CRC_LENGTH = 4;
     static final int MESSAGE_OVERHEAD = Prelude.LENGTH_WITH_CRC + TRAILING_CRC_LENGTH;
 
@@ -88,7 +90,8 @@ public class Message {
 
         if (wireMessageCrc != computedMessageCrc) {
             throw new CosClientException(new CRC32MismatchException(
-                    format("Message checksum failure: expected 0x%x, computed 0x%x", wireMessageCrc, computedMessageCrc)));
+                    format("Message checksum failure: expected 0x%x, computed 0x%x", wireMessageCrc,
+                            computedMessageCrc)));
         }
     }
 
@@ -173,12 +176,18 @@ public class Message {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Message message = (Message) o;
 
-        if (!headers.equals(message.headers)) return false;
+        if (!headers.equals(message.headers)) {
+            return false;
+        }
         return Arrays.equals(payload, message.payload);
     }
 

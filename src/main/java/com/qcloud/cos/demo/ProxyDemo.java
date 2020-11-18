@@ -49,7 +49,7 @@ public class ProxyDemo {
     }
 
     public static void main(String[] args) {
-        if(args.length < 4) {
+        if (args.length < 4) {
             System.out.println("proxy ip, port, username and password required!");
             return;
         }

@@ -5,6 +5,7 @@ package com.qcloud.cos.model.ciModel.mediaInfo;
  * MediaInfo video详情实体类 详情见：https://cloud.tencent.com/document/product/460/38935
  */
 public class MediaInfoVideo {
+
     /**
      * 该流的编号
      */

@@ -6,6 +6,7 @@ import java.io.Serializable;
  * MediaInfo 格式详情实体类 详情见：https://cloud.tencent.com/document/product/460/38935
  */
 public class MediaInfoObjcet implements Serializable {
+
     private MediaFormat format;
     private MediaStream stream;
 

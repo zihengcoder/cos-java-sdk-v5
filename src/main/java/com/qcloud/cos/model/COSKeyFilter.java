@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -35,11 +35,11 @@ public class COSKeyFilter implements Serializable {
         /**
          * Convenience factory method to create a new {@link FilterRule} with name initialized to
          * this {@link FilterRuleName}
-         * 
+         *
          * <pre>
          * FilterRule prefixRule = FilterRuleName.Prefix.newRule().withValue(&quot;prefix-value&quot;);
          * </pre>
-         * 
+         *
          * @return New {@link FilterRule} with name initialized to this {@link FilterRuleName}
          */
         public FilterRule newRule() {
@@ -49,11 +49,11 @@ public class COSKeyFilter implements Serializable {
         /**
          * Convenience factory method to create a new {@link FilterRule} with name initialized to
          * this {@link FilterRuleName} and value initialized to {@code value}
-         * 
+         *
          * <pre>
          * FilterRule prefixRule = FilterRuleName.Prefix.newRule(&quot;prefix-value&quot;);
          * </pre>
-         * 
+         *
          * @return New {@link FilterRule} with name initialized to this {@link FilterRuleName}
          */
         public FilterRule newRule(String value) {
@@ -76,7 +76,7 @@ public class COSKeyFilter implements Serializable {
 
     /**
      * Set the list of {@link FilterRule}s for this {@link COSKeyFilter}
-     * 
+     *
      * @param filterRules New list of {@link FilterRule}s
      */
     public void setFilterRules(List<FilterRule> filterRules) {
@@ -86,7 +86,7 @@ public class COSKeyFilter implements Serializable {
     /**
      * Set the list of {@link FilterRule}s for this {@link COSKeyFilter} and returns this object for
      * method chaining
-     * 
+     *
      * @param filterRules New List of {@link FilterRule}s
      * @return This object for method chaining
      */
@@ -98,7 +98,7 @@ public class COSKeyFilter implements Serializable {
     /**
      * Convenience varargs method to set the list of {@link FilterRule}s for this
      * {@link COSKeyFilter} and returns this object for method chaining
-     * 
+     *
      * @param filterRules New {@link FilterRule}s for this {@link COSKeyFilter}
      * @return This object for method chaining
      */
@@ -109,7 +109,7 @@ public class COSKeyFilter implements Serializable {
 
     /**
      * Append a {@link FilterRule} to the list of {@link FilterRule}s for this {@link COSKeyFilter}
-     * 
+     *
      * @param filterRule New {@link FilterRule} to append
      */
     public void addFilterRule(FilterRule filterRule) {

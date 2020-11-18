@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -57,20 +57,26 @@ public class PartListing implements Serializable {
      * specify where in the results to begin listing parts.
      */
     private Integer partNumberMarker;
-    
+
     /**
      * The encodingType parameter originally specified by the caller when this
      * part listing was returned.
      */
     private String encodingType;
 
-    /** The user who owns the associated multipart upload. */
+    /**
+     * The user who owns the associated multipart upload.
+     */
     private Owner owner;
 
-    /** The initiator of the associated multipart upload. */
+    /**
+     * The initiator of the associated multipart upload.
+     */
     private Owner initiator;
 
-    /** The class of storage used for the parts in the associated multipart upload. */
+    /**
+     * The class of storage used for the parts in the associated multipart upload.
+     */
     private String storageClass;
 
     /**
@@ -85,7 +91,9 @@ public class PartListing implements Serializable {
      */
     private Integer nextPartNumberMarker;
 
-    /** The list of parts described in this part listing. */
+    /**
+     * The list of parts described in this part listing.
+     */
     private List<PartSummary> parts;
 
 
@@ -104,9 +112,8 @@ public class PartListing implements Serializable {
      * Sets the name of the bucket containing the listed parts, as specified in
      * the original request.
      *
-     * @param bucketName
-     *            the name of the bucket containing the listed parts, as
-     *            specified in the original request.
+     * @param bucketName the name of the bucket containing the listed parts, as
+     *         specified in the original request.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -127,9 +134,8 @@ public class PartListing implements Serializable {
      * Sets the key value specified in the original request used to identify
      * which multipart upload contains the parts to list.
      *
-     * @param key
-     *            the key value specified in the original request used to
-     *            identify which multipart upload contains the parts to list.
+     * @param key the key value specified in the original request used to
+     *         identify which multipart upload contains the parts to list.
      */
     public void setKey(String key) {
         this.key = key;
@@ -150,9 +156,8 @@ public class PartListing implements Serializable {
      * Sets the upload ID value specified in the original request used to
      * identify which multipart upload contains the parts to list.
      *
-     * @param uploadId
-     *            the upload ID value specified in the original request used to
-     *            identify which multipart upload contains the parts to list.
+     * @param uploadId the upload ID value specified in the original request used to
+     *         identify which multipart upload contains the parts to list.
      */
     public void setUploadId(String uploadId) {
         this.uploadId = uploadId;
@@ -172,8 +177,7 @@ public class PartListing implements Serializable {
     /**
      * Sets the user who owns the associated multipart upload.
      *
-     * @param owner
-     *            the user who owns the associated multipart upload.
+     * @param owner the user who owns the associated multipart upload.
      */
     public void setOwner(Owner owner) {
         this.owner = owner;
@@ -193,8 +197,7 @@ public class PartListing implements Serializable {
     /**
      * Sets the user who initiated the associated multipart upload.
      *
-     * @param initiator
-     *            the user who initiated the associated multipart upload.
+     * @param initiator the user who initiated the associated multipart upload.
      */
     public void setInitiator(Owner initiator) {
         this.initiator = initiator;
@@ -215,9 +218,8 @@ public class PartListing implements Serializable {
      * Sets the class of storage used for the parts in the associated multipart
      * upload.
      *
-     * @param storageClass
-     *            The class of storage used for the parts in the associated
-     *            multipart upload.
+     * @param storageClass The class of storage used for the parts in the associated
+     *         multipart upload.
      */
     public void setStorageClass(String storageClass) {
         this.storageClass = storageClass;
@@ -238,10 +240,9 @@ public class PartListing implements Serializable {
      * Sets the optional part number marker specified in the original request to
      * specify where in the results to begin listing parts.
      *
-     * @param partNumberMarker
-     *            the optional part number marker specified in the original
-     *            request to specify where in the results to begin listing
-     *            parts.
+     * @param partNumberMarker the optional part number marker specified in the original
+     *         request to specify where in the results to begin listing
+     *         parts.
      */
     public void setPartNumberMarker(int partNumberMarker) {
         this.partNumberMarker = partNumberMarker;
@@ -264,8 +265,7 @@ public class PartListing implements Serializable {
      * the part number marker that should be used in the next request to get the
      * next page of results.
      *
-     * @param nextPartNumberMarker
-     *            The next part number marker.
+     * @param nextPartNumberMarker The next part number marker.
      */
     public void setNextPartNumberMarker(int nextPartNumberMarker) {
         this.nextPartNumberMarker = nextPartNumberMarker;
@@ -286,9 +286,8 @@ public class PartListing implements Serializable {
      * Sets the optional max parts value specified in the original request to
      * limit how many parts are listed.
      *
-     * @param maxParts
-     *            The optional max parts value specified in the original request
-     *            to limit how many parts are listed.
+     * @param maxParts The optional max parts value specified in the original request
+     *         to limit how many parts are listed.
      */
     public void setMaxParts(int maxParts) {
         this.maxParts = maxParts;
@@ -299,7 +298,7 @@ public class PartListing implements Serializable {
      * the XML response. If you specify <code>encodingType</code> request
      * parameter, Qcloud COS includes this element in the response, and returns
      * encoded key name values in the <code>Key</code> element.
-     * 
+     *
      * @return <code>Null</code> if <code>encodingType</code> is not specified
      *         in the request parameter.
      */
@@ -310,10 +309,9 @@ public class PartListing implements Serializable {
     /**
      * For internal use only. Sets the encoding type used by Qcloud COS to encode
      * object key names in the XML response.
-     * 
-     * @param encodingType
-     *            <code>Null</code> if <code>encodingType</code> is not
-     *            specified in the request parameter.
+     *
+     * @param encodingType <code>Null</code> if <code>encodingType</code> is not
+     *         specified in the request parameter.
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
@@ -334,9 +332,8 @@ public class PartListing implements Serializable {
      * Sets whether or not this listing is truncated, and additional requests
      * need to be made to get more results.
      *
-     * @param isTruncated
-     *            whether or not this listing is truncated, and additional
-     *            requests need to be made to get more results.
+     * @param isTruncated whether or not this listing is truncated, and additional
+     *         requests need to be made to get more results.
      */
     public void setTruncated(boolean isTruncated) {
         this.isTruncated = isTruncated;
@@ -348,15 +345,16 @@ public class PartListing implements Serializable {
      * @return The list of parts described in this part listing.
      */
     public List<PartSummary> getParts() {
-        if (parts == null) parts = new ArrayList<PartSummary>();
+        if (parts == null) {
+            parts = new ArrayList<PartSummary>();
+        }
         return parts;
     }
 
     /**
      * Sets the list of parts described in this part listing.
      *
-     * @param parts
-     *            The list of parts described in this part listing.
+     * @param parts The list of parts described in this part listing.
      */
     public void setParts(List<PartSummary> parts) {
         this.parts = parts;

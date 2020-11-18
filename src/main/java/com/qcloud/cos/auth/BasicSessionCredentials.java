@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,8 +26,8 @@ public class BasicSessionCredentials implements COSSessionCredentials {
      * @param secretKey your secretKey. you can get it by https://console.qcloud.com/capi
      * @param sessionToken the sessionToken you get from cam.
      * @deprecated appid should be included in bucket name. for example if your appid is 125123123,
-     *             previous bucket is ott. you should set bucket as ott-125123123. use
-     *             {@link BasicSessionCredentials#BasicSessionCredentials(String, String, String)}
+     *         previous bucket is ott. you should set bucket as ott-125123123. use
+     *         {@link BasicSessionCredentials#BasicSessionCredentials(String, String, String)}
      */
     @Deprecated
     public BasicSessionCredentials(String appId, String accessKey, String secretKey,
@@ -85,7 +85,9 @@ public class BasicSessionCredentials implements COSSessionCredentials {
     @Override
     public String getCOSAppId() {
         return appId;
-    };
+    }
+
+    ;
 
     @Override
     public String getCOSAccessKeyId() {

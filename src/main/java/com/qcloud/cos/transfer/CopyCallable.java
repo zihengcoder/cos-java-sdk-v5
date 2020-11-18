@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -52,13 +52,21 @@ public class CopyCallable implements Callable<CopyResult> {
      * A reference to the COS client using which copy or copy part requests are initiated.
      */
     private final COS cos;
-    /** Thread pool used during multi-part copy is performed. */
+    /**
+     * Thread pool used during multi-part copy is performed.
+     */
     private final ExecutorService threadPool;
-    /** A reference to the original copy request received. */
+    /**
+     * A reference to the original copy request received.
+     */
     private final CopyObjectRequest copyObjectRequest;
-    /** Upload id to be used when sending copy part requests. */
+    /**
+     * Upload id to be used when sending copy part requests.
+     */
     private String multipartUploadId;
-    /** Metadata of the object in the source bucket to be copied. */
+    /**
+     * Metadata of the object in the source bucket to be copied.
+     */
     private final ObjectMetadata metadata;
     private final CopyImpl copy;
 
@@ -103,17 +111,17 @@ public class CopyCallable implements Callable<CopyResult> {
     public boolean isMultipartCopy() {
         Region sourceRegion = copyObjectRequest.getSourceBucketRegion();
         Region destRegion = cos.getClientConfig().getRegion();
-        String sourceStorageClass = (String)metadata.getRawMetadataValue(Headers.STORAGE_CLASS);
+        String sourceStorageClass = (String) metadata.getRawMetadataValue(Headers.STORAGE_CLASS);
         String destStorageClass = copyObjectRequest.getStorageClass();
-        if(sourceStorageClass == null) {
+        if (sourceStorageClass == null) {
             sourceStorageClass = "Standard";
         }
 
         // 如果源和目的对象的存储类型相同
-        if(sourceStorageClass.equalsIgnoreCase(destStorageClass)) {
+        if (sourceStorageClass.equalsIgnoreCase(destStorageClass)) {
             // 如果没有设置source region, 表示使用的和clientconfig里面同一region,
             // 或者设置了相同的region，使用put object copy即可
-            if(sourceRegion == null || sourceRegion.equals(destRegion)) {
+            if (sourceRegion == null || sourceRegion.equals(destRegion)) {
                 return false;
             }
         }
@@ -197,8 +205,9 @@ public class CopyCallable implements Callable<CopyResult> {
      */
     private void copyPartsInParallel(CopyPartRequestFactory requestFactory) {
         while (requestFactory.hasMoreRequests()) {
-            if (threadPool.isShutdown())
+            if (threadPool.isShutdown()) {
                 throw new CancellationException("TransferManager has been shutdown");
+            }
             CopyPartRequest request = requestFactory.getNextCopyPartRequest();
             futures.add(threadPool.submit(new CopyPartCallable(cos, request)));
         }
@@ -212,10 +221,10 @@ public class CopyCallable implements Callable<CopyResult> {
         InitiateMultipartUploadRequest req =
                 new InitiateMultipartUploadRequest(origReq.getDestinationBucketName(),
                         origReq.getDestinationKey())
-                                .withCannedACL(origReq.getCannedAccessControlList())
-                                .withAccessControlList(origReq.getAccessControlList())
-                                .withStorageClass(origReq.getStorageClass())
-                                .withGeneralProgressListener(origReq.getGeneralProgressListener());
+                        .withCannedACL(origReq.getCannedAccessControlList())
+                        .withAccessControlList(origReq.getAccessControlList())
+                        .withStorageClass(origReq.getStorageClass())
+                        .withGeneralProgressListener(origReq.getGeneralProgressListener());
 
         ObjectMetadata newObjectMetadata = origReq.getNewObjectMetadata();
         if (newObjectMetadata == null) {

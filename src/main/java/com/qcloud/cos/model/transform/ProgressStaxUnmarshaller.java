@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model.transform;
 
 import com.qcloud.cos.model.Progress;
@@ -25,7 +26,7 @@ import com.qcloud.cos.internal.Unmarshaller;
  * Unmarshaller for {@link Progress}.
  */
 class ProgressStaxUnmarshaller
-    implements Unmarshaller<Progress, StaxUnmarshallerContext> {
+        implements Unmarshaller<Progress, StaxUnmarshallerContext> {
 
     private static final ProgressStaxUnmarshaller instance = new ProgressStaxUnmarshaller();
 
@@ -41,8 +42,8 @@ class ProgressStaxUnmarshaller
         // This is currently the same as the statistics. Inline the statistics if they diverge.
         Stats queryStats = StatsStaxUnmarshaller.getInstance().unmarshall(context);
         return new Progress().withBytesProcessed(queryStats.getBytesProcessed())
-                             .withBytesReturned(queryStats.getBytesReturned())
-                             .withBytesScanned(queryStats.getBytesScanned());
+                .withBytesReturned(queryStats.getBytesReturned())
+                .withBytesScanned(queryStats.getBytesScanned());
     }
 
 }

@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Map;
 
 public class PostObjectDemo {
+
     public static void main(String[] args) throws Exception {
         PostObjectUploadDemo();
     }
@@ -27,7 +28,7 @@ public class PostObjectDemo {
         String secretId = "AKIDXXXXXXXX";
         String seretKey = "1A2Z3YYYYYYYYYY";
         long startTimestamp = System.currentTimeMillis() / 1000;
-        long endTimestamp = startTimestamp +  30 * 60;
+        long endTimestamp = startTimestamp + 30 * 60;
         String endTimestampStr = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").
                 format(endTimestamp * 1000);
         String keyTime = startTimestamp + ";" + endTimestamp;
@@ -94,10 +95,10 @@ public class PostObjectDemo {
                 for (String value : entries.getValue()) {
                     values += value + ",";
                 }
-                if(entries.getKey() == null) {
-                    System.out.println("reponse line:" +  values );
+                if (entries.getKey() == null) {
+                    System.out.println("reponse line:" + values);
                 } else {
-                    System.out.println(entries.getKey() + ":" +  values );
+                    System.out.println(entries.getKey() + ":" + values);
                 }
             }
         } catch (Exception e) {
@@ -111,9 +112,9 @@ public class PostObjectDemo {
     }
 
     public static String buildPostObjectBody(String boundary, Map<String, String> formFields,
-                                             String filename, String contentType) {
+            String filename, String contentType) {
         StringBuffer stringBuffer = new StringBuffer();
-        for(Map.Entry entry: formFields.entrySet()) {
+        for (Map.Entry entry : formFields.entrySet()) {
             // 添加boundary行,行首以--开头
             stringBuffer.append("--").append(boundary).append("\r\n");
             // 字段名

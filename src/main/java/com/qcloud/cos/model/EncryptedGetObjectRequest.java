@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -36,6 +36,7 @@ import java.util.Map;
  * will cause the get request to fail fast later on.
  */
 public class EncryptedGetObjectRequest extends GetObjectRequest implements Serializable {
+
     /**
      * Used to retrieve the COS encrypted object via instruction file with an explicit suffix.
      * Applicable only if specified (which means non-null and non-blank.)
@@ -75,9 +76,8 @@ public class EncryptedGetObjectRequest extends GetObjectRequest implements Seria
      * have been created for the same COS object. Each instruction file contains the same CEK
      * encrypted under a different KEK, the IV, and other meta information (aka material
      * description).
-     * 
+     *
      * @param instructionFileSuffix suffix of the instruction file to be used.
-     * 
      * @see COSEncryptionClient#putInstructionFile(PutInstructionFileRequest)
      */
     public void setInstructionFileSuffix(String instructionFileSuffix) {
@@ -90,9 +90,8 @@ public class EncryptedGetObjectRequest extends GetObjectRequest implements Seria
      * instruction files have been created for the same COS object. Each instruction file contains
      * the same CEK encrypted under a different KEK, the IV, and other meta information (aka
      * material description).
-     * 
+     *
      * @param instructionFileSuffix suffix of the instruction file to be used.
-     * 
      * @see COSEncryptionClient#putInstructionFile(PutInstructionFileRequest)
      */
     public EncryptedGetObjectRequest withInstructionFileSuffix(String instructionFileSuffix) {
@@ -111,11 +110,11 @@ public class EncryptedGetObjectRequest extends GetObjectRequest implements Seria
 
     /**
      * @param keyWrapExpected true if key wrapping is expected for the CEK; false otherwse. Note,
-     *        however, that if {@link CryptoMode#StrictAuthenticatedEncryption} or KMS is in use,
-     *        key wrapping is always expected for the CEK regardless.
-     *        <p>
-     *        If keyWrapExpected is set to true but the CEK is found to be not key-wrapped, it would
-     *        cause a {@link KeyWrapException} to be thrown.
+     *         however, that if {@link CryptoMode#StrictAuthenticatedEncryption} or KMS is in use,
+     *         key wrapping is always expected for the CEK regardless.
+     *         <p>
+     *         If keyWrapExpected is set to true but the CEK is found to be not key-wrapped, it would
+     *         cause a {@link KeyWrapException} to be thrown.
      */
     public void setKeyWrapExpected(boolean keyWrapExpected) {
         this.keyWrapExpected = keyWrapExpected;

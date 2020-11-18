@@ -4,13 +4,14 @@ package com.qcloud.cos.model.ciModel.job;
  * 媒体处理 动图任务实体 https://cloud.tencent.com/document/product/460/48217
  */
 public class MediaAnimationObject {
+
     private MediaContainerObject container;
     private MediaVideoObject video;
     private MediaTimeIntervalObject timeInterval;
 
     public MediaContainerObject getContainer() {
-        if (container==null){
-            container= new MediaContainerObject();
+        if (container == null) {
+            container = new MediaContainerObject();
         }
         return container;
     }
@@ -20,8 +21,8 @@ public class MediaAnimationObject {
     }
 
     public MediaVideoObject getVideo() {
-        if (video==null){
-            video= new MediaVideoObject();
+        if (video == null) {
+            video = new MediaVideoObject();
         }
         return video;
     }
@@ -31,8 +32,8 @@ public class MediaAnimationObject {
     }
 
     public MediaTimeIntervalObject getTimeInterval() {
-        if (timeInterval==null){
-            timeInterval= new MediaTimeIntervalObject();
+        if (timeInterval == null) {
+            timeInterval = new MediaTimeIntervalObject();
         }
         return timeInterval;
     }

@@ -8,6 +8,7 @@ import com.qcloud.cos.model.*;
 import com.qcloud.cos.region.Region;
 
 public class BucketLoggingDemo {
+
     public static void SetGetBucketLoggingDemo() {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("AKIDXXXXXXXX", "1A2Z3YYYYYYYYYY");
@@ -25,6 +26,7 @@ public class BucketLoggingDemo {
         cosclient.setBucketLoggingConfiguration(setBucketLoggingConfigurationRequest);
         BucketLoggingConfiguration bucketLoggingConfiguration1 = cosclient.getBucketLoggingConfiguration(bucketName);
     }
+
     public static void main(String[] args) {
         SetGetBucketLoggingDemo();
     }

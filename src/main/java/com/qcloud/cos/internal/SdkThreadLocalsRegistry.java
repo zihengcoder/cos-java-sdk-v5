@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.internal;
 
 
@@ -46,7 +47,7 @@ public final class SdkThreadLocalsRegistry {
     }
 
     public synchronized static void remove() {
-        for (ThreadLocal<?> t: threadLocals) {
+        for (ThreadLocal<?> t : threadLocals) {
             t.remove();
         }
     }

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,7 +27,8 @@ import java.util.Map;
 import com.qcloud.cos.auth.COSCredentials;
 import com.qcloud.cos.event.ProgressListener;
 
-public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
+public class CosServiceRequest implements Cloneable, ReadLimitInfo {
+
     /**
      * Request related key information
      */
@@ -53,7 +54,7 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
     private Map<String, List<String>> customQueryParameters;
 
     private final RequestClientOptions requestClientOptions = new RequestClientOptions();
-    
+
     /**
      * The source object from which the current object was cloned; or null if there isn't one.
      */
@@ -62,8 +63,7 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
     /**
      * Sets the optional progress listener for receiving updates about the progress of the request.
      *
-     * @param progressListener
-     *            The new progress listener.
+     * @param progressListener The new progress listener.
      */
     public void setGeneralProgressListener(ProgressListener progressListener) {
         this.progressListener = progressListener == null ? ProgressListener.NOOP : progressListener;
@@ -83,8 +83,7 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
     /**
      * Sets the cos server ip and port .
      *
-     * @param fixedEndpointAddr
-     *              ip and port string, format is ip:port
+     * @param fixedEndpointAddr ip and port string, format is ip:port
      */
     public void setFixedEndpointAddr(String fixedEndpointAddr) {
         this.fixedEndpointAddr = fixedEndpointAddr;
@@ -98,12 +97,12 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
     public String getFixedEndpointAddr() {
         return fixedEndpointAddr;
     }
+
     /**
      * Sets the optional progress listener for receiving updates about the progress of the request,
      * and returns a reference to this object so that method calls can be chained together.
      *
-     * @param progressListener
-     *            The new progress listener.
+     * @param progressListener The new progress listener.
      * @return A reference to this updated object so that method calls can be chained together.
      */
     public <T extends CosServiceRequest> T withGeneralProgressListener(ProgressListener progressListener) {
@@ -112,7 +111,7 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
         T t = (T) this;
         return t;
     }
-    
+
     /**
      * Returns an immutable map of custom header names to header values.
      *
@@ -132,10 +131,8 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
      * NOTE: Custom header values set via this method will overwrite any conflicting values coming
      * from the request parameters.
      *
-     * @param name
-     *            The name of the header to add
-     * @param value
-     *            The value of the header to add
+     * @param name The name of the header to add
+     * @param value The value of the header to add
      * @return the previous value for the name if it was set, null otherwise
      */
     public String putCustomRequestHeader(String name, String value) {
@@ -150,7 +147,7 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
         }
         return customRequestHeaders.put(name, value);
     }
-    
+
     /**
      * @return the immutable map of custom query parameters. The parameter value is modeled as a
      *         list of strings because multiple values can be specified for the same parameter name.
@@ -166,13 +163,11 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
      * Add a custom query parameter for the request. Since multiple values are allowed for the same
      * query parameter, this method does NOT overwrite any existing parameter values in the request.
      *
-     * @param name
-     *            The name of the query parameter
-     * @param value
-     *            The value of the query parameter. Only the parameter name will be added in the URI
-     *            if the value is set to null. For example, putCustomQueryParameter("param", null)
-     *            will be serialized to "?param", while putCustomQueryParameter("param", "") will be
-     *            serialized to "?param=".
+     * @param name The name of the query parameter
+     * @param value The value of the query parameter. Only the parameter name will be added in the URI
+     *         if the value is set to null. For example, putCustomQueryParameter("param", null)
+     *         will be serialized to "?param", while putCustomQueryParameter("param", "") will be
+     *         serialized to "?param=".
      */
     public void putCustomQueryParameter(String name, String value) {
         if (customQueryParameters == null) {
@@ -185,14 +180,14 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
         }
         paramList.add(value);
     }
-    
+
     /**
      * Gets the options stored with this request object. Intended for internal use only.
      */
     public RequestClientOptions getRequestClientOptions() {
         return requestClientOptions;
     }
-    
+
     /**
      * Copies the internal state of this base class to that of the target request.
      *
@@ -200,8 +195,9 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
      */
     protected final <T extends CosServiceRequest> T copyBaseTo(T target) {
         if (customRequestHeaders != null) {
-            for (Map.Entry<String, String> e : customRequestHeaders.entrySet())
+            for (Map.Entry<String, String> e : customRequestHeaders.entrySet()) {
                 target.putCustomRequestHeader(e.getKey(), e.getValue());
+            }
         }
         if (customQueryParameters != null) {
             for (Map.Entry<String, List<String>> e : customQueryParameters.entrySet()) {
@@ -221,7 +217,7 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
     public int getReadLimit() {
         return requestClientOptions.getReadLimit();
     }
-    
+
     /**
      * Returns the source object from which the current object was cloned; or null if there isn't
      * one.
@@ -246,9 +242,10 @@ public class CosServiceRequest implements Cloneable, ReadLimitInfo  {
     private void setCloneSource(CosServiceRequest cloneSource) {
         this.cloneSource = cloneSource;
     }
-    
+
     /**
-     * Creates a shallow clone of this object for all fields except the handler context. Explicitly does <em>not</em> clone the
+     * Creates a shallow clone of this object for all fields except the handler context. Explicitly does <em>not</em>
+     * clone the
      * deep structure of the other fields in the message.
      *
      * @see Object#clone()

@@ -10,6 +10,7 @@ import com.qcloud.cos.model.SetBucketIntelligentTierConfigurationRequest;
 import com.qcloud.cos.region.Region;
 
 public class BucketIntelligentTierDemo {
+
     public static void main(String[] args) {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("SECRET_ID", "SECRET_KEY");
@@ -25,9 +26,11 @@ public class BucketIntelligentTierDemo {
         bucketIntelligentTierConfiguration.setTransition(new BucketIntelligentTierConfiguration.Transition(30));
         SetBucketIntelligentTierConfigurationRequest setBucketIntelligentTierConfigurationRequest = new SetBucketIntelligentTierConfigurationRequest();
         setBucketIntelligentTierConfigurationRequest.setBucketName(bucketName);
-        setBucketIntelligentTierConfigurationRequest.setIntelligentTierConfiguration(bucketIntelligentTierConfiguration);
+        setBucketIntelligentTierConfigurationRequest
+                .setIntelligentTierConfiguration(bucketIntelligentTierConfiguration);
         cosclient.setBucketIntelligentTieringConfiguration(setBucketIntelligentTierConfigurationRequest);
-        BucketIntelligentTierConfiguration bucketIntelligentTierConfiguration1 = cosclient.getBucketIntelligentTierConfiguration(bucketName);
+        BucketIntelligentTierConfiguration bucketIntelligentTierConfiguration1 = cosclient
+                .getBucketIntelligentTierConfiguration(bucketName);
         System.out.println(bucketIntelligentTierConfiguration1.getStatus());
         System.out.println(bucketIntelligentTierConfiguration1.getTransition().getDays());
     }

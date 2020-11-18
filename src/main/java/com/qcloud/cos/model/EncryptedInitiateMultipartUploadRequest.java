@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -43,6 +43,7 @@ import java.util.Map;
  */
 public class EncryptedInitiateMultipartUploadRequest extends
         InitiateMultipartUploadRequest implements MaterialsDescriptionProvider, Serializable {
+
     /**
      * description of encryption materials to be used with this request.
      */
@@ -67,18 +68,22 @@ public class EncryptedInitiateMultipartUploadRequest extends
     }
 
     /**
-     * sets the materials description for the encryption materials to be used with the current Multi Part Upload Request.
+     * sets the materials description for the encryption materials to be used with the current Multi Part Upload
+     * Request.
+     *
      * @param materialsDescription the materialsDescription to set
      */
     public void setMaterialsDescription(Map<String, String> materialsDescription) {
         this.materialsDescription = materialsDescription == null
                 ? null
-                : Collections.unmodifiableMap(new HashMap<String,String>(materialsDescription))
-                ;
+                : Collections.unmodifiableMap(new HashMap<String, String>(materialsDescription))
+        ;
     }
 
     /**
-     * sets the materials description for the encryption materials to be used with the current Multi Part Upload Request.
+     * sets the materials description for the encryption materials to be used with the current Multi Part Upload
+     * Request.
+     *
      * @param materialsDescription the materialsDescription to set
      */
     public EncryptedInitiateMultipartUploadRequest withMaterialsDescription(Map<String, String> materialsDescription) {
@@ -95,18 +100,16 @@ public class EncryptedInitiateMultipartUploadRequest extends
     }
 
     /**
-     * @param createEncryptionMaterial
-     *            true if a new set of encryption material is to be created;
-     *            false otherwise.
+     * @param createEncryptionMaterial true if a new set of encryption material is to be created;
+     *         false otherwise.
      */
     public void setCreateEncryptionMaterial(boolean createEncryptionMaterial) {
         this.createEncryptionMaterial = createEncryptionMaterial;
     }
 
     /**
-     * @param createEncryptionMaterial
-     *            true if a new set of encryption material is to be created;
-     *            false otherwise.
+     * @param createEncryptionMaterial true if a new set of encryption material is to be created;
+     *         false otherwise.
      */
     public EncryptedInitiateMultipartUploadRequest withCreateEncryptionMaterial(
             boolean createEncryptionMaterial) {

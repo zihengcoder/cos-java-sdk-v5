@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -40,7 +40,6 @@ public interface Upload extends Transfer {
      * the asynchronous transfer will be re-thrown through this method.
      *
      * @return The result of this transfer.
-     *
      * @throws CosClientException If any errors were encountered in the client while making the
      *         request or handling the response.
      * @throws CosServiceException If any errors occurred in Qcloud COS while processing the
@@ -67,7 +66,6 @@ public interface Upload extends Transfer {
      *
      * @return An opaque token that holds some private state and can be used to resume a paused
      *         download operation.
-     *
      * @throws PauseException If failed to pause the operation.
      */
     public PersistableUpload pause() throws PauseException;
@@ -88,8 +86,7 @@ public interface Upload extends Transfer {
      * In such cases, aborts the uploads if forceCancelTransfers is set else No action is taken.
      *
      * @param forceCancelTransfers a boolean to forcefully abort the existing uploads if pause
-     *        cannot be done.
-     *
+     *         cannot be done.
      * @return a result of pause operation.
      */
     public PauseResult<PersistableUpload> tryPause(boolean forceCancelTransfers);
@@ -108,7 +105,7 @@ public interface Upload extends Transfer {
     /**
      * if isResumeableMultipartUploadAfterFailed is true, we can call getResumeableMultipartUploadId
      * to get upload info. then can resume to upload again..
-     * 
+     *
      * @return the PersistableUpload info if you can upload again, otherwise return null;
      */
     public PersistableUpload getResumeableMultipartUploadId();

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,7 +28,9 @@ public class BucketReplicationConfiguration implements Serializable {
 
     private String roleName;
 
-    /** Collection of replication rules associated with the QCloud bucket. */
+    /**
+     * Collection of replication rules associated with the QCloud bucket.
+     */
     private Map<String, ReplicationRule> rules = new HashMap<String, ReplicationRule>();
 
     /**
@@ -94,8 +96,8 @@ public class BucketReplicationConfiguration implements Serializable {
      * Sets the replication rules for the QCloud bucket. Returns the updated object.
      *
      * @param rules the replication rules for the QCloud bucket.
-     * @throws IllegalArgumentException if the rules are null.
      * @return the updated {@link BucketReplicationConfiguration} object.
+     * @throws IllegalArgumentException if the rules are null.
      */
     public BucketReplicationConfiguration withRules(Map<String, ReplicationRule> rules) {
         setRules(rules);
@@ -108,8 +110,8 @@ public class BucketReplicationConfiguration implements Serializable {
      *
      * @param id the id for the rule.
      * @param rule the replication rule for the QCloud bucket.
-     * @throws IllegalArgumentException if the given id or rule is null.
      * @return the updated {@link BucketReplicationConfiguration} object.
+     * @throws IllegalArgumentException if the given id or rule is null.
      */
     public BucketReplicationConfiguration addRule(String id, ReplicationRule rule) {
         if (id == null || id.trim().isEmpty()) {

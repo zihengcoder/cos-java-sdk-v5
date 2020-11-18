@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -87,7 +87,7 @@ public enum Permission {
     /**
      * Gets the string representation of this permission object as defined by Qcloud COS, eg.
      * <code>FULL_CONTROL</code>.
-     * 
+     *
      * @return The string representation of this permission object as defined by Qcloud COS, eg.
      *         <code>FULL_CONTROL</code>.
      */
@@ -99,9 +99,8 @@ public enum Permission {
      * Returns the {@link Permission} enumeration value representing the specified Qcloud COS Region
      * ID string. If specified string doesn't map to a known Qcloud COS Region, returns
      * <code>null</code>.
-     * 
+     *
      * @param str A string representation of an Qcloud COS permission, eg. <code>FULL_CONTROL</code>
-     * 
      * @return The {@link Permission} object represented by the given permission string, Returns
      *         <code>null</code> if the string isn't a valid representation of an Qcloud COS
      *         permission.

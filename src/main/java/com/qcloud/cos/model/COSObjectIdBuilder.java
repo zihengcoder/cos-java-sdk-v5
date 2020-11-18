@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -25,11 +25,13 @@ import java.io.Serializable;
  * Convenient builder for {@link COSObjectId}.
  */
 public final class COSObjectIdBuilder implements Serializable {
+
     private String bucket;
     private String key;
     private String versionId;
 
-    public COSObjectIdBuilder() {}
+    public COSObjectIdBuilder() {
+    }
 
     /**
      * @param id COS object id, which must not be null.

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -83,7 +83,9 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
     private Date restoreExpirationTime;
 
 
-    /** True if this object represents a delete marker */
+    /**
+     * True if this object represents a delete marker
+     */
     private boolean isDeleteMarker;
 
     /**
@@ -108,7 +110,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @return The custom user metadata for the associated object.
-     *
      * @see ObjectMetadata#setUserMetadata(Map)
      * @see ObjectMetadata#addUserMetadata(String, String)
      */
@@ -138,7 +139,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @param userMetadata The custom user-metadata for the associated object. Note that the key
-     *        should not include the internal COS HTTP header prefix.
+     *         should not include the internal COS HTTP header prefix.
      * @see ObjectMetadata#getUserMetadata()
      * @see ObjectMetadata#addUserMetadata(String, String)
      */
@@ -177,9 +178,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @param key The key for the custom user metadata entry. Note that the key should not include
-     *        the internal COS HTTP header prefix.
+     *         the internal COS HTTP header prefix.
      * @param value The value for the custom user-metadata entry.
-     *
      * @see ObjectMetadata#setUserMetadata(Map)
      * @see ObjectMetadata#getUserMetadata()
      */
@@ -195,7 +195,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
     public Map<String, Object> getRawMetadata() {
         return Collections.unmodifiableMap(metadata);
     }
-
 
 
     /**
@@ -221,7 +220,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * which Qcloud COS last recorded a modification to the associated object.
      *
      * @param lastModified The date and time at which Qcloud COS last recorded a modification to the
-     *        associated object.
+     *         associated object.
      */
     public void setLastModified(Date lastModified) {
         metadata.put(Headers.LAST_MODIFIED, lastModified);
@@ -245,14 +244,14 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      *
      * @return The Content-Length HTTP header indicating the size of the associated object in bytes.
      *         Returns <code>null</code> if it hasn't been set yet.
-     *
      * @see ObjectMetadata#setContentLength(long)
      */
     public long getContentLength() {
         Long contentLength = (Long) metadata.get(Headers.CONTENT_LENGTH);
 
-        if (contentLength == null)
+        if (contentLength == null) {
             return 0;
+        }
         return contentLength.longValue();
     }
 
@@ -264,8 +263,9 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
         String contentRange = (String) metadata.get(Headers.CONTENT_RANGE);
         if (contentRange != null) {
             int pos = contentRange.lastIndexOf("/");
-            if (pos >= 0)
+            if (pos >= 0) {
                 return Long.parseLong(contentRange.substring(pos + 1));
+            }
         }
         return getContentLength();
     }
@@ -287,8 +287,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @param contentLength The Content-Length HTTP header indicating the size of the associated
-     *        object in bytes.
-     *
+     *         object in bytes.
      * @see ObjectMetadata#getContentLength()
      */
     public void setContentLength(long contentLength) {
@@ -314,7 +313,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      *
      * @return The HTTP Content-Type header, indicating the type of content stored in the associated
      *         object. Returns <code>null</code> if it hasn't been set.
-     *
      * @see ObjectMetadata#setContentType(String)
      */
     public String getContentType() {
@@ -339,8 +337,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @param contentType The HTTP Content-Type header indicating the type of content stored in the
-     *        associated COS object.
-     *
+     *         associated COS object.
      * @see ObjectMetadata#getContentType()
      */
     public void setContentType(String contentType) {
@@ -380,7 +377,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @return The HTTP Content-Encoding header. Returns <code>null</code> if it hasn't been set.
-     *
      * @see ObjectMetadata#setContentType(String)
      */
     public String getContentEncoding() {
@@ -400,10 +396,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @param encoding The HTTP Content-Encoding header, as defined in RFC 2616.
-     *
      * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11" >http://www.w3
-     *      .org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11</a>
-     *
+     *         .org/Protocols/rfc2616/rfc2616-sec14.html#sec14.11</a>
      * @see ObjectMetadata#getContentType()
      */
     public void setContentEncoding(String encoding) {
@@ -424,7 +418,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      *
      * @return The HTTP Cache-Control header as defined in RFC 2616. Returns <code>null</code> if it
      *         hasn't been set.
-     *
      * @see ObjectMetadata#setCacheControl(String)
      */
     public String getCacheControl() {
@@ -444,7 +437,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @param cacheControl The HTTP Cache-Control header as defined in RFC 2616.
-     *
      * @see ObjectMetadata#getCacheControl()
      */
     public void setCacheControl(String cacheControl) {
@@ -469,8 +461,7 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @param md5Base64 The base64 encoded MD5 hash of the content for the object associated with
-     *        this metadata.
-     *
+     *         this metadata.
      * @see ObjectMetadata#getContentMD5()
      */
     public void setContentMD5(String md5Base64) {
@@ -500,7 +491,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      *
      * @return The base64 encoded MD5 hash of the content for the associated object. Returns
      *         <code>null</code> if the MD5 hash of the content hasn't been set.
-     *
      * @see ObjectMetadata#setContentMD5(String)
      */
     public String getContentMD5() {
@@ -519,7 +509,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      * </p>
      *
      * @param disposition The value for the Content-Disposition header.
-     *
      * @see ObjectMetadata#getContentDisposition()
      */
     public void setContentDisposition(String disposition) {
@@ -539,10 +528,8 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
      *
      * @return The value of the Content-Disposition header. Returns <code>null</code> if the
      *         Content-Disposition header hasn't been set.
-     *
      * @see <a href="http://www.w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1" >http://www.
-     *      w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1</a>
-     *
+     *         w3.org/Protocols/rfc2616/rfc2616-sec19.html#sec19.5.1</a>
      * @see ObjectMetadata#setCacheControl(String)
      */
     public String getContentDisposition() {
@@ -701,7 +688,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
     }
 
 
-
     public ObjectMetadata() {
         userMetadata = new HashMap<String, String>();
         metadata = new HashMap<String, Object>();
@@ -753,9 +739,9 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
 
     }
 
-   /**
-    * @return The storage class of the object. Returns null if the object is in STANDARD storage.
-    */
+    /**
+     * @return The storage class of the object. Returns null if the object is in STANDARD storage.
+     */
     public String getStorageClass() {
         final Object storageClass = metadata.get(Headers.STORAGE_CLASS);
         if (storageClass == null) {
@@ -765,12 +751,13 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
     }
 
     /**
-     * @return The storage class of the object. Returns type is enum and return null if the object is in STANDARD storage.
+     * @return The storage class of the object. Returns type is enum and return null if the object is in STANDARD
+     *         storage.
      */
     public StorageClass getStorageClassEnum() {
         String storageClassStr = getStorageClass();
         StorageClass storageClass = null;
-        if(storageClassStr != null) {
+        if (storageClassStr != null) {
             storageClass = StorageClass.fromValue(storageClassStr);
         }
         return storageClass;
@@ -785,6 +772,6 @@ public class ObjectMetadata implements ServerSideEncryptionResult, ObjectExpirat
     }
 
     public String getCrc64Ecma() {
-        return (String)metadata.get(Headers.COS_HASH_CRC64_ECMA);
+        return (String) metadata.get(Headers.COS_HASH_CRC64_ECMA);
     }
 }

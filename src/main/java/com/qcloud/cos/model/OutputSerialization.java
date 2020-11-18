@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -85,20 +86,24 @@ public class OutputSerialization implements Serializable, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj == null || ! (obj instanceof OutputSerialization)) {
+        if (obj == null || !(obj instanceof OutputSerialization)) {
             return false;
         }
 
         final OutputSerialization other = (OutputSerialization) obj;
 
-        if (other.getCsv() == null ^ this.getCsv() == null)
+        if (other.getCsv() == null ^ this.getCsv() == null) {
             return false;
-        if (other.getCsv() != null && !other.getCsv().equals(this.getCsv()))
+        }
+        if (other.getCsv() != null && !other.getCsv().equals(this.getCsv())) {
             return false;
-        if (other.getJson() == null ^ this.getJson() == null)
+        }
+        if (other.getJson() == null ^ this.getJson() == null) {
             return false;
-        if (other.getJson() != null && !other.getJson().equals(this.getJson()))
+        }
+        if (other.getJson() != null && !other.getJson().equals(this.getJson())) {
             return false;
+        }
         return true;
     }
 
@@ -116,10 +121,12 @@ public class OutputSerialization implements Serializable, Cloneable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCsv() != null)
+        if (getCsv() != null) {
             sb.append("CSV: ").append(getCsv());
-        if (getJson() != null)
+        }
+        if (getJson() != null) {
             sb.append("JSON: ").append(getJson());
+        }
         sb.append("}");
         return sb.toString();
     }
@@ -129,7 +136,8 @@ public class OutputSerialization implements Serializable, Cloneable {
         try {
             return (OutputSerialization) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
+            throw new IllegalStateException(
+                    "Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
         }
     }
 }

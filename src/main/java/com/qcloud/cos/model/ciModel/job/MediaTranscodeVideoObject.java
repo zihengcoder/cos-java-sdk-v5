@@ -4,6 +4,7 @@ package com.qcloud.cos.model.ciModel.job;
  * 媒体处理 任务转码实体 https://cloud.tencent.com/document/product/460/48234
  */
 public class MediaTranscodeVideoObject extends MediaVideoCommon {
+
     /**
      * 是否删除视频流
      */
@@ -38,7 +39,6 @@ public class MediaTranscodeVideoObject extends MediaVideoCommon {
     private String maxrate;
 
     private String scanMode;
-
 
 
     public String getRemove() {

@@ -5,7 +5,8 @@ import java.util.List;
 /**
  * 数据万象媒体列表实体类 字段详情见 https://cloud.tencent.com/document/product/460/38914
  */
-public class CIMediaListObject  {
+public class CIMediaListObject {
+
     private String requestId;
     private int totalCount;
     private int pageNumber;

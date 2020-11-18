@@ -15,12 +15,13 @@ public class CAMRoleDemo {
 
     public static void SimpleUploadFileFromLocal() {
         InstanceMetadataCredentialsEndpointProvider endpointProvider =
-                new InstanceMetadataCredentialsEndpointProvider(InstanceMetadataCredentialsEndpointProvider.Instance.CVM);
+                new InstanceMetadataCredentialsEndpointProvider(
+                        InstanceMetadataCredentialsEndpointProvider.Instance.CVM);
 
         InstanceCredentialsFetcher instanceCredentialsFetcher = new InstanceCredentialsFetcher(endpointProvider);
         COSCredentialsProvider cosCredentialsProvider = new InstanceCredentialsProvider(instanceCredentialsFetcher);
         ClientConfig clientConfig = new ClientConfig(new Region("ap-guangzhou"));
-        COSClient cosClient = new COSClient(cosCredentialsProvider,clientConfig);
+        COSClient cosClient = new COSClient(cosCredentialsProvider, clientConfig);
         String bucketName = "3399demo-125xxxxxxxx";
         String key = "test/demo.txt";
         File localFile = new File("test");
@@ -32,7 +33,8 @@ public class CAMRoleDemo {
 
     public static void SimpleUploadFileFromEMR() {
         InstanceMetadataCredentialsEndpointProvider endpointProvider =
-                new InstanceMetadataCredentialsEndpointProvider(InstanceMetadataCredentialsEndpointProvider.Instance.EMR);
+                new InstanceMetadataCredentialsEndpointProvider(
+                        InstanceMetadataCredentialsEndpointProvider.Instance.EMR);
 
         InstanceCredentialsFetcher instanceCredentialsFetcher = new InstanceCredentialsFetcher(endpointProvider);
 
@@ -44,7 +46,7 @@ public class CAMRoleDemo {
         System.out.println(cred.getCOSAppId());
 
         ClientConfig clientConfig = new ClientConfig(new Region("ap-chongqing"));
-        COSClient cosClient = new COSClient(cosCredentialsProvider,clientConfig);
+        COSClient cosClient = new COSClient(cosCredentialsProvider, clientConfig);
         String bucketName = "aaa-125xxx";
         String key = "test_emr.txt";
         File localFile = new File("./test");

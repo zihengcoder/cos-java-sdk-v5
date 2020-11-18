@@ -46,10 +46,12 @@ import com.qcloud.cos.internal.CosServiceRequest;
 import com.qcloud.cos.utils.UrlEncoderUtils;
 
 public class COSSigner {
+
     private static Set<String> needSignedHeaderSet = new HashSet<>();
     private Boolean isCIWorkflowRequest = false;
     // Time offset between local and server
     private int localTimeDelta = 0;
+
     static {
         needSignedHeaderSet.add("host");
         needSignedHeaderSet.add("content-type");
@@ -60,6 +62,7 @@ public class COSSigner {
         needSignedHeaderSet.add("transfer-encoding");
         needSignedHeaderSet.add("range");
     }
+
     private boolean isAnonymous(COSCredentials cred) {
         return cred instanceof AnonymousCOSCredentials;
     }
@@ -79,6 +82,7 @@ public class COSSigner {
                     ((COSSessionCredentials) cred).getSessionToken());
         }
     }
+
     public String buildAuthorizationStr(HttpMethodName methodName, String resouce_path,
             COSCredentials cred, Date expiredTime) {
         return buildAuthorizationStr(methodName, resouce_path, new HashMap<String, String>(),
@@ -92,21 +96,21 @@ public class COSSigner {
     }
 
     public String buildAuthorizationStr(HttpMethodName methodName, String resouce_path,
-                                        Map<String, String> headerMap, Map<String, String> paramMap, COSCredentials cred,
-                                        Date expiredTime) {
+            Map<String, String> headerMap, Map<String, String> paramMap, COSCredentials cred,
+            Date expiredTime) {
         Date startTime = new Date();
         return buildAuthorizationStr(methodName, resouce_path, headerMap, paramMap,
                 cred, startTime, expiredTime);
     }
 
     public String buildAuthorizationStr(HttpMethodName methodName, String resouce_path,
-                                        Map<String, String> headerMap, Map<String, String> paramMap, COSCredentials cred,
-                                        Date startTime, Date expiredTime) {
+            Map<String, String> headerMap, Map<String, String> paramMap, COSCredentials cred,
+            Date startTime, Date expiredTime) {
         if (isAnonymous(cred)) {
             return null;
         }
         //万象工作流接口会出现uri带问号的情况 例如 /workflow/xxxxxx?active 这种情况?后面的参数不参与鉴权
-        if (isCIWorkflowRequest){
+        if (isCIWorkflowRequest) {
             resouce_path = resouce_path.split("\\?")[0];
         }
 
@@ -155,7 +159,7 @@ public class COSSigner {
         Map<String, String> signHeaders = new HashMap<>();
         for (Entry<String, String> headerEntry : originHeaders.entrySet()) {
             String key = headerEntry.getKey().toLowerCase();
-            if(needSignedHeader(key)) {
+            if (needSignedHeader(key)) {
                 String value = headerEntry.getValue();
                 signHeaders.put(key, value);
             }

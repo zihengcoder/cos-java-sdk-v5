@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.internal.eventstreaming;
 
 import com.qcloud.cos.utils.ValidationUtils;
@@ -23,6 +24,7 @@ import java.nio.ByteBuffer;
 import java.util.Map;
 
 class Header {
+
     private final String name;
     private final HeaderValue value;
 
@@ -59,12 +61,18 @@ class Header {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         Header header = (Header) o;
 
-        if (!name.equals(header.name)) return false;
+        if (!name.equals(header.name)) {
+            return false;
+        }
         return value.equals(header.value);
     }
 
@@ -78,8 +86,8 @@ class Header {
     @Override
     public String toString() {
         return "Header{"
-            + "name='" + name + '\''
-            + ", value=" + value
-            + '}';
+                + "name='" + name + '\''
+                + ", value=" + value
+                + '}';
     }
 }

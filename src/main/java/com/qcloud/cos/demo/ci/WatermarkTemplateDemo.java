@@ -10,6 +10,7 @@ import java.util.List;
  * 视频水印模板接口相关demo 请求详情参见：https://cloud.tencent.com/document/product/460/46989
  */
 public class WatermarkTemplateDemo {
+
     public static void main(String[] args) throws Exception {
         // 1 初始化用户身份信息（secretId, secretKey）。
         COSClient client = ClientUtils.getTestClient();
@@ -20,6 +21,7 @@ public class WatermarkTemplateDemo {
     /**
      * CreateMediaTemplate 用于新增视频水印模板。
      * for Text
+     *
      * @param client
      */
     public static void createMediaTemplate1(COSClient client) throws UnsupportedEncodingException {
@@ -50,6 +52,7 @@ public class WatermarkTemplateDemo {
     /**
      * CreateMediaTemplate 用于新增视频水印模板。
      * for Pic
+     *
      * @param client
      */
     public static void createMediaTemplate2(COSClient client) throws UnsupportedEncodingException {

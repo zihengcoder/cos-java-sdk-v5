@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.net.URISyntaxException;
 
 public abstract class HttpCredentialsFetcher implements COSCredentialsFetcher {
+
     private static final Logger LOG = LoggerFactory.getLogger(HttpCredentialsFetcher.class);
 
     private final CredentialsEndpointProvider cosCredentialsEndpointProvider;
@@ -49,7 +50,7 @@ public abstract class HttpCredentialsFetcher implements COSCredentialsFetcher {
                 return this.fetch();
             } catch (CosClientException e) {
                 String errorMsg = String.format("The COSCredentialsFetcher [%s] fetch failed, retry: %d/%d, exception:",
-                                                this.getClass().getName(), i, retryTimes);
+                        this.getClass().getName(), i, retryTimes);
                 LOG.error(errorMsg, e);
             }
         }

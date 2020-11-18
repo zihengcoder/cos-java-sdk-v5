@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -39,33 +39,28 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
      * delete.
      */
     private String versionId;
-    
+
     /**
-     * Constructs a new {@link DeleteVersionRequest} object, 
+     * Constructs a new {@link DeleteVersionRequest} object,
      * ready to be executed to
      * delete the version identified by the specified version ID, in the
      * specified bucket and key.
-     * 
-     * @param bucketName
-     *            The name of the bucket containing the version to delete.
-     * @param key
-     *            The key of the object version to delete.
-     * @param versionId
-     *            The version ID identifying the version to delete.
-     *            
+     *
+     * @param bucketName The name of the bucket containing the version to delete.
+     * @param key The key of the object version to delete.
+     * @param versionId The version ID identifying the version to delete.
      */
     public DeleteVersionRequest(String bucketName, String key, String versionId) {
         this.bucketName = bucketName;
         this.key = key;
         this.versionId = versionId;
     }
-    
+
 
     /**
      * Gets the name of the Qcloud COS bucket containing the object to delete.
-     * 
+     *
      * @return The name of the Qcloud COS bucket containing the object to delete.
-     * 
      * @see DeleteVersionRequest#setBucketName(String)
      */
     public String getBucketName() {
@@ -74,7 +69,7 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
 
     /**
      * Sets the name of the Qcloud COS bucket containing the object to delete.
-     * 
+     *
      * @param bucketName The name of the Qcloud COS bucket containing the object to delete.
      * @see DeleteVersionRequest#getBucketName()
      */
@@ -85,9 +80,8 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
     /**
      * Sets the name of the Qcloud COS bucket containing the object to delete and returns this
      * object, enabling additional method calls to be chained together.
-     * 
+     *
      * @param bucketName The name of the Qcloud COS bucket containing the object to delete.
-     * 
      * @return The updated {@link DeleteVersionRequest} object, enabling additional method calls to
      *         be chained together.
      */
@@ -98,9 +92,8 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
 
     /**
      * Gets the key of the object to delete.
-     * 
+     *
      * @return The key of the object to delete.
-     * 
      * @see DeleteVersionRequest#setKey(String)
      */
     public String getKey() {
@@ -109,9 +102,8 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
 
     /**
      * Sets the key of the object to delete.
-     * 
+     *
      * @param key The key of the object to delete.
-     * 
      * @see DeleteVersionRequest#getKey()
      */
     public void setKey(String key) {
@@ -121,9 +113,8 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
     /**
      * Sets the key of the object to delete and returns this object, enabling additional method
      * calls to be chained together.
-     * 
+     *
      * @param key The key of the object to delete.
-     * 
      * @return The updated {@link DeleteVersionRequest} object, enabling additional method calls to
      *         chained together.
      */
@@ -131,16 +122,15 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
         setKey(key);
         return this;
     }
-    
+
     /**
      * Gets the version ID uniquely identifying which version of the object
      * to delete.
-     * 
+     *
      * @return The version ID uniquely identifying which version of the object
      *         to delete.
-     *         
      * @see DeleteVersionRequest#setVersionId(String)
-     * @see DeleteVersionRequest#withVersionId(String)    
+     * @see DeleteVersionRequest#withVersionId(String)
      */
     public String getVersionId() {
         return versionId;
@@ -149,13 +139,11 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
     /**
      * Sets the version ID uniquely identifying which version of the
      * object to delete.
-     * 
-     * @param versionId
-     *            The version ID uniquely identifying which version of
-     *            the object to delete.
-     *            
-     * @see DeleteVersionRequest#getVersionId()           
-     * @see DeleteVersionRequest#withVersionId(String)                
+     *
+     * @param versionId The version ID uniquely identifying which version of
+     *         the object to delete.
+     * @see DeleteVersionRequest#getVersionId()
+     * @see DeleteVersionRequest#withVersionId(String)
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;
@@ -166,20 +154,17 @@ public class DeleteVersionRequest extends CosServiceRequest implements Serializa
      * delete
      * Returns this {@link DeleteVersionRequest}, enabling additional method
      * calls to be chained together.
-     * 
-     * @param versionId
-     *            The version ID uniquely identifying which version of the
-     *            object to delete.
-     * 
+     *
+     * @param versionId The version ID uniquely identifying which version of the
+     *         object to delete.
      * @return This {@link DeleteVersionRequest}, enabling additional method
      *         calls to be chained together.
-     *         
      * @see DeleteVersionRequest#getVersionId()
-     * @see DeleteVersionRequest#setVersionId(String)         
+     * @see DeleteVersionRequest#setVersionId(String)
      */
     public DeleteVersionRequest withVersionId(String versionId) {
         setVersionId(versionId);
         return this;
     }
-    
+
 }

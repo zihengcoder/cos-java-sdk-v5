@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -66,7 +66,7 @@ public enum IOUtils {
 
     /**
      * Closes the given Closeable quietly.
-     * 
+     *
      * @param is the given closeable
      * @param log logger used to log any failure should the close fail
      */
@@ -76,8 +76,9 @@ public enum IOUtils {
                 is.close();
             } catch (IOException ex) {
                 Logger logger = log == null ? defaultLog : log;
-                if (logger.isDebugEnabled())
+                if (logger.isDebugEnabled()) {
                     logger.debug("Ignore failure in closing the Closeable", ex);
+                }
             }
         }
     }
@@ -89,7 +90,7 @@ public enum IOUtils {
      * opening a file. If the opened file is meant to be closed only (in a finally block) by the
      * very same code block that created it, then it is necessary that the release method must not
      * be called while the execution is made in other stack frames.
-     * 
+     *
      * In such case, as other stack frames may inadvertently or indirectly call the close method of
      * the stream, the creator of the stream would need to explicitly disable the accidental closing
      * via <code>ResettableInputStream#disableClose()</code>, so that the release method becomes the
@@ -106,7 +107,7 @@ public enum IOUtils {
     /**
      * Copies all bytes from the given input stream to the given output stream. Caller is
      * responsible for closing the streams.
-     * 
+     *
      * @throws IOException if there is any IO exception during read or write.
      */
     public static long copy(InputStream in, OutputStream out) throws IOException {
@@ -119,7 +120,7 @@ public enum IOUtils {
         }
         return count;
     }
-    
+
     /**
      * Read all remaining data in the stream.
      *

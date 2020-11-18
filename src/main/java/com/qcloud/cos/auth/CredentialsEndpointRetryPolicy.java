@@ -1,6 +1,7 @@
 package com.qcloud.cos.auth;
 
 public interface CredentialsEndpointRetryPolicy {
+
     CredentialsEndpointRetryPolicy NO_RETRY_POLICY = new CredentialsEndpointRetryPolicy() {
         @Override
         public boolean shouldRetry(int attemptedRetries, CredentialsEndpointRetryParameters retryParameters) {

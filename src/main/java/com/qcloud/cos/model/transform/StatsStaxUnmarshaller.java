@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model.transform;
 
 import com.qcloud.cos.model.Stats;
@@ -25,7 +26,7 @@ import javax.xml.stream.events.XMLEvent;
  * Unmarshaller for {@link Stats}.
  */
 class StatsStaxUnmarshaller
-    implements Unmarshaller<Stats, StaxUnmarshallerContext> {
+        implements Unmarshaller<Stats, StaxUnmarshallerContext> {
 
     private static final StatsStaxUnmarshaller instance = new StatsStaxUnmarshaller();
 

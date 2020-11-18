@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import com.qcloud.cos.internal.CosServiceRequest;
@@ -23,6 +24,7 @@ import java.io.Serializable;
  * Request object for the parameters to get the tags for an object.
  */
 public class GetObjectTaggingRequest extends CosServiceRequest implements Serializable {
+
     private String bucketName;
     private String key;
     private String versionId;
@@ -30,12 +32,9 @@ public class GetObjectTaggingRequest extends CosServiceRequest implements Serial
     /**
      * Construct an instance of this object.
      *
-     * @param bucketName
-     *            The name of the bucket.
-     * @param key
-     *            The object key.
-     * @param versionId
-     *            The version of the object.
+     * @param bucketName The name of the bucket.
+     * @param key The object key.
+     * @param versionId The version of the object.
      */
     public GetObjectTaggingRequest(String bucketName, String key, String versionId) {
         this.bucketName = bucketName;
@@ -46,10 +45,8 @@ public class GetObjectTaggingRequest extends CosServiceRequest implements Serial
     /**
      * Construct an instance of this object.
      *
-     * @param bucketName
-     *            The name of the bucket.
-     * @param key
-     *            The object key.
+     * @param bucketName The name of the bucket.
+     * @param key The object key.
      */
     public GetObjectTaggingRequest(String bucketName, String key) {
         this(bucketName, key, null);
@@ -75,7 +72,6 @@ public class GetObjectTaggingRequest extends CosServiceRequest implements Serial
      * Set the bucket name.
      *
      * @param bucketName the bucket name.
-     *
      * @return This object for chaining.
      */
     public GetObjectTaggingRequest withBucketName(String bucketName) {
@@ -103,7 +99,6 @@ public class GetObjectTaggingRequest extends CosServiceRequest implements Serial
      * Set the object key.
      *
      * @param key The object key.
-     *
      * @return This object for chaining.
      */
     public GetObjectTaggingRequest withKey(String key) {
@@ -131,7 +126,6 @@ public class GetObjectTaggingRequest extends CosServiceRequest implements Serial
      * Set object version.
      *
      * @param versionId The object version.
-     *
      * @return This object for chaining.
      */
     public GetObjectTaggingRequest withVersionId(String versionId) {

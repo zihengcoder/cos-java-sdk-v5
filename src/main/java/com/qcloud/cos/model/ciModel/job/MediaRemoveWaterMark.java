@@ -5,6 +5,7 @@ package com.qcloud.cos.model.ciModel.job;
  * 去除水印实体类
  */
 public class MediaRemoveWaterMark {
+
     /**
      * 距离左上角原点x偏移, [1, 4096]
      */

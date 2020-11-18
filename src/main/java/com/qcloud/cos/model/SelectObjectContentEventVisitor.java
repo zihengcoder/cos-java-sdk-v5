@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -24,14 +25,17 @@ import com.qcloud.cos.model.SelectObjectContentEvent.StatsEvent;
 import com.qcloud.cos.model.SelectObjectContentEvent.RecordsEvent;
 
 /**
- * A method for applying logic to an unknown type of {@link SelectObjectContentEvent} without needing to perform "instanceof"
+ * A method for applying logic to an unknown type of {@link SelectObjectContentEvent} without needing to perform
+ * "instanceof"
  * checks and casting.
  *
  * A visitor can be applied to an entire event stream with
- * {@link SelectObjectContentEventStream#visitAllEvents(SelectObjectContentEventVisitor)} or to an individual event with
+ * {@link SelectObjectContentEventStream#visitAllEvents(SelectObjectContentEventVisitor)} or to an individual event
+ * with
  * {@link SelectObjectContentEvent#visit(SelectObjectContentEventVisitor)}.
  */
 public abstract class SelectObjectContentEventVisitor {
+
     /**
      * Invoked when a {@link RecordsEvent} is encountered. If this is not overridden, the event will be given to
      * {@link #visitDefault(SelectObjectContentEvent)}.

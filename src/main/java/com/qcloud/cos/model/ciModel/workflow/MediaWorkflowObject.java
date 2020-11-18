@@ -59,7 +59,7 @@ public class MediaWorkflowObject {
     }
 
     public MediaTopology getTopology() {
-        if (topology==null){
+        if (topology == null) {
             topology = new MediaTopology();
         }
         return topology;

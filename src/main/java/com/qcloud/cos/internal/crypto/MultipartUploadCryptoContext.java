@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -29,6 +29,7 @@ import com.qcloud.cos.exception.CosClientException;
  * Contextual information for an in-flight multipart upload.
  */
 public class MultipartUploadCryptoContext {
+
     private final String bucketName;
     private final String key;
     private boolean hasFinalPartBeenSeen;
@@ -110,14 +111,14 @@ public class MultipartUploadCryptoContext {
      * completion of this method. Caller of this method is responsible to call
      * {@link #endPartUpload()} in a finally block once the respective part-upload is completed
      * (either normally or abruptly).
-     * 
-     * @see #endPartUpload()
-     * 
+     *
      * @throws SdkClientException if parallel part upload is detected
+     * @see #endPartUpload()
      */
     void beginPartUpload(final int nextPartNumber) throws CosClientException {
-        if (nextPartNumber < 1)
+        if (nextPartNumber < 1) {
             throw new IllegalArgumentException("part number must be at least 1");
+        }
         if (partUploadInProgress) {
             throw new CosClientException("Parts are required to be uploaded in series");
         }
@@ -139,7 +140,7 @@ public class MultipartUploadCryptoContext {
     /**
      * Used to mark the completion of a part upload before the next. Should be invoked in a finally
      * block, and must be preceded previously by a call to {@link #beginPartUpload(int)}.
-     * 
+     *
      * @see #beginPartUpload(int)
      */
     void endPartUpload() {

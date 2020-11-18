@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,7 +28,7 @@ import java.io.Closeable;
  * a finally block) by the very same code block that created it, then it is
  * necessary that the release method must not be called while the execution is
  * made in other stack frames.
- * 
+ *
  * In such case, as other stack frames may inadvertently or indirectly call the
  * close method of the stream, the creator of the stream would need to
  * explicitly disable the accidental closing via
@@ -36,6 +36,7 @@ import java.io.Closeable;
  * becomes the only way to truly close the opened file.
  */
 public interface Releasable {
+
     /**
      * Releases the allocated resource. This method should not be called except
      * by the caller who allocated the resource at the very top of the call
@@ -49,7 +50,7 @@ public interface Releasable {
      * (in a finally block) by the very same code block that created it, then it
      * is necessary that the release method must not be called while the
      * execution is made in other stack frames.
-     * 
+     *
      * In such case, as other stack frames may inadvertently or indirectly call
      * the close method of the stream, the creator of the stream would need to
      * explicitly disable the accidental closing via

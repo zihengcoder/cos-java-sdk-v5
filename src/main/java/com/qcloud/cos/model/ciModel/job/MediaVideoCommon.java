@@ -1,6 +1,7 @@
 package com.qcloud.cos.model.ciModel.job;
 
 import java.io.Serializable;
+
 /**
  * 媒体处理 任务video公共实体 https://cloud.tencent.com/document/product/460/48234
  */

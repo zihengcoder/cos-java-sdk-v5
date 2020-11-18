@@ -13,6 +13,7 @@ import com.qcloud.cos.region.Region;
 import java.io.File;
 
 public class PicOperationDemo {
+
     public static void main(String[] args) {
         PicPersistentProcessing();
     }
@@ -31,7 +32,8 @@ public class PicOperationDemo {
 
         // 5.对图像进行持久化处理
         ObjectMetadata objectMetadata = new ObjectMetadata();
-        objectMetadata.setHeader("Pic-Operations", "{\"is_pic_info\":1,\"rules\":[{\"fileid\":\"example.png\",\"rule\":\"imageView2/format/png\"}]}");
+        objectMetadata.setHeader("Pic-Operations",
+                "{\"is_pic_info\":1,\"rules\":[{\"fileid\":\"example.png\",\"rule\":\"imageView2/format/png\"}]}");
         PutObjectRequest putObjectRequest = new PutObjectRequest(bucketName, key, localFile);
         putObjectRequest.setMetadata(objectMetadata);
         try {

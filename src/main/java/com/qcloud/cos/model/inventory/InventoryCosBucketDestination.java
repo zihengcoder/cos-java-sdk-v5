@@ -11,9 +11,10 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model.inventory;
 
 import java.io.Serializable;
@@ -148,7 +149,8 @@ public class InventoryCosBucketDestination implements Serializable {
     }
 
     /**
-     * @return The type of encryption to use to protect the inventory contents. Will be null if encryption is not enabled.
+     * @return The type of encryption to use to protect the inventory contents. Will be null if encryption is not
+     *         enabled.
      */
     public InventoryEncryption getEncryption() {
         return encryption;

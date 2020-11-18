@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,6 +27,7 @@ import com.qcloud.cos.internal.SdkFilterInputStream;
  * FilterInputStream that captures a range of bytes from a wrapped input stream.
  */
 public class ByteRangeCapturingInputStream extends SdkFilterInputStream {
+
     private final long startingPosition;
     private final long endingPosition;
 
@@ -59,8 +60,9 @@ public class ByteRangeCapturingInputStream extends SdkFilterInputStream {
     @Override
     public int read() throws IOException {
         int data = super.read();
-        if (data == -1)
+        if (data == -1) {
             return -1;
+        }
 
         if (streamPosition >= startingPosition && streamPosition <= endingPosition) {
             block[blockPosition++] = (byte) data;
@@ -91,8 +93,9 @@ public class ByteRangeCapturingInputStream extends SdkFilterInputStream {
     @Override
     public int read(byte[] b, int off, int len) throws IOException {
         int bytesRead = super.read(b, off, len);
-        if (bytesRead == -1)
+        if (bytesRead == -1) {
             return -1;
+        }
 
         if (streamPosition + bytesRead >= startingPosition && streamPosition <= endingPosition) {
             for (int i = 0; i < bytesRead; i++) {

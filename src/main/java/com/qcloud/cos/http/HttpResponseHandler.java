@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -19,18 +19,15 @@
 package com.qcloud.cos.http;
 
 public interface HttpResponseHandler<T> {
+
     /**
      * Accepts an HTTP response object, and returns an object of type T.
      * Individual implementations may choose to handle the response however they
      * need to, and return any type that they need to.
      *
-     * @param response
-     *            The HTTP response to handle, as received from an COS service.
-     *
+     * @param response The HTTP response to handle, as received from an COS service.
      * @return An object of type T, as defined by individual implementations.
-     *
-     * @throws Exception
-     *             If any problems are encountered handling the response.
+     * @throws Exception If any problems are encountered handling the response.
      */
     public T handle(CosHttpResponse response) throws Exception;
 

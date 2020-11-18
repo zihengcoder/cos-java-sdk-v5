@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,27 +27,37 @@ import com.qcloud.cos.internal.CosServiceRequest;
 
 public class CosHttpRequest<T extends CosServiceRequest> {
 
-    /** The resource path being requested */
+    /**
+     * The resource path being requested
+     */
     private String resourcePath;
 
 
     private Map<String, String> parameters = new HashMap<String, String>();
 
-    /** Map of the headers included in this request */
+    /**
+     * Map of the headers included in this request
+     */
     private Map<String, String> headers = new HashMap<String, String>();
     // HTTP protocol
     private HttpProtocol protocol;
-    /** The service endpoint to which this request should be sent */
+    /**
+     * The service endpoint to which this request should be sent
+     */
     private String endpoint;
 
-    /** The HTTP method to use when sending this request. */
+    /**
+     * The HTTP method to use when sending this request.
+     */
     private HttpMethodName httpMethod = HttpMethodName.POST;
 
-    /** An optional stream from which to read the request payload. */
+    /**
+     * An optional stream from which to read the request payload.
+     */
     private InputStream content;
 
     private T originRequest;
-    
+
     private ProgressListener progressListener;
 
     public CosHttpRequest(T originRequest) {
@@ -82,7 +92,7 @@ public class CosHttpRequest<T extends CosServiceRequest> {
         addParameter(name, value);
         return this;
     }
-    
+
     public HttpProtocol getProtocol() {
         return protocol;
     }
@@ -128,7 +138,7 @@ public class CosHttpRequest<T extends CosServiceRequest> {
     public T getOriginalRequest() {
         return originRequest;
     }
-    
+
     public ProgressListener getProgressListener() {
         return progressListener;
     }
@@ -142,7 +152,7 @@ public class CosHttpRequest<T extends CosServiceRequest> {
         StringBuilder strBuilder = new StringBuilder();
         strBuilder.append("endpoint: ").append(this.endpoint).append(", resourcepath: ")
                 .append(this.resourcePath).append(", httpMethod: ").append(this.httpMethod);
-        
+
         strBuilder.append(", headers { ");
         for (String headerKey : this.headers.keySet()) {
             String headerValue = this.headers.get(headerKey);

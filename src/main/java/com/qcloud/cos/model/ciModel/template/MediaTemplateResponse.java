@@ -11,7 +11,7 @@ public class MediaTemplateResponse extends MediaCommonResponse {
     private MediaTemplateObject templateId;
 
     public MediaTemplateObject getTemplate() {
-        if (template == null){
+        if (template == null) {
             template = new MediaTemplateObject();
         }
         return template;

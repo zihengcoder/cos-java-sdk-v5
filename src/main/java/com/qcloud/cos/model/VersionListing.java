@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -34,7 +34,9 @@ import java.util.List;
  */
 public class VersionListing implements Serializable {
 
-    /** A list of summary information describing the versions stored in the bucket */
+    /**
+     * A list of summary information describing the versions stored in the bucket
+     */
     private List<COSVersionSummary> versionSummaries =
             new ArrayList<COSVersionSummary>();
 
@@ -44,7 +46,9 @@ public class VersionListing implements Serializable {
      */
     private List<String> commonPrefixes = new ArrayList<String>();
 
-    /** The name of the Qcloud COS bucket containing the listed versions */
+    /**
+     * The name of the Qcloud COS bucket containing the listed versions
+     */
     private String bucketName;
 
     /**
@@ -128,9 +132,8 @@ public class VersionListing implements Serializable {
      * For internal use only. Sets the list of version
      * summaries describing the versions stored in the associated COS bucket.
      *
-     * @param versionSummaries
-     *            The version summaries describing the versions stored in the
-     *            associated COS bucket.
+     * @param versionSummaries The version summaries describing the versions stored in the
+     *         associated COS bucket.
      */
     public void setVersionSummaries(List<COSVersionSummary> versionSummaries) {
         this.versionSummaries = versionSummaries;
@@ -173,8 +176,7 @@ public class VersionListing implements Serializable {
      * version listing, representing the key prefixes that were rolled up
      * because of the request's delimiter parameter.
      *
-     * @param commonPrefixes
-     *            The common prefixes for this version listing.
+     * @param commonPrefixes The common prefixes for this version listing.
      */
     public void setCommonPrefixes(List<String> commonPrefixes) {
         this.commonPrefixes = commonPrefixes;
@@ -195,9 +197,8 @@ public class VersionListing implements Serializable {
      * For internal use only. Sets the name of the Qcloud COS
      * bucket containing the versions listed in this COSVersionListing.
      *
-     * @param bucketName
-     *            The name of the Qcloud COS bucket containing the versions
-     *            listed in this COSVersionListing.
+     * @param bucketName The name of the Qcloud COS bucket containing the versions
+     *         listed in this COSVersionListing.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -219,9 +220,8 @@ public class VersionListing implements Serializable {
      * For internal use only. Sets the prefix parameter
      * originally used to request this version listing.
      *
-     * @param prefix
-     *            The prefix parameter originally used to request this version
-     *            listing.
+     * @param prefix The prefix parameter originally used to request this version
+     *         listing.
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
@@ -244,9 +244,8 @@ public class VersionListing implements Serializable {
      * For internal use only. Sets the key marker parameter
      * originally used to request this version listing.
      *
-     * @param keyMarker
-     *            The key marker parameter originally used to request this
-     *            version listing.
+     * @param keyMarker The key marker parameter originally used to request this
+     *         version listing.
      */
     public void setKeyMarker(String keyMarker) {
         this.keyMarker = keyMarker;
@@ -267,9 +266,8 @@ public class VersionListing implements Serializable {
      * For internal use only. Sets the version ID marker
      * parameter originally used to request this version listing.
      *
-     * @param versionIdMarker
-     *            The version ID marker parameter originally used to request
-     *            this version listing.
+     * @param versionIdMarker The version ID marker parameter originally used to request
+     *         this version listing.
      */
     public void setVersionIdMarker(String versionIdMarker) {
         this.versionIdMarker = versionIdMarker;
@@ -299,10 +297,9 @@ public class VersionListing implements Serializable {
      * originally used to request this object listing, or the default maxKeys
      * applied by Qcloud COS if the requester didn't specify a value.
      *
-     * @param maxKeys
-     *            The maxKeys parameter originally used to request this version
-     *            listing, or the default maxKeys value applied by Qcloud COS if
-     *            the requester didn't specify a value.
+     * @param maxKeys The maxKeys parameter originally used to request this version
+     *         listing, or the default maxKeys value applied by Qcloud COS if
+     *         the requester didn't specify a value.
      */
     public void setMaxKeys(int maxKeys) {
         this.maxKeys = maxKeys;
@@ -332,9 +329,8 @@ public class VersionListing implements Serializable {
      * For internal use only. Sets the delimiter parameter
      * originally used to request this version listing.
      *
-     * @param delimiter
-     *            The delimiter parameter originally used to request this
-     *            version listing.
+     * @param delimiter The delimiter parameter originally used to request this
+     *         version listing.
      */
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
@@ -351,7 +347,6 @@ public class VersionListing implements Serializable {
      * @return The key marker to use in
      *         the next <code>listVersions</code> request in order to obtain the next page of results.
      *         Returns <code>null</code> if the version listing is not truncated.
-     *
      * @see VersionListing#isTruncated()
      */
     public String getNextKeyMarker() {
@@ -363,10 +358,9 @@ public class VersionListing implements Serializable {
      * next listVersions request in order to see the next page of results for a
      * truncated version listing.
      *
-     * @param marker
-     *            The key marker to use in the next listVersions request in
-     *            order to see the next page of results for a truncated version
-     *            listing.
+     * @param marker The key marker to use in the next listVersions request in
+     *         order to see the next page of results for a truncated version
+     *         listing.
      */
     public void setNextKeyMarker(String marker) {
         this.nextKeyMarker = marker;
@@ -380,7 +374,6 @@ public class VersionListing implements Serializable {
      * @return The version ID marker to use in the next <code>listVersions</code> request in
      *         order to see the next page of results.
      *         Returns <code>null</code> if the version listing is not truncated.
-     *
      * @see VersionListing#isTruncated()
      */
     public String getNextVersionIdMarker() {
@@ -392,10 +385,9 @@ public class VersionListing implements Serializable {
      * in the next listVersions request in order to see the next page of results
      * for a truncated version listing.
      *
-     * @param marker
-     *            The version ID marker to use in the next listVersions request
-     *            in order to obtain the next page of results for a truncated
-     *            version listing.
+     * @param marker The version ID marker to use in the next listVersions request
+     *         in order to obtain the next page of results for a truncated
+     *         version listing.
      */
     public void setNextVersionIdMarker(String marker) {
         this.nextVersionIdMarker = marker;
@@ -420,10 +412,9 @@ public class VersionListing implements Serializable {
      * whether the caller needs to make additional calls to COS to get more
      * version summaries.
      *
-     * @param isTruncated
-     *            True if this version listing is <b>not complete</b> and the
-     *            caller needs to make additional COS calls to get additional
-     *            version summaries.
+     * @param isTruncated True if this version listing is <b>not complete</b> and the
+     *         caller needs to make additional COS calls to get additional
+     *         version summaries.
      */
     public void setTruncated(boolean isTruncated) {
         this.isTruncated = isTruncated;
@@ -447,9 +438,8 @@ public class VersionListing implements Serializable {
      * For internal use only. Sets the encoding type used by Qcloud COS to encode
      * object key names in the XML response.
      *
-     * @param encodingType
-     *            <code>Null</code> if <code>encodingType</code> is not
-     *            specified in the request parameter.
+     * @param encodingType <code>Null</code> if <code>encodingType</code> is not
+     *         specified in the request parameter.
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;

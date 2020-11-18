@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -21,8 +21,11 @@ package com.qcloud.cos.event;
 import com.qcloud.cos.exception.CosClientException;
 
 public interface ProgressListener {
+
     public static final ProgressListener NOOP = new ProgressListener() {
-        @Override public void progressChanged(ProgressEvent progressEvent) {}
+        @Override
+        public void progressChanged(ProgressEvent progressEvent) {
+        }
     };
 
     /**
@@ -38,9 +41,7 @@ public interface ProgressListener {
      * Should there be need to capture any such exception, you may consider
      * wrapping the listener with {@link ExceptionReporter#wrap(ProgressListener)}.
      *
-     * @param progressEvent
-     *            The event describing the progress change.
-     *            
+     * @param progressEvent The event describing the progress change.
      * @see SDKProgressPublisher
      * @see ExceptionReporter
      */
@@ -53,19 +54,22 @@ public interface ProgressListener {
      * the listener.
      */
     public static class ExceptionReporter implements ProgressListener, DeliveryMode {
+
         private final ProgressListener listener;
         private final boolean syncCallSafe;
         private volatile Throwable cause;
 
         public ExceptionReporter(ProgressListener listener) {
-            if (listener == null)
+            if (listener == null) {
                 throw new IllegalArgumentException();
+            }
             this.listener = listener;
             if (listener instanceof DeliveryMode) {
                 DeliveryMode cs = (DeliveryMode) listener;
                 syncCallSafe = cs.isSyncCallSafe();
-            } else
+            } else {
                 syncCallSafe = false;
+            }
         }
 
         /**
@@ -74,12 +78,14 @@ public interface ProgressListener {
          * <p>
          * {@inheritDoc}
          */
-        @Override public void progressChanged(ProgressEvent progressEvent) {
-            if (cause != null)
+        @Override
+        public void progressChanged(ProgressEvent progressEvent) {
+            if (cause != null) {
                 return;
+            }
             try {
                 this.listener.progressChanged(progressEvent);
-            } catch(Throwable t) {
+            } catch (Throwable t) {
                 cause = t;
             }
         }
@@ -89,8 +95,9 @@ public interface ProgressListener {
          * {@link CosClientException}; or do nothing otherwise.
          */
         public void throwExceptionIfAny() {
-            if (cause != null)
+            if (cause != null) {
                 throw new CosClientException(cause);
+            }
         }
 
         /**
@@ -108,7 +115,10 @@ public interface ProgressListener {
             return new ExceptionReporter(listener);
         }
 
-        @Override public boolean isSyncCallSafe() { return syncCallSafe; }
+        @Override
+        public boolean isSyncCallSafe() {
+            return syncCallSafe;
+        }
     }
 }
 

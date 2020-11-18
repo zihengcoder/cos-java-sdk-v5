@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.internal.eventstreaming;
 
 import com.qcloud.cos.utils.StringUtils;
@@ -22,7 +23,9 @@ import java.io.IOException;
 import java.nio.ByteBuffer;
 
 final class Utils {
-    private Utils() {}
+
+    private Utils() {
+    }
 
     static int toIntExact(long headersLength) {
         if ((int) headersLength != headersLength) {

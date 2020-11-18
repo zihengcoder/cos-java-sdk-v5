@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 
 public abstract class AbstractCOSCachedCredentialsProvider
         implements COSCredentialsProvider, Closeable {
-    
+
     private static final Logger log = LoggerFactory.getLogger(AbstractCOSCachedCredentialsProvider.class);
 
     private volatile COSCredentials cachedCredentials = null;
@@ -54,7 +54,7 @@ public abstract class AbstractCOSCachedCredentialsProvider
             }
         });
         executors.scheduleWithFixedDelay(new Runnable() {
-            
+
             @Override
             public void run() {
                 if (ifNeedToRefreshCredentials()) {
@@ -85,7 +85,7 @@ public abstract class AbstractCOSCachedCredentialsProvider
     private void updateRefreshTime() {
         lastRefreshTime = System.currentTimeMillis() / 1000;
     }
-    
+
     private boolean ifRefreshTimeExpired() {
         long currentTime = System.currentTimeMillis() / 1000;
         return (currentTime - lastRefreshTime >= refreshPeriodSeconds);
@@ -102,7 +102,7 @@ public abstract class AbstractCOSCachedCredentialsProvider
         }
         return cachedCredentials;
     }
-    
+
     @Override
     protected void finalize() throws Throwable {
         if (executors != null) {
@@ -110,7 +110,7 @@ public abstract class AbstractCOSCachedCredentialsProvider
             executors = null;
         }
     }
-    
+
     @Override
     public void close() throws IOException {
         if (executors != null) {
@@ -118,7 +118,7 @@ public abstract class AbstractCOSCachedCredentialsProvider
             executors = null;
         }
     }
-    
+
     // fetch new credentials, this will be called periodically
     // you should implement this method.
     public abstract COSCredentials fetchNewCOSCredentials();

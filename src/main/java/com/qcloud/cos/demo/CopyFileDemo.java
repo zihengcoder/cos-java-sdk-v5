@@ -18,6 +18,7 @@ import com.qcloud.cos.transfer.TransferManager;
 
 
 public class CopyFileDemo {
+
     // copyObject最大支持5G文件的copy, 5G以上的文件copy请参照TransferManagerDemo中的copy示例
     public static void copySmallFileDemo() {
         // 1 初始化用户身份信息(secretId, secretKey)
@@ -59,7 +60,6 @@ public class CopyFileDemo {
         ClientConfig clientConfig = new ClientConfig(new Region("ap-beijing-1"));
         // 3 生成cos客户端
         COSClient cosclient = new COSClient(cred, clientConfig);
-
 
         ExecutorService threadPool = Executors.newFixedThreadPool(32);
         // 传入一个threadpool, 若不传入线程池, 默认TransferManager中会生成一个单线程的线程池。

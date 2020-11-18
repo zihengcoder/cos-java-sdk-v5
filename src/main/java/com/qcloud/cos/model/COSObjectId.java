@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -24,6 +24,7 @@ import static com.qcloud.cos.model.InstructionFileId.DOT;
 import java.io.Serializable;
 
 public class COSObjectId implements Serializable {
+
     private static final long serialVersionUID = 1L;
     private final String bucket;
     private final String key;
@@ -42,8 +43,9 @@ public class COSObjectId implements Serializable {
      * @param versionId optional version id
      */
     public COSObjectId(String bucket, String key, String versionId) {
-        if (bucket == null || key == null)
+        if (bucket == null || key == null) {
             throw new IllegalArgumentException("bucket and key must be specified");
+        }
         this.bucket = bucket;
         this.key = key;
         this.versionId = versionId;
@@ -72,6 +74,7 @@ public class COSObjectId implements Serializable {
     public String getVersionId() {
         return versionId;
     }
+
     /**
      * Returns the instruction file id of the default instruction file.
      */
@@ -86,10 +89,10 @@ public class COSObjectId implements Serializable {
     public InstructionFileId instructionFileId(String suffix) {
         String ifileKey = key + DOT;
         ifileKey += (suffix == null || suffix.trim().length() == 0)
-                  ? DEFAULT_INSTRUCTION_FILE_SUFFIX
-                  : suffix
-                  ;
-         return new InstructionFileId(bucket, ifileKey, versionId);
+                ? DEFAULT_INSTRUCTION_FILE_SUFFIX
+                : suffix
+        ;
+        return new InstructionFileId(bucket, ifileKey, versionId);
     }
 
     @Override

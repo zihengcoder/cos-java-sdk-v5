@@ -1,4 +1,5 @@
 package com.qcloud.cos.demo;
+
 import java.io.File;
 import com.qcloud.cos.COSClient;
 import com.qcloud.cos.ClientConfig;
@@ -8,6 +9,7 @@ import com.qcloud.cos.model.*;
 import com.qcloud.cos.region.Region;
 
 public class RestoreObjectDemo {
+
     public static void restoreObjectDemo() {
         // 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("AKIDXXXXXXXX", "1A2Z3YYYYYYYYYY");
@@ -34,6 +36,7 @@ public class RestoreObjectDemo {
         restoreObjectRequest.setCASJobParameters(casJobParameters);
         cosclient.restoreObject(restoreObjectRequest);
     }
+
     public static void main(String[] args) {
         restoreObjectDemo();
     }

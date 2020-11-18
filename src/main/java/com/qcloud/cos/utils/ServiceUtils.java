@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -40,27 +40,27 @@ import com.qcloud.cos.model.COSObject;
 import com.qcloud.cos.model.ObjectMetadata;
 
 public class ServiceUtils {
+
     private static final Logger log = LoggerFactory.getLogger(ServiceUtils.class);
     private static final SkipMd5CheckStrategy skipMd5CheckStrategy = SkipMd5CheckStrategy.INSTANCE;
     public static final boolean APPEND_MODE = true;
     public static final boolean OVERWRITE_MODE = false;
+
     /**
      * Same as {@link #downloadObjectToFile(COSObject, File, boolean, boolean)}
      * but has an additional expected file length parameter for integrity
      * checking purposes.
      *
-     * @param expectedFileLength
-     *            applicable only when appendData is true; the expected length
-     *            of the file to append to.
+     * @param expectedFileLength applicable only when appendData is true; the expected length
+     *         of the file to append to.
      */
     public static void downloadToFile(COSObject cosObject,
-        final File dstfile, boolean performIntegrityCheck,
-        final boolean appendData,
-        final long expectedFileLength)
-    {
+            final File dstfile, boolean performIntegrityCheck,
+            final boolean appendData,
+            final long expectedFileLength) {
         // attempt to create the parent if it doesn't exist
         File parentDirectory = dstfile.getParentFile();
-        if ( parentDirectory != null && !parentDirectory.exists() ) {
+        if (parentDirectory != null && !parentDirectory.exists()) {
             if (!(parentDirectory.mkdirs())) {
                 throw new CosClientException(
                         "Unable to create directory in the path"
@@ -79,12 +79,12 @@ public class ServiceUtils {
                 // Fail fast to prevent data corruption
                 throw new IllegalStateException(
                         "Expected file length to append is "
-                            + expectedFileLength + " but actual length is "
-                            + actualLen + " for file " + dstfile);
+                                + expectedFileLength + " but actual length is "
+                                + actualLen + " for file " + dstfile);
             }
             outputStream = new BufferedOutputStream(new FileOutputStream(
                     dstfile, appendData));
-            byte[] buffer = new byte[1024*10];
+            byte[] buffer = new byte[1024 * 10];
             int bytesRead;
             while ((bytesRead = cosObject.getObjectContent().read(buffer)) > -1) {
                 outputStream.write(buffer, 0, bytesRead);
@@ -119,50 +119,46 @@ public class ServiceUtils {
             }
         }
     }
-    
+
     /**
      * Downloads an COSObject, as returned from
      * {@link COSClient#getObject(com.qcloud.cos.model.GetObjectRequest)},
      * to the specified file.
      *
-     * @param cosObject
-     *            The COSObject containing a reference to an InputStream
-     *            containing the object's data.
-     * @param destinationFile
-     *            The file to store the object's data in.
-     * @param performIntegrityCheck
-     *            Boolean valuable to indicate whether to perform integrity check
-     * @param appendData
-     *            appends the data to end of the file.
+     * @param cosObject The COSObject containing a reference to an InputStream
+     *         containing the object's data.
+     * @param destinationFile The file to store the object's data in.
+     * @param performIntegrityCheck Boolean valuable to indicate whether to perform integrity check
+     * @param appendData appends the data to end of the file.
      */
     public static void downloadObjectToFile(COSObject cosObject,
             final File destinationFile, boolean performIntegrityCheck,
             boolean appendData) {
         downloadToFile(cosObject, destinationFile, performIntegrityCheck, appendData, -1);
     }
-    
+
     /**
      * Interface for the task of downloading object from COS to a specific file,
      * enabling one-time retry mechanism after integrity check failure
      * on the downloaded file.
      */
     public interface RetryableCOSDownloadTask {
+
         /**
          * User defines how to get the COSObject from COS for this RetryableCOSDownloadTask.
          *
-         * @return
-         *         The COSObject containing a reference to an InputStream
-         *        containing the object's data.
+         * @return The COSObject containing a reference to an InputStream
+         *         containing the object's data.
          */
-        public COSObject getCOSObjectStream ();
+        public COSObject getCOSObjectStream();
+
         /**
          * User defines whether integrity check is needed for this RetryableCOSDownloadTask.
          *
-         * @return
-         *         Boolean value indicating whether this task requires integrity check
+         * @return Boolean value indicating whether this task requires integrity check
          *         after downloading the COS object to file.
          */
-        public boolean needIntegrityCheck ();
+        public boolean needIntegrityCheck();
     }
 
     /**
@@ -171,11 +167,9 @@ public class ServiceUtils {
      * on the downloaded file. It will also return immediately after getting null valued
      * COSObject (when getObject request does not meet the specified constraints).
      *
-     * @param file
-     *             The file to store the object's data in.
-     * @param retryableCOSDownloadTask
-     *             The implementation of SafeCOSDownloadTask interface which allows user to
-     *             get access to all the visible variables at the calling site of this method.
+     * @param file The file to store the object's data in.
+     * @param retryableCOSDownloadTask The implementation of SafeCOSDownloadTask interface which allows user to
+     *         get access to all the visible variables at the calling site of this method.
      */
     public static COSObject retryableDownloadCOSObjectToFile(File file,
             RetryableCOSDownloadTask retryableCOSDownloadTask, boolean appendData) {
@@ -185,8 +179,9 @@ public class ServiceUtils {
         do {
             needRetry = false;
             cosObject = retryableCOSDownloadTask.getCOSObjectStream();
-            if ( cosObject == null )
+            if (cosObject == null) {
                 return null;
+            }
 
             try {
                 ServiceUtils.downloadObjectToFile(cosObject, file,
@@ -207,16 +202,17 @@ public class ServiceUtils {
                     throw cse;
                 } else {
                     needRetry = true;
-                    if ( hasRetried ) {
+                    if (hasRetried) {
                         cosObject.getObjectContent().abort();
                         throw cse;
                     } else {
-                        log.info("Retry the download of object " + cosObject.getKey() + " (bucket " + cosObject.getBucketName() + ")", cse);
+                        log.info("Retry the download of object " + cosObject.getKey() + " (bucket " + cosObject
+                                .getBucketName() + ")", cse);
                         hasRetried = true;
                     }
                 }
             }
-        } while ( needRetry );
+        } while (needRetry);
         return cosObject;
     }
 

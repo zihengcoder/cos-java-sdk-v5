@@ -24,6 +24,7 @@ import com.qcloud.cos.utils.DateUtils;
  * 用于可将生成的连接分发给移动端或者他人, 即可实现在签名有效期内上传或者下载文件.
  */
 public class GeneratePresignedUrlDemo {
+
     // 获取下载的预签名连接
     public static void GenerateSimplePresignedDownloadUrl() {
         // 1 初始化用户身份信息(secretId, secretKey)
@@ -34,7 +35,7 @@ public class GeneratePresignedUrlDemo {
         COSClient cosclient = new COSClient(cred, clientConfig);
         // bucket名需包含appid
         String bucketName = "mybucket-1251668577";
-        
+
         String key = "aaa.txt";
         GeneratePresignedUrlRequest req =
                 new GeneratePresignedUrlRequest(bucketName, key, HttpMethodName.GET);
@@ -45,7 +46,7 @@ public class GeneratePresignedUrlDemo {
 
         URL url = cosclient.generatePresignedUrl(req);
         System.out.println(url.toString());
-        
+
         cosclient.shutdown();
     }
 
@@ -59,7 +60,7 @@ public class GeneratePresignedUrlDemo {
         COSClient cosclient = new COSClient(cred, clientConfig);
         // bucket名需包含appid
         String bucketName = "mybucket-1251668577";
-        
+
         String key = "aaa.txt";
         GeneratePresignedUrlRequest req =
                 new GeneratePresignedUrlRequest(bucketName, key, HttpMethodName.GET);
@@ -84,7 +85,7 @@ public class GeneratePresignedUrlDemo {
         URL url = cosclient.generatePresignedUrl(req);
 
         System.out.println(url.toString());
-        
+
         cosclient.shutdown();
     }
 
@@ -98,14 +99,14 @@ public class GeneratePresignedUrlDemo {
         COSClient cosclient = new COSClient(cred, clientConfig);
         // bucket名需包含appid
         String bucketName = "mybucket-1251668577";
-        
+
         String key = "aaa.txt";
         GeneratePresignedUrlRequest req =
                 new GeneratePresignedUrlRequest(bucketName, key, HttpMethodName.GET);
         URL url = cosclient.generatePresignedUrl(req);
 
         System.out.println(url.toString());
-        
+
         cosclient.shutdown();
     }
 
@@ -119,7 +120,7 @@ public class GeneratePresignedUrlDemo {
         COSClient cosclient = new COSClient(cred, clientConfig);
         // bucket名需包含appid
         String bucketName = "mybucket-1251668577";
-        
+
         String key = "aaa.txt";
         Date expirationTime = new Date(System.currentTimeMillis() + 30 * 60 * 1000);
         URL url = cosclient.generatePresignedUrl(bucketName, key, expirationTime, HttpMethodName.PUT);
@@ -138,9 +139,9 @@ public class GeneratePresignedUrlDemo {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        
+
         cosclient.shutdown();
     }
-    
+
 
 }

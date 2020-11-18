@@ -17,6 +17,7 @@ import java.util.List;
  * 转码模板接口相关demo 请求详情参见：https://cloud.tencent.com/document/product/460/46999
  */
 public class TranscodeTemplateDemo {
+
     public static void main(String[] args) throws Exception {
         // 1 初始化用户身份信息（secretId, secretKey）。
         COSClient client = ClientUtils.getTestClient();

@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -22,6 +23,7 @@ package com.qcloud.cos.model;
  * DeleteObjectTaggingRequest}.
  */
 public class DeleteObjectTaggingResult {
+
     private String versionId;
 
     /**
@@ -34,8 +36,7 @@ public class DeleteObjectTaggingResult {
     /**
      * Set the version of the object whose tags were deleted.
      *
-     * @param versionId
-     *            The object version.
+     * @param versionId The object version.
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;
@@ -44,9 +45,7 @@ public class DeleteObjectTaggingResult {
     /**
      * Set the version of the object whose tags were deleted.
      *
-     * @param versionId
-     *            The object version.
-     *
+     * @param versionId The object version.
      * @return This object for chaining.
      */
     public DeleteObjectTaggingResult withVersionId(String versionId) {

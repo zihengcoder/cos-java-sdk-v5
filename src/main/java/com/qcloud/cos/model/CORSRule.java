@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -33,7 +33,7 @@ public class CORSRule implements Serializable {
     private int maxAgeSeconds;
     private List<String> exposedHeaders;
     private List<String> allowedHeaders;
-    
+
     /**
      * Sets the ID of this rule. Rules must be less than 255 alphanumeric
      * characters, and must be unique for a bucket. If you do not assign an
@@ -42,7 +42,7 @@ public class CORSRule implements Serializable {
     public void setId(String id) {
         this.id = id;
     }
-    
+
     /**
      * Returns the Id of this rule.
      */
@@ -53,7 +53,7 @@ public class CORSRule implements Serializable {
     /**
      * Sets the ID of this rule and returns a reference to this object for
      * method chaining.
-     * 
+     *
      * @see CORSRule#setId(String)
      */
     public CORSRule withId(String id) {
@@ -67,14 +67,14 @@ public class CORSRule implements Serializable {
     public void setAllowedMethods(List<AllowedMethods> allowedMethods) {
         this.allowedMethods = allowedMethods;
     }
-    
+
     /**
      * Convenience array style method for {@link #setAllowedMethods(List)}
      */
     public void setAllowedMethods(AllowedMethods... allowedMethods) {
-        this.allowedMethods = Arrays.asList(allowedMethods);  
+        this.allowedMethods = Arrays.asList(allowedMethods);
     }
-    
+
     /**
      * Returns the allowed methods of this rule.
      */
@@ -85,28 +85,28 @@ public class CORSRule implements Serializable {
     /**
      * Sets the allowed methods of this rule and returns a reference to this object for
      * method chaining.
-     * 
+     *
      * @see CORSRule#setAllowedMethods(List)
      */
     public CORSRule withAllowedMethods(List<AllowedMethods> allowedMethods) {
         this.allowedMethods = allowedMethods;
         return this;
     }
-    
+
     /**
      * Sets the allowed origins of the rule.
      */
     public void setAllowedOrigins(List<String> allowedOrigins) {
         this.allowedOrigins = allowedOrigins;
     }
-    
+
     /**
      * Convenience array style method for {@link #setAllowedOrigins(List)}
      */
     public void setAllowedOrigins(String... allowedOrigins) {
         this.allowedOrigins = Arrays.asList(allowedOrigins);
     }
-    
+
     /**
      * Returns the allowed origins of this rule and returns a reference to this object for
      * method chaining.
@@ -118,57 +118,57 @@ public class CORSRule implements Serializable {
     /**
      * Sets the allowed origins of this rule and returns a reference to this object for
      * method chaining.
-     * 
+     *
      * @see CORSRule#setAllowedOrigins(List)
      */
     public CORSRule withAllowedOrigins(List<String> allowedOrigins) {
         this.allowedOrigins = allowedOrigins;
         return this;
     }
-    
+
     /**
      * Sets the max age in seconds of the rule.
      */
     public void setMaxAgeSeconds(int maxAgeSeconds) {
         this.maxAgeSeconds = maxAgeSeconds;
     }
-    
+
     /**
      * Sets the ID of this rule and returns a reference to this object for
      * method chaining.
-     * 
+     *
      * @see CORSRule#setId(String)
      */
     public int getMaxAgeSeconds() {
         return maxAgeSeconds;
     }
-    
+
     /**
      * Sets the max age in seconds of this rule and returns a reference to this object for
      * method chaining.
-     * 
+     *
      * @see CORSRule#setMaxAgeSeconds(int)
      */
     public CORSRule withMaxAgeSeconds(int maxAgeSeconds) {
         this.maxAgeSeconds = maxAgeSeconds;
         return this;
     }
- 
+
     /**
      * Sets the expose headers of the rule.
      */
     public void setExposedHeaders(List<String> exposedHeaders) {
         this.exposedHeaders = exposedHeaders;
     }
-    
+
     /**
      * Convenience array style method for {@link #setExposedHeaders(List)}
      */
     public void setExposedHeaders(String... exposedHeaders) {
         this.exposedHeaders = Arrays.asList(exposedHeaders);
     }
-    
-    
+
+
     /**
      * Returns expose headers of this rule and returns a reference to this object for
      * method chaining.
@@ -176,83 +176,82 @@ public class CORSRule implements Serializable {
     public List<String> getExposedHeaders() {
         return exposedHeaders;
     }
-    
+
     /**
      * Sets the exposeHeaders of this rule and returns a reference to this object for
      * method chaining.
-     * 
+     *
      * @see #setExposedHeaders(List)
      */
     public CORSRule withExposedHeaders(List<String> exposedHeaders) {
         this.exposedHeaders = exposedHeaders;
         return this;
     }
-    
+
     /**
      * Sets the allowed headers for the rule.
      */
     public void setAllowedHeaders(List<String> allowedHeaders) {
         this.allowedHeaders = allowedHeaders;
     }
-    
+
     /**
      * Convenience array style method for {@link #setAllowedHeaders(List)}
      */
     public void setAllowedHeaders(String... allowedHeaders) {
         this.allowedHeaders = Arrays.asList(allowedHeaders);
     }
-                     
+
     /**
      * Returns allowed headers of this rule.
      */
     public List<String> getAllowedHeaders() {
         return allowedHeaders;
     }
-    
+
     /**
      * Sets the allowed headers of this rule and returns a reference to this object for
      * method chaining.
-     * 
+     *
      * @see CORSRule#setAllowedHeaders(List)
      */
     public CORSRule withAllowedHeaders(List<String> allowedHeaders) {
         this.allowedHeaders = allowedHeaders;
         return this;
     }
-    
+
     /**
-     * Enumeration of names of the all the allowed methods. 
-     *
+     * Enumeration of names of the all the allowed methods.
      */
     public static enum AllowedMethods {
-         GET("GET"),
-         PUT("PUT"),
-         HEAD("HEAD"),
-         POST("POST"),
-         DELETE("DELETE");
+        GET("GET"),
+        PUT("PUT"),
+        HEAD("HEAD"),
+        POST("POST"),
+        DELETE("DELETE");
 
-         private final String AllowedMethod;
+        private final String AllowedMethod;
 
-         private AllowedMethods(String AllowedMethod) {
-               this.AllowedMethod = AllowedMethod;
-         }
+        private AllowedMethods(String AllowedMethod) {
+            this.AllowedMethod = AllowedMethod;
+        }
 
-         @Override
-         public String toString() {
-               return AllowedMethod;
-         }
+        @Override
+        public String toString() {
+            return AllowedMethod;
+        }
 
-         public static AllowedMethods fromValue(String allowedMethod) throws IllegalArgumentException {
-              for (AllowedMethods method : AllowedMethods.values()) {
-                  String methodString = method.toString();
-                  if (methodString != null && methodString.equals
-                          (allowedMethod)) {
-                      return method;
-                  }
-              }
+        public static AllowedMethods fromValue(String allowedMethod) throws IllegalArgumentException {
+            for (AllowedMethods method : AllowedMethods.values()) {
+                String methodString = method.toString();
+                if (methodString != null && methodString.equals
+                        (allowedMethod)) {
+                    return method;
+                }
+            }
 
-              throw new IllegalArgumentException(
-                  "Cannot create enum from " + allowedMethod + " value!");
-         }
-    }    
+            throw new IllegalArgumentException(
+                    "Cannot create enum from " + allowedMethod + " value!");
+        }
+    }
 }

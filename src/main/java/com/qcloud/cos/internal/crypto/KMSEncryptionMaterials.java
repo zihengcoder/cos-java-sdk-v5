@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -30,21 +30,23 @@ import javax.crypto.SecretKey;
  * id to be used to uniquely identify the KEK on the server side.
  */
 public class KMSEncryptionMaterials extends EncryptionMaterials implements Serializable {
+
     /**
      * Name of the material description to be persisted in COS for the KMS's
      * customer master key id.
      */
-    public static final String CUSTOMER_MASTER_KEY_ID = "kms_cmk_id"; 
+    public static final String CUSTOMER_MASTER_KEY_ID = "kms_cmk_id";
+
     /**
-     * @param defaultCustomerMasterKeyId
-     *            KMS's customer master key id; must not be null
+     * @param defaultCustomerMasterKeyId KMS's customer master key id; must not be null
      */
     public KMSEncryptionMaterials(String defaultCustomerMasterKeyId) {
         super(null, null);
         if (defaultCustomerMasterKeyId == null
-                || defaultCustomerMasterKeyId.length() == 0)
+                || defaultCustomerMasterKeyId.length() == 0) {
             throw new IllegalArgumentException(
                     "The default customer master key id must be specified");
+        }
         addDescription(CUSTOMER_MASTER_KEY_ID, defaultCustomerMasterKeyId);
     }
 
@@ -66,9 +68,9 @@ public class KMSEncryptionMaterials extends EncryptionMaterials implements Seria
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * Always returns true.
-     * 
+     *
      * @return true
      */
     @Override

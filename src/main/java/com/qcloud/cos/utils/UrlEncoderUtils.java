@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -62,19 +62,19 @@ public class UrlEncoderUtils {
         }
         return pathBuilder.toString();
     }
-    
+
     // encode url path, replace the continuous slash with %2F except the first slash
     public static String encodeUrlPath(String urlPath) {
-        if(urlPath.length() <= 1) {
+        if (urlPath.length() <= 1) {
             return urlPath;
         }
 
         StringBuilder pathBuilder = new StringBuilder();
         pathBuilder.append(PATH_DELIMITER);
         int start = 1, end = 1;
-        while(end < urlPath.length()) {
-            if('/' == urlPath.charAt(end)) {
-                if('/' == urlPath.charAt(end - 1)) {
+        while (end < urlPath.length()) {
+            if ('/' == urlPath.charAt(end)) {
+                if ('/' == urlPath.charAt(end - 1)) {
                     pathBuilder.append(ENCODE_DELIMITER);
                 } else {
                     pathBuilder.append(encode(urlPath.substring(start, end))).append(PATH_DELIMITER);
@@ -83,12 +83,12 @@ public class UrlEncoderUtils {
             }
             end++;
         }
-        if(start < end) {
+        if (start < end) {
             pathBuilder.append(encode(urlPath.substring(start, end)));
         }
         return pathBuilder.toString();
     }
-    
+
     /**
      * Decode a string for use in the path of a URL; uses URLDecoder.decode,
      * which decodes a string for use in the query portion of a URL.

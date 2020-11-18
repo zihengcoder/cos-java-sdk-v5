@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -24,7 +24,8 @@ import java.util.List;
  * A logical AND of two or more predicates of type {@link LifecycleFilterPredicate}.
  * The Lifecycle Rule will apply to any object matching all of the predicates configured inside the And operator.
  *
- * The {@link LifecycleAndOperator} can contain at most one {@link LifecyclePrefixPredicate} and any number of {@link LifecycleTagPredicate}s.
+ * The {@link LifecycleAndOperator} can contain at most one {@link LifecyclePrefixPredicate} and any number of {@link
+ * LifecycleTagPredicate}s.
  */
 public final class LifecycleAndOperator extends LifecycleNAryOperator {
 

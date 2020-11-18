@@ -137,16 +137,17 @@ public class CRC64 implements Checksum {
     }
 
     private static final int GF2_DIM = 64; /*
-                                            * dimension of GF(2) vectors (length
-                                            * of CRC)
-                                            */
+     * dimension of GF(2) vectors (length
+     * of CRC)
+     */
 
     private static long gf2MatrixTimes(long[] mat, long vec) {
         long sum = 0;
         int idx = 0;
         while (vec != 0) {
-            if ((vec & 1) == 1)
+            if ((vec & 1) == 1) {
                 sum ^= mat[idx];
+            }
             vec >>>= 1;
             idx++;
         }
@@ -154,8 +155,9 @@ public class CRC64 implements Checksum {
     }
 
     private static void gf2MatrixSquare(long[] square, long[] mat) {
-        for (int n = 0; n < GF2_DIM; n++)
+        for (int n = 0; n < GF2_DIM; n++) {
             square[n] = gf2MatrixTimes(mat, mat[n]);
+        }
     }
 
     /*
@@ -165,8 +167,9 @@ public class CRC64 implements Checksum {
      */
     static public CRC64 combine(CRC64 summ1, CRC64 summ2, long len2) {
         // degenerate case.
-        if (len2 == 0)
+        if (len2 == 0) {
             return new CRC64(summ1.getValue());
+        }
 
         int n;
         long row;
@@ -195,18 +198,21 @@ public class CRC64 implements Checksum {
         do {
             // apply zeros operator for this bit of len2
             gf2MatrixSquare(even, odd);
-            if ((len2 & 1) == 1)
+            if ((len2 & 1) == 1) {
                 crc1 = gf2MatrixTimes(even, crc1);
+            }
             len2 >>>= 1;
 
             // if no more bits set, then done
-            if (len2 == 0)
+            if (len2 == 0) {
                 break;
+            }
 
             // another iteration of the loop with odd and even swapped
             gf2MatrixSquare(odd, even);
-            if ((len2 & 1) == 1)
+            if ((len2 & 1) == 1) {
                 crc1 = gf2MatrixTimes(odd, crc1);
+            }
             len2 >>>= 1;
 
             // if no more bits set, then done
@@ -224,8 +230,9 @@ public class CRC64 implements Checksum {
      */
     static public long combine(long crc1, long crc2, long len2) {
         // degenerate case.
-        if (len2 == 0)
+        if (len2 == 0) {
             return crc1;
+        }
 
         int n;
         long row;
@@ -252,18 +259,21 @@ public class CRC64 implements Checksum {
         do {
             // apply zeros operator for this bit of len2
             gf2MatrixSquare(even, odd);
-            if ((len2 & 1) == 1)
+            if ((len2 & 1) == 1) {
                 crc1 = gf2MatrixTimes(even, crc1);
+            }
             len2 >>>= 1;
 
             // if no more bits set, then done
-            if (len2 == 0)
+            if (len2 == 0) {
                 break;
+            }
 
             // another iteration of the loop with odd and even swapped
             gf2MatrixSquare(odd, even);
-            if ((len2 & 1) == 1)
+            if ((len2 & 1) == 1) {
                 crc1 = gf2MatrixTimes(odd, crc1);
+            }
             len2 >>>= 1;
 
             // if no more bits set, then done

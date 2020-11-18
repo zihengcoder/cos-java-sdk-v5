@@ -16,6 +16,7 @@
  */
 
 package com.qcloud.cos.model;
+
 import java.io.Serializable;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,7 +32,9 @@ public class BucketWebsiteConfiguration implements Serializable {
      */
     private String indexDocumentSuffix;
 
-    /** The complete path to the document to serve for 4xx errors. */
+    /**
+     * The complete path to the document to serve for 4xx errors.
+     */
     private String errorDocument;
 
     /**
@@ -58,9 +61,8 @@ public class BucketWebsiteConfiguration implements Serializable {
      * Creates a new BucketWebsiteConfiguration with the specified index
      * document suffix.
      *
-     * @param indexDocumentSuffix
-     *            The document to serve when a directory is specified (ex:
-     *            index.html). This path is relative to the requested resource.
+     * @param indexDocumentSuffix The document to serve when a directory is specified (ex:
+     *         index.html). This path is relative to the requested resource.
      */
     public BucketWebsiteConfiguration(String indexDocumentSuffix) {
         this.indexDocumentSuffix = indexDocumentSuffix;
@@ -70,11 +72,9 @@ public class BucketWebsiteConfiguration implements Serializable {
      * Creates a new BucketWebsiteConfiguration with the specified index
      * document suffix and error document.
      *
-     * @param indexDocumentSuffix
-     *            The document to serve when a directory is specified (ex:
-     *            index.html). This path is relative to the requested resource.
-     * @param errorDocument
-     *            The complete path to the document to serve for 4xx errors.
+     * @param indexDocumentSuffix The document to serve when a directory is specified (ex:
+     *         index.html). This path is relative to the requested resource.
+     * @param errorDocument The complete path to the document to serve for 4xx errors.
      */
     public BucketWebsiteConfiguration(String indexDocumentSuffix, String errorDocument) {
         this.indexDocumentSuffix = indexDocumentSuffix;
@@ -96,9 +96,8 @@ public class BucketWebsiteConfiguration implements Serializable {
      * Sets the document to serve when a directory is specified (ex:
      * index.html). This path is relative to the requested resource.
      *
-     * @param indexDocumentSuffix
-     *            The document to serve when a directory is specified (ex:
-     *            index.html). This path is relative to the requested resource.
+     * @param indexDocumentSuffix The document to serve when a directory is specified (ex:
+     *         index.html). This path is relative to the requested resource.
      */
     public void setIndexDocumentSuffix(String indexDocumentSuffix) {
         this.indexDocumentSuffix = indexDocumentSuffix;
@@ -118,8 +117,7 @@ public class BucketWebsiteConfiguration implements Serializable {
     /**
      * Sets the complete path to the document to serve for 4xx errors.
      *
-     * @param errorDocument
-     *            The complete path to the document to serve for 4xx errors.
+     * @param errorDocument The complete path to the document to serve for 4xx errors.
      */
     public void setErrorDocument(String errorDocument) {
         this.errorDocument = errorDocument;
@@ -128,9 +126,8 @@ public class BucketWebsiteConfiguration implements Serializable {
     /**
      * Sets the redirect information where all requests will be redirect to.
      *
-     * @param redirectAllRequestsTo
-     *            The Redirect information where all requests will be redirect
-     *            to.
+     * @param redirectAllRequestsTo The Redirect information where all requests will be redirect
+     *         to.
      */
     public void setRedirectAllRequestsTo(RedirectRule redirectAllRequestsTo) {
         this.redirectAllRequestsTo = redirectAllRequestsTo;
@@ -148,9 +145,8 @@ public class BucketWebsiteConfiguration implements Serializable {
      * returns a reference to this object(BucketWebsiteConfiguration) for method
      * chaining.
      *
-     * @param redirectAllRequestsTo
-     *            The Redirect information where all requests will be redirect
-     *            to.
+     * @param redirectAllRequestsTo The Redirect information where all requests will be redirect
+     *         to.
      * @return a reference to this object(BucketWebsiteConfiguration) for method
      *         chaining.
      */
@@ -163,9 +159,8 @@ public class BucketWebsiteConfiguration implements Serializable {
      * Set the list of routing rules that can be used for configuring redirects
      * if certain conditions are meet.
      *
-     * @param routingRules
-     *            The list of routing rules that can be used for configuring
-     *            redirects.
+     * @param routingRules The list of routing rules that can be used for configuring
+     *         redirects.
      */
     public void setRoutingRules(List<RoutingRule> routingRules) {
         this.routingRules = routingRules;
@@ -184,12 +179,10 @@ public class BucketWebsiteConfiguration implements Serializable {
      * if certain conditions are meet and returns a reference to this
      * object(BucketWebsiteConfiguration) for method chaining.
      *
-     * @param routingRules
-     *            The list of routing rules that can be used for configuring
-     *            redirects.
+     * @param routingRules The list of routing rules that can be used for configuring
+     *         redirects.
      * @return A reference to this object(BucketWebsiteConfiguration) for method
      *         chaining.
-     *
      */
     public BucketWebsiteConfiguration withRoutingRules(List<RoutingRule> routingRules) {
         this.routingRules = routingRules;

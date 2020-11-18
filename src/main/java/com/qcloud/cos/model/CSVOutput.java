@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -98,7 +99,7 @@ public class CSVOutput implements Serializable, Cloneable {
 
     /**
      * @return Character used for escaping the quote character inside an already escaped value. If it was set with
-     * {@link #setQuoteEscapeCharacter(String)}, this will return the first character in the string.
+     *         {@link #setQuoteEscapeCharacter(String)}, this will return the first character in the string.
      * @see #getQuoteEscapeCharacterAsString() to retrieve the full value.
      */
     public Character getQuoteEscapeCharacter() {
@@ -154,7 +155,7 @@ public class CSVOutput implements Serializable, Cloneable {
 
     /**
      * @return The value used to separate individual records. If it was set with
-     * {@link #setRecordDelimiter(String)}, this will return the first character in the string.
+     *         {@link #setRecordDelimiter(String)}, this will return the first character in the string.
      * @see #getRecordDelimiterAsString() to retrieve the full value.
      */
     public Character getRecordDelimiter() {
@@ -210,7 +211,7 @@ public class CSVOutput implements Serializable, Cloneable {
 
     /**
      * @return The value used to separate individual fields in a record. If it was set with
-     * {@link #setFieldDelimiter(String)}, this will return the first character in the string.
+     *         {@link #setFieldDelimiter(String)}, this will return the first character in the string.
      * @see #getFieldDelimiterAsString() to retrieve the full value.
      */
     public Character getFieldDelimiter() {
@@ -267,7 +268,7 @@ public class CSVOutput implements Serializable, Cloneable {
 
     /**
      * @return The value used for escaping where the field delimiter is part of the value. If it was set with
-     * {@link #setQuoteCharacter(String)}, this will return the first character in the string.
+     *         {@link #setQuoteCharacter(String)}, this will return the first character in the string.
      * @see #getQuoteCharacterAsString() to retrieve the full value.
      */
     public Character getQuoteCharacter() {
@@ -342,16 +343,21 @@ public class CSVOutput implements Serializable, Cloneable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getQuoteFields() != null)
+        if (getQuoteFields() != null) {
             sb.append("QuoteFields: ").append(getQuoteFields()).append(",");
-        if (getQuoteEscapeCharacter() != null)
+        }
+        if (getQuoteEscapeCharacter() != null) {
             sb.append("QuoteEscapeCharacter: ").append(getQuoteEscapeCharacterAsString()).append(",");
-        if (getRecordDelimiter() != null)
+        }
+        if (getRecordDelimiter() != null) {
             sb.append("RecordDelimiter: ").append(getRecordDelimiterAsString()).append(",");
-        if (getFieldDelimiter() != null)
+        }
+        if (getFieldDelimiter() != null) {
             sb.append("FieldDelimiter: ").append(getFieldDelimiterAsString()).append(",");
-        if (getQuoteCharacter() != null)
+        }
+        if (getQuoteCharacter() != null) {
             sb.append("QuoteCharacter: ").append(getQuoteCharacterAsString());
+        }
         sb.append("}");
         return sb.toString();
     }
@@ -361,32 +367,46 @@ public class CSVOutput implements Serializable, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj == null || ! (obj instanceof CSVOutput)) {
+        if (obj == null || !(obj instanceof CSVOutput)) {
             return false;
         }
 
         final CSVOutput other = (CSVOutput) obj;
 
-        if (other.getQuoteEscapeCharacterAsString() == null ^ this.getQuoteEscapeCharacterAsString() == null)
+        if (other.getQuoteEscapeCharacterAsString() == null ^ this.getQuoteEscapeCharacterAsString() == null) {
             return false;
-        if (other.getQuoteEscapeCharacterAsString() != null && !other.getQuoteEscapeCharacterAsString().equals(this.getQuoteEscapeCharacterAsString()))
+        }
+        if (other.getQuoteEscapeCharacterAsString() != null && !other.getQuoteEscapeCharacterAsString()
+                .equals(this.getQuoteEscapeCharacterAsString())) {
             return false;
-        if (other.getQuoteFields() == null ^ this.getQuoteFields() == null)
+        }
+        if (other.getQuoteFields() == null ^ this.getQuoteFields() == null) {
             return false;
-        if (other.getQuoteFields() != null && !other.getQuoteFields().equals(this.getQuoteFields()))
+        }
+        if (other.getQuoteFields() != null && !other.getQuoteFields().equals(this.getQuoteFields())) {
             return false;
-        if (other.getRecordDelimiterAsString() == null ^ this.getRecordDelimiterAsString() == null)
+        }
+        if (other.getRecordDelimiterAsString() == null ^ this.getRecordDelimiterAsString() == null) {
             return false;
-        if (other.getRecordDelimiterAsString() != null && !other.getRecordDelimiterAsString().equals(this.getRecordDelimiterAsString()))
+        }
+        if (other.getRecordDelimiterAsString() != null && !other.getRecordDelimiterAsString()
+                .equals(this.getRecordDelimiterAsString())) {
             return false;
-        if (other.getFieldDelimiterAsString() == null ^ this.getFieldDelimiterAsString() == null)
+        }
+        if (other.getFieldDelimiterAsString() == null ^ this.getFieldDelimiterAsString() == null) {
             return false;
-        if (other.getFieldDelimiterAsString() != null && !other.getFieldDelimiterAsString().equals(this.getFieldDelimiterAsString()))
+        }
+        if (other.getFieldDelimiterAsString() != null && !other.getFieldDelimiterAsString()
+                .equals(this.getFieldDelimiterAsString())) {
             return false;
-        if (other.getQuoteCharacterAsString() == null ^ this.getQuoteCharacterAsString() == null)
+        }
+        if (other.getQuoteCharacterAsString() == null ^ this.getQuoteCharacterAsString() == null) {
             return false;
-        if (other.getQuoteCharacterAsString() != null && !other.getQuoteCharacterAsString().equals(this.getQuoteCharacterAsString()))
+        }
+        if (other.getQuoteCharacterAsString() != null && !other.getQuoteCharacterAsString()
+                .equals(this.getQuoteCharacterAsString())) {
             return false;
+        }
         return true;
     }
 
@@ -396,10 +416,14 @@ public class CSVOutput implements Serializable, Cloneable {
         int hashCode = 1;
 
         hashCode = prime * hashCode + ((getQuoteFields() == null) ? 0 : getQuoteFields().hashCode());
-        hashCode = prime * hashCode + ((getQuoteEscapeCharacterAsString() == null) ? 0 : getQuoteEscapeCharacterAsString().hashCode());
-        hashCode = prime * hashCode + ((getRecordDelimiterAsString() == null) ? 0 : getRecordDelimiterAsString().hashCode());
-        hashCode = prime * hashCode + ((getFieldDelimiterAsString() == null) ? 0 : getFieldDelimiterAsString().hashCode());
-        hashCode = prime * hashCode + (getQuoteCharacterAsString() != null ? getQuoteCharacterAsString().hashCode() : 0);
+        hashCode = prime * hashCode + ((getQuoteEscapeCharacterAsString() == null) ? 0
+                : getQuoteEscapeCharacterAsString().hashCode());
+        hashCode = prime * hashCode + ((getRecordDelimiterAsString() == null) ? 0
+                : getRecordDelimiterAsString().hashCode());
+        hashCode =
+                prime * hashCode + ((getFieldDelimiterAsString() == null) ? 0 : getFieldDelimiterAsString().hashCode());
+        hashCode =
+                prime * hashCode + (getQuoteCharacterAsString() != null ? getQuoteCharacterAsString().hashCode() : 0);
         return hashCode;
     }
 
@@ -408,7 +432,8 @@ public class CSVOutput implements Serializable, Cloneable {
         try {
             return super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
+            throw new IllegalStateException(
+                    "Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
         }
     }
 }

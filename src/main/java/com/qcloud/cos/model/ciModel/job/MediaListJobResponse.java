@@ -8,6 +8,7 @@ import java.util.List;
  * 媒体处理 任务列表响应实体 https://cloud.tencent.com/document/product/460/48234
  */
 public class MediaListJobResponse {
+
     private List<MediaJobObject> jobsDetailList;
 
     private String nextToken;

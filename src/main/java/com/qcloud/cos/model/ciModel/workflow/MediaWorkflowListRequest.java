@@ -8,6 +8,7 @@ import java.io.Serializable;
  * 工作流列表请求实体类 请见：https://cloud.tencent.com/document/product/460/45947
  */
 public class MediaWorkflowListRequest extends CIServiceRequest implements Serializable {
+
     /**
      * 工作流 ID，以,符号分割字符串
      */

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -24,6 +24,7 @@ import java.io.InputStream;
 import com.qcloud.cos.exception.CosClientException;
 
 public class LengthCheckInputStream extends SdkFilterInputStream {
+
     public static final boolean INCLUDE_SKIPPED_BYTES = true;
     public static final boolean EXCLUDE_SKIPPED_BYTES = false;
     /**
@@ -50,40 +51,42 @@ public class LengthCheckInputStream extends SdkFilterInputStream {
     /**
      * Constructs an input stream that performs length check to ensure the number of bytes read from
      * the underlying input stream is the same as the expected total.
-     * 
+     *
      * @param in the underlying input stream
      * @param expectedLength the total length of the data in bytes expected to be read from the
-     *        underlying input stream; must be non-negative.
+     *         underlying input stream; must be non-negative.
      * @param includeSkipped true if bytes skipped are to be considered as part of the data length;
-     *        false otherwise. Typically, this parameter should be set to false for uploading data
-     *        to COS, but set to true for receiving data from COS.
+     *         false otherwise. Typically, this parameter should be set to false for uploading data
+     *         to COS, but set to true for receiving data from COS.
      */
     public LengthCheckInputStream(InputStream in, long expectedLength, boolean includeSkipped) {
         super(in);
-        if (expectedLength < 0)
+        if (expectedLength < 0) {
             throw new IllegalArgumentException();
+        }
         this.expectedLength = expectedLength;
         this.includeSkipped = includeSkipped;
     }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @throws CosClientException if the data length read has exceeded the expected total, or if
      *         the total data length is not the same as the expected total.
      */
     @Override
     public int read() throws IOException {
         final int c = super.read();
-        if (c >= 0)
+        if (c >= 0) {
             dataLength++;
+        }
         checkLength(c == -1);
         return c;
     }
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @throws CosClientException if the data length read has exceeded the expected total, or if
      *         the total data length is not the same as the expected total.
      */
@@ -119,9 +122,8 @@ public class LengthCheckInputStream extends SdkFilterInputStream {
 
     /**
      * Checks the data length read so far against the expected total.
-     * 
+     *
      * @param eof true if end of stream has been encountered; false otherwise
-     * 
      * @throws CosClientException if the data length read has exceeded the expected total, or if
      *         the total data length is not the same as the expected total.
      */
@@ -148,7 +150,7 @@ public class LengthCheckInputStream extends SdkFilterInputStream {
 
     /**
      * {@inheritDoc}
-     * 
+     *
      * @throws CosClientException if {@link #includeSkipped} is true and the data length skipped
      *         has exceeded the expected total.
      */

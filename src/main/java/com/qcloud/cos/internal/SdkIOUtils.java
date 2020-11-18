@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -25,6 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class SdkIOUtils {
+
     private static final Logger defaultLog = LoggerFactory.getLogger(SdkIOUtils.class);
 
     public static void closeQuietly(Closeable is) {
@@ -33,7 +34,7 @@ public class SdkIOUtils {
 
     /**
      * Closes the given Closeable quietly.
-     * 
+     *
      * @param is the given closeable
      * @param log logger used to log any failure should the close fail
      */
@@ -43,8 +44,9 @@ public class SdkIOUtils {
                 is.close();
             } catch (IOException ex) {
                 Logger logger = log == null ? defaultLog : log;
-                if (logger.isDebugEnabled())
+                if (logger.isDebugEnabled()) {
                     logger.debug("Ignore failure in closing the Closeable", ex);
+                }
             }
         }
     }

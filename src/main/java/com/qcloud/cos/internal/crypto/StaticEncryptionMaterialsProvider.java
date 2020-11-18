@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -23,6 +23,7 @@ import java.util.Map;
 
 public class StaticEncryptionMaterialsProvider
         implements EncryptionMaterialsProvider, Serializable {
+
     private final EncryptionMaterials materials;
 
     public StaticEncryptionMaterialsProvider(EncryptionMaterials materials) {
@@ -33,22 +34,23 @@ public class StaticEncryptionMaterialsProvider
         return materials;
     }
 
-    public void refresh() {}
+    public void refresh() {
+    }
 
     public EncryptionMaterials getEncryptionMaterials(
             final Map<String, String> materialDescIn) {
         if (materials == null) {
             return null;  // nothing to match descriptions against, and no accessor
         }
-        final Map<String,String> materialDesc =
-            materials.getMaterialsDescription();
-        if (materialDescIn != null &&  materialDescIn.equals(materialDesc)) {
+        final Map<String, String> materialDesc =
+                materials.getMaterialsDescription();
+        if (materialDescIn != null && materialDescIn.equals(materialDesc)) {
             return materials;   // matching description
         }
         EncryptionMaterialsAccessor accessor = materials.getAccessor();
         if (accessor != null) {
             EncryptionMaterials accessorMaterials =
-                accessor.getEncryptionMaterials(materialDescIn);
+                    accessor.getEncryptionMaterials(materialDescIn);
             if (accessorMaterials != null) {
                 return accessorMaterials;   // accessor decided materials
             }

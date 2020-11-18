@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.utils;
 
 
@@ -60,7 +61,8 @@ public class XmlUtils {
     /**
      * Disables certain dangerous features that attempt to automatically fetch DTDs
      *
-     * See <a href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet">OWASP XXE Cheat Sheet</a>
+     * See <a href="https://www.owasp.org/index.php/XML_External_Entity_(XXE)_Prevention_Cheat_Sheet">OWASP XXE Cheat
+     * Sheet</a>
      */
     private static XMLInputFactory createXmlInputFactory() {
         XMLInputFactory factory = XMLInputFactory.newInstance();

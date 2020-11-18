@@ -6,7 +6,7 @@ import java.util.List;
 /**
  * 工作流请求实体类 请见：https://cloud.tencent.com/document/product/460/45947
  */
-public class MediaWorkflowExecutionsResponse  {
+public class MediaWorkflowExecutionsResponse {
 
     /**
      * 工作流实例详细信息
@@ -18,7 +18,7 @@ public class MediaWorkflowExecutionsResponse  {
     private String requestId;
 
     public List<MediaWorkflowExecutionObject> getWorkflowExecutionList() {
-        if (workflowExecutionList==null){
+        if (workflowExecutionList == null) {
             workflowExecutionList = new ArrayList<>();
         }
         return workflowExecutionList;

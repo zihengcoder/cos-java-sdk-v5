@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import com.qcloud.cos.internal.CosServiceRequest;
@@ -24,6 +25,7 @@ import java.io.Serializable;
  * Request object for the parameters to delete the tags for an object.
  */
 public class DeleteObjectTaggingRequest extends CosServiceRequest implements Serializable {
+
     private String bucketName;
     private String key;
     private String versionId;
@@ -31,10 +33,8 @@ public class DeleteObjectTaggingRequest extends CosServiceRequest implements Ser
     /**
      * Constructs an instance of this object.
      *
-     * @param bucketName
-     *            The bucket name.
-     * @param key
-     *            The object key.
+     * @param bucketName The bucket name.
+     * @param key The object key.
      */
     public DeleteObjectTaggingRequest(String bucketName, String key) {
         this.bucketName = bucketName;
@@ -51,8 +51,7 @@ public class DeleteObjectTaggingRequest extends CosServiceRequest implements Ser
     /**
      * Set the bucket name.
      *
-     * @param bucketName
-     *            The bucket name.
+     * @param bucketName The bucket name.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -61,9 +60,7 @@ public class DeleteObjectTaggingRequest extends CosServiceRequest implements Ser
     /**
      * Set the bucket name.
      *
-     * @param bucketName
-     *            The bucket name.
-     *
+     * @param bucketName The bucket name.
      * @return This object for chaining.
      */
     public DeleteObjectTaggingRequest withBucketName(String bucketName) {
@@ -81,8 +78,7 @@ public class DeleteObjectTaggingRequest extends CosServiceRequest implements Ser
     /**
      * Set the object key.
      *
-     * @param key
-     *            The object key.
+     * @param key The object key.
      */
     public void setKey(String key) {
         this.key = key;
@@ -91,9 +87,7 @@ public class DeleteObjectTaggingRequest extends CosServiceRequest implements Ser
     /**
      * Set the object key.
      *
-     * @param key
-     *            The object key.
-     *
+     * @param key The object key.
      * @return This object for chaining.
      */
     public DeleteObjectTaggingRequest withKey(String key) {
@@ -120,9 +114,7 @@ public class DeleteObjectTaggingRequest extends CosServiceRequest implements Ser
     /**
      * Set version of the object whose tages are to be deleted.
      *
-     * @param versionId
-     *            The object version.
-     *
+     * @param versionId The object version.
      * @return This object for chaining.
      */
     public DeleteObjectTaggingRequest withVersionId(String versionId) {

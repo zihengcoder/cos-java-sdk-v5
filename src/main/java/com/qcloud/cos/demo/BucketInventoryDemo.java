@@ -13,6 +13,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BucketInventoryDemo {
+
     public static void SetGetDeleteBucketInventoryDemo() {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("AKIDXXXXXXXX", "1A2Z3YYYYYYYYYY");
@@ -59,12 +60,14 @@ public class BucketInventoryDemo {
         cosclient.setBucketInventoryConfiguration(setBucketInventoryConfigurationRequest);
 
         // 获取指定id的清单配置
-        GetBucketInventoryConfigurationResult getBucketInventoryConfigurationResult = cosclient.getBucketInventoryConfiguration(bucketName, "1");
+        GetBucketInventoryConfigurationResult getBucketInventoryConfigurationResult = cosclient
+                .getBucketInventoryConfiguration(bucketName, "1");
 
         // 批量获取清单
         ListBucketInventoryConfigurationsRequest listBucketInventoryConfigurationsRequest = new ListBucketInventoryConfigurationsRequest();
         listBucketInventoryConfigurationsRequest.setBucketName(bucketName);
-        ListBucketInventoryConfigurationsResult listBucketInventoryConfigurationsResult = cosclient.listBucketInventoryConfigurations(listBucketInventoryConfigurationsRequest);
+        ListBucketInventoryConfigurationsResult listBucketInventoryConfigurationsResult = cosclient
+                .listBucketInventoryConfigurations(listBucketInventoryConfigurationsRequest);
 
         // 删除指定清单
         DeleteBucketInventoryConfigurationRequest deleteBucketInventoryConfigurationRequest = new DeleteBucketInventoryConfigurationRequest();
@@ -72,6 +75,7 @@ public class BucketInventoryDemo {
         deleteBucketInventoryConfigurationRequest.setId("1");
         cosclient.deleteBucketInventoryConfiguration(deleteBucketInventoryConfigurationRequest);
     }
+
     public static void main(String[] args) {
         SetGetDeleteBucketInventoryDemo();
     }

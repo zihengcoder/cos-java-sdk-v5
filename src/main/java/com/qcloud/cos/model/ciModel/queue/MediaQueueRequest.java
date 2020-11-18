@@ -5,6 +5,7 @@ import com.qcloud.cos.internal.CIServiceRequest;
 import java.io.Serializable;
 
 public class MediaQueueRequest extends CIServiceRequest implements Serializable {
+
     private String queueId;
     private String state;
     private String pageNumber;

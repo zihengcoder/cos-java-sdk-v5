@@ -1,6 +1,7 @@
 package com.qcloud.cos.model.ciModel.workflow;
 
 public class MediaWorkflowDependency {
+
     private String value;
 
     public String getValue() {

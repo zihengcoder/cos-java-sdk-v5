@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -19,15 +19,15 @@
 package com.qcloud.cos.auth;
 
 public class AnonymousCOSCredentials implements COSCredentials {
+
     private String appId;
 
     /**
-     * 
-     * @param appId           the appid which your resource belong to.
+     * @param appId the appid which your resource belong to.
      * @deprecated appid should be included in bucket name. for example if your appid
-     * is 125123123, previous bucket is ott. you should set bucket as ott-125123123.
-     * 
-     * use {@link AnonymousCOSCredentials#AnonymousCOSCredentials()}
+     *         is 125123123, previous bucket is ott. you should set bucket as ott-125123123.
+     *
+     *         use {@link AnonymousCOSCredentials#AnonymousCOSCredentials()}
      */
     @Deprecated
     public AnonymousCOSCredentials(String appId) {
@@ -42,7 +42,7 @@ public class AnonymousCOSCredentials implements COSCredentials {
         }
         this.appId = appId;
     }
-    
+
     public AnonymousCOSCredentials() {
         super();
         this.appId = null;

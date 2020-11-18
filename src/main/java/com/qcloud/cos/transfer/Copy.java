@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,7 +27,6 @@ import com.qcloud.cos.model.CopyResult;
  * <p>
  * See {@link TransferManager} for more information about creating transfers.
  * </p>
- *
  */
 public interface Copy extends Transfer {
 
@@ -38,13 +37,11 @@ public interface Copy extends Transfer {
      * through this method.
      *
      * @return The result of this transfer.
-     *
      * @throws CosClientException If any errors are encountered in the client while making the
      *         request or handling the response.
      * @throws CosServiceException If any errors occurred in while processing the request.
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the upload to
-     *             complete.
+     * @throws InterruptedException If this thread is interrupted while waiting for the upload to
+     *         complete.
      */
     public CopyResult waitForCopyResult() throws CosClientException,
             CosServiceException, InterruptedException;

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -36,8 +36,7 @@ public class CosServiceResponse<T> {
     /**
      * Sets the result contained by this response.
      *
-     * @param result
-     *            The result contained by this response.
+     * @param result The result contained by this response.
      */
     public void setResult(T result) {
         this.result = result;
@@ -45,9 +44,8 @@ public class CosServiceResponse<T> {
 
     /**
      * Sets the response metadata associated with this response.
-     * 
-     * @param responseMetadata
-     *            The response metadata for this response.
+     *
+     * @param responseMetadata The response metadata for this response.
      */
     public void setResponseMetadata(ResponseMetadata responseMetadata) {
         this.responseMetadata = responseMetadata;
@@ -56,8 +54,8 @@ public class CosServiceResponse<T> {
     /**
      * Returns the response metadata for this response. Response metadata
      * provides additional information about a response that isn't necessarily
-     * directly part of the data the service is returning. 
-     * 
+     * directly part of the data the service is returning.
+     *
      * @return The response metadata for this response.
      */
     public ResponseMetadata getResponseMetadata() {
@@ -65,12 +63,14 @@ public class CosServiceResponse<T> {
     }
 
     /**
-     * Returns the cos request ID from the response metadata 
+     * Returns the cos request ID from the response metadata
      *
      * @return The COS request ID from the response metadata
      */
     public String getRequestId() {
-        if (responseMetadata == null) return null;
+        if (responseMetadata == null) {
+            return null;
+        }
         return responseMetadata.getRequestId();
     }
 

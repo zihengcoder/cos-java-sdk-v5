@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -57,6 +57,7 @@ import com.qcloud.cos.transfer.Transfer.TransferState;
 
 
 public class UploadCallable implements Callable<UploadResult> {
+
     private final COS cos;
     private final ExecutorService threadPool;
     private final PutObjectRequest origReq;
@@ -110,7 +111,7 @@ public class UploadCallable implements Callable<UploadResult> {
 
     /**
      * Returns true if this UploadCallable is processing a multipart upload.
-     * 
+     *
      * @return True if this UploadCallable is processing a multipart upload.
      */
     public boolean isMultipartUpload() {
@@ -211,9 +212,10 @@ public class UploadCallable implements Callable<UploadResult> {
      */
     void performAbortMultipartUpload() {
         try {
-            if (multipartUploadId != null)
+            if (multipartUploadId != null) {
                 cos.abortMultipartUpload(new AbortMultipartUploadRequest(origReq.getBucketName(),
                         origReq.getKey(), multipartUploadId));
+            }
         } catch (Exception e2) {
             log.info(
                     "Unable to abort multipart upload, you may need to manually remove uploaded parts: "
@@ -245,8 +247,9 @@ public class UploadCallable implements Callable<UploadResult> {
         final List<PartETag> partETags = new ArrayList<PartETag>();
 
         while (requestFactory.hasMoreRequests()) {
-            if (threadPool.isShutdown())
+            if (threadPool.isShutdown()) {
                 throw new CancellationException("TransferManager has been shutdown");
+            }
             UploadPartRequest uploadPartRequest = requestFactory.getNextUploadPartRequest();
             // Mark the stream in case we need to reset it
             InputStream inputStream = uploadPartRequest.getInputStream();
@@ -263,8 +266,8 @@ public class UploadCallable implements Callable<UploadResult> {
         CompleteMultipartUploadRequest req =
                 new CompleteMultipartUploadRequest(origReq.getBucketName(), origReq.getKey(),
                         multipartUploadId, partETags)
-                                .withGeneralProgressListener(origReq.getGeneralProgressListener());
-        if(origReq.getFixedEndpointAddr() != null) {
+                        .withGeneralProgressListener(origReq.getGeneralProgressListener());
+        if (origReq.getFixedEndpointAddr() != null) {
             req.setFixedEndpointAddr(origReq.getFixedEndpointAddr());
         }
         CompleteMultipartUploadResult res = cos.completeMultipartUpload(req);
@@ -289,8 +292,9 @@ public class UploadCallable implements Callable<UploadResult> {
         Map<Integer, PartSummary> partNumbers = identifyExistingPartsForResume(uploadId);
 
         while (requestFactory.hasMoreRequests()) {
-            if (threadPool.isShutdown())
+            if (threadPool.isShutdown()) {
                 throw new CancellationException("TransferManager has been shutdown");
+            }
             UploadPartRequest request = requestFactory.getNextUploadPartRequest();
             if (partNumbers.containsKey(request.getPartNumber())) {
                 PartSummary summary = partNumbers.get(request.getPartNumber());
@@ -325,7 +329,7 @@ public class UploadCallable implements Callable<UploadResult> {
 
     /**
      * Initiates a multipart upload and returns the upload id
-     * 
+     *
      * @param isUsingEncryption
      */
     private String initiateMultipartUpload(PutObjectRequest origReq, boolean isUsingEncryption) {
@@ -334,7 +338,7 @@ public class UploadCallable implements Callable<UploadResult> {
         if (isUsingEncryption && origReq instanceof EncryptedPutObjectRequest) {
             req = new EncryptedInitiateMultipartUploadRequest(origReq.getBucketName(),
                     origReq.getKey()).withCannedACL(origReq.getCannedAcl())
-                            .withObjectMetadata(origReq.getMetadata());
+                    .withObjectMetadata(origReq.getMetadata());
             ((EncryptedInitiateMultipartUploadRequest) req).setMaterialsDescription(
                     ((EncryptedPutObjectRequest) origReq).getMaterialsDescription());
         } else {
@@ -352,7 +356,7 @@ public class UploadCallable implements Callable<UploadResult> {
                 .withSSECOSKeyManagementParams(origReq.getSSECOSKeyManagementParams())
                 .withGeneralProgressListener(origReq.getGeneralProgressListener());
 
-        if(origReq.getFixedEndpointAddr() != null) {
+        if (origReq.getFixedEndpointAddr() != null) {
             req.setFixedEndpointAddr(origReq.getFixedEndpointAddr());
         }
         String uploadId = cos.initiateMultipartUpload(req).getUploadId();

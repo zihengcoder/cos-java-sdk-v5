@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -26,22 +27,21 @@ import java.util.List;
  * com.qcloud.cos.model.GetObjectTaggingRequest}.
  */
 public class GetObjectTaggingResult {
+
     private String versionId;
     private List<Tag> tagSet;
 
     /**
      * Constructs an instance of this object.
      *
-     * @param tagSet
-     *            The tags set on the object.
+     * @param tagSet The tags set on the object.
      */
     public GetObjectTaggingResult(List<Tag> tagSet) {
         this.tagSet = tagSet;
     }
 
     /**
-     * @return
-     *            The version ID of the object the tags were retrieved from.
+     * @return The version ID of the object the tags were retrieved from.
      */
     public String getVersionId() {
         return versionId;
@@ -50,8 +50,7 @@ public class GetObjectTaggingResult {
     /**
      * Set the version ID of the object the tags were retrieved from.
      *
-     * @param versionId
-     *            The version ID.
+     * @param versionId The version ID.
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;
@@ -60,10 +59,8 @@ public class GetObjectTaggingResult {
     /**
      * Set the version ID of the object the tags were retrieved from.
      *
-     * @param versionId
-     *            The version ID.
-     * @return
-     *            This object for method chaining.
+     * @param versionId The version ID.
+     * @return This object for method chaining.
      */
     public GetObjectTaggingResult withVersionId(String versionId) {
         setVersionId(versionId);
@@ -89,10 +86,8 @@ public class GetObjectTaggingResult {
     /**
      * Set the tag set.
      *
-     * @param tagSet
-     *            The tag set.
-     * @return
-     *            This object for chaining.
+     * @param tagSet The tag set.
+     * @return This object for chaining.
      */
     public GetObjectTaggingResult withTagSet(List<Tag> tagSet) {
         setTagSet(tagSet);

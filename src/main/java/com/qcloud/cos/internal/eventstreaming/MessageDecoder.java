@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.internal.eventstreaming;
 
 import java.nio.ByteBuffer;
@@ -21,6 +22,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public final class MessageDecoder {
+
     private ByteBuffer buf;
 
     public MessageDecoder() {

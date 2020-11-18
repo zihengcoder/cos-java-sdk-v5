@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class SSECustomerDemo {
+
     public static void SSECustomerUpload() {
         // 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("COS_SECRETID", "COS_SECRETKEY");
@@ -48,6 +49,7 @@ public class SSECustomerDemo {
         cosclient.shutdown();
 
     }
+
     public static void SSECustomerDownload() {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("COS_SECRETID", "COS_SECRETKEY");

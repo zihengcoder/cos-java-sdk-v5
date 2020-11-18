@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model.transform;
 
 
@@ -37,6 +38,7 @@ import javax.xml.stream.XMLStreamException;
 
 @SdkInternalApi
 public abstract class SelectObjectContentEventUnmarshaller {
+
     public static SelectObjectContentEvent unmarshalMessage(Message message) {
         String messageType = getStringHeader(message, ":message-type");
 
@@ -53,7 +55,8 @@ public abstract class SelectObjectContentEventUnmarshaller {
         String errorCode = getStringHeader(message, ":error-code");
         String errorMessage = getStringHeader(message, ":error-message");
         SelectObjectContentEventException exception =
-                new SelectObjectContentEventException("COS returned an error: " + errorMessage + " (" + errorCode  + ")");
+                new SelectObjectContentEventException(
+                        "COS returned an error: " + errorMessage + " (" + errorCode + ")");
         exception.setErrorCode(errorCode);
         exception.setErrorMessage(errorMessage);
         return exception;
@@ -93,7 +96,8 @@ public abstract class SelectObjectContentEventUnmarshaller {
             throw new SelectObjectContentEventException("Unexpected lack of '" + headerName + "' header from service.");
         }
         if (header.getType() != HeaderType.STRING) {
-            throw new SelectObjectContentEventException("Unexpected non-string '" + headerName + "' header: " + header.getType());
+            throw new SelectObjectContentEventException(
+                    "Unexpected non-string '" + headerName + "' header: " + header.getType());
         }
         return header.getString();
     }
@@ -101,6 +105,7 @@ public abstract class SelectObjectContentEventUnmarshaller {
     public abstract SelectObjectContentEvent unmarshal(Message message) throws Exception;
 
     public static class RecordsEventUnmarshaller extends SelectObjectContentEventUnmarshaller {
+
         @Override
         public RecordsEvent unmarshal(Message message) {
             return new RecordsEvent().withPayload(ByteBuffer.wrap(message.getPayload()));
@@ -108,6 +113,7 @@ public abstract class SelectObjectContentEventUnmarshaller {
     }
 
     public static class StatsEventUnmarshaller extends SelectObjectContentEventUnmarshaller {
+
         @Override
         public StatsEvent unmarshal(Message message) throws Exception {
             StaxUnmarshallerContext context = payloadUnmarshaller(message);
@@ -116,6 +122,7 @@ public abstract class SelectObjectContentEventUnmarshaller {
     }
 
     public static class ProgressEventUnmarshaller extends SelectObjectContentEventUnmarshaller {
+
         @Override
         public ProgressEvent unmarshal(Message message) throws Exception {
             StaxUnmarshallerContext context = payloadUnmarshaller(message);
@@ -124,6 +131,7 @@ public abstract class SelectObjectContentEventUnmarshaller {
     }
 
     public static class ContinuationEventUnmarshaller extends SelectObjectContentEventUnmarshaller {
+
         @Override
         public ContinuationEvent unmarshal(Message message) {
             return new ContinuationEvent();
@@ -131,6 +139,7 @@ public abstract class SelectObjectContentEventUnmarshaller {
     }
 
     public static class EndEventUnmarshaller extends SelectObjectContentEventUnmarshaller {
+
         @Override
         public EndEvent unmarshal(Message message) {
             return new EndEvent();
@@ -138,6 +147,7 @@ public abstract class SelectObjectContentEventUnmarshaller {
     }
 
     public static class UnknownEventUnmarshaller extends SelectObjectContentEventUnmarshaller {
+
         @Override
         public SelectObjectContentEvent unmarshal(Message message) {
             return new SelectObjectContentEvent();

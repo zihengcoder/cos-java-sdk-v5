@@ -16,16 +16,20 @@
  */
 
 package com.qcloud.cos.model;
+
 import java.io.Serializable;
 
 import com.qcloud.cos.internal.CosServiceRequest;
+
 /**
  * Request object for the parameters to retrieve a bucket's website
  * configuration.
  */
 public class GetBucketWebsiteConfigurationRequest extends CosServiceRequest implements Serializable {
 
-    /** The name of the bucket whose website configuration is being retrieved. */
+    /**
+     * The name of the bucket whose website configuration is being retrieved.
+     */
     private String bucketName;
 
 
@@ -33,20 +37,19 @@ public class GetBucketWebsiteConfigurationRequest extends CosServiceRequest impl
      * Creates a new request object, ready to be executed to retrieve the bucket
      * website configuration for the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket whose website configuration is being
-     *            retrieved.
+     * @param bucketName The name of the bucket whose website configuration is being
+     *         retrieved.
      */
     public GetBucketWebsiteConfigurationRequest(String bucketName) {
         this.bucketName = bucketName;
     }
+
     /**
      * Sets the name of the bucket whose website configuration is being
      * retrieved.
      *
-     * @param bucketName
-     *            The name of the bucket whose website configuration is being
-     *            retrieved.
+     * @param bucketName The name of the bucket whose website configuration is being
+     *         retrieved.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -68,10 +71,8 @@ public class GetBucketWebsiteConfigurationRequest extends CosServiceRequest impl
      * retrieved, and returns this updated request object so that additional
      * method calls can be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket whose website configuration is being
-     *            retrieved.
-     *
+     * @param bucketName The name of the bucket whose website configuration is being
+     *         retrieved.
      * @return This updated request object, so that additional method calls can
      *         be chained together.
      */

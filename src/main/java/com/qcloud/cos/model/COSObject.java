@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,16 +28,24 @@ public class COSObject implements Closeable, Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /** The key under which this object is stored */
+    /**
+     * The key under which this object is stored
+     */
     private String key = null;
 
-    /** The name of the bucket in which this object is contained */
+    /**
+     * The name of the bucket in which this object is contained
+     */
     private String bucketName = null;
 
-    /** The metadata stored by Qcloud COS for this object */
+    /**
+     * The metadata stored by Qcloud COS for this object
+     */
     private ObjectMetadata metadata = new ObjectMetadata();
 
-    /** The stream containing the contents of this object from COS */
+    /**
+     * The stream containing the contents of this object from COS
+     */
     private transient COSObjectInputStream objectContent;
 
     /**
@@ -77,7 +85,6 @@ public class COSObject implements Closeable, Serializable {
      * </p>
      *
      * @return An input stream containing the contents of this object.
-     *
      * @see COSObject#getObjectMetadata()
      * @see COSObject#setObjectContent(InputStream)
      */
@@ -89,7 +96,6 @@ public class COSObject implements Closeable, Serializable {
      * Sets the input stream containing this object's contents.
      *
      * @param objectContent The input stream containing this object's contents.
-     *
      * @see COSObject#getObjectContent()
      */
     public void setObjectContent(COSObjectInputStream objectContent) {
@@ -100,7 +106,7 @@ public class COSObject implements Closeable, Serializable {
      * Sets the input stream containing this object's contents.
      *
      * @param objectContent The input stream containing this object's contents. Will get wrapped in
-     *        an COSObjectInputStream.
+     *         an COSObjectInputStream.
      * @see COSObject#getObjectContent()
      */
     public void setObjectContent(InputStream objectContent) {
@@ -112,7 +118,6 @@ public class COSObject implements Closeable, Serializable {
      * Gets the name of the bucket in which this object is contained.
      *
      * @return The name of the bucket in which this object is contained.
-     *
      * @see COSObject#setBucketName(String)
      */
     public String getBucketName() {
@@ -123,7 +128,6 @@ public class COSObject implements Closeable, Serializable {
      * Sets the name of the bucket in which this object is contained.
      *
      * @param bucketName The name of the bucket containing this object.
-     *
      * @see COSObject#getBucketName()
      */
     public void setBucketName(String bucketName) {
@@ -134,7 +138,6 @@ public class COSObject implements Closeable, Serializable {
      * Gets the key under which this object is stored.
      *
      * @return The key under which this object is stored.
-     *
      * @see COSObject#setKey(String)
      */
     public String getKey() {
@@ -145,7 +148,6 @@ public class COSObject implements Closeable, Serializable {
      * Sets the key under which this object is stored.
      *
      * @param key The key under which this object is stored.
-     *
      * @see COSObject#getKey()
      */
     public void setKey(String key) {
@@ -169,8 +171,9 @@ public class COSObject implements Closeable, Serializable {
     @Override
     public void close() throws IOException {
         InputStream is = getObjectContent();
-        if (is != null)
+        if (is != null) {
             is.close();
+        }
     }
 
 }

@@ -1,6 +1,7 @@
 package com.qcloud.cos.auth;
 
 public class InstanceProfileCredentials extends BasicSessionCredentials {
+
     private static final long DEFAULT_EXPIRATION_DURATION_SECONDS = 1800;
     private static final double DEFAULT_EXPIRED_FACTOR = 0.2;
 
@@ -10,7 +11,7 @@ public class InstanceProfileCredentials extends BasicSessionCredentials {
 
     @Deprecated
     public InstanceProfileCredentials(String appId, String accessKey, String secretKey, String sessionToken,
-                                      long expiredTime) {
+            long expiredTime) {
         super(appId, accessKey, secretKey, sessionToken);
         this.expiredTime = expiredTime;
         this.expirationDurationSeconds = this.expiredTime - (System.currentTimeMillis() / 1000);

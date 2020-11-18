@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,6 +27,7 @@ import javax.crypto.IllegalBlockSizeException;
 import com.qcloud.cos.internal.SdkFilterInputStream;
 
 public class CipherLiteInputStream extends SdkFilterInputStream {
+
     private static final int MAX_RETRY = 1000;
     private static final int DEFAULT_IN_BUFFER_SIZE = 512;
     private CipherLite cipherLite;
@@ -61,8 +62,9 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
     public CipherLiteInputStream(InputStream is, CipherLite c, int buffsize,
             boolean multipart, boolean lastMultiPart) {
         super(is);
-        if (lastMultiPart && !multipart)
+        if (lastMultiPart && !multipart) {
             throw new IllegalArgumentException("lastMultiPart can only be true if multipart is true");
+        }
         this.multipart = multipart;
         this.lastMultiPart = lastMultiPart;
         this.cipherLite = c;
@@ -78,27 +80,34 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
         this(is, CipherLite.Null, DEFAULT_IN_BUFFER_SIZE, false, false);
     }
 
-    @Override public int read() throws IOException {
+    @Override
+    public int read() throws IOException {
         if (curr_pos >= max_pos) {
-            if (eof)
+            if (eof) {
                 return -1;
+            }
             int count = 0;
             int len;
-            do { 
-                if (count > MAX_RETRY)
+            do {
+                if (count > MAX_RETRY) {
                     throw new IOException("exceeded maximum number of attempts to read next chunk of data");
+                }
                 len = nextChunk();
                 count++;
             } while (len == 0);
 
-            if (len == -1)
+            if (len == -1) {
                 return -1;
+            }
         }
         return ((int) bufout[curr_pos++] & 0xFF);
-    };
+    }
+
+    ;
 
 
-    @Override public int read(byte b[]) throws IOException {
+    @Override
+    public int read(byte b[]) throws IOException {
         return read(b, 0, b.length);
     }
 
@@ -106,48 +115,58 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
     public int read(byte buf[], int off, int target_len) throws IOException {
         if (curr_pos >= max_pos) {
             // all buffered data has been read, let's get some more
-            if (eof)
+            if (eof) {
                 return -1;
-            int count=0;
+            }
+            int count = 0;
             int len;
             do {
-                if (count > MAX_RETRY)
+                if (count > MAX_RETRY) {
                     throw new IOException("exceeded maximum number of attempts to read next chunk of data");
+                }
                 len = nextChunk();
                 count++;
             } while (len == 0);
 
-            if (len == -1)
+            if (len == -1) {
                 return -1;
+            }
         }
-        if (target_len <= 0)
+        if (target_len <= 0) {
             return 0;
+        }
         int len = max_pos - curr_pos;
-        if (target_len < len)
+        if (target_len < len) {
             len = target_len;
+        }
         // if buf == null, will throw NPE as intended per javadoc
         System.arraycopy(bufout, curr_pos, buf, off, len);
         curr_pos += len;
         return len;
     }
 
-    @Override public long skip(long n) throws IOException {
+    @Override
+    public long skip(long n) throws IOException {
         abortIfNeeded();
         int available = max_pos - curr_pos;
-        if (n > available)
+        if (n > available) {
             n = available;
-        if (n < 0)
+        }
+        if (n < 0) {
             return 0;
+        }
         curr_pos += n;
         return n;
     }
 
-    @Override public int available() {
+    @Override
+    public int available() {
         abortIfNeeded();
-        return max_pos - curr_pos; 
+        return max_pos - curr_pos;
     }
 
-    @Override public void close() throws IOException {
+    @Override
+    public void close() throws IOException {
         in.close();
         // For multipart upload the doFinal has to be triggered via the read
         // methods, since we cann't tell if the close is due to error or normal
@@ -200,19 +219,17 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
 
     /**
      * Reads and process the next chunk of data into memory.
-     * 
+     *
      * @return the length of the data chunk read and processed, or -1 if end of
      *         stream.
-     * @throws IOException
-     *             if there is an IO exception from the underlying input stream
-     * 
-     * @throws SecurityException
-     *             if there is authentication failure
+     * @throws IOException if there is an IO exception from the underlying input stream
+     * @throws SecurityException if there is authentication failure
      */
     private int nextChunk() throws IOException {
         abortIfNeeded();
-        if (eof)
+        if (eof) {
             return -1;
+        }
         bufout = null;
         int len = in.read(bufin);
         if (len == -1) {
@@ -231,8 +248,9 @@ public class CipherLiteInputStream extends SdkFilterInputStream {
                 } catch (IllegalBlockSizeException ignore) {
                     // like the RI
                 } catch (BadPaddingException e) {
-                    if (COSCryptoScheme.isAesGcm(cipherLite.getCipherAlgorithm()))
+                    if (COSCryptoScheme.isAesGcm(cipherLite.getCipherAlgorithm())) {
                         throw new SecurityException(e);
+                    }
                 }
             }
             return -1;

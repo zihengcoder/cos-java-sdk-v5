@@ -14,13 +14,16 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.internal.eventstreaming;
 
 import java.nio.ByteBuffer;
 import java.util.zip.Checksum;
 
 final class Checksums {
-    private Checksums() {}
+
+    private Checksums() {
+    }
 
     static void update(Checksum checksum, ByteBuffer buffer) {
         if (buffer.hasArray()) {

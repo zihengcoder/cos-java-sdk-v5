@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -21,6 +22,7 @@ import java.io.Closeable;
 import java.io.IOException;
 
 public class SelectObjectContentResult implements Closeable {
+
     private SelectObjectContentEventStream payload;
 
     public SelectObjectContentEventStream getPayload() {

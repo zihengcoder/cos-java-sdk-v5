@@ -5,6 +5,7 @@ package com.qcloud.cos.model.ciModel.job;
  * 媒体处理 任务时间参数实体 https://cloud.tencent.com/document/product/460/48234
  */
 public class MediaTimeIntervalObject {
+
     /**
      * 开始时间
      */

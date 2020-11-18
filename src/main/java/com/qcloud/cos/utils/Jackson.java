@@ -69,8 +69,9 @@ public enum Jackson {
      * class; or null if the given json string is null.
      */
     public static <T> T fromJsonString(String json, Class<T> clazz) {
-        if (json == null)
+        if (json == null) {
             return null;
+        }
         try {
             return objectMapper.readValue(json, clazz);
         } catch (Exception e) {

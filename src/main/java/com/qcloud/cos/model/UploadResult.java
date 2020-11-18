@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -22,22 +22,30 @@ package com.qcloud.cos.model;
  * Contains information returned by Qcloud COS for a completed upload.
  * <p>
  * See {@link TransferManager} for more information about creating transfers.
- * 
+ *
  * @see TransferManager#upload(String, String, java.io.File)
  * @see TransferManager#upload(com.qcloud.cos.model.PutObjectRequest)
  */
 public class UploadResult {
 
-    /** x-cos-requestid **/
+    /**
+     * x-cos-requestid
+     **/
     private String requestId;
 
-    /** date **/
+    /**
+     * date
+     **/
     private String dateStr;
 
-    /** The name of the bucket containing the completed upload. */
+    /**
+     * The name of the bucket containing the completed upload.
+     */
     private String bucketName;
 
-    /** The key by which the object is stored. */
+    /**
+     * The key by which the object is stored.
+     */
     private String key;
 
     /**
@@ -51,12 +59,14 @@ public class UploadResult {
      */
     private String versionId;
 
-    /** The crc64ecma value for this object */
+    /**
+     * The crc64ecma value for this object
+     */
     private String crc64Ecma;
 
     /**
      * get requestid for this upload
-     * 
+     *
      * @return requestid
      */
     public String getRequestId() {
@@ -65,7 +75,7 @@ public class UploadResult {
 
     /**
      * set requestId for this upload
-     * 
+     *
      * @param requestId the requestId for the upload
      */
 
@@ -75,7 +85,7 @@ public class UploadResult {
 
     /**
      * get date header for this upload
-     * 
+     *
      * @return date str
      */
     public String getDateStr() {
@@ -84,7 +94,7 @@ public class UploadResult {
 
     /**
      * set date str for this upload
-     * 
+     *
      * @param dateStr date str header
      */
     public void setDateStr(String dateStr) {
@@ -102,7 +112,7 @@ public class UploadResult {
 
     /**
      * Sets the name of the bucket containing the uploaded object.
-     * 
+     *
      * @param bucketName The name of the bucket containing the uploaded object.
      */
     public void setBucketName(String bucketName) {
@@ -159,7 +169,7 @@ public class UploadResult {
      * bucket.
      *
      * @param versionId The version ID of the new object, only present if versioning has been
-     *        enabled for the bucket.
+     *         enabled for the bucket.
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;

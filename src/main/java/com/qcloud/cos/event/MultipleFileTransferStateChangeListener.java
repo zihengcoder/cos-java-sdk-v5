@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,6 +26,7 @@ import com.qcloud.cos.transfer.Transfer;
 import com.qcloud.cos.transfer.Transfer.TransferState;
 
 public final class MultipleFileTransferStateChangeListener implements TransferStateChangeListener {
+
     private final CountDownLatch latch;
     private final MultipleFileTransfer<?> multipleFileTransfer;
 
@@ -42,22 +43,23 @@ public final class MultipleFileTransferStateChangeListener implements TransferSt
         // list, or we may incorrectly report completion.
         try {
             latch.await();
-        } catch ( InterruptedException e ) {
+        } catch (InterruptedException e) {
             throw new CosClientException("Couldn't wait for all downloads to be queued");
         }
 
         synchronized (multipleFileTransfer) {
-            if ( multipleFileTransfer.getState() == state || multipleFileTransfer.isDone() )
+            if (multipleFileTransfer.getState() == state || multipleFileTransfer.isDone()) {
                 return;
+            }
 
             /*
              * If we're not already in a terminal state, allow a transition
              * to a non-waiting state. Mark completed if this download is
              * completed and the monitor says all of the rest are as well.
              */
-            if ( state == TransferState.InProgress ) {
+            if (state == TransferState.InProgress) {
                 multipleFileTransfer.setState(state);
-            } else if ( multipleFileTransfer.getMonitor().isDone() ) {
+            } else if (multipleFileTransfer.getMonitor().isDone()) {
                 multipleFileTransfer.collateFinalState();
             } else {
                 multipleFileTransfer.setState(TransferState.InProgress);

@@ -76,7 +76,7 @@ public class MediaTemplateObject extends MediaCommonResponse {
     }
 
     public MediaTemplateTransTplObject getTransTpl() {
-        if (transTpl==null){
+        if (transTpl == null) {
             transTpl = new MediaTemplateTransTplObject();
         }
         return transTpl;
@@ -87,7 +87,7 @@ public class MediaTemplateObject extends MediaCommonResponse {
     }
 
     public MediaSnapshotObject getSnapshot() {
-        if (snapshot==null){
+        if (snapshot == null) {
             snapshot = new MediaSnapshotObject();
         }
         return snapshot;
@@ -98,7 +98,7 @@ public class MediaTemplateObject extends MediaCommonResponse {
     }
 
     public MediaWatermark getWatermark() {
-        if (watermark==null){
+        if (watermark == null) {
             watermark = new MediaWatermark();
         }
         return watermark;

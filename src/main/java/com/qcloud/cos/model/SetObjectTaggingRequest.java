@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import com.qcloud.cos.internal.CosServiceRequest;
@@ -23,6 +24,7 @@ import java.io.Serializable;
  * Request object for the parameters to set the tags for an object.
  */
 public class SetObjectTaggingRequest extends CosServiceRequest implements Serializable {
+
     private String bucketName;
     private String key;
     private String versionId;
@@ -31,12 +33,9 @@ public class SetObjectTaggingRequest extends CosServiceRequest implements Serial
     /**
      * Constructs an instance of this object.
      *
-     * @param bucketName
-     *            The bucket name.
-     * @param key
-     *            The object key.
-     * @param tagging
-     *            The set of tags to set for the specified object.
+     * @param bucketName The bucket name.
+     * @param key The object key.
+     * @param tagging The set of tags to set for the specified object.
      */
     public SetObjectTaggingRequest(String bucketName, String key, ObjectTagging tagging) {
         this(bucketName, key, null, tagging);
@@ -45,14 +44,10 @@ public class SetObjectTaggingRequest extends CosServiceRequest implements Serial
     /**
      * Constructs an instance of this object.
      *
-     * @param bucketName
-     *            The bucket name. 
-     * @param key
-     *            The object key.
-     * @param versionId
-     *            The version of the object.
-     * @param tagging
-     *            The set of tags to set for the specified object.
+     * @param bucketName The bucket name.
+     * @param key The object key.
+     * @param versionId The version of the object.
+     * @param tagging The set of tags to set for the specified object.
      */
     public SetObjectTaggingRequest(String bucketName, String key, String versionId, ObjectTagging tagging) {
         this.bucketName = bucketName;
@@ -81,7 +76,6 @@ public class SetObjectTaggingRequest extends CosServiceRequest implements Serial
      * Set the bucket name.
      *
      * @param bucketName the bucket name or access point ARN.
-     *
      * @return This object for chaining.
      */
     public SetObjectTaggingRequest withBucketName(String bucketName) {
@@ -109,7 +103,6 @@ public class SetObjectTaggingRequest extends CosServiceRequest implements Serial
      * Set the object key.
      *
      * @param key The object key.
-     *
      * @return This object for chaining.
      */
     public SetObjectTaggingRequest withKey(String key) {
@@ -137,7 +130,6 @@ public class SetObjectTaggingRequest extends CosServiceRequest implements Serial
      * Set object version.
      *
      * @param versionId The object version.
-     *
      * @return This object for chaining.
      */
     public SetObjectTaggingRequest withVersionId(String versionId) {
@@ -165,7 +157,6 @@ public class SetObjectTaggingRequest extends CosServiceRequest implements Serial
      * Set the object tagging.
      *
      * @param tagging The object tagging.
-     *
      * @return This object for chaining.
      */
     public SetObjectTaggingRequest withTagging(ObjectTagging tagging) {

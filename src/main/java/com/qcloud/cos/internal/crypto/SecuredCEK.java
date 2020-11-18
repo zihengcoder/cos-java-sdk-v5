@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,6 +28,7 @@ import java.util.TreeMap;
  * performance reasons.
  */
 class SecuredCEK {
+
     /**
      * The encrypted CEK either via key wrapping or simple encryption.
      */
@@ -38,10 +39,12 @@ class SecuredCEK {
      */
     private final String keyWrapAlgorithm;
 
-    /** Unmodifiable material description. */
-    private final Map<String,String> matdesc;
+    /**
+     * Unmodifiable material description.
+     */
+    private final Map<String, String> matdesc;
 
-    SecuredCEK(byte[] encryptedKey, String keyWrapAlgorithm, Map<String,String> matdesc) {
+    SecuredCEK(byte[] encryptedKey, String keyWrapAlgorithm, Map<String, String> matdesc) {
         this.encrypted = encryptedKey;
         this.keyWrapAlgorithm = keyWrapAlgorithm;
         this.matdesc = Collections.unmodifiableMap(new TreeMap<String, String>(matdesc));

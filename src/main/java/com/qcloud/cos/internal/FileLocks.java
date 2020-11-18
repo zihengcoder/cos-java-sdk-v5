@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -54,15 +54,15 @@ public enum FileLocks {
      * Acquires an exclusive lock on the specified file, creating the file as
      * necessary. Caller of this method is responsible to call the
      * {@link #unlock(File)} method to prevent release leakage.
-     * 
+     *
      * @return true if the locking is successful; false otherwise.
-     * 
      * @throws FileLockException if we failed to lock the file
      */
     public static boolean lock(File file) {
-        synchronized(lockedFiles) {
-            if (lockedFiles.containsKey(file))
+        synchronized (lockedFiles) {
+            if (lockedFiles.containsKey(file)) {
                 return false;   // already locked
+            }
         }
         FileLock lock = null;
         RandomAccessFile raf = null;
@@ -71,14 +71,15 @@ public enum FileLocks {
             // made to create it because of the use of "rw".
             raf = new RandomAccessFile(file, "rw");
             FileChannel channel = raf.getChannel();
-            if (EXTERNAL_LOCK)
+            if (EXTERNAL_LOCK) {
                 lock = channel.lock();
+            }
         } catch (Exception e) {
             IOUtils.closeQuietly(raf, log);
             throw new FileLockException(e);
         }
         final boolean locked;
-        synchronized(lockedFiles) {
+        synchronized (lockedFiles) {
             RandomAccessFile prev = lockedFiles.put(file, raf);
             if (prev == null) {
                 locked = true;
@@ -89,8 +90,9 @@ public enum FileLocks {
             }
         }
         if (locked) {
-            if (log.isDebugEnabled())
+            if (log.isDebugEnabled()) {
                 log.debug("Locked file " + file + " with " + lock);
+            }
         } else {
             IOUtils.closeQuietly(raf, log);
         }
@@ -101,25 +103,25 @@ public enum FileLocks {
      * Returns true if the specified file is currently locked; false otherwise.
      */
     public static boolean isFileLocked(File file) {
-        synchronized(lockedFiles) {
+        synchronized (lockedFiles) {
             return lockedFiles.containsKey(file);
         }
     }
 
     /**
      * Unlocks a file previously locked via {@link #lock(File)}.
-     * 
+     *
      * @return true if the unlock is successful; false otherwise. Successful
      *         unlock means we have found and attempted to close the locking
      *         file channel, but ignoring the fact that the close operation may
      *         have actually failed.
      */
     public static boolean unlock(File file) {
-        synchronized(lockedFiles) {
+        synchronized (lockedFiles) {
             final RandomAccessFile raf = lockedFiles.get(file);
-            if (raf == null)
+            if (raf == null) {
                 return false;
-            else {
+            } else {
                 // Must close out the channel before removing it from the map;
                 // or else risk giving a false negative (of no lock but in fact
                 // the file is still locked by the file system.)
@@ -127,8 +129,9 @@ public enum FileLocks {
                 lockedFiles.remove(file);
             }
         }
-        if (log.isDebugEnabled())
+        if (log.isDebugEnabled()) {
             log.debug("Unlocked file " + file);
+        }
         return true;
     }
 }

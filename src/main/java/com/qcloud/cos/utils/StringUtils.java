@@ -89,9 +89,7 @@ public class StringUtils {
      * Converts the specified date to an ISO 8601 timestamp string and returns
      * it.
      *
-     * @param value
-     *            The date to format as an ISO 8601 timestamp string.
-     *
+     * @param value The date to format as an ISO 8601 timestamp string.
      * @return An ISO 8601 timestamp string created from the specified date.
      */
     public static String fromDate(Date value) {
@@ -101,9 +99,7 @@ public class StringUtils {
     /**
      * Returns the string representation of the specified double.
      *
-     * @param d
-     *            The double to represent as a string.
-     *
+     * @param d The double to represent as a string.
      * @return The string representation of the specified double.
      */
     public static String fromDouble(Double d) {
@@ -113,20 +109,18 @@ public class StringUtils {
     /**
      * Returns the string representation of the specified Byte.
      *
-     * @param b
-     *            The Byte to represent as a string.
-     *
+     * @param b The Byte to represent as a string.
      * @return The string representation of the specified Byte.
      */
     public static String fromByte(Byte b) {
         return Byte.toString(b);
     }
 
-    public static String replace( String originalString, String partToMatch, String replacement ) {
-        StringBuilder buffer = new StringBuilder( originalString.length() );
-        buffer.append( originalString );
+    public static String replace(String originalString, String partToMatch, String replacement) {
+        StringBuilder buffer = new StringBuilder(originalString.length());
+        buffer.append(originalString);
 
-        int indexOf = buffer.indexOf( partToMatch );
+        int indexOf = buffer.indexOf(partToMatch);
         while (indexOf != -1) {
             buffer = buffer.replace(indexOf, indexOf + partToMatch.length(), replacement);
             indexOf = buffer.indexOf(partToMatch, indexOf + replacement.length());
@@ -137,6 +131,7 @@ public class StringUtils {
 
     /**
      * Joins the strings in parts with joiner between each string
+     *
      * @param joiner the string to insert between the strings in parts
      * @param parts the parts to join
      */
@@ -176,18 +171,22 @@ public class StringUtils {
      * Removes any surrounding quotes from the specified string and returns a
      * new string.
      *
-     * @param s
-     *            The string to check for surrounding quotes.
-     *
+     * @param s The string to check for surrounding quotes.
      * @return A new string created from the specified string, minus any
      *         surrounding quotes.
      */
     public static String removeQuotes(String s) {
-        if (s == null) return null;
+        if (s == null) {
+            return null;
+        }
 
         s = s.trim();
-        if (s.startsWith("\"")) s = s.substring(1);
-        if (s.endsWith("\"")) s = s.substring(0, s.length() - 1);
+        if (s.startsWith("\"")) {
+            s = s.substring(1);
+        }
+        if (s.endsWith("\"")) {
+            s = s.substring(0, s.length() - 1);
+        }
 
         return s;
     }
@@ -196,9 +195,8 @@ public class StringUtils {
      * Returns a new string created by joining each of the strings in the
      * specified list together, with a comma between them.
      *
-     * @param strings
-     *            The list of strings to join into a single, comma delimited
-     *            string list.
+     * @param strings The list of strings to join into a single, comma delimited
+     *         string list.
      * @return A new string created by joining each of the strings in the
      *         specified list together, with a comma between strings.
      */
@@ -207,7 +205,9 @@ public class StringUtils {
 
         boolean first = true;
         for (String s : strings) {
-            if (!first) result.append(", ");
+            if (!first) {
+                result.append(", ");
+            }
 
             result.append(s);
             first = false;

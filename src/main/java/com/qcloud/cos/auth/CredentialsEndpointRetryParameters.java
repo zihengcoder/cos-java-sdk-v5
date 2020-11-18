@@ -1,10 +1,12 @@
 package com.qcloud.cos.auth;
 
 public class CredentialsEndpointRetryParameters {
+
     private final Integer statusCode;
     private final Exception exception;
 
     public static class Builder {
+
         private Integer statusCode;
         private Exception exception;
 

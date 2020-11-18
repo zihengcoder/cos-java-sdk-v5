@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -94,7 +94,7 @@ public class BucketLifecycleConfiguration implements Serializable {
         super();
     }
 
-    public static class Rule  implements Serializable {
+    public static class Rule implements Serializable {
 
         private static final long serialVersionUID = 1L;
         private String id;
@@ -208,8 +208,8 @@ public class BucketLifecycleConfiguration implements Serializable {
          * Sets the value of the ExpiredObjectDeleteMarkers attribute.
          *
          * @param expiredObjectDeleteMarker True to allow the current expiration policy to remove
-         *        the current version of the object if it's the only version left and it's a delete
-         *        marker. False has no effect on the current expiration policy
+         *         the current version of the object if it's the only version left and it's a delete
+         *         marker. False has no effect on the current expiration policy
          */
         public void setExpiredObjectDeleteMarker(boolean expiredObjectDeleteMarker) {
             this.expiredObjectDeleteMarker = expiredObjectDeleteMarker;

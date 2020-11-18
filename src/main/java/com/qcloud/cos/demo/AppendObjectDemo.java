@@ -14,6 +14,7 @@ import java.io.File;
 import java.io.InputStream;
 
 public class AppendObjectDemo {
+
     public static void AppendObjectFromLocal() {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("AKIDXXXXXXXX", "1A2Z3YYYYYYYYYY");

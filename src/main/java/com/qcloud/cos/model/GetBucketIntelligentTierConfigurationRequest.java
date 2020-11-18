@@ -7,7 +7,9 @@ import java.io.Serializable;
 
 public class GetBucketIntelligentTierConfigurationRequest extends CosServiceRequest implements Serializable {
 
-    /** The name of the bucket whose intelligent configuration is being retrieved. */
+    /**
+     * The name of the bucket whose intelligent configuration is being retrieved.
+     */
     private String bucketName;
 
 
@@ -15,8 +17,7 @@ public class GetBucketIntelligentTierConfigurationRequest extends CosServiceRequ
      * Creates a new request object, ready to be executed to retrieve the bucket
      * intelligent tier configuration for the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket whose bucket intelligent tier configuration is being retrieved.
+     * @param bucketName The name of the bucket whose bucket intelligent tier configuration is being retrieved.
      */
     public GetBucketIntelligentTierConfigurationRequest(String bucketName) {
         this.bucketName = bucketName;
@@ -25,8 +26,7 @@ public class GetBucketIntelligentTierConfigurationRequest extends CosServiceRequ
     /**
      * Sets the name of the bucket whose bucket intelligent tier configuration is being retrieved.
      *
-     * @param bucketName
-     *            The name of the bucket whose bucket intelligent tier is being retrieved.
+     * @param bucketName The name of the bucket whose bucket intelligent tier is being retrieved.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -46,10 +46,8 @@ public class GetBucketIntelligentTierConfigurationRequest extends CosServiceRequ
      * retrieved, and returns this updated request object so that additional
      * method calls can be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket whose bucket intelligent tier is being
-     *            retrieved.
-     *
+     * @param bucketName The name of the bucket whose bucket intelligent tier is being
+     *         retrieved.
      * @return This updated request object, so that additional method calls can
      *         be chained together.
      */

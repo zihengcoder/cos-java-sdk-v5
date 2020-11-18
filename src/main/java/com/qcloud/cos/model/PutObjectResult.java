@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -25,15 +25,20 @@ import com.qcloud.cos.internal.ObjectExpirationResult;
 import com.qcloud.cos.internal.SSEResultBase;
 
 public class PutObjectResult extends SSEResultBase implements ObjectExpirationResult, Serializable {
+
     /**
-     * 
+     *
      */
     private static final long serialVersionUID = -2210897720269365495L;
 
-    /** x-cos-requestid **/
+    /**
+     * x-cos-requestid
+     **/
     private String requestId;
-    
-    /** date **/
+
+    /**
+     * date
+     **/
     private String dateStr;
 
     /**
@@ -42,28 +47,40 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      */
     private String versionId;
 
-    /** The ETag value of the new object */
+    /**
+     * The ETag value of the new object
+     */
     private String eTag;
 
-    /** The time this object expires, or null if it has no expiration */
+    /**
+     * The time this object expires, or null if it has no expiration
+     */
     private Date expirationTime;
 
-    /** The expiration rule for this object */
+    /**
+     * The expiration rule for this object
+     */
     private String expirationTimeRuleId;
 
-    /** The content MD5 */
+    /**
+     * The content MD5
+     */
     private String contentMd5;
 
-    /** The metadata returned as a result of PutObject operation. */
+    /**
+     * The metadata returned as a result of PutObject operation.
+     */
     private ObjectMetadata metadata;
 
-    /** The crc64ecma value for this object */
+    /**
+     * The crc64ecma value for this object
+     */
     private String crc64Ecma;
 
 
     /**
      * get requestid for this upload
-     * 
+     *
      * @return requestid
      */
     public String getRequestId() {
@@ -72,16 +89,17 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
 
     /**
      * set requestId for this upload
-     * 
+     *
      * @param requestId the requestId for the upload
      */
 
     public void setRequestId(String requestId) {
         this.requestId = requestId;
     }
-    
+
     /**
      * get date header for this upload
+     *
      * @return date str
      */
     public String getDateStr() {
@@ -90,7 +108,8 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
 
     /**
      * set date str for this upload
-     * @param dateStr  date str header
+     *
+     * @param dateStr date str header
      */
     public void setDateStr(String dateStr) {
         this.dateStr = dateStr;
@@ -101,7 +120,6 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      * object versioning is enabled for the bucket the object was uploaded to.
      *
      * @return The optional version ID of the newly uploaded object.
-     *
      * @see PutObjectResult#setVersionId(String)
      */
     public String getVersionId() {
@@ -113,7 +131,6 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      * Sets the optional version ID of the newly uploaded object.
      *
      * @param versionId The optional version ID of the newly uploaded object.
-     *
      * @see PutObjectResult#getVersionId()
      */
     public void setVersionId(String versionId) {
@@ -124,7 +141,6 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      * Gets the server-side ETag value for the newly created object.
      *
      * @return The server-side ETag value for the new object.
-     *
      * @see PutObjectResult#setETag(String)
      */
     public String getETag() {
@@ -136,7 +152,6 @@ public class PutObjectResult extends SSEResultBase implements ObjectExpirationRe
      * <code>putObject</code> request.
      *
      * @param eTag The ETag value for the new object.
-     *
      * @see PutObjectResult#getETag()
      */
     public void setETag(String eTag) {

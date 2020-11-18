@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,6 +27,7 @@ import java.util.Map;
 
 public class EncryptedPutObjectRequest extends PutObjectRequest
         implements MaterialsDescriptionProvider, Serializable {
+
     /**
      * description of encryption materials to be used with this request.
      */
@@ -49,7 +50,7 @@ public class EncryptedPutObjectRequest extends PutObjectRequest
     /**
      * sets the materials description for the encryption materials to be used with the current
      * PutObjectRequest.
-     * 
+     *
      * @param materialsDescription the materialsDescription to set
      */
     public void setMaterialsDescription(Map<String, String> materialsDescription) {
@@ -60,7 +61,7 @@ public class EncryptedPutObjectRequest extends PutObjectRequest
     /**
      * sets the materials description for the encryption materials to be used with the current
      * PutObjectRequest.
-     * 
+     *
      * @param materialsDescription the materialsDescription to set
      */
     public EncryptedPutObjectRequest withMaterialsDescription(

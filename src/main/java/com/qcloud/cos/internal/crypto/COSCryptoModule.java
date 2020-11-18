@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -37,6 +37,7 @@ import com.qcloud.cos.model.UploadPartRequest;
 import com.qcloud.cos.model.UploadPartResult;
 
 public abstract class COSCryptoModule {
+
     /**
      * @return the result of the putting the COS object.
      */
@@ -65,16 +66,13 @@ public abstract class COSCryptoModule {
      *         subsequently retrieved using the new instruction file via the
      *         usual get operation by specifying a
      *         {@link EncryptedGetObjectRequest}.
-     * 
-     * @throws IllegalArgumentException
-     *             if the specified COS object doesn't exist.
-     * @throws SecurityException
-     *             if the protection level of the material in the new
-     *             instruction file is lower than that of the original.
-     *             Currently, this means if the original material has been
-     *             secured via authenticated encryption, then the new
-     *             instruction file cannot be created via an COS encryption
-     *             client configured with {@link CryptoMode#EncryptionOnly}.
+     * @throws IllegalArgumentException if the specified COS object doesn't exist.
+     * @throws SecurityException if the protection level of the material in the new
+     *         instruction file is lower than that of the original.
+     *         Currently, this means if the original material has been
+     *         secured via authenticated encryption, then the new
+     *         instruction file cannot be created via an COS encryption
+     *         client configured with {@link CryptoMode#EncryptionOnly}.
      */
     public abstract PutObjectResult putInstructionFileSecurely(
             PutInstructionFileRequest req);

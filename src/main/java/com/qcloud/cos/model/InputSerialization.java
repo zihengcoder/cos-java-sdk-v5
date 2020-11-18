@@ -14,13 +14,13 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import java.io.Serializable;
 
 /**
  * Describes the serialization format of the object.
- *
  */
 public class InputSerialization implements Serializable, Cloneable {
 
@@ -107,7 +107,7 @@ public class InputSerialization implements Serializable, Cloneable {
 
     /**
      * Specifies Parquet as object's input serialization format.
-     *  The parquet type is not currently supported
+     * The parquet type is not currently supported
      */
     private InputSerialization withParquet(ParquetInput parquet) {
         setParquet(parquet);
@@ -156,24 +156,30 @@ public class InputSerialization implements Serializable, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj == null || ! (obj instanceof InputSerialization)) {
+        if (obj == null || !(obj instanceof InputSerialization)) {
             return false;
         }
 
         final InputSerialization other = (InputSerialization) obj;
 
-        if (other.getCsv() == null ^ this.getCsv() == null)
+        if (other.getCsv() == null ^ this.getCsv() == null) {
             return false;
-        if (other.getCsv() != null && !other.getCsv().equals(this.getCsv()))
+        }
+        if (other.getCsv() != null && !other.getCsv().equals(this.getCsv())) {
             return false;
-        if (other.getJson() == null ^ this.getJson() == null)
+        }
+        if (other.getJson() == null ^ this.getJson() == null) {
             return false;
-        if (other.getJson() != null && !other.getJson().equals(this.getJson()))
+        }
+        if (other.getJson() != null && !other.getJson().equals(this.getJson())) {
             return false;
-        if (other.getCompressionType() == null ^ this.getCompressionType() == null)
+        }
+        if (other.getCompressionType() == null ^ this.getCompressionType() == null) {
             return false;
-        if (other.getCompressionType() != null && !other.getCompressionType().equals(this.getCompressionType()))
+        }
+        if (other.getCompressionType() != null && !other.getCompressionType().equals(this.getCompressionType())) {
             return false;
+        }
         return true;
     }
 
@@ -192,12 +198,15 @@ public class InputSerialization implements Serializable, Cloneable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getCsv() != null)
+        if (getCsv() != null) {
             sb.append("Csv: ").append(getCsv());
-        if (getJson() != null)
+        }
+        if (getJson() != null) {
             sb.append("Json: ").append(getJson());
-        if (getCompressionType() != null)
+        }
+        if (getCompressionType() != null) {
             sb.append("CompressionType: ").append(getCompressionType());
+        }
         sb.append("}");
         return sb.toString();
     }
@@ -207,7 +216,8 @@ public class InputSerialization implements Serializable, Cloneable {
         try {
             return (InputSerialization) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
+            throw new IllegalStateException(
+                    "Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
         }
     }
 }

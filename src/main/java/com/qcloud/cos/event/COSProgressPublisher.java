@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,23 +28,24 @@ import com.qcloud.cos.transfer.PersistableTransfer;
  * Used to publish transfer events.
  */
 public class COSProgressPublisher extends SDKProgressPublisher {
+
     /**
      * Used to deliver a persistable transfer to the given cos listener.
-     * 
+     *
      * @param listener only listener of type {@link COSProgressListener} will be
-     * notified.
-     * 
+     *         notified.
      * @return the future of a submitted task; or null if the delivery is
-     * synchronous with no future task involved.  Note a listener should never
-     * block, and therefore returning null is the typical case.
+     *         synchronous with no future task involved.  Note a listener should never
+     *         block, and therefore returning null is the typical case.
      */
     public static Future<?> publishTransferPersistable(
             final ProgressListener listener,
             final PersistableTransfer persistableTransfer) {
-        if (persistableTransfer == null 
-        || !(listener instanceof COSProgressListener))
+        if (persistableTransfer == null
+                || !(listener instanceof COSProgressListener)) {
             return null;
-        final COSProgressListener coslistener = (COSProgressListener)listener;
+        }
+        final COSProgressListener coslistener = (COSProgressListener) listener;
         return deliverEvent(coslistener, persistableTransfer);
     }
 
@@ -67,7 +68,8 @@ public class COSProgressPublisher extends SDKProgressPublisher {
         // place, but such task submission is necessary to remain backward
         // compatible.
         return setLatestFutureTask(getExecutorService().submit(new Runnable() {
-            @Override public void run() {
+            @Override
+            public void run() {
                 listener.onPersistableTransfer(persistableTransfer);
             }
         }));
@@ -78,11 +80,11 @@ public class COSProgressPublisher extends SDKProgressPublisher {
             final PersistableTransfer persistableTransfer) {
         try {
             listener.onPersistableTransfer(persistableTransfer);
-        } catch(Throwable t) {
+        } catch (Throwable t) {
             // That's right, we need to suppress all errors so as to be on par
             // with the async mode where all failures will be ignored.
             LoggerFactory.getLogger(COSProgressPublisher.class)
-                .debug("Failure from the event listener", t);
+                    .debug("Failure from the event listener", t);
         }
         return null;
     }

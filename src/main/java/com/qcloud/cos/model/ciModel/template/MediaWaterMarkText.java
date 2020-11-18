@@ -4,6 +4,7 @@ package com.qcloud.cos.model.ciModel.template;
  * 水印Text实体类 https://cloud.tencent.com/document/product/460/48176
  */
 public class MediaWaterMarkText {
+
     /**
      * 水印类内容 长度不超过64个字符，仅支持中文、英文、数字、_、-和*
      */

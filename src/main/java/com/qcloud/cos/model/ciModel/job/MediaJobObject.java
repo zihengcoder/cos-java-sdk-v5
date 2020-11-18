@@ -10,6 +10,7 @@ import java.io.Serializable;
  */
 
 public class MediaJobObject extends CIServiceRequest implements Serializable {
+
     private String code;
     private String message;
     private String jobId;
@@ -78,7 +79,7 @@ public class MediaJobObject extends CIServiceRequest implements Serializable {
     }
 
     public MediaInputObject getInput() {
-        if (input==null){
+        if (input == null) {
             input = new MediaInputObject();
         }
         return input;
@@ -97,7 +98,7 @@ public class MediaJobObject extends CIServiceRequest implements Serializable {
     }
 
     public MediaJobOperation getOperation() {
-        if (operation==null){
+        if (operation == null) {
             operation = new MediaJobOperation();
         }
         return operation;

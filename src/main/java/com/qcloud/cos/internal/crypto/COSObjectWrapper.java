@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -34,12 +34,14 @@ import com.qcloud.cos.model.ObjectMetadata;
 import com.qcloud.cos.utils.StringUtils;
 
 public class COSObjectWrapper implements Closeable {
+
     private final COSObject cosobj;
     private final COSObjectId id;
 
     COSObjectWrapper(COSObject cosobj, COSObjectId id) {
-        if (cosobj == null)
+        if (cosobj == null) {
             throw new IllegalArgumentException();
+        }
         this.cosobj = cosobj;
         this.id = id;
     }
@@ -98,12 +100,12 @@ public class COSObjectWrapper implements Closeable {
         Map<String, String> userMeta = metadata.getUserMetadata();
         return userMeta != null && userMeta.containsKey(Headers.CRYPTO_IV)
                 && (userMeta.containsKey(Headers.CRYPTO_KEY_V2)
-                        || userMeta.containsKey(Headers.CRYPTO_KEY));
+                || userMeta.containsKey(Headers.CRYPTO_KEY));
     }
 
     /**
      * Converts and return the underlying COS object as a json string.
-     * 
+     *
      * @throws CosClientException if failed in JSON conversion.
      */
     String toJsonString() {
@@ -115,8 +117,9 @@ public class COSObjectWrapper implements Closeable {
     }
 
     private static String from(InputStream is) throws IOException {
-        if (is == null)
+        if (is == null) {
             return "";
+        }
         StringBuilder sb = new StringBuilder();
         try {
             BufferedReader reader = new BufferedReader(new InputStreamReader(is, StringUtils.UTF8));
@@ -142,7 +145,7 @@ public class COSObjectWrapper implements Closeable {
     /**
      * Returns the original crypto scheme used for encryption, which may differ from the crypto
      * scheme used for decryption during, for example, a range-get operation.
-     * 
+     *
      * @param instructionFile the instruction file of the cos object; or null if there is none.
      */
     ContentCryptoScheme encryptionSchemeOf(Map<String, String> instructionFile) {

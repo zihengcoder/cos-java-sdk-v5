@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import java.io.Serializable;
@@ -29,6 +30,7 @@ public class SelectObjectContentEvent implements Serializable, Cloneable {
      * The Record Event.
      */
     public static class RecordsEvent extends SelectObjectContentEvent {
+
         private ByteBuffer payload;
 
         /**
@@ -63,6 +65,7 @@ public class SelectObjectContentEvent implements Serializable, Cloneable {
      * The Stats Event.
      */
     public static class StatsEvent extends SelectObjectContentEvent {
+
         private Stats details;
 
         /**
@@ -97,6 +100,7 @@ public class SelectObjectContentEvent implements Serializable, Cloneable {
      * The Progress Event.
      */
     public static class ProgressEvent extends SelectObjectContentEvent {
+
         private Progress details;
 
         /**
@@ -131,6 +135,7 @@ public class SelectObjectContentEvent implements Serializable, Cloneable {
      * The Continuation Event.
      */
     public static class ContinuationEvent extends SelectObjectContentEvent {
+
         @Override
         public void visit(SelectObjectContentEventVisitor visitor) {
             visitor.visit(this);
@@ -141,6 +146,7 @@ public class SelectObjectContentEvent implements Serializable, Cloneable {
      * The End Event.
      */
     public static class EndEvent extends SelectObjectContentEvent {
+
         @Override
         public void visit(SelectObjectContentEventVisitor visitor) {
             visitor.visit(this);

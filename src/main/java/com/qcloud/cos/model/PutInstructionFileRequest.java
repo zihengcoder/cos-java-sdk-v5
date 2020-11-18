@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -33,6 +33,7 @@ import com.qcloud.cos.internal.crypto.EncryptionMaterialsFactory;
  */
 public class PutInstructionFileRequest extends CosServiceRequest
         implements MaterialsDescriptionProvider, EncryptionMaterialsFactory {
+
     /**
      * The COS object id of the respective COS object to which this instruction file is used.
      */
@@ -61,7 +62,9 @@ public class PutInstructionFileRequest extends CosServiceRequest
      * ignored.
      */
     private AccessControlList accessControlList;
-    /** The optional redirect location about an object */
+    /**
+     * The optional redirect location about an object
+     */
     private String redirectLocation;
     /**
      * The optional COS storage class to use when storing the new object. If not specified, the
@@ -76,10 +79,12 @@ public class PutInstructionFileRequest extends CosServiceRequest
      */
     public PutInstructionFileRequest(COSObjectId cosObjectId, Map<String, String> matDesc,
             String suffix) {
-        if (cosObjectId == null || cosObjectId instanceof InstructionFileId)
+        if (cosObjectId == null || cosObjectId instanceof InstructionFileId) {
             throw new IllegalArgumentException("Invalid cos object id");
-        if (suffix == null || suffix.trim().isEmpty())
+        }
+        if (suffix == null || suffix.trim().isEmpty()) {
             throw new IllegalArgumentException("suffix must be specified");
+        }
         this.cosObjectId = cosObjectId;
         @SuppressWarnings("unchecked")
         Map<String, String> md = matDesc == null ? Collections.EMPTY_MAP
@@ -96,12 +101,15 @@ public class PutInstructionFileRequest extends CosServiceRequest
      */
     public PutInstructionFileRequest(COSObjectId cosObjectId,
             EncryptionMaterials encryptionMaterials, String suffix) {
-        if (cosObjectId == null || cosObjectId instanceof InstructionFileId)
+        if (cosObjectId == null || cosObjectId instanceof InstructionFileId) {
             throw new IllegalArgumentException("Invalid cos object id");
-        if (suffix == null || suffix.trim().isEmpty())
+        }
+        if (suffix == null || suffix.trim().isEmpty()) {
             throw new IllegalArgumentException("suffix must be specified");
-        if (encryptionMaterials == null)
+        }
+        if (encryptionMaterials == null) {
             throw new IllegalArgumentException("encryption materials must be specified");
+        }
         this.cosObjectId = cosObjectId;
         this.suffix = suffix;
         this.encryptionMaterials = encryptionMaterials;
@@ -141,9 +149,8 @@ public class PutInstructionFileRequest extends CosServiceRequest
 
     /**
      * Gets the optional pre-configured access control policy to use for the new object.
-     * 
+     *
      * @return The optional pre-configured access control policy to use for the new object.
-     * 
      * @see PutObjectRequest#setCannedAcl(CannedAccessControlList)
      * @see PutObjectRequest#withCannedAcl(CannedAccessControlList)
      */
@@ -153,9 +160,8 @@ public class PutInstructionFileRequest extends CosServiceRequest
 
     /**
      * Sets the optional pre-configured access control policy to use for the new object.
-     * 
+     *
      * @param cannedAcl The optional pre-configured access control policy to use for the new object.
-     * 
      * @see PutObjectRequest#getCannedAcl()
      * @see PutObjectRequest#withCannedAcl(CannedAccessControlList)
      */
@@ -166,12 +172,10 @@ public class PutInstructionFileRequest extends CosServiceRequest
     /**
      * Sets the optional pre-configured access control policy to use for the new object. Returns
      * this {@link PutObjectRequest}, enabling additional method calls to be chained together.
-     * 
+     *
      * @param cannedAcl The optional pre-configured access control policy to use for the new object.
-     * 
      * @return This {@link PutObjectRequest}, enabling additional method calls to be chained
      *         together.
-     * 
      * @see PutObjectRequest#getCannedAcl()
      * @see PutObjectRequest#setCannedAcl(CannedAccessControlList)
      */
@@ -191,7 +195,7 @@ public class PutInstructionFileRequest extends CosServiceRequest
     /**
      * Sets the optional access control list for the new object. If specified, cannedAcl will be
      * ignored.
-     * 
+     *
      * @param accessControlList The access control list for the new object.
      */
     public void setAccessControlList(AccessControlList accessControlList) {
@@ -202,7 +206,7 @@ public class PutInstructionFileRequest extends CosServiceRequest
      * Sets the optional access control list for the new object. If specified, cannedAcl will be
      * ignored. Returns this {@link PutObjectRequest}, enabling additional method calls to be
      * chained together.
-     * 
+     *
      * @param accessControlList The access control list for the new object.
      */
     public PutInstructionFileRequest withAccessControlList(AccessControlList accessControlList) {
@@ -219,7 +223,7 @@ public class PutInstructionFileRequest extends CosServiceRequest
 
     /**
      * Sets the optional redirect location for the new object.
-     * 
+     *
      * @param redirectLocation The redirect location for the new object.
      */
     public void setRedirectLocation(String redirectLocation) {
@@ -229,7 +233,7 @@ public class PutInstructionFileRequest extends CosServiceRequest
     /**
      * Sets the optional redirect location for the new object.Returns this {@link PutObjectRequest},
      * enabling additional method calls to be chained together.
-     * 
+     *
      * @param redirectLocation The redirect location for the new object.
      */
     public PutInstructionFileRequest withRedirectLocation(String redirectLocation) {
@@ -244,9 +248,8 @@ public class PutInstructionFileRequest extends CosServiceRequest
      * For more information on available COS storage classes, see the {@link StorageClass}
      * enumeration.
      * </p>
-     * 
+     *
      * @return The COS storage class to use when storing the newly copied object.
-     * 
      * @see #setStorageClass(String)
      * @see #setStorageClass(StorageClass)
      * @see #withStorageClass(StorageClass)
@@ -263,9 +266,8 @@ public class PutInstructionFileRequest extends CosServiceRequest
      * For more information on COS storage classes and available values, see the
      * {@link StorageClass} enumeration.
      * </p>
-     * 
+     *
      * @param storageClass The storage class to use when storing the new object.
-     * 
      * @see #getStorageClass()
      * @see #setStorageClass(String)
      * @see #withStorageClass(StorageClass)
@@ -283,12 +285,10 @@ public class PutInstructionFileRequest extends CosServiceRequest
      * For more information on COS storage classes and available values, see the
      * {@link StorageClass} enumeration.
      * </p>
-     * 
+     *
      * @param storageClass The storage class to use when storing the new object.
-     * 
      * @return This {@link PutObjectRequest}, enabling additional method calls to be chained
      *         together.
-     * 
      * @see #getStorageClass()
      * @see #setStorageClass(StorageClass)
      * @see #setStorageClass(String)
@@ -306,9 +306,8 @@ public class PutInstructionFileRequest extends CosServiceRequest
      * For more information on COS storage classes and available values, see the
      * {@link StorageClass} enumeration.
      * </p>
-     * 
+     *
      * @param storageClass The storage class to use when storing the new object.
-     * 
      * @see #getStorageClass()
      * @see #setStorageClass(String)
      */
@@ -324,12 +323,10 @@ public class PutInstructionFileRequest extends CosServiceRequest
      * For more information on COS storage classes and available values, see the
      * {@link StorageClass} enumeration.
      * </p>
-     * 
+     *
      * @param storageClass The storage class to use when storing the new object.
-     * 
      * @return This {@link PutObjectRequest}, enabling additional method calls to be chained
      *         together.
-     * 
      * @see #getStorageClass()
      * @see #setStorageClass(StorageClass)
      * @see #setStorageClass(String)

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -25,8 +25,9 @@ import java.security.SecureRandom;
  * wrapping scheme (for the content-encrypting-key).
  */
 final class COSCryptoScheme {
-    static final String AES = "AES"; 
-    static final String RSA = "RSA"; 
+
+    static final String AES = "AES";
+    static final String RSA = "RSA";
     private static final SecureRandom srand = new SecureRandom();
     private final COSKeyWrapScheme kwScheme;
 
@@ -38,13 +39,17 @@ final class COSCryptoScheme {
         this.kwScheme = kwScheme;
     }
 
-    SecureRandom getSecureRandom() { return srand; }
-    
+    SecureRandom getSecureRandom() {
+        return srand;
+    }
+
     ContentCryptoScheme getContentCryptoScheme() {
         return contentCryptoScheme;
     }
 
-    COSKeyWrapScheme getKeyWrapScheme() { return kwScheme; }
+    COSKeyWrapScheme getKeyWrapScheme() {
+        return kwScheme;
+    }
 
     /**
      * Convenient method.
@@ -55,12 +60,12 @@ final class COSCryptoScheme {
 
     static COSCryptoScheme from(CryptoMode mode) {
         switch (mode) {
-        case AuthenticatedEncryption:
-        case StrictAuthenticatedEncryption:
-            return new COSCryptoScheme(ContentCryptoScheme.AES_GCM,
-                    new COSKeyWrapScheme());
-        default:
-            throw new IllegalStateException();
+            case AuthenticatedEncryption:
+            case StrictAuthenticatedEncryption:
+                return new COSCryptoScheme(ContentCryptoScheme.AES_GCM,
+                        new COSKeyWrapScheme());
+            default:
+                throw new IllegalStateException();
         }
     }
 }

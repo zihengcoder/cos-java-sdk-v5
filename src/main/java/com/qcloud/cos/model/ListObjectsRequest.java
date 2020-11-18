@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -71,7 +71,9 @@ import com.qcloud.cos.internal.CosServiceRequest;
  */
 public class ListObjectsRequest extends CosServiceRequest implements Serializable {
 
-    /** The name of the Qcloud COS bucket to list. */
+    /**
+     * The name of the Qcloud COS bucket to list.
+     */
     private String bucketName;
 
     /**
@@ -128,24 +130,19 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      *
      * @see ListObjectsRequest#ListObjectsRequest(String, String, String, String, Integer)
      */
-    public ListObjectsRequest() {}
+    public ListObjectsRequest() {
+    }
 
     /**
      * Constructs a new {@link ListObjectsRequest} object and
      * initializes all required and optional object fields.
      *
-     * @param bucketName
-     *            The name of the bucket whose objects are to be listed.
-     * @param prefix
-     *            The prefix restricting what keys will be listed.
-     * @param marker
-     *            The key marker indicating where listing results should begin.
-     * @param delimiter
-     *            The delimiter for condensing common prefixes in the returned
-     *            listing results.
-     * @param maxKeys
-     *            The maximum number of results to return.
-     *
+     * @param bucketName The name of the bucket whose objects are to be listed.
+     * @param prefix The prefix restricting what keys will be listed.
+     * @param marker The key marker indicating where listing results should begin.
+     * @param delimiter The delimiter for condensing common prefixes in the returned
+     *         listing results.
+     * @param maxKeys The maximum number of results to return.
      * @see ListObjectsRequest#ListObjectsRequest()
      */
     public ListObjectsRequest(String bucketName, String prefix, String marker, String delimiter, Integer maxKeys) {
@@ -162,7 +159,6 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * objects are to be listed.
      *
      * @return The name of the Qcloud COS bucket whose objects are to be listed.
-     *
      * @see ListObjectsRequest#setBucketName(String)
      * @see ListObjectsRequest#withBucketName(String)
      */
@@ -173,10 +169,8 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
     /**
      * Sets the name of the Qcloud COS bucket whose objects are to be listed.
      *
-     * @param bucketName
-     *            The name of the Qcloud COS bucket whose objects are to be
-     *            listed.
-     *
+     * @param bucketName The name of the Qcloud COS bucket whose objects are to be
+     *         listed.
      * @see ListObjectsRequest#getBucketName()
      * @see ListObjectsRequest#withBucketName(String)
      */
@@ -189,13 +183,10 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * Returns this {@link ListObjectsRequest}, enabling additional method
      * calls to be chained together.
      *
-     * @param bucketName
-     *            The name of the Qcloud COS bucket whose objects are to be
-     *            listed.
-     *
+     * @param bucketName The name of the Qcloud COS bucket whose objects are to be
+     *         listed.
      * @return This {@link ListObjectsRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see ListObjectsRequest#getBucketName()
      * @see ListObjectsRequest#setBucketName(String)
      */
@@ -212,7 +203,6 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      *
      * @return The optional prefix parameter restricting the response to keys
      *         that begin with the specified prefix.
-     *
      * @see ListObjectsRequest#setPrefix(String)
      */
     public String getPrefix() {
@@ -223,10 +213,8 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * Sets the optional prefix parameter, restricting the response to keys that
      * begin with the specified prefix.
      *
-     * @param prefix
-     *            The optional prefix parameter, restricting the response to keys
-     *            that begin with the specified prefix.
-     *
+     * @param prefix The optional prefix parameter, restricting the response to keys
+     *         that begin with the specified prefix.
      * @see ListObjectsRequest#getPrefix()
      */
     public void setPrefix(String prefix) {
@@ -239,13 +227,10 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * Returns this {@link ListObjectsRequest}, enabling additional method
      * calls to be chained together.
      *
-     * @param prefix
-     *            The optional prefix parameter restricting the response to keys
-     *            that begin with the specified prefix.
-     *
+     * @param prefix The optional prefix parameter restricting the response to keys
+     *         that begin with the specified prefix.
      * @return This {@link ListObjectsRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see ListObjectsRequest#getPrefix()
      * @see ListObjectsRequest#setPrefix(String)
      */
@@ -262,7 +247,6 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * @return The optional marker parameter indicating where in the bucket to begin
      *         listing. The list will only include keys that occur
      *         lexicographically after the marker.
-     *
      * @see ListObjectsRequest#setMarker(String)
      * @see ListObjectsRequest#withMarker(String)
      */
@@ -275,11 +259,9 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * listing. The list will only include keys that occur lexicographically
      * after the marker.
      *
-     * @param marker
-     *            The optional marker parameter indicating where in the bucket to begin
-     *            listing. The list will only include keys that occur
-     *            lexicographically after the marker.
-     *
+     * @param marker The optional marker parameter indicating where in the bucket to begin
+     *         listing. The list will only include keys that occur
+     *         lexicographically after the marker.
      * @see ListObjectsRequest#getMarker()
      * @see ListObjectsRequest#withMarker(String)
      */
@@ -295,14 +277,11 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * The list will only include keys that occur lexicographically
      * after the marker.
      *
-     * @param marker
-     *            The optional parameter indicating where in the bucket to begin
-     *            listing. The list will only include keys that occur
-     *            lexicographically after the marker.
-     *
+     * @param marker The optional parameter indicating where in the bucket to begin
+     *         listing. The list will only include keys that occur
+     *         lexicographically after the marker.
      * @return This {@link ListObjectsRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see ListObjectsRequest#getMarker()
      * @see ListObjectsRequest#setMarker(String)
      */
@@ -324,7 +303,6 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      *         the same string between the prefix and the first occurrence of
      *         the delimiter to be combined into a single result element in the
      *         {@link ObjectListing#getCommonPrefixes()} list.
-     *
      * @see ListObjectsRequest#setDelimiter(String)
      * @see ListObjectsRequest#withDelimiter(String)
      */
@@ -338,12 +316,10 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * to be combined into a single result element in the
      * {@link ObjectListing#getCommonPrefixes()} list.
      *
-     * @param delimiter
-     *            The optional delimiter parameter that causes keys that contain
-     *            the same string between the prefix and the first occurrence of
-     *            the delimiter to be combined into a single result element in
-     *            the {@link ObjectListing#getCommonPrefixes()} list.
-     *
+     * @param delimiter The optional delimiter parameter that causes keys that contain
+     *         the same string between the prefix and the first occurrence of
+     *         the delimiter to be combined into a single result element in
+     *         the {@link ObjectListing#getCommonPrefixes()} list.
      * @see ListObjectsRequest#getDelimiter()
      * @see ListObjectsRequest#withDelimiter(String)
      */
@@ -359,15 +335,12 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * Returns this {@link ListObjectsRequest}, enabling additional method
      * calls to be chained together.
      *
-     * @param delimiter
-     *            The optional delimiter parameter that causes keys that contain
-     *            the same string between the prefix and the first occurrence of
-     *            the delimiter to be rolled up into a single result element in
-     *            the {@link ObjectListing#getCommonPrefixes()} list.
-     *
+     * @param delimiter The optional delimiter parameter that causes keys that contain
+     *         the same string between the prefix and the first occurrence of
+     *         the delimiter to be rolled up into a single result element in
+     *         the {@link ObjectListing#getCommonPrefixes()} list.
      * @return This {@link ListObjectsRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see ListObjectsRequest#getDelimiter()
      * @see ListObjectsRequest#setDelimiter(String)
      */
@@ -384,7 +357,6 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      *
      * @return The optional parameter indicating the maximum number of keys to
      *         include in the response.
-     *
      * @see ListObjectsRequest#setMaxKeys(Integer)
      * @see ListObjectsRequest#withMaxKeys(Integer)
      */
@@ -396,10 +368,8 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * Sets the optional <code>maxKeys</code> parameter indicating the maximum number of keys to
      * include in the response.
      *
-     * @param maxKeys
-     *            The optional parameter indicating the maximum number of keys
-     *            to include in the response.
-     *
+     * @param maxKeys The optional parameter indicating the maximum number of keys
+     *         to include in the response.
      * @see ListObjectsRequest#getMaxKeys()
      * @see ListObjectsRequest#withMaxKeys(Integer)
      */
@@ -413,13 +383,10 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * Returns this {@link ListObjectsRequest}, enabling additional method
      * calls to be chained together.
      *
-     * @param maxKeys
-     *            The optional parameter indicating the maximum number of keys
-     *            to include in the response.
-     *
+     * @param maxKeys The optional parameter indicating the maximum number of keys
+     *         to include in the response.
      * @return This {@link ListObjectsRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see ListObjectsRequest#getMaxKeys()
      * @see ListObjectsRequest#setMaxKeys(Integer)
      */
@@ -431,7 +398,7 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
     /**
      * Gets the optional <code>encodingType</code> parameter indicating the
      * encoding method to be applied on the response.
-     * 
+     *
      * @return The encoding method to be applied on the response.
      */
     public String getEncodingType() {
@@ -445,28 +412,26 @@ public class ListObjectsRequest extends CosServiceRequest implements Serializabl
      * characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter
      * to request that Qcloud COS encode the keys in the response.
-     * 
-     * @param encodingType
-     *            The encoding method to be applied on the response. Valid
-     *            values: null (not encoded) or "url".
+     *
+     * @param encodingType The encoding method to be applied on the response. Valid
+     *         values: null (not encoded) or "url".
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
     }
-    
+
     /**
      * Sets the optional <code>encodingType</code> parameter indicating the
      * encoding method to be applied on the response. An object key can contain
      * any Unicode character; however, XML 1.0 parser cannot parse some
      * characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter
-     * to request that Qcloud COS encode the keys in the response. 
+     * to request that Qcloud COS encode the keys in the response.
      * Returns this {@link ListObjectsRequest}, enabling additional method calls
      * to be chained together.
-     * 
-     * @param encodingType
-     *            The encoding method to be applied on the response. Valid
-     *            values: null (not encoded) or "url".
+     *
+     * @param encodingType The encoding method to be applied on the response. Valid
+     *         values: null (not encoded) or "url".
      */
     public ListObjectsRequest withEncodingType(String encodingType) {
         setEncodingType(encodingType);

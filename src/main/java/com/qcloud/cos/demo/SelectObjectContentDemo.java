@@ -11,6 +11,7 @@ import java.io.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 public class SelectObjectContentDemo {
+
     public static void main(String[] args) throws Exception {
         selectCsvContentDemo();
         selectJsonContentDemo();
@@ -52,15 +53,14 @@ public class SelectObjectContentDemo {
         InputStream resultInputStream = result.getPayload().getRecordsInputStream(
                 new SelectObjectContentEventVisitor() {
                     @Override
-                    public void visit(SelectObjectContentEvent.StatsEvent event)
-                    {
+                    public void visit(SelectObjectContentEvent.StatsEvent event) {
                         System.out.println(
                                 "Received Stats, Bytes Scanned: " + event.getDetails().getBytesScanned()
-                                        +  " Bytes Processed: " + event.getDetails().getBytesProcessed());
+                                        + " Bytes Processed: " + event.getDetails().getBytesProcessed());
                     }
+
                     @Override
-                    public void visit(SelectObjectContentEvent.EndEvent event)
-                    {
+                    public void visit(SelectObjectContentEvent.EndEvent event) {
                         isResultComplete.set(true);
                         System.out.println("Received End Event. Result is complete.");
                     }
@@ -69,7 +69,7 @@ public class SelectObjectContentDemo {
         BufferedReader reader = new BufferedReader(new InputStreamReader(resultInputStream));
         StringBuffer stringBuffer = new StringBuffer();
         String line;
-        while((line = reader.readLine())!= null){
+        while ((line = reader.readLine()) != null) {
             stringBuffer.append(line).append("\n");
         }
         System.out.println(stringBuffer.toString());
@@ -116,15 +116,14 @@ public class SelectObjectContentDemo {
         InputStream resultInputStream = result.getPayload().getRecordsInputStream(
                 new SelectObjectContentEventVisitor() {
                     @Override
-                    public void visit(SelectObjectContentEvent.StatsEvent event)
-                    {
+                    public void visit(SelectObjectContentEvent.StatsEvent event) {
                         System.out.println(
                                 "Received Stats, Bytes Scanned: " + event.getDetails().getBytesScanned()
-                                        +  " Bytes Processed: " + event.getDetails().getBytesProcessed());
+                                        + " Bytes Processed: " + event.getDetails().getBytesProcessed());
                     }
+
                     @Override
-                    public void visit(SelectObjectContentEvent.EndEvent event)
-                    {
+                    public void visit(SelectObjectContentEvent.EndEvent event) {
                         isResultComplete.set(true);
                         System.out.println("Received End Event. Result is complete.");
                     }
@@ -133,7 +132,7 @@ public class SelectObjectContentDemo {
         BufferedReader reader = new BufferedReader(new InputStreamReader(resultInputStream));
         StringBuffer stringBuffer = new StringBuffer();
         String line;
-        while((line = reader.readLine())!= null){
+        while ((line = reader.readLine()) != null) {
             stringBuffer.append(line).append("\n");
         }
         System.out.println(stringBuffer.toString());

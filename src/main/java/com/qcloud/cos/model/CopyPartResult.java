@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,10 +28,14 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    /** The ETag value of the new part */
+    /**
+     * The ETag value of the new part
+     */
     private String etag;
 
-    /** The last modified date for the new part */
+    /**
+     * The last modified date for the new part
+     */
     private Date lastModifiedDate;
 
     /**
@@ -46,7 +50,9 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
      */
     private int partNumber;
 
-    /** The crc64ecma value for this object */
+    /**
+     * The crc64ecma value for this object
+     */
     private String crc64Ecma;
 
     /**
@@ -59,8 +65,7 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
     /**
      * Sets the part number of the newly copied part.
      *
-     * @param partNumber
-     *            the part number of the newly uploaded part.
+     * @param partNumber the part number of the newly uploaded part.
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -71,7 +76,6 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
      * associated {@link CopyPartRequest}.
      *
      * @return The ETag value for the new part.
-     *
      * @see CopyPartResult#setETag(String)
      */
     public String getETag() {
@@ -82,9 +86,7 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
      * Sets the ETag value for the new part that was created from the
      * associated copy object request.
      *
-     * @param etag
-     *            The ETag value for the new part.
-     *
+     * @param etag The ETag value for the new part.
      * @see CopyPartResult#getETag()
      */
     public void setETag(String etag) {
@@ -107,7 +109,6 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
      * Gets the date the newly copied part was last modified.
      *
      * @return The date the newly copied part was last modified.
-     *
      * @see CopyPartResult#setLastModifiedDate(Date)
      */
     public Date getLastModifiedDate() {
@@ -117,9 +118,7 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
     /**
      * Sets the date the newly copied part was last modified.
      *
-     * @param lastModifiedDate
-     *            The date the new, copied part was last modified.
-     *
+     * @param lastModifiedDate The date the new, copied part was last modified.
      * @see CopyPartResult#getLastModifiedDate()
      */
     public void setLastModifiedDate(Date lastModifiedDate) {
@@ -132,7 +131,6 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
      * object was copied from.
      *
      * @return The version ID of the newly copied object.
-     *
      * @see CopyPartResult#setVersionId(String)
      */
     public String getVersionId() {
@@ -142,9 +140,7 @@ public class CopyPartResult extends SSEResultBase implements Serializable {
     /**
      * Sets the version ID of the source object.
      *
-     * @param versionId
-     *            The version ID of the source object.
-     *
+     * @param versionId The version ID of the source object.
      * @see CopyPartResult#getVersionId()
      */
     public void setVersionId(String versionId) {

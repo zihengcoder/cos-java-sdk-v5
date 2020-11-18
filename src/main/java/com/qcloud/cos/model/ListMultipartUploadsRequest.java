@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -24,7 +24,9 @@ import com.qcloud.cos.internal.CosServiceRequest;
 
 public class ListMultipartUploadsRequest extends CosServiceRequest implements Serializable {
 
-    /** The name of the bucket containing the uploads to list. */
+    /**
+     * The name of the bucket containing the uploads to list.
+     */
     private String bucketName;
 
     /**
@@ -46,7 +48,9 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      */
     private String prefix;
 
-    /** The optional maximum number of uploads to return. */
+    /**
+     * The optional maximum number of uploads to return.
+     */
     private Integer maxUploads;
 
     /**
@@ -76,7 +80,7 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * lexicographically greater than the specified marker.
      */
     private String uploadIdMarker;
-    
+
     /**
      * Optional parameter indicating the encoding method to be applied on the
      * response. An object key can contain any Unicode character; however, XML
@@ -92,8 +96,7 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * Constructs a new ListMultipartUploadsRequest to list the multipart
      * uploads from the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket containing the uploads to list.
+     * @param bucketName The name of the bucket containing the uploads to list.
      */
     public ListMultipartUploadsRequest(String bucketName) {
         this.bucketName = bucketName;
@@ -112,8 +115,7 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
     /**
      * Sets the name of the bucket containing the multipart uploads to list.
      *
-     * @param bucketName
-     *            The name of the bucket containing the uploads to list.
+     * @param bucketName The name of the bucket containing the uploads to list.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -124,9 +126,7 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * this updated ListMultipartUploadsRequest object so that additional method
      * calls can be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket containing the uploads to list.
-     *
+     * @param bucketName The name of the bucket containing the uploads to list.
      * @return This updated ListMultipartUploadsRequest object.
      */
     public ListMultipartUploadsRequest withBucketName(String bucketName) {
@@ -147,8 +147,7 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
     /**
      * Sets the optional maximum number of uploads to return.
      *
-     * @param maxUploads
-     *            The maximum number of uploads to return.
+     * @param maxUploads The maximum number of uploads to return.
      */
     public void setMaxUploads(Integer maxUploads) {
         this.maxUploads = maxUploads;
@@ -159,9 +158,7 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * updated ListMultipartUploadsRequest object so that additional method
      * calls can be chained together.
      *
-     * @param maxUploadsInt
-     *            The optional maximum number of uploads to return.
-     *
+     * @param maxUploadsInt The optional maximum number of uploads to return.
      * @return This updated ListMultipartUploadsRequest object.
      */
     public ListMultipartUploadsRequest withMaxUploads(int maxUploadsInt) {
@@ -206,9 +203,8 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * uploads have upload IDs lexicographically greater than the specified
      * marker.
      *
-     * @param keyMarker
-     *            The optional key marker indicating where in the results to
-     *            begin listing.
+     * @param keyMarker The optional key marker indicating where in the results to
+     *         begin listing.
      */
     public void setKeyMarker(String keyMarker) {
         this.keyMarker = keyMarker;
@@ -217,8 +213,7 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
     /**
      * Sets the KeyMarker property for this request.
      *
-     * @param keyMarker
-     *            The value that KeyMarker is set to
+     * @param keyMarker The value that KeyMarker is set to
      * @return the request with the KeyMarker set
      */
     public ListMultipartUploadsRequest withKeyMarker(String keyMarker) {
@@ -253,9 +248,8 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * marker may be included in the list only if they have an upload ID
      * lexicographically greater than the specified marker.
      *
-     * @param uploadIdMarker
-     *            The optional upload ID marker indicating where in the results
-     *            to begin listing.
+     * @param uploadIdMarker The optional upload ID marker indicating where in the results
+     *         to begin listing.
      */
     public void setUploadIdMarker(String uploadIdMarker) {
         this.uploadIdMarker = uploadIdMarker;
@@ -272,10 +266,8 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * marker may be included in the list only if they have an upload ID
      * lexicographically greater than the specified marker.
      *
-     * @param uploadIdMarker
-     *            The optional upload ID marker indicating where in the results
-     *            to begin listing.
-     *
+     * @param uploadIdMarker The optional upload ID marker indicating where in the results
+     *         to begin listing.
      * @return This updated ListMultipartUploadsRequest object.
      */
     public ListMultipartUploadsRequest withUploadIdMarker(String uploadIdMarker) {
@@ -308,12 +300,11 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * occurrence of the delimiter to be combined into a single result element
      * in the {@link MultipartUploadListing#getCommonPrefixes()} list.
      *
-     * @param delimiter
-     *            The optional delimiter parameter that causes multipart uploads
-     *            for keys that contain the same string between the prefix and
-     *            the first occurrence of the delimiter to be combined into a
-     *            single result element in the
-     *            {@link MultipartUploadListing#getCommonPrefixes()} list.
+     * @param delimiter The optional delimiter parameter that causes multipart uploads
+     *         for keys that contain the same string between the prefix and
+     *         the first occurrence of the delimiter to be combined into a
+     *         single result element in the
+     *         {@link MultipartUploadListing#getCommonPrefixes()} list.
      */
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
@@ -327,13 +318,11 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * this {@link ListMultipartUploadsRequest}, enabling additional method
      * calls to be chained together.
      *
-     * @param delimiter
-     *            The optional delimiter parameter that causes multipart uploads
-     *            for keys that contain the same string between the prefix and
-     *            the first occurrence of the delimiter to be rolled up into a
-     *            single result element in the
-     *            {@link MultipartUploadListing#getCommonPrefixes()} list.
-     *
+     * @param delimiter The optional delimiter parameter that causes multipart uploads
+     *         for keys that contain the same string between the prefix and
+     *         the first occurrence of the delimiter to be rolled up into a
+     *         single result element in the
+     *         {@link MultipartUploadListing#getCommonPrefixes()} list.
      * @return This {@link ListMultipartUploadsRequest}, enabling additional
      *         method calls to be chained together.
      */
@@ -359,10 +348,9 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * Sets the optional prefix parameter, restricting the response to multipart
      * uploads for keys that begin with the specified prefix.
      *
-     * @param prefix
-     *            The optional prefix parameter, restricting the response to
-     *            multipart uploads for keys that begin with the specified
-     *            prefix.
+     * @param prefix The optional prefix parameter, restricting the response to
+     *         multipart uploads for keys that begin with the specified
+     *         prefix.
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
@@ -374,11 +362,9 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * {@link ListMultipartUploadsRequest}, enabling additional method calls to
      * be chained together.
      *
-     * @param prefix
-     *            The optional prefix parameter restricting the response to
-     *            multipart uploads for keys that begin with the specified
-     *            prefix.
-     *
+     * @param prefix The optional prefix parameter restricting the response to
+     *         multipart uploads for keys that begin with the specified
+     *         prefix.
      * @return This {@link ListMultipartUploadsRequest}, enabling additional
      *         method calls to be chained together.
      */
@@ -386,11 +372,11 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
         setPrefix(prefix);
         return this;
     }
-    
+
     /**
      * Gets the optional <code>encodingType</code> parameter indicating the
      * encoding method to be applied on the response.
-     * 
+     *
      * @return The encoding method to be applied on the response.
      */
     public String getEncodingType() {
@@ -404,28 +390,26 @@ public class ListMultipartUploadsRequest extends CosServiceRequest implements Se
      * characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter
      * to request that Qcloud COS encode the keys in the response.
-     * 
-     * @param encodingType
-     *            The encoding method to be applied on the response. Valid
-     *            values: null (not encoded) or "url".
+     *
+     * @param encodingType The encoding method to be applied on the response. Valid
+     *         values: null (not encoded) or "url".
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
     }
-    
+
     /**
      * Sets the optional <code>encodingType</code> parameter indicating the
      * encoding method to be applied on the response. An object key can contain
      * any Unicode character; however, XML 1.0 parser cannot parse some
      * characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter
-     * to request that Qcloud COS encode the keys in the response. 
+     * to request that Qcloud COS encode the keys in the response.
      * Returns this {@link ListMultipartUploadsRequest}, enabling additional method calls
      * to be chained together.
-     * 
-     * @param encodingType
-     *            The encoding method to be applied on the response. Valid
-     *            values: null (not encoded) or "url".
+     *
+     * @param encodingType The encoding method to be applied on the response. Valid
+     *         values: null (not encoded) or "url".
      */
     public ListMultipartUploadsRequest withEncodingType(String encodingType) {
         setEncodingType(encodingType);

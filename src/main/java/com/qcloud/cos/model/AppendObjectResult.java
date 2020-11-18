@@ -1,6 +1,7 @@
 package com.qcloud.cos.model;
 
 public class AppendObjectResult {
+
     private ObjectMetadata metadata;
     private Long nextAppendPosition;
 

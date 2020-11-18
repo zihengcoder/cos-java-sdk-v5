@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -34,9 +34,9 @@ import com.qcloud.cos.exception.CosClientException;
 
 /**
  * Cryptographic scheme for content encrypt/decryption.
- * 
  */
 abstract class ContentCryptoScheme {
+
     /**
      * The maximum number of 16-byte blocks that can be encrypted with a
      * GCM cipher.  Note the maximum bit-length of the plaintext is (2^39 - 256),
@@ -53,7 +53,8 @@ abstract class ContentCryptoScheme {
     /**
      * The maximum number of bytes that can be securely encrypted per a single key using AES/CBC.
      */
-    static final long MAX_CBC_BYTES = (1L << 48) << 4;  // 2^48 blocks, assuming an adversary advantage of at most 1/2^32 per Prof. Dan Boneh
+    static final long MAX_CBC_BYTES =
+            (1L << 48) << 4;  // 2^48 blocks, assuming an adversary advantage of at most 1/2^32 per Prof. Dan Boneh
     /**
      * The maximum number of bytes that can be securely encrypted per a single key using AES/CTR.
      */
@@ -71,6 +72,7 @@ abstract class ContentCryptoScheme {
     static final ContentCryptoScheme AES_CTR = new AesCtr();
 
     abstract String getKeyGeneratorAlgorithm();
+
     abstract String getCipherAlgorithm();
 
     /**
@@ -78,17 +80,24 @@ abstract class ContentCryptoScheme {
      * cipher algorithm in the current implementation; or null if there is
      * no specific limitation.
      */
-    String getSpecificCipherProvider() { return null; }
+    String getSpecificCipherProvider() {
+        return null;
+    }
+
     abstract int getKeyLengthInBits();
+
     abstract int getBlockSizeInBytes();
+
     abstract int getIVLengthInBytes();
 
-    int getTagLengthInBits() { return 0; } // default to zero ie no tag
-    
+    int getTagLengthInBits() {
+        return 0;
+    } // default to zero ie no tag
+
     byte[] adjustIV(byte[] iv, long startingBytePos) {
         return iv;
     }
-    
+
     @Override
     public String toString() {
         return "cipherAlgo=" + getCipherAlgorithm() + ", blockSizeInBytes="
@@ -105,34 +114,38 @@ abstract class ContentCryptoScheme {
      * delta. Both the specified delta and the resultant value must stay within
      * the capacity of 32 bits.
      * (Package private for testing purposes.)
-     * 
-     * @param counter
-     *            a 16-byte counter used in AES/CTR
-     * @param blockDelta
-     *            the number of blocks (16-byte) to increment
+     *
+     * @param counter a 16-byte counter used in AES/CTR
+     * @param blockDelta the number of blocks (16-byte) to increment
      */
     static byte[] incrementBlocks(byte[] counter, long blockDelta) {
-        if (blockDelta == 0)
+        if (blockDelta == 0) {
             return counter;
-        if (counter == null || counter.length != 16)
+        }
+        if (counter == null || counter.length != 16) {
             throw new IllegalArgumentException();
+        }
         // Can optimize this later.  KISS for now.
-        if (blockDelta > MAX_GCM_BLOCKS)
+        if (blockDelta > MAX_GCM_BLOCKS) {
             throw new IllegalStateException();
+        }
         // Allocate 8 bytes for a long
         ByteBuffer bb = ByteBuffer.allocate(8);
         // Copy the right-most 32 bits from the counter
-        for (int i=12; i <= 15; i++)
-            bb.put(i-8, counter[i]);
+        for (int i = 12; i <= 15; i++) {
+            bb.put(i - 8, counter[i]);
+        }
         long val = bb.getLong() + blockDelta;    // increment by delta
-        if (val > MAX_GCM_BLOCKS)
+        if (val > MAX_GCM_BLOCKS) {
             throw new IllegalStateException(); // overflow 2^32-2
+        }
         bb.rewind();
         // Get the incremented value (result) as an 8-byte array
         byte[] result = bb.putLong(val).array();
         // Copy the rightmost 32 bits from the resultant array to the input counter;
-        for (int i=12; i <= 15; i++)
-            counter[i] = result[i-8];
+        for (int i = 12; i <= 15; i++) {
+            counter[i] = result[i - 8];
+        }
         return counter;
     }
 
@@ -149,20 +162,16 @@ abstract class ContentCryptoScheme {
         }
         throw new UnsupportedOperationException("Unsupported content encryption scheme: " + cekAlgo);
     }
-    
+
     /**
      * Creates and initializes a {@link CipherLite} for content
      * encrypt/decryption.
-     * 
-     * @param cek
-     *            content encrypting key
-     * @param iv
-     *            initialization vector
-     * @param cipherMode
-     *            such as {@link Cipher#ENCRYPT_MODE}
-     * @param securityProvider
-     *            optional security provider to be used but only if there is no
-     *            specific provider defined for the specified scheme.
+     *
+     * @param cek content encrypting key
+     * @param iv initialization vector
+     * @param cipherMode such as {@link Cipher#ENCRYPT_MODE}
+     * @param securityProvider optional security provider to be used but only if there is no
+     *         specific provider defined for the specified scheme.
      * @return the cipher lite created and initialized.
      */
     CipherLite createCipherLite(SecretKey cek, byte[] iv, int cipherMode,
@@ -171,7 +180,7 @@ abstract class ContentCryptoScheme {
         Cipher cipher;
         try {
             if (specificProvider != null) { // use the specific provider if defined
-                    cipher = Cipher.getInstance(getCipherAlgorithm(), specificProvider);
+                cipher = Cipher.getInstance(getCipherAlgorithm(), specificProvider);
             } else if (securityProvider != null) { // use the one optionally specified in the input
                 cipher = Cipher.getInstance(getCipherAlgorithm(), securityProvider);
             } else { // use the default provider
@@ -181,13 +190,13 @@ abstract class ContentCryptoScheme {
             return newCipherLite(cipher, cek, cipherMode);
         } catch (Exception e) {
             throw e instanceof RuntimeException
-                ? (RuntimeException) e
-                : new CosClientException(
-                    "Unable to build cipher: "
-                        + e.getMessage()
-                        + "\nMake sure you have the JCE unlimited strength policy files installed and "
-                        + "configured for your JVM",
-                    e);
+                    ? (RuntimeException) e
+                    : new CosClientException(
+                            "Unable to build cipher: "
+                                    + e.getMessage()
+                                    + "\nMake sure you have the JCE unlimited strength policy files installed and "
+                                    + "configured for your JVM",
+                            e);
         }
     }
 
@@ -195,7 +204,7 @@ abstract class ContentCryptoScheme {
      * This is a factory method intended to be overridden by sublcasses to
      * return the appropriate instance of cipher lite.
      */
-    protected CipherLite newCipherLite(Cipher cipher,  SecretKey cek, int cipherMode) {
+    protected CipherLite newCipherLite(Cipher cipher, SecretKey cek, int cipherMode) {
         return new CipherLite(cipher, this, cek, cipherMode);
     }
 
@@ -205,15 +214,13 @@ abstract class ContentCryptoScheme {
             InvalidKeyException, InvalidAlgorithmParameterException {
         return null;
     }
+
     /**
      * Creates and initializes a cipher lite for content encrypt/decryption.
-     * 
-     * @param cek
-     *            content encrypting key
-     * @param iv
-     *            initialization vector
-     * @param cipherMode
-     *            such as {@link Cipher#ENCRYPT_MODE}
+     *
+     * @param cek content encrypting key
+     * @param iv initialization vector
+     * @param cipherMode such as {@link Cipher#ENCRYPT_MODE}
      * @return the cipher lite created and initialized.
      */
     CipherLite createCipherLite(SecretKey cek, byte[] iv, int cipherMode)

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,15 +28,17 @@ import com.qcloud.cos.exception.AbortedException;
  * Base class for COS Java SDK specific {@link FilterInputStream}.
  */
 public class SdkFilterInputStream extends FilterInputStream implements Releasable {
+
     protected SdkFilterInputStream(InputStream in) {
         super(in);
     }
+
     private volatile boolean aborted = false;
 
     /**
      * Aborts with subclass specific abortion logic executed if needed. Note the interrupted status
      * of the thread is cleared by this method.
-     * 
+     *
      * @throws AbortedException if found necessary.
      */
     protected final void abortIfNeeded() {
@@ -52,8 +54,9 @@ public class SdkFilterInputStream extends FilterInputStream implements Releasabl
      * of this class, then it will also be aborted, otherwise this is a no-op.
      */
     public void abort() {
-        if(aborted)
+        if (aborted) {
             return;
+        }
         aborted = true;
         if (in instanceof SdkFilterInputStream) {
             ((SdkFilterInputStream) in).abort();

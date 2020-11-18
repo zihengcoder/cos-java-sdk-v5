@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class ObjectTaggingDemo {
+
     public static void SetGetDelObjectTaggingDemo() {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("COS_SECRET_ID", "COS_SECRET_KEY");
@@ -29,12 +30,15 @@ public class ObjectTaggingDemo {
         ObjectTagging objectTagging = new ObjectTagging(tags);
         SetObjectTaggingRequest setObjectTaggingRequest = new SetObjectTaggingRequest(bucketName, key, objectTagging);
         cosclient.setObjectTagging(setObjectTaggingRequest);
-        GetObjectTaggingResult getObjectTaggingResult = cosclient.getObjectTagging(new GetObjectTaggingRequest(bucketName, key));
+        GetObjectTaggingResult getObjectTaggingResult = cosclient
+                .getObjectTagging(new GetObjectTaggingRequest(bucketName, key));
         List<Tag> resultTagSet = getObjectTaggingResult.getTagSet();
         cosclient.deleteObjectTagging(new DeleteObjectTaggingRequest(bucketName, key));
-        GetObjectTaggingResult getObjectTaggingResultSecond = cosclient.getObjectTagging(new GetObjectTaggingRequest(bucketName, key));
+        GetObjectTaggingResult getObjectTaggingResultSecond = cosclient
+                .getObjectTagging(new GetObjectTaggingRequest(bucketName, key));
         List<Tag> resultTagSetSecond = getObjectTaggingResultSecond.getTagSet();
     }
+
     public static void main(String[] args) {
         SetGetDelObjectTaggingDemo();
     }

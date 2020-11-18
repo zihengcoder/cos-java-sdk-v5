@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -22,14 +22,14 @@ public interface VIDResult {
 
     /**
      * get requestid for this upload
-     * 
+     *
      * @return requestid
      */
     public String getRequestId();
 
     /**
      * set requestId for this upload
-     * 
+     *
      * @param requestId the requestId for the upload
      */
 
@@ -37,14 +37,14 @@ public interface VIDResult {
 
     /**
      * get date header for this upload
-     * 
+     *
      * @return date str
      */
     public String getDateStr();
 
     /**
      * set date str for this upload
-     * 
+     *
      * @param dateStr date str header
      */
     public void setDateStr(String dateStr);

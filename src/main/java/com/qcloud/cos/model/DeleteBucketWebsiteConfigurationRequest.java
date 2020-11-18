@@ -28,9 +28,8 @@ public class DeleteBucketWebsiteConfigurationRequest extends GenericBucketReques
      * Creates a new request object, ready to be executed to delete the website
      * configuration for the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket whose website configuration is being
-     *            deleted.
+     * @param bucketName The name of the bucket whose website configuration is being
+     *         deleted.
      */
     public DeleteBucketWebsiteConfigurationRequest(String bucketName) {
         super(bucketName);

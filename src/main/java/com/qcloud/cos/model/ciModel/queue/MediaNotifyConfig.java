@@ -5,6 +5,7 @@ package com.qcloud.cos.model.ciModel.queue;
  * 媒体处理 回调通知渠道 实体 https://cloud.tencent.com/document/product/460/42324
  */
 public class MediaNotifyConfig {
+
     /**
      * 回调配置
      */

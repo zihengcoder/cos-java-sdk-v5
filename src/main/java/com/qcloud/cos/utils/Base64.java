@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,8 +28,9 @@ public enum Base64 {
      * Returns a base 64 encoded string of the given bytes.
      */
     public static String encodeAsString(byte[] bytes) {
-        if (bytes == null)
+        if (bytes == null) {
             return null;
+        }
         return new String(codec.encode(bytes), Charset.forName("ISO-8859-1"));
     }
 
@@ -45,10 +46,12 @@ public enum Base64 {
      * needed.
      */
     public static byte[] decode(String b64) {
-        if (b64 == null)
+        if (b64 == null) {
             return null;
-        if (b64.length() == 0)
+        }
+        if (b64.length() == 0) {
             return new byte[0];
+        }
         byte[] buf = new byte[b64.length()];
         int len = CodecUtils.sanitize(b64, buf);
         return codec.decode(buf, len);

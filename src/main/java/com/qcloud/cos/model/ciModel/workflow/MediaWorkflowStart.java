@@ -1,6 +1,7 @@
 package com.qcloud.cos.model.ciModel.workflow;
 
 public class MediaWorkflowStart {
+
     private String type;
     private MediaWorkflowInput input;
 
@@ -13,7 +14,7 @@ public class MediaWorkflowStart {
     }
 
     public MediaWorkflowInput getInput() {
-        if (input==null){
+        if (input == null) {
             input = new MediaWorkflowInput();
         }
         return input;

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -29,14 +29,16 @@ import java.util.List;
  * the bucket, a list of common prefixes if a delimiter was specified in the
  * request, information describing if this is a complete or partial
  * listing, and the original request parameters.
- * 
+ *
  * @see COS#listObjects(String, String)
  * @see COS#listObjects(ListObjectsRequest)
  * @see COS#listNextBatchOfObjects(ObjectListing)
  */
 public class ObjectListing implements Serializable {
-    
-    /** A list of summary information describing the objects stored in the bucket */
+
+    /**
+     * A list of summary information describing the objects stored in the bucket
+     */
     private List<COSObjectSummary> objectSummaries = new ArrayList<COSObjectSummary>();
 
     /**
@@ -44,8 +46,10 @@ public class ObjectListing implements Serializable {
      * prefixes will only be populated for requests that specified a delimiter
      */
     private List<String> commonPrefixes = new ArrayList<String>();
-    
-    /** The name of the Qcloud COS bucket containing the listed objects */
+
+    /**
+     * The name of the Qcloud COS bucket containing the listed objects
+     */
     private String bucketName;
 
     /**
@@ -54,15 +58,15 @@ public class ObjectListing implements Serializable {
      * truncated
      */
     private String nextMarker;
-    
+
     /**
      * Indicates if this is a complete listing, or if the caller needs to make
      * additional requests to Qcloud COS to see the full object listing for an COS
      * bucket
      */
     private boolean isTruncated;
-    
-    
+
+
     /* Original Request Parameters */
 
     /**
@@ -70,25 +74,25 @@ public class ObjectListing implements Serializable {
      * listing was returned
      */
     private String prefix;
-    
+
     /**
      * The marker parameter originally specified by the caller when this object
      * listing was returned
      */
     private String marker;
-    
+
     /**
      * The maxKeys parameter originally specified by the caller when this object
      * listing was returned
      */
     private int maxKeys;
-    
+
     /**
      * The delimiter parameter originally specified by the caller when this
      * object listing was returned
      */
     private String delimiter;
-    
+
     /**
      * The encodingType parameter originally specified by the caller when this
      * object listing was returned.
@@ -106,7 +110,7 @@ public class ObjectListing implements Serializable {
      * additional calls to
      * {@link COS#listNextBatchOfObjects(ObjectListing)} to get
      * additional results.
-     * 
+     *
      * @return A list of the object summaries describing the objects stored in
      *         the COS bucket.
      */
@@ -123,9 +127,9 @@ public class ObjectListing implements Serializable {
      * <p>
      * Each common prefix represents a set of keys in the COS bucket that have
      * been condensed and omitted from the object summary results. This allows
-     * applications to organize and browse their keys hierarchically, 
+     * applications to organize and browse their keys hierarchically,
      * similar to how a file system organizes files
-     * into directories. 
+     * into directories.
      * </p>
      * <p>
      * For example, consider a bucket that contains the following keys:
@@ -135,12 +139,12 @@ public class ObjectListing implements Serializable {
      *  <li>"foo/bar/bang"</li>
      *  <li>"foo/boo"</li>
      * </ul>
-     * If calling <code>listObjects</code> with the prefix="foo/" and the delimiter="/" on 
-     * this bucket, the returned <code>COSObjectListing</code> 
+     * If calling <code>listObjects</code> with the prefix="foo/" and the delimiter="/" on
+     * this bucket, the returned <code>COSObjectListing</code>
      * will contain one entry in the common
      * prefixes list ("foo/bar/") and none of the keys beginning with that
      * common prefix will be included in the object summaries list.
-     * 
+     *
      * @return The list of common prefixes included in this object listing,
      *         which might be an empty list if no common prefixes were found.
      */
@@ -152,9 +156,8 @@ public class ObjectListing implements Serializable {
      * For internal use only. Sets the common prefixes for this
      * object listing, representing the key prefixes that were rolled up because
      * of the request's delimiter parameter.
-     * 
-     * @param commonPrefixes
-     *            The common prefixes for this object listing.
+     *
+     * @param commonPrefixes The common prefixes for this object listing.
      */
     public void setCommonPrefixes(List<String> commonPrefixes) {
         this.commonPrefixes = commonPrefixes;
@@ -163,13 +166,13 @@ public class ObjectListing implements Serializable {
     /**
      * Gets the marker to use in the next <code>listObjects</code>
      * request in order to see
-     * the next page of results. 
+     * the next page of results.
      * If an object listing is not truncated, this
      * method will return <code>null</code>. For
      * truncated requests, this value is equal to the greatest
      * lexicographical value of the object keys and common prefixes included
      * in this listing.
-     * 
+     *
      * @return The marker to use in the next <code>listObjects</code> request in order to see
      *         the next page of results if this object listing is truncated.
      *         Returns <code>null</code> if this object listing isn't truncated.
@@ -182,10 +185,9 @@ public class ObjectListing implements Serializable {
      * For internal use only. Sets the marker to use in the
      * next list objects request in order to see the next page of results for a
      * truncated object listing.
-     * 
-     * @param nextMarker
-     *            The marker to use in the next listObjects request in order to
-     *            see the next page of results for a truncated object listing.
+     *
+     * @param nextMarker The marker to use in the next listObjects request in order to
+     *         see the next page of results for a truncated object listing.
      */
     public void setNextMarker(String nextMarker) {
         this.nextMarker = nextMarker;
@@ -194,7 +196,7 @@ public class ObjectListing implements Serializable {
     /**
      * Gets the name of the Qcloud COS bucket containing the objects listed in
      * this {@link ObjectListing}.
-     * 
+     *
      * @return The name of the Qcloud COS bucket containing the objects listed in
      *         this {@link ObjectListing}.
      */
@@ -203,13 +205,12 @@ public class ObjectListing implements Serializable {
     }
 
     /**
-     * For internal use only.  
+     * For internal use only.
      * Sets the name of the Qcloud COS
      * bucket containing the objects listed in this COSObjectListing.
-     * 
-     * @param bucketName
-     *            The name of the Qcloud COS bucket containing the objects listed
-     *            in this COSObjectListing.
+     *
+     * @param bucketName The name of the Qcloud COS bucket containing the objects listed
+     *         in this COSObjectListing.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -220,7 +221,7 @@ public class ObjectListing implements Serializable {
      * <code>null</code> if no prefix was specified.
      * All objects and common prefixes included
      * in this object listing start with the specified prefix.
-     * 
+     *
      * @return The prefix parameter originally used to request this object
      *         listing. Returns <code>null</code> if no prefix was specified.
      */
@@ -229,13 +230,12 @@ public class ObjectListing implements Serializable {
     }
 
     /**
-     * For internal use only. 
+     * For internal use only.
      * Sets the prefix parameter
      * originally used to request this object listing.
-     * 
-     * @param prefix
-     *            The prefix parameter originally used to request this object
-     *            listing.
+     *
+     * @param prefix The prefix parameter originally used to request this object
+     *         listing.
      */
     public void setPrefix(String prefix) {
         this.prefix = prefix;
@@ -243,11 +243,11 @@ public class ObjectListing implements Serializable {
 
     /**
      * Gets the marker parameter originally used to request this object listing, or
-     * <code>null</code> if no marker was specified. 
+     * <code>null</code> if no marker was specified.
      * If specified, all objects and common
      * prefixes included in this object listing will occur
      * alphabetically after the specified marker.
-     * 
+     *
      * @return The marker parameter originally used to request this object
      *         listing. Returns <code>null</code> if no marker was specified.
      */
@@ -256,13 +256,12 @@ public class ObjectListing implements Serializable {
     }
 
     /**
-     * For internal use only. 
+     * For internal use only.
      * Sets the marker parameter
      * originally used to request this object listing.
-     * 
-     * @param marker
-     *            The marker parameter originally used to request this object
-     *            listing.
+     *
+     * @param marker The marker parameter originally used to request this object
+     *         listing.
      */
     public void setMarker(String marker) {
         this.marker = marker;
@@ -275,7 +274,7 @@ public class ObjectListing implements Serializable {
      * combined number of objects and common prefixes included in this object
      * listing. An object listing will never contain more objects plus common
      * prefixes than indicated by the <code>maxKeys</code>, but can of course contain less.
-     * 
+     *
      * @return The <code>maxKeys</code> parameter originally used to request this object
      *         listing. Returns the default <code>maxKeys</code> value applied by Qcloud COS if
      *         no value was specified.
@@ -285,15 +284,14 @@ public class ObjectListing implements Serializable {
     }
 
     /**
-     * For internal use only. 
+     * For internal use only.
      * Sets the <code>maxKeys</code> parameter
      * originally used to request this object listing, or the default maxKeys
      * applied by Qcloud COS if the requester didn't specify a value.
-     * 
-     * @param maxKeys
-     *            The <code>maxKeys</code> parameter originally used to request this object
-     *            listing, or the default <code>maxKeys</code> value applied by Qcloud COS if
-     *            the requester didn't specify a value.
+     *
+     * @param maxKeys The <code>maxKeys</code> parameter originally used to request this object
+     *         listing, or the default <code>maxKeys</code> value applied by Qcloud COS if
+     *         the requester didn't specify a value.
      */
     public void setMaxKeys(int maxKeys) {
         this.maxKeys = maxKeys;
@@ -301,7 +299,7 @@ public class ObjectListing implements Serializable {
 
     /**
      * Gets the delimiter parameter originally used to request this object
-     * listing, or <code>null</code> if no delimiter specified. 
+     * listing, or <code>null</code> if no delimiter specified.
      * <p>
      * The delimiter value allows
      * callers to condense COS keys into common prefix listings. For example, if
@@ -311,7 +309,7 @@ public class ObjectListing implements Serializable {
      * list of object summaries. Instead, the common prefixes list will have
      * one entry for the common prefix.
      * </p>
-     * 
+     *
      * @return The delimiter parameter originally used to request this object
      *         listing. Returns <code>null</code> if no delimiter was specified.
      */
@@ -322,10 +320,9 @@ public class ObjectListing implements Serializable {
     /**
      * For internal use only. Sets the delimiter parameter
      * originally used to request this object listing.
-     * 
-     * @param delimiter
-     *            The delimiter parameter originally used to request this object
-     *            listing.
+     *
+     * @param delimiter The delimiter parameter originally used to request this object
+     *         listing.
      */
     public void setDelimiter(String delimiter) {
         this.delimiter = delimiter;
@@ -333,9 +330,9 @@ public class ObjectListing implements Serializable {
 
     /**
      * Gets whether or not this object listing is complete.
-     * 
+     *
      * @return The value <code>true</code> if the object listing is <b>not complete</b>.
-     *         Returns the value <code>false</code> if otherwise.  
+     *         Returns the value <code>false</code> if otherwise.
      *         When returning <code>true</code>,
      *         additional calls to Qcloud COS may be needed in order to
      *         obtain more results.
@@ -349,10 +346,9 @@ public class ObjectListing implements Serializable {
      * this object listing, indicating if this is a complete listing or not and
      * whether the caller needs to make additional calls to COS to get more
      * object summaries.
-     * 
-     * @param isTruncated
-     *            The value <code>true</code> if the object listing is <b>not complete</b>. 
-     *            The value <code>false</code> if otherwise.  
+     *
+     * @param isTruncated The value <code>true</code> if the object listing is <b>not complete</b>.
+     *         The value <code>false</code> if otherwise.
      */
     public void setTruncated(boolean isTruncated) {
         this.isTruncated = isTruncated;
@@ -365,7 +361,7 @@ public class ObjectListing implements Serializable {
      * encoded key name values in the following response elements:
      * <code>Delimiter, Marker, Prefix,
      * NextMarker, Key</code>.
-     * 
+     *
      * @return <code>Null</code> if <code>encodingType</code> is not specified
      *         in the request parameter.
      */
@@ -376,10 +372,9 @@ public class ObjectListing implements Serializable {
     /**
      * For internal use only. Sets the encoding type used by Qcloud COS to encode
      * object key names in the XML response.
-     * 
-     * @param encodingType
-     *            <code>Null</code> if <code>encodingType</code> is not
-     *            specified in the request parameter.
+     *
+     * @param encodingType <code>Null</code> if <code>encodingType</code> is not
+     *         specified in the request parameter.
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;

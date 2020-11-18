@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -75,8 +75,7 @@ abstract class AbstractHandler extends DefaultHandler {
     }
 
     /**
-     * @param path
-     *            Path to test
+     * @param path Path to test
      * @return True if the path provided is the same as the current context. False otherwise
      */
     protected final boolean in(String... path) {

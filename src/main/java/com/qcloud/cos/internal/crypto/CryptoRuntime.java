@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,6 +28,7 @@ import org.slf4j.LoggerFactory;
 import static com.qcloud.cos.internal.crypto.COSKeyWrapScheme.RSA_ECB_OAEPWithSHA256AndMGF1Padding;
 
 public class CryptoRuntime {
+
     static final String BOUNCY_CASTLE_PROVIDER = "BC";
     private static final String BC_PROVIDER_FQCN =
             "org.bouncycastle.jce.provider.BouncyCastleProvider";
@@ -75,6 +76,7 @@ public class CryptoRuntime {
     }
 
     private static final class AesGcm {
+
         static volatile boolean isAvailable = check();
 
         static boolean recheck() {
@@ -91,7 +93,9 @@ public class CryptoRuntime {
             }
         }
     }
+
     private static final class RsaEcbOaepWithSHA256AndMGF1Padding {
+
         static volatile boolean isAvailable = check();
 
         static boolean recheck() {

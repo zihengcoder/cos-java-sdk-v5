@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -21,7 +21,7 @@ package com.qcloud.cos.model.lifecycle;
 import java.util.List;
 
 /**
- *  Abstract class representing an operator that acts on N number of predicates.
+ * Abstract class representing an operator that acts on N number of predicates.
  */
 abstract class LifecycleNAryOperator extends LifecycleFilterPredicate {
 

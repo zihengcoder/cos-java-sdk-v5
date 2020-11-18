@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -19,25 +19,25 @@
 package com.qcloud.cos.auth;
 
 public interface COSCredentials {
-   
+
     /**
-     * Returns the COS AppId for this credentials object. 
-     * 
-     * @return The COS AppId for this credentials object. 
+     * Returns the COS AppId for this credentials object.
+     *
+     * @return The COS AppId for this credentials object.
      */
     public String getCOSAppId();
 
 
     /**
-     * Returns the COS access key ID for this credentials object. 
-     * 
-     * @return The COS access key ID for this credentials object. 
+     * Returns the COS access key ID for this credentials object.
+     *
+     * @return The COS access key ID for this credentials object.
      */
     public String getCOSAccessKeyId();
 
     /**
      * Returns the COS secret access key for this credentials object.
-     * 
+     *
      * @return The COS secret access key for this credentials object.
      */
     public String getCOSSecretKey();

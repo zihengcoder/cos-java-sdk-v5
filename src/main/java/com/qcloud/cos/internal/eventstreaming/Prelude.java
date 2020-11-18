@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.internal.eventstreaming;
 
 import java.nio.ByteBuffer;
@@ -23,6 +24,7 @@ import java.util.zip.Checksum;
 import static java.lang.String.format;
 
 final class Prelude {
+
     static final int LENGTH = 8;
     static final int LENGTH_WITH_CRC = LENGTH + 4;
 
@@ -44,7 +46,7 @@ final class Prelude {
         long wirePreludeCrc = intToUnsignedLong(buf.getInt());
         if (computedPreludeCrc != wirePreludeCrc) {
             throw new IllegalArgumentException(format("Prelude checksum failure: expected 0x%x, computed 0x%x",
-                wirePreludeCrc, computedPreludeCrc));
+                    wirePreludeCrc, computedPreludeCrc));
         }
 
         if (headersLength < 0 || headersLength > 131072) {

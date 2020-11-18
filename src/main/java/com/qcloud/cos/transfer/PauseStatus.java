@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -52,7 +52,8 @@ public enum PauseStatus {
      * pause is not possible while transfer is already in progress AND cancel
      * was requested; so we cancel it
      */
-    CANCELLED, ;
+    CANCELLED,
+    ;
 
     /**
      * Returns true if the transfer is paused else false.

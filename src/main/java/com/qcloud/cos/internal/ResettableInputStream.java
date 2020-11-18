@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -30,7 +30,7 @@ import com.qcloud.cos.exception.CosClientException;
 
 /**
  * A mark-and-resettable input stream that can be used on files or file input streams.
- * 
+ *
  * In particular, a {@link ResettableInputStream} allows the close operation to be disabled via
  * {@link #disableClose()} (to avoid accidentally being closed). This is necessary when such input
  * stream needs to be marked-and-reset multiple times but only as long as the stream has not been
@@ -38,10 +38,11 @@ import com.qcloud.cos.exception.CosClientException;
  * <p>
  * The creator of this input stream should therefore always call {@link #release()} in a finally
  * block to truly release the underlying resources.
- * 
+ *
  * @see Releasable
  */
 public class ResettableInputStream extends ReleasableInputStream {
+
     private static final Logger log = LoggerFactory.getLogger(ResettableInputStream.class);
     private final File file; // null if the file is not known
     private FileInputStream fis; // never null
@@ -53,17 +54,17 @@ public class ResettableInputStream extends ReleasableInputStream {
 
     /**
      * @param file must not be null. Upon successful construction the the file will be opened with
-     *        an input stream automatically marked at the starting position of the given file.
-     *        <p>
-     *        Note the creation of a {@link ResettableInputStream} would entail physically opening a
-     *        file. If the opened file is meant to be closed only (in a finally block) by the very
-     *        same code block that created it, then it is necessary that the release method must not
-     *        be called while the execution is made in other stack frames.
-     * 
-     *        In such case, as other stack frames may inadvertently or indirectly call the close
-     *        method of the stream, the creator of the stream would need to explicitly disable the
-     *        accidental closing via {@link ResettableInputStream#disableClose()}, so that the
-     *        release method becomes the only way to truly close the opened file.
+     *         an input stream automatically marked at the starting position of the given file.
+     *         <p>
+     *         Note the creation of a {@link ResettableInputStream} would entail physically opening a
+     *         file. If the opened file is meant to be closed only (in a finally block) by the very
+     *         same code block that created it, then it is necessary that the release method must not
+     *         be called while the execution is made in other stack frames.
+     *
+     *         In such case, as other stack frames may inadvertently or indirectly call the close
+     *         method of the stream, the creator of the stream would need to explicitly disable the
+     *         accidental closing via {@link ResettableInputStream#disableClose()}, so that the
+     *         release method becomes the only way to truly close the opened file.
      */
     public ResettableInputStream(File file) throws IOException {
         this(new FileInputStream(file), file);
@@ -71,17 +72,17 @@ public class ResettableInputStream extends ReleasableInputStream {
 
     /**
      * @param fis file input stream; must not be null. Upon successful construction the input stream
-     *        will be automatically marked at the current position of the given file input stream.
-     *        <p>
-     *        Note the creation of a {@link ResettableInputStream} would entail physically opening a
-     *        file. If the opened file is meant to be closed only (in a finally block) by the very
-     *        same code block that created it, then it is necessary that the release method must not
-     *        be called while the execution is made in other stack frames.
-     * 
-     *        In such case, as other stack frames may inadvertently or indirectly call the close
-     *        method of the stream, the creator of the stream would need to explicitly disable the
-     *        accidental closing via {@link ResettableInputStream#disableClose()}, so that the
-     *        release method becomes the only way to truly close the opened file.
+     *         will be automatically marked at the current position of the given file input stream.
+     *         <p>
+     *         Note the creation of a {@link ResettableInputStream} would entail physically opening a
+     *         file. If the opened file is meant to be closed only (in a finally block) by the very
+     *         same code block that created it, then it is necessary that the release method must not
+     *         be called while the execution is made in other stack frames.
+     *
+     *         In such case, as other stack frames may inadvertently or indirectly call the close
+     *         method of the stream, the creator of the stream would need to explicitly disable the
+     *         accidental closing via {@link ResettableInputStream#disableClose()}, so that the
+     *         release method becomes the only way to truly close the opened file.
      */
     public ResettableInputStream(FileInputStream fis) throws IOException {
         this(fis, null);
@@ -112,12 +113,12 @@ public class ResettableInputStream extends ReleasableInputStream {
      * If the opened file is meant to be closed only (in a finally block) by the very same code
      * block that created it, then it is necessary that the release method must not be called while
      * the execution is made in other stack frames.
-     * 
+     *
      * In such case, as other stack frames may inadvertently or indirectly call the close method of
      * the stream, the creator of the stream would need to explicitly disable the accidental closing
      * via {@link ResettableInputStream#disableClose()}, so that the release method becomes the only
      * way to truly close the opened file.
-     * 
+     *
      * @param _ ignored
      */
     @Override
@@ -128,8 +129,9 @@ public class ResettableInputStream extends ReleasableInputStream {
         } catch (IOException e) {
             throw new CosClientException("Failed to mark the file position", e);
         }
-        if (log.isTraceEnabled())
+        if (log.isTraceEnabled()) {
             log.trace("File input stream marked at position " + markPos);
+        }
     }
 
     /**
@@ -141,7 +143,7 @@ public class ResettableInputStream extends ReleasableInputStream {
      * If the opened file is meant to be closed only (in a finally block) by the very same code
      * block that created it, then it is necessary that the release method must not be called while
      * the execution is made in other stack frames.
-     * 
+     *
      * In such case, as other stack frames may inadvertently or indirectly call the close method of
      * the stream, the creator of the stream would need to explicitly disable the accidental closing
      * via {@link ResettableInputStream#disableClose()}, so that the release method becomes the only
@@ -151,8 +153,9 @@ public class ResettableInputStream extends ReleasableInputStream {
     public void reset() throws IOException {
         abortIfNeeded();
         fileChannel.position(markPos);
-        if (log.isTraceEnabled())
+        if (log.isTraceEnabled()) {
             log.trace("Reset to position " + markPos);
+        }
     }
 
     @Override
@@ -194,7 +197,7 @@ public class ResettableInputStream extends ReleasableInputStream {
      * If the opened file is meant to be closed only (in a finally block) by the very same code
      * block that created it, then it is necessary that the release method must not be called while
      * the execution is made in other stack frames.
-     * 
+     *
      * In such case, as other stack frames may inadvertently or indirectly call the close method of
      * the stream, the creator of the stream would need to explicitly disable the accidental closing
      * via {@link ResettableInputStream#disableClose()}, so that the release method becomes the only
@@ -212,7 +215,7 @@ public class ResettableInputStream extends ReleasableInputStream {
      * If the opened file is meant to be closed only (in a finally block) by the very same code
      * block that created it, then it is necessary that the release method must not be called while
      * the execution is made in other stack frames.
-     * 
+     *
      * In such case, as other stack frames may inadvertently or indirectly call the close method of
      * the stream, the creator of the stream would need to explicitly disable the accidental closing
      * via {@link ResettableInputStream#disableClose()}, so that the release method becomes the only
@@ -234,7 +237,7 @@ public class ResettableInputStream extends ReleasableInputStream {
      * If the opened file is meant to be closed only (in a finally block) by the very same code
      * block that created it, then it is necessary that the release method must not be called while
      * the execution is made in other stack frames.
-     * 
+     *
      * In such case, as other stack frames may inadvertently or indirectly call the close method of
      * the stream, the creator of the stream would need to explicitly disable the accidental closing
      * via {@link ResettableInputStream#disableClose()}, so that the release method becomes the only
@@ -252,7 +255,7 @@ public class ResettableInputStream extends ReleasableInputStream {
      * If the opened file is meant to be closed only (in a finally block) by the very same code
      * block that created it, then it is necessary that the release method must not be called while
      * the execution is made in other stack frames.
-     * 
+     *
      * In such case, as other stack frames may inadvertently or indirectly call the close method of
      * the stream, the creator of the stream would need to explicitly disable the accidental closing
      * via {@link ResettableInputStream#disableClose()}, so that the release method becomes the only

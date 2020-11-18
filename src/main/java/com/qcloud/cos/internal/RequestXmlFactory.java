@@ -65,7 +65,7 @@ public class RequestXmlFactory {
      * CompleteMultipartUpload operation of Qcloud COS.
      *
      * @param partETags The list of part ETags containing the data to include in the new XML
-     *                  fragment.
+     *         fragment.
      * @return A byte array containing the data
      */
     public static byte[] convertToXmlByteArray(List<PartETag> partETags) {
@@ -74,10 +74,12 @@ public class RequestXmlFactory {
         if (partETags != null) {
             Collections.sort(partETags, new Comparator<PartETag>() {
                 public int compare(PartETag tag1, PartETag tag2) {
-                    if (tag1.getPartNumber() < tag2.getPartNumber())
+                    if (tag1.getPartNumber() < tag2.getPartNumber()) {
                         return -1;
-                    if (tag1.getPartNumber() > tag2.getPartNumber())
+                    }
+                    if (tag1.getPartNumber() > tag2.getPartNumber()) {
                         return 1;
+                    }
                     return 0;
                 }
             });
@@ -221,7 +223,7 @@ public class RequestXmlFactory {
      * operation of COS.
      *
      * @param restoreObjectRequest The container which provides options for restoring an object,
-     *                             which was transitioned to the CAS from COS when it was expired, into COS again.
+     *         which was transitioned to the CAS from COS when it was expired, into COS again.
      * @return A byte array containing the data
      * @throws CosClientException
      */
@@ -247,7 +249,7 @@ public class RequestXmlFactory {
      * operation of COS.
      *
      * @param request The container which provides options for restoring an object,
-     *                which was transitioned to the CAS from COS when it was expired, into COS again.
+     *         which was transitioned to the CAS from COS when it was expired, into COS again.
      * @return A byte array containing the data
      * @throws CosClientException
      */
@@ -262,7 +264,8 @@ public class RequestXmlFactory {
         addIfNotNull(xml, "WorkflowId", request.getWorkflowId());
         xml.start("Topology");
         xml.start("Dependencies");
-        Map<String, MediaWorkflowDependency> mediaWorkflowDependency = request.getTopology().getMediaWorkflowDependency();
+        Map<String, MediaWorkflowDependency> mediaWorkflowDependency = request.getTopology()
+                .getMediaWorkflowDependency();
         for (String key : mediaWorkflowDependency.keySet()) {
             xml.start(key).value(mediaWorkflowDependency.get(key).getValue()).end();
         }
@@ -273,7 +276,8 @@ public class RequestXmlFactory {
             xml.start(key);
             MediaWorkflowNode mediaWorkflowNode = mediaWorkflowNodes.get(key);
             xml.start("Type").value(mediaWorkflowNode.getType()).end();
-            if (mediaWorkflowNode.getInput().getObjectPrefix() != null || mediaWorkflowNode.getInput().getQueueId() != null) {
+            if (mediaWorkflowNode.getInput().getObjectPrefix() != null
+                    || mediaWorkflowNode.getInput().getQueueId() != null) {
                 xml.start("Input");
                 addIfNotNull(xml, "QueueId", mediaWorkflowNode.getInput().getQueueId());
                 addIfNotNull(xml, "ObjectPrefix", mediaWorkflowNode.getInput().getObjectPrefix());

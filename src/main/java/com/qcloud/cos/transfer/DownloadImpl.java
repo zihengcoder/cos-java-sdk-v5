@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -32,6 +32,7 @@ import com.qcloud.cos.model.ObjectMetadata;
 import com.qcloud.cos.transfer.TransferManagerUtils;
 
 public class DownloadImpl extends AbstractTransfer implements Download {
+
     private COSObject cosObject;
 
     /**
@@ -86,8 +87,8 @@ public class DownloadImpl extends AbstractTransfer implements Download {
 
         this.monitor.getFuture().cancel(true);
 
-        if ( cosObject != null ) {
-              cosObject.getObjectContent().abort();
+        if (cosObject != null) {
+            cosObject.getObjectContent().abort();
         }
         setState(TransferState.Canceled);
     }
@@ -101,7 +102,6 @@ public class DownloadImpl extends AbstractTransfer implements Download {
         this.monitor.getFuture().cancel(true);
         this.state = TransferState.Canceled;
     }
-
 
 
     public COSObject getCosObject() {

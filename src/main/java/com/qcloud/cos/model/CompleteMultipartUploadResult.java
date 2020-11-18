@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,19 +27,29 @@ import com.qcloud.cos.internal.SSEResultBase;
 public class CompleteMultipartUploadResult extends SSEResultBase
         implements Serializable, ObjectExpirationResult {
 
-    /** x-cos-requestid **/
+    /**
+     * x-cos-requestid
+     **/
     private String requestId;
 
-    /** date **/
+    /**
+     * date
+     **/
     private String dateStr;
 
-    /** The name of the bucket containing the completed multipart upload. */
+    /**
+     * The name of the bucket containing the completed multipart upload.
+     */
     private String bucketName;
 
-    /** The key by which the object is stored. */
+    /**
+     * The key by which the object is stored.
+     */
     private String key;
 
-    /** The URL identifying the new multipart object. */
+    /**
+     * The URL identifying the new multipart object.
+     */
     private String location;
 
     /**
@@ -53,18 +63,24 @@ public class CompleteMultipartUploadResult extends SSEResultBase
      */
     private String versionId;
 
-    /** The time this object expires, or null if it has no expiration */
+    /**
+     * The time this object expires, or null if it has no expiration
+     */
     private Date expirationTime;
 
-    /** The expiration rule for this object */
+    /**
+     * The expiration rule for this object
+     */
     private String expirationTimeRuleId;
 
-    /** The crc64ecma value for this object */
+    /**
+     * The crc64ecma value for this object
+     */
     private String crc64Ecma;
 
     /**
      * get requestid for this upload
-     * 
+     *
      * @return requestid
      */
     public String getRequestId() {
@@ -73,7 +89,7 @@ public class CompleteMultipartUploadResult extends SSEResultBase
 
     /**
      * set requestId for this upload
-     * 
+     *
      * @param requestId the requestId for the upload
      */
 
@@ -83,7 +99,7 @@ public class CompleteMultipartUploadResult extends SSEResultBase
 
     /**
      * get date header for this upload
-     * 
+     *
      * @return date str
      */
     public String getDateStr() {
@@ -92,7 +108,7 @@ public class CompleteMultipartUploadResult extends SSEResultBase
 
     /**
      * set date str for this upload
-     * 
+     *
      * @param dateStr date str header
      */
     public void setDateStr(String dateStr) {
@@ -185,7 +201,7 @@ public class CompleteMultipartUploadResult extends SSEResultBase
      * bucket.
      *
      * @param versionId The version ID of the new object, only present if versioning has been
-     *        enabled for the bucket.
+     *         enabled for the bucket.
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;

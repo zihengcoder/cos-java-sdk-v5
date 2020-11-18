@@ -9,6 +9,7 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 public class InstanceMetadataCredentialsEndpointProvider extends CredentialsEndpointProvider {
+
     private static final Logger LOG = LoggerFactory.getLogger(InstanceMetadataCredentialsEndpointProvider.class);
 
     public enum Instance {
@@ -40,7 +41,8 @@ public class InstanceMetadataCredentialsEndpointProvider extends CredentialsEndp
     @Override
     public URI getCredentialsEndpoint() throws URISyntaxException, IOException {
         if (null != this.roleName && !this.roleName.isEmpty()) {
-            return new URI(this.instance.METADATA_SERVICE_URL + this.instance.METADATA_CREDENTIALS_RESOURCE + "/" + this.roleName);
+            return new URI(this.instance.METADATA_SERVICE_URL + this.instance.METADATA_CREDENTIALS_RESOURCE + "/"
+                    + this.roleName);
         }
 
         // Try to get a valid role.
@@ -54,6 +56,7 @@ public class InstanceMetadataCredentialsEndpointProvider extends CredentialsEndp
         }
 
         LOG.info("Use the role [{}] to obtain the credentials.", roleList[0]);
-        return new URI(this.instance.METADATA_SERVICE_URL + this.instance.METADATA_CREDENTIALS_RESOURCE + "/" + roleList[0]);
+        return new URI(
+                this.instance.METADATA_SERVICE_URL + this.instance.METADATA_CREDENTIALS_RESOURCE + "/" + roleList[0]);
     }
 }

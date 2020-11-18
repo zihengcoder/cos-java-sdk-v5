@@ -32,6 +32,7 @@ import com.qcloud.cos.region.Region;
  * 分块上传的完成逻辑较复杂，需要经历多个步骤, 建议用户使用TransferManager中封装好的上传接口来进行文件的上传
  */
 public class MultipartUploadDemo {
+
     public static String InitMultipartUploadDemo() {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("AKIDXXXXXXXX", "1A2Z3YYYYYYYYYY");
@@ -122,9 +123,9 @@ public class MultipartUploadDemo {
             uploadPartRequest.setInputStream(new ByteArrayInputStream(data));
             // 设置分块的长度
             uploadPartRequest.setPartSize(data.length); // 设置数据长度
-            uploadPartRequest.setPartNumber(i+1);     // 假设要上传的part编号是10
-            if(userTrafficLimit) {
-                uploadPartRequest.setTrafficLimit(8*1024*1024);
+            uploadPartRequest.setPartNumber(i + 1);     // 假设要上传的part编号是10
+            if (userTrafficLimit) {
+                uploadPartRequest.setTrafficLimit(8 * 1024 * 1024);
             }
 
             try {
@@ -154,7 +155,6 @@ public class MultipartUploadDemo {
         String bucketName = "mybucket-1251668577";
         String key = "aaa/bbb.txt";
         // uploadid(通过initiateMultipartUpload或者ListMultipartUploads获取)
-
 
         // 分片上传结束后，调用complete完成分片上传
         CompleteMultipartUploadRequest completeMultipartUploadRequest =
@@ -187,7 +187,8 @@ public class MultipartUploadDemo {
         String key = "aaa/bbb.txt";
         // uploadid(通过initiateMultipartUpload或者ListMultipartUploads获取)
 
-        AbortMultipartUploadRequest abortMultipartUploadRequest = new AbortMultipartUploadRequest(bucketName, key, uploadId);
+        AbortMultipartUploadRequest abortMultipartUploadRequest = new AbortMultipartUploadRequest(bucketName, key,
+                uploadId);
         try {
             cosclient.abortMultipartUpload(abortMultipartUploadRequest);
         } catch (CosServiceException e) {

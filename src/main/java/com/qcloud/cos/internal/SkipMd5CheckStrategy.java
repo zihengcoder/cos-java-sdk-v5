@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -45,7 +45,8 @@ public class SkipMd5CheckStrategy {
     public static final SkipMd5CheckStrategy INSTANCE = new SkipMd5CheckStrategy();
 
     // Singleton
-    private SkipMd5CheckStrategy() {}
+    private SkipMd5CheckStrategy() {
+    }
 
     /**
      * Determines whether the client should use the {@link Headers#ETAG} header returned by COS to
@@ -57,7 +58,7 @@ public class SkipMd5CheckStrategy {
      * <li>The Etag header is missing</li>
      * <li>The Etag indicates that the object was created by a MultiPart Upload</li>
      * </ol>
-     * 
+     *
      * @return True if client side validation should be skipped, false otherwise.
      */
     public boolean skipClientSideValidationPerGetResponse(ObjectMetadata metadata) {
@@ -76,7 +77,7 @@ public class SkipMd5CheckStrategy {
      * <li>The request involves SSE-C or SSE-KMS</li>
      * <li>The Etag header is missing</li>
      * </ol>
-     * 
+     *
      * @return True if client side validation should be skipped, false otherwise.
      */
     public boolean skipClientSideValidationPerPutResponse(ObjectMetadata metadata) {
@@ -95,7 +96,7 @@ public class SkipMd5CheckStrategy {
      * <li>The request involves SSE-C or SSE-KMS</li>
      * <li>The Etag header is missing</li>
      * </ol>
-     * 
+     *
      * @return True if client side validation should be skipped, false otherwise.
      */
     public boolean skipClientSideValidationPerUploadPartResponse(ObjectMetadata metadata) {
@@ -108,7 +109,7 @@ public class SkipMd5CheckStrategy {
      * {@link #skipClientSideValidationPerRequest(GetObjectRequest)} and
      * {@link #skipClientSideValidationPerGetResponse(ObjectMetadata)} for more details on the
      * criterion.
-     * 
+     *
      * @param request Original {@link GetObjectRequest}
      * @param returnedMetadata Metadata returned in {@link COSObject}
      * @return True if client side validation should be skipped, false otherwise.
@@ -129,7 +130,7 @@ public class SkipMd5CheckStrategy {
      * <li>The system property {@value #DISABLE_PUT_OBJECT_MD5_VALIDATION_PROPERTY} is set</li>
      * <li>The request involves SSE-C or SSE-KMS</li>
      * </ol>
-     * 
+     *
      * @return True if client side validation should be skipped, false otherwise.
      */
     public boolean skipClientSideValidationPerRequest(PutObjectRequest request) {
@@ -147,7 +148,7 @@ public class SkipMd5CheckStrategy {
      * <li>The system property {@value #DISABLE_PUT_OBJECT_MD5_VALIDATION_PROPERTY} is set</li>
      * <li>The request involves SSE-C or SSE-KMS</li>
      * </ol>
-     * 
+     *
      * @return True if client side validation should be skipped, false otherwise.
      */
     public boolean skipClientSideValidationPerRequest(UploadPartRequest request) {
@@ -247,7 +248,7 @@ public class SkipMd5CheckStrategy {
      * plaintext so we can't validate it client side. Plain SSE with COS managed keys will return an
      * Etag that does match the MD5 of the plaintext so it's still eligible for client side
      * validation.
-     * 
+     *
      * @param metadata Metadata of request or response
      * @return True if the metadata indicates that SSE-C or SSE-KMS is used. False otherwise
      */
@@ -290,7 +291,7 @@ public class SkipMd5CheckStrategy {
 
     /**
      * Helper method to avoid long chains of non null checks
-     * 
+     *
      * @param items
      * @return True if any of the provided items is not null. False if all items are null.
      */

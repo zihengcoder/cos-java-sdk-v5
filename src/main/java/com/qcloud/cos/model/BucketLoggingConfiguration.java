@@ -11,15 +11,17 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
 package com.qcloud.cos.model;
+
 import java.io.Serializable;
 
 
 public class BucketLoggingConfiguration implements Serializable {
+
     private String destinationBucketName = null;
     private String logFilePrefix = null;
 
@@ -32,20 +34,19 @@ public class BucketLoggingConfiguration implements Serializable {
      * will turn off bucket logging for the specified bucket.
      * </p>
      */
-    public BucketLoggingConfiguration() {}
+    public BucketLoggingConfiguration() {
+    }
 
     /**
      * Creates a new bucket logging configuration which enables server access
      * logs to be collected and stored in the specified destination bucket with
      * the specified log file prefix.
      *
-     * @param destinationBucketName
-     *            The name of the bucket to which to delivery server access logs
-     *            from the target bucket. This may be the same bucket for which
-     *            logging is being configured.
-     * @param logFilePrefix
-     *            The optional prefix to append to server access logs when they
-     *            are written to the destination bucket.
+     * @param destinationBucketName The name of the bucket to which to delivery server access logs
+     *         from the target bucket. This may be the same bucket for which
+     *         logging is being configured.
+     * @param logFilePrefix The optional prefix to append to server access logs when they
+     *         are written to the destination bucket.
      */
     public BucketLoggingConfiguration(String destinationBucketName, String logFilePrefix) {
         setLogFilePrefix(logFilePrefix);
@@ -78,8 +79,9 @@ public class BucketLoggingConfiguration implements Serializable {
      */
     public void setLogFilePrefix(String logFilePrefix) {
         // Default log file prefix to the empty string if none is specified
-        if (logFilePrefix == null)
+        if (logFilePrefix == null) {
             logFilePrefix = "";
+        }
 
         this.logFilePrefix = logFilePrefix;
     }

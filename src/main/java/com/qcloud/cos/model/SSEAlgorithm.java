@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -46,14 +46,16 @@ public enum SSEAlgorithm {
      * or null if and only if the given algorithm is null.
      *
      * @throws IllegalArgumentException if the specified algorithm is not
-     * supported.
+     *         supported.
      */
     public static SSEAlgorithm fromString(String algorithm) {
-        if (algorithm == null)
+        if (algorithm == null) {
             return null;
-        for (SSEAlgorithm e: values()) {
-            if (e.getAlgorithm().equals(algorithm))
+        }
+        for (SSEAlgorithm e : values()) {
+            if (e.getAlgorithm().equals(algorithm)) {
                 return e;
+            }
         }
         throw new IllegalArgumentException("Unsupported algorithm " + algorithm);
     }

@@ -8,6 +8,7 @@ import java.io.Serializable;
  * 媒体处理 队列实体 https://cloud.tencent.com/document/product/460/42324
  */
 public class MediaQueueObject extends CIServiceRequest implements Serializable {
+
     private String queueId;
     private String name;
     private String state;

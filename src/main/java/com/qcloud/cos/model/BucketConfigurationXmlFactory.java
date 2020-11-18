@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -87,16 +87,15 @@ public class BucketConfigurationXmlFactory {
     /**
      * Converts the specified logging configuration into an XML byte array.
      *
-     * @param loggingConfiguration
-     *            The configuration to convert.
-     *
+     * @param loggingConfiguration The configuration to convert.
      * @return The XML byte array representation.
      */
     public byte[] convertToXmlByteArray(BucketLoggingConfiguration loggingConfiguration) {
         // Default log file prefix to the empty string if none is specified
         String logFilePrefix = loggingConfiguration.getLogFilePrefix();
-        if (logFilePrefix == null)
+        if (logFilePrefix == null) {
             logFilePrefix = "";
+        }
 
         XmlWriter xml = new XmlWriter();
         xml.start("BucketLoggingStatus");
@@ -116,7 +115,6 @@ public class BucketConfigurationXmlFactory {
      * Converts the specified versioning configuration into an XML byte array.
      *
      * @param versioningConfiguration The configuration to convert.
-     *
      * @return The XML byte array representation.
      */
     public byte[] convertToXmlByteArray(BucketVersioningConfiguration versioningConfiguration) {
@@ -254,16 +252,15 @@ public class BucketConfigurationXmlFactory {
      *
      * Sample XML:
      * <WebsiteConfiguration xmlns="http://s3.amazonaws.com/doc/2006-03-01/">
-     *    <IndexDocument>
-     *      <Suffix>index.html</Suffix>
-     *    </IndexDocument>
-     *    <ErrorDocument>
-     *      <Key>404.html</Key>
-     *    </ErrorDocument>
-     *  </WebsiteConfiguration>
+     * <IndexDocument>
+     * <Suffix>index.html</Suffix>
+     * </IndexDocument>
+     * <ErrorDocument>
+     * <Key>404.html</Key>
+     * </ErrorDocument>
+     * </WebsiteConfiguration>
      *
-     * @param websiteConfiguration
-     *            The configuration to convert.
+     * @param websiteConfiguration The configuration to convert.
      * @return The XML byte array representation.
      */
     public byte[] convertToXmlByteArray(BucketWebsiteConfiguration websiteConfiguration) {
@@ -445,7 +442,7 @@ public class BucketConfigurationXmlFactory {
         xml.start("Status").value(rule.getStatus()).end();
         xml.start("Name").value(rule.getName()).end();
         xml.start("Type").value(rule.getType()).end();
-        if(rule.getForcedReplacement() != null) {
+        if (rule.getForcedReplacement() != null) {
             xml.start("ForcedReplacement").value(rule.getForcedReplacement()).end();
         }
         xml.end();// </DomainRule>
@@ -453,7 +450,7 @@ public class BucketConfigurationXmlFactory {
 
     private void writeRule(XmlWriter xml, TagSet tagset) {
         xml.start("TagSet");
-        for ( String key : tagset.getAllTags().keySet() ) {
+        for (String key : tagset.getAllTags().keySet()) {
             xml.start("Tag");
             xml.start("Key").value(key).end();
             xml.start("Value").value(tagset.getTag(key)).end();
@@ -530,6 +527,7 @@ public class BucketConfigurationXmlFactory {
     }
 
     private class LifecyclePredicateVisitorImpl implements LifecyclePredicateVisitor {
+
         private final XmlWriter xml;
 
         public LifecyclePredicateVisitorImpl(XmlWriter xml) {
@@ -634,7 +632,7 @@ public class BucketConfigurationXmlFactory {
         String status = configuration.getStatus();
         xml.start("Status").value(status).end();
         BucketIntelligentTierConfiguration.Transition transition = configuration.getTransition();
-        if(status.equals(BucketIntelligentTierConfiguration.ENABLED) && transition != null) {
+        if (status.equals(BucketIntelligentTierConfiguration.ENABLED) && transition != null) {
             xml.start("Transition");
             xml.start("Days").value(Integer.toString(transition.getDays())).end();
             xml.start("RequestFrequent").value(Integer.toString(transition.getRequestFrequent())).end();

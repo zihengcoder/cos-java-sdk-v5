@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -53,6 +53,7 @@ import static com.qcloud.cos.internal.crypto.KMSSecuredCEK.isKMSKeyWrapped;
  * algorithm, if any, and the cryptographic scheme in use.
  */
 final class ContentCryptoMaterial {
+
     // null if cek is not secured via key wrapping
     private final String keyWrappingAlgorithm;
     private final CipherLite cipherLite;
@@ -120,11 +121,13 @@ final class ContentCryptoMaterial {
         ContentCryptoScheme scheme = getContentCryptoScheme();
         metadata.addUserMetadata(Headers.CRYPTO_CEK_ALGORITHM, scheme.getCipherAlgorithm());
         int tagLen = scheme.getTagLengthInBits();
-        if (tagLen > 0)
+        if (tagLen > 0) {
             metadata.addUserMetadata(Headers.CRYPTO_TAG_LENGTH, String.valueOf(tagLen));
+        }
         String keyWrapAlgo = getKeyWrappingAlgorithm();
-        if (keyWrapAlgo != null)
+        if (keyWrapAlgo != null) {
             metadata.addUserMetadata(Headers.CRYPTO_KEYWRAP_ALGORITHM, keyWrapAlgo);
+        }
         return metadata;
     }
 
@@ -141,11 +144,13 @@ final class ContentCryptoMaterial {
         ContentCryptoScheme scheme = getContentCryptoScheme();
         map.put(Headers.CRYPTO_CEK_ALGORITHM, scheme.getCipherAlgorithm());
         int tagLen = scheme.getTagLengthInBits();
-        if (tagLen > 0)
+        if (tagLen > 0) {
             map.put(Headers.CRYPTO_TAG_LENGTH, String.valueOf(tagLen));
+        }
         String keyWrapAlgo = getKeyWrappingAlgorithm();
-        if (keyWrapAlgo != null)
+        if (keyWrapAlgo != null) {
             map.put(Headers.CRYPTO_KEYWRAP_ALGORITHM, keyWrapAlgo);
+        }
         return Jackson.toJsonString(map);
     }
 
@@ -154,8 +159,9 @@ final class ContentCryptoMaterial {
      */
     private String kekMaterialDescAsJson() {
         Map<String, String> kekMaterialDesc = getKEKMaterialsDescription();
-        if (kekMaterialDesc == null)
+        if (kekMaterialDesc == null) {
             kekMaterialDesc = Collections.emptyMap();
+        }
         return Jackson.toJsonString(kekMaterialDesc);
     }
 
@@ -175,16 +181,17 @@ final class ContentCryptoMaterial {
      *
      * @param cekSecured the content encrypting key in wrapped or encrypted form; must not be null
      * @param keyWrapAlgo key wrapping algorithm; or null if direct encryption instead of key
-     *        wrapping is used
+     *         wrapping is used
      * @param materials the client key encrypting key material for the content encrypting key
      * @param securityProvider security provider or null if the default security provider of the JCE
-     *        is used
+     *         is used
      */
     private static SecretKey cek(byte[] cekSecured, String keyWrapAlgo,
             EncryptionMaterials materials, Provider securityProvider,
             ContentCryptoScheme contentCryptoScheme, QCLOUDKMS kms) {
-        if (isKMSKeyWrapped(keyWrapAlgo))
+        if (isKMSKeyWrapped(keyWrapAlgo)) {
             return cekByKMS(cekSecured, keyWrapAlgo, materials, contentCryptoScheme, kms);
+        }
         Key kek;
         if (materials.getKeyPair() != null) {
             // Do envelope decryption with private key from key pair
@@ -277,8 +284,9 @@ final class ContentCryptoMaterial {
         String b64key = userMeta.get(Headers.CRYPTO_KEY_V2);
         if (b64key == null) {
             b64key = userMeta.get(Headers.CRYPTO_KEY);
-            if (b64key == null)
+            if (b64key == null) {
                 throw new CosClientException("Content encrypting key not found.");
+            }
         }
         byte[] cekWrapped = Base64.decode(b64key);
         byte[] iv = Base64.decode(userMeta.get(Headers.CRYPTO_IV));
@@ -325,8 +333,9 @@ final class ContentCryptoMaterial {
             }
         }
         // Unwrap or decrypt the CEK
-        if (keyWrapExpected && keyWrapAlgo == null)
+        if (keyWrapExpected && keyWrapAlgo == null) {
             throw newKeyWrapException();
+        }
         SecretKey cek =
                 cek(cekWrapped, keyWrapAlgo, materials, securityProvider, contentCryptoScheme, kms);
         return new ContentCryptoMaterial(core, cekWrapped, keyWrapAlgo, contentCryptoScheme
@@ -370,8 +379,9 @@ final class ContentCryptoMaterial {
         String b64key = instFile.get(Headers.CRYPTO_KEY_V2);
         if (b64key == null) {
             b64key = instFile.get(Headers.CRYPTO_KEY);
-            if (b64key == null)
+            if (b64key == null) {
                 throw new CosClientException("Content encrypting key not found.");
+            }
         }
         byte[] cekWrapped = Base64.decode(b64key);
         byte[] iv = Base64.decode(instFile.get(Headers.CRYPTO_IV));
@@ -421,8 +431,9 @@ final class ContentCryptoMaterial {
             }
         }
         // Unwrap or decrypt the CEK
-        if (keyWrapExpected && keyWrapAlgo == null)
+        if (keyWrapExpected && keyWrapAlgo == null) {
             throw newKeyWrapException();
+        }
         SecretKey cek =
                 cek(cekWrapped, keyWrapAlgo, materials, securityProvider, contentCryptoScheme, kms);
         return new ContentCryptoMaterial(core, cekWrapped, keyWrapAlgo, contentCryptoScheme
@@ -525,8 +536,8 @@ final class ContentCryptoMaterial {
                 cek(encryptedCEK, keyWrappingAlgorithm, origKEK, p, getContentCryptoScheme(), kms);
         ContentCryptoMaterial output =
                 create(cek, cipherLite.getIV(), newKEK, getContentCryptoScheme(), // must use same
-                                                                                  // content crypto
-                                                                                  // scheme
+                        // content crypto
+                        // scheme
                         targetScheme, p, kms, req);
         if (Arrays.equals(output.encryptedCEK, encryptedCEK)) {
             throw new SecurityException("The new KEK must differ from the original");
@@ -542,9 +553,9 @@ final class ContentCryptoMaterial {
      *
      * @param newKEK encryption materials for the new KEK; must not be null
      * @param accessor used to retrieve the original KEK given the corresponding material
-     *        description
+     *         description
      * @param targetScheme the target crypto scheme to use for recreating the content crypto
-     *        material
+     *         material
      * @param p optional security provider; null means to use the default.
      * @throws SecurityException if the old and new material description are the same; or if the old
      *         and new KEK are the same
@@ -569,8 +580,8 @@ final class ContentCryptoMaterial {
                 cek(encryptedCEK, keyWrappingAlgorithm, origKEK, p, getContentCryptoScheme(), kms);
         ContentCryptoMaterial output =
                 create(cek, cipherLite.getIV(), newKEK, getContentCryptoScheme(), // must use same
-                                                                                  // content crypto
-                                                                                  // scheme
+                        // content crypto
+                        // scheme
                         targetScheme, // target scheme used to recreate the content crypto material
                         p, kms, req);
         if (Arrays.equals(output.encryptedCEK, encryptedCEK)) {
@@ -590,7 +601,7 @@ final class ContentCryptoMaterial {
      * @param iv initialization vector; must not be null.
      * @param contentCryptoScheme content crypto scheme to be used
      * @param targetScheme the target cos crypto scheme to be used for recreating the content crypto
-     *        material by providing the key wrapping scheme and mechanism for secure randomness
+     *         material by providing the key wrapping scheme and mechanism for secure randomness
      * @param provider optional security provider
      */
     static ContentCryptoMaterial create(SecretKey cek, byte[] iv, EncryptionMaterials kekMaterials,
@@ -609,7 +620,7 @@ final class ContentCryptoMaterial {
      * @param iv initialization vector
      * @param kekMaterials kek encryption material used to secure the CEK; can be KMS enabled.
      * @param scheme cos crypto scheme to be used for the content crypto material by providing the
-     *        content crypto scheme, key wrapping scheme and mechanism for secure randomness
+     *         content crypto scheme, key wrapping scheme and mechanism for secure randomness
      * @param provider optional security provider
      * @param kms reference to the KMS client
      * @param req originating service request
@@ -630,9 +641,9 @@ final class ContentCryptoMaterial {
      * @param iv initialization vector
      * @param kekMaterials kek encryption material used to secure the CEK; can be KMS enabled.
      * @param contentCryptoScheme content crypto scheme to be used, which can differ from the one of
-     *        <code>targetCOSCryptoScheme</code>
+     *         <code>targetCOSCryptoScheme</code>
      * @param targetCOSCryptoScheme the target cos crypto scheme to be used for providing the key
-     *        wrapping scheme and mechanism for secure randomness
+     *         wrapping scheme and mechanism for secure randomness
      * @param provider security provider
      * @param kms reference to the KMS client
      * @param req the originating COS service request
@@ -665,7 +676,7 @@ final class ContentCryptoMaterial {
      *
      * @param cek content encrypting key to be secured
      * @param materials used to provide the key-encryption-key (KEK); or if it is KMS-enabled, the
-     *        customer master key id and material description.
+     *         customer master key id and material description.
      * @param contentCryptoScheme the content crypto scheme
      * @param p optional security provider; can be null if the default is used.
      * @return a secured CEK in the form of ciphertext or ciphertext blob.

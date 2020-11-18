@@ -9,11 +9,13 @@ import java.io.Serializable;
  * 媒体信息接口 请求实体
  */
 public class MediaInfoRequest extends CIServiceRequest implements Serializable {
+
     private MediaInputObject input;
 
     public MediaInputObject getInput() {
-        if (input==null)
+        if (input == null) {
             input = new MediaInputObject();
+        }
         return input;
     }
 

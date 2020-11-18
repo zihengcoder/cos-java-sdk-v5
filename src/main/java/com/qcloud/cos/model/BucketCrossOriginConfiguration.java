@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -24,7 +24,7 @@ import java.util.List;
 
 public class BucketCrossOriginConfiguration implements Serializable {
 
-    
+
     private List<CORSRule> rules;
 
     /**
@@ -62,7 +62,7 @@ public class BucketCrossOriginConfiguration implements Serializable {
     /**
      * Constructs a new {@link BucketCrossOriginConfiguration} object with the
      * rules given.
-     * 
+     *
      * @param rules
      */
     public BucketCrossOriginConfiguration(List<CORSRule> rules) {
@@ -72,5 +72,5 @@ public class BucketCrossOriginConfiguration implements Serializable {
     public BucketCrossOriginConfiguration() {
         super();
     }
-    
+
 }

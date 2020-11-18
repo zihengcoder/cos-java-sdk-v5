@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -73,8 +73,9 @@ public final class TransferProgress {
      *         transfer; or -1.0 if the total length is not known.
      */
     public synchronized double getPercentTransferred() {
-        if (getBytesTransferred() < 0)
+        if (getBytesTransferred() < 0) {
             return 0;
+        }
         if (totalBytesToTransfer < 0) {
             return -1.0;
         } else if (totalBytesToTransfer == 0) {

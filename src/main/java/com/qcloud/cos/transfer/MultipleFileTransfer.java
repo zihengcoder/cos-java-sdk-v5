@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -31,7 +31,9 @@ public abstract class MultipleFileTransfer<T extends Transfer> extends AbstractT
 
     protected final Collection<? extends T> subTransfers;
 
-    /** Whether any of the sub-transfers has started. **/
+    /**
+     * Whether any of the sub-transfers has started.
+     **/
     private AtomicBoolean subTransferStarted = new AtomicBoolean(false);
 
     MultipleFileTransfer(String description, TransferProgress transferProgress,
@@ -50,18 +52,19 @@ public abstract class MultipleFileTransfer<T extends Transfer> extends AbstractT
      */
     public void collateFinalState() {
         boolean seenCanceled = false;
-        for ( T download : subTransfers ) {
-            if ( download.getState() == TransferState.Failed ) {
+        for (T download : subTransfers) {
+            if (download.getState() == TransferState.Failed) {
                 setState(TransferState.Failed);
                 return;
-            } else if ( download.getState() == TransferState.Canceled ) {
+            } else if (download.getState() == TransferState.Canceled) {
                 seenCanceled = true;
             }
         }
-        if ( seenCanceled )
+        if (seenCanceled) {
             setState(TransferState.Canceled);
-        else
+        } else {
             setState(TransferState.Completed);
+        }
     }
 
     /**
@@ -73,27 +76,27 @@ public abstract class MultipleFileTransfer<T extends Transfer> extends AbstractT
         super.setState(state);
 
         switch (state) {
-        case Waiting:
-            fireProgressEvent(ProgressEventType.TRANSFER_PREPARING_EVENT);
-            break;
-        case InProgress:
-            if ( subTransferStarted.compareAndSet(false, true) ) {
-                /* The first InProgress signal */
-                fireProgressEvent(ProgressEventType.TRANSFER_STARTED_EVENT);
-            }
-            /* Don't need any event code update for subsequent InProgress signals */
-            break;
-        case Completed:
-            fireProgressEvent(ProgressEventType.TRANSFER_COMPLETED_EVENT);
-            break;
-        case Canceled:
-            fireProgressEvent(ProgressEventType.TRANSFER_CANCELED_EVENT);
-            break;
-        case Failed:
-            fireProgressEvent(ProgressEventType.TRANSFER_FAILED_EVENT);
-            break;
-        default:
-            break;
+            case Waiting:
+                fireProgressEvent(ProgressEventType.TRANSFER_PREPARING_EVENT);
+                break;
+            case InProgress:
+                if (subTransferStarted.compareAndSet(false, true)) {
+                    /* The first InProgress signal */
+                    fireProgressEvent(ProgressEventType.TRANSFER_STARTED_EVENT);
+                }
+                /* Don't need any event code update for subsequent InProgress signals */
+                break;
+            case Completed:
+                fireProgressEvent(ProgressEventType.TRANSFER_COMPLETED_EVENT);
+                break;
+            case Canceled:
+                fireProgressEvent(ProgressEventType.TRANSFER_CANCELED_EVENT);
+                break;
+            case Failed:
+                fireProgressEvent(ProgressEventType.TRANSFER_FAILED_EVENT);
+                break;
+            default:
+                break;
         }
     }
 }

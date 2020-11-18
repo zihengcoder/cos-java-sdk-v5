@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,19 +28,29 @@ public interface Transfer {
      * Enumeration of the possible transfer states.
      */
     public static enum TransferState {
-        /** The transfer is waiting for resources to execute and has not started yet. */
+        /**
+         * The transfer is waiting for resources to execute and has not started yet.
+         */
         Waiting,
 
-        /** The transfer is actively uploading or downloading and hasn't finished yet. */
+        /**
+         * The transfer is actively uploading or downloading and hasn't finished yet.
+         */
         InProgress,
 
-        /** The transfer completed successfully. */
+        /**
+         * The transfer completed successfully.
+         */
         Completed,
 
-        /** The transfer was canceled and did not complete successfully. */
+        /**
+         * The transfer was canceled and did not complete successfully.
+         */
         Canceled,
 
-        /** The transfer failed. */
+        /**
+         * The transfer failed.
+         */
         Failed;
     }
 
@@ -74,7 +84,6 @@ public interface Transfer {
      *
      * @return Any error that occurred while processing this transfer. Otherwise returns
      *         <code>null</code> if no errors occurred.
-     *
      * @throws InterruptedException If this thread is interrupted while waiting for the transfer to
      *         complete.
      */

@@ -5,6 +5,7 @@ import com.qcloud.cos.internal.CIServiceRequest;
 import java.io.Serializable;
 
 public class GenerateSnapshotRequest extends CIServiceRequest implements Serializable {
+
     /**
      * 截取哪个时间点的内容，单位为秒
      */
@@ -47,6 +48,7 @@ public class GenerateSnapshotRequest extends CIServiceRequest implements Seriali
     private String rotate;
 
     public class Input {
+
         private String object;
 
         public String getObject() {
@@ -59,6 +61,7 @@ public class GenerateSnapshotRequest extends CIServiceRequest implements Seriali
     }
 
     public class Output {
+
         private String region;
         private String bucket;
         private String object;

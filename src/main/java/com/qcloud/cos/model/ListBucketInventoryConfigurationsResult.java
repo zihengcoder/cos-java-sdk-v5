@@ -11,9 +11,10 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import com.qcloud.cos.model.inventory.InventoryConfiguration;
@@ -28,7 +29,9 @@ import java.util.List;
  */
 public class ListBucketInventoryConfigurationsResult implements Serializable {
 
-    /** The list of inventory configurations for a bucket. */
+    /**
+     * The list of inventory configurations for a bucket.
+     */
     private List<InventoryConfiguration> inventoryConfigurationList;
 
     /**
@@ -70,7 +73,8 @@ public class ListBucketInventoryConfigurationsResult implements Serializable {
      * Returns the list of inventory configurations for a bucket and returns
      * {@link ListBucketInventoryConfigurationsResult} object for method chaining.
      */
-    public ListBucketInventoryConfigurationsResult withInventoryConfigurationList(List<InventoryConfiguration> inventoryConfigurationList) {
+    public ListBucketInventoryConfigurationsResult withInventoryConfigurationList(
+            List<InventoryConfiguration> inventoryConfigurationList) {
         setInventoryConfigurationList(inventoryConfigurationList);
         return this;
     }
@@ -93,9 +97,9 @@ public class ListBucketInventoryConfigurationsResult implements Serializable {
      * this inventory configuration listing, indicating if this is a complete listing or not and
      * whether the caller needs to make additional calls to COS to get more results.
      *
-     * @param isTruncated
-     *            The value <code>true</code> if the inventory configuration listing is <b>not complete</b>.
-     *            The value <code>false</code> if otherwise.
+     * @param isTruncated The value <code>true</code> if the inventory configuration listing is <b>not
+     *         complete</b>.
+     *         The value <code>false</code> if otherwise.
      */
     public void setTruncated(boolean isTruncated) {
         this.isTruncated = isTruncated;
@@ -106,12 +110,10 @@ public class ListBucketInventoryConfigurationsResult implements Serializable {
      * this inventory configuration listing, indicating if this is a complete listing or not and
      * whether the caller needs to make additional calls to COS to get more results.
      *
-     * @param isTruncated
-     *            The value <code>true</code> if the inventory configuration listing is <b>not complete</b>.
-     *            The value <code>false</code> if otherwise.
-     *
-     * @return
-     *          This object for method chaining.
+     * @param isTruncated The value <code>true</code> if the inventory configuration listing is <b>not
+     *         complete</b>.
+     *         The value <code>false</code> if otherwise.
+     * @return This object for method chaining.
      */
     public ListBucketInventoryConfigurationsResult withTruncated(boolean isTruncated) {
         setTruncated(isTruncated);
@@ -134,8 +136,7 @@ public class ListBucketInventoryConfigurationsResult implements Serializable {
      * continued from a specific point. This is the continuationToken that was sent in the current
      * {@link ListBucketInventoryConfigurationsResult}.
      *
-     * @param continuationToken
-     *                     The optional continuation token to associate with this request.
+     * @param continuationToken The optional continuation token to associate with this request.
      */
     public void setContinuationToken(String continuationToken) {
         this.continuationToken = continuationToken;
@@ -146,11 +147,8 @@ public class ListBucketInventoryConfigurationsResult implements Serializable {
      * continued from a specific point. This is the continuationToken that was sent in the current
      * {@link ListBucketInventoryConfigurationsResult}.
      *
-     * @param continuationToken
-     *                     The optional continuation token to associate with this request.
-     *
-     * @return
-     *          This object for method chaining.
+     * @param continuationToken The optional continuation token to associate with this request.
+     * @return This object for method chaining.
      */
     public ListBucketInventoryConfigurationsResult withContinuationToken(String continuationToken) {
         setContinuationToken(continuationToken);
@@ -175,8 +173,7 @@ public class ListBucketInventoryConfigurationsResult implements Serializable {
      * more keys in the bucket that can be listed. The next list requests to Amazon
      * COS can be continued by providing this NextContinuationToken.
      *
-     * @param nextContinuationToken
-     *              The optional NextContinuationToken parameter to associate with this request.
+     * @param nextContinuationToken The optional NextContinuationToken parameter to associate with this request.
      */
     public void setNextContinuationToken(String nextContinuationToken) {
         this.nextContinuationToken = nextContinuationToken;
@@ -189,11 +186,8 @@ public class ListBucketInventoryConfigurationsResult implements Serializable {
      * more keys in the bucket that can be listed. The next list requests to Amazon
      * COS can be continued by providing this NextContinuationToken.
      *
-     * @param nextContinuationToken
-     *              The optional NextContinuationToken parameter to associate with this request.
-     *
-     * @return
-     *          This object for method chaining.
+     * @param nextContinuationToken The optional NextContinuationToken parameter to associate with this request.
+     * @return This object for method chaining.
      */
     public ListBucketInventoryConfigurationsResult withNextContinuationToken(String nextContinuationToken) {
         setNextContinuationToken(nextContinuationToken);

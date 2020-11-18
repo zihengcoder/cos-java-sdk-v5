@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -40,5 +40,6 @@ public enum CryptoMode {
      * this mode is 2^36-32, or ~64G, due to the security limitation of AES/GCM as recommended by
      * NIST.
      */
-    StrictAuthenticatedEncryption,;
+    StrictAuthenticatedEncryption,
+    ;
 }

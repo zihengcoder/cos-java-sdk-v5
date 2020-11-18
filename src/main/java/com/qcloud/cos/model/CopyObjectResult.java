@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,16 +26,25 @@ import com.qcloud.cos.internal.SSEResultBase;
 
 public class CopyObjectResult extends SSEResultBase
         implements ObjectExpirationResult, Serializable {
-    /** x-cos-requestid **/
+
+    /**
+     * x-cos-requestid
+     **/
     private String requestId;
 
-    /** date **/
+    /**
+     * date
+     **/
     private String dateStr;
 
-    /** The ETag value of the new object */
+    /**
+     * The ETag value of the new object
+     */
     private String etag;
 
-    /** The last modified date for the new object */
+    /**
+     * The last modified date for the new object
+     */
     private Date lastModifiedDate;
 
     /**
@@ -44,19 +53,25 @@ public class CopyObjectResult extends SSEResultBase
      */
     private String versionId;
 
-    /** The time this object expires, or null if it has no expiration */
+    /**
+     * The time this object expires, or null if it has no expiration
+     */
     private Date expirationTime;
 
-    /** The expiration rule for this object */
+    /**
+     * The expiration rule for this object
+     */
     private String expirationTimeRuleId;
 
-    /** The crc64ecma value for this object */
+    /**
+     * The crc64ecma value for this object
+     */
     private String crc64Ecma;
 
 
     /**
      * get requestid for this upload
-     * 
+     *
      * @return requestid
      */
     public String getRequestId() {
@@ -65,7 +80,7 @@ public class CopyObjectResult extends SSEResultBase
 
     /**
      * set requestId for this upload
-     * 
+     *
      * @param requestId the requestId for the upload
      */
 
@@ -75,7 +90,7 @@ public class CopyObjectResult extends SSEResultBase
 
     /**
      * get date header for this upload
-     * 
+     *
      * @return date str
      */
     public String getDateStr() {
@@ -84,7 +99,7 @@ public class CopyObjectResult extends SSEResultBase
 
     /**
      * set date str for this upload
-     * 
+     *
      * @param dateStr date str header
      */
     public void setDateStr(String dateStr) {
@@ -96,7 +111,6 @@ public class CopyObjectResult extends SSEResultBase
      * {@link CopyObjectRequest}.
      *
      * @return The ETag value for the new object.
-     *
      * @see CopyObjectResult#setETag(String)
      */
     public String getETag() {
@@ -108,7 +122,6 @@ public class CopyObjectResult extends SSEResultBase
      * request.
      *
      * @param etag The ETag value for the new object.
-     *
      * @see CopyObjectResult#getETag()
      */
     public void setETag(String etag) {
@@ -119,7 +132,6 @@ public class CopyObjectResult extends SSEResultBase
      * Gets the date the newly copied object was last modified.
      *
      * @return The date the newly copied object was last modified.
-     *
      * @see CopyObjectResult#setLastModifiedDate(Date)
      */
     public Date getLastModifiedDate() {
@@ -130,7 +142,6 @@ public class CopyObjectResult extends SSEResultBase
      * Sets the date the newly copied object was last modified.
      *
      * @param lastModifiedDate The date the new, copied object was last modified.
-     *
      * @see CopyObjectResult#getLastModifiedDate()
      */
     public void setLastModifiedDate(Date lastModifiedDate) {
@@ -142,7 +153,6 @@ public class CopyObjectResult extends SSEResultBase
      * versioning has been enabled for the bucket the object was copied to.
      *
      * @return The version ID of the newly copied object.
-     *
      * @see CopyObjectResult#setVersionId(String)
      */
     public String getVersionId() {
@@ -153,7 +163,6 @@ public class CopyObjectResult extends SSEResultBase
      * Sets the version ID of the newly copied object.
      *
      * @param versionId The version ID of the newly copied object.
-     *
      * @see CopyObjectResult#getVersionId()
      */
     public void setVersionId(String versionId) {

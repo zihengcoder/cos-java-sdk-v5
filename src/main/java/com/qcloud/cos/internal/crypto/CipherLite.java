@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -45,10 +45,11 @@ import javax.crypto.SecretKey;
  * cannot be reused after the {@link #doFinal()} methods have been invoked. In
  * other words, it is NOT true that, upon finishing, the doFinal method will
  * reset the cipher lite object to the state it was in when first constructed.
- * 
+ *
  * @see GCMCipherLite
  */
 class CipherLite {
+
     /**
      * A no-op implementation.
      */
@@ -103,10 +104,9 @@ class CipherLite {
     /**
      * Returns an auxiliary {@link CipherLite} for partial plaintext
      * re-encryption (or re-decryption) purposes.
-     * 
-     * @param startingBytePos
-     *            the starting byte position of the plaintext. Must be a
-     *            multiple of the cipher block size.
+     *
+     * @param startingBytePos the starting byte position of the plaintext. Must be a
+     *         multiple of the cipher block size.
      */
     CipherLite createAuxiliary(long startingBytePos)
             throws InvalidKeyException, NoSuchAlgorithmException,
@@ -123,12 +123,13 @@ class CipherLite {
             NoSuchAlgorithmException, NoSuchProviderException,
             NoSuchPaddingException, InvalidAlgorithmParameterException {
         int inversedMode;
-        if (cipherMode == Cipher.DECRYPT_MODE)
+        if (cipherMode == Cipher.DECRYPT_MODE) {
             inversedMode = Cipher.ENCRYPT_MODE;
-        else if (cipherMode == Cipher.ENCRYPT_MODE)
+        } else if (cipherMode == Cipher.ENCRYPT_MODE) {
             inversedMode = Cipher.DECRYPT_MODE;
-        else
+        } else {
             throw new UnsupportedOperationException();
+        }
         return scheme.createCipherLite(secreteKey, cipher.getIV(),
                 inversedMode, cipher.getProvider());
     }
@@ -136,38 +137,33 @@ class CipherLite {
     /**
      * Finishes a multiple-part encryption or decryption operation, depending on
      * how the underlying cipher was initialized.
-     * 
+     *
      * <p>
      * Input data that may have been buffered during a previous
      * <code>update</code> operation is processed, with padding (if requested)
      * being applied. If an AEAD mode such as GCM/CCM is being used, the
      * authentication tag is appended in the case of encryption, or verified in
      * the case of decryption. The result is stored in a new buffer.
-     * 
+     *
      * <p>
      * Note: if any exception is thrown, a new instance of this cipher lite
      * object may need to be constructed before it can be used again. be
      * reconstructed before it can be used again.
-     * 
+     *
      * @return the new buffer with the result
-     * 
-     * @exception IllegalStateException
-     *                if this cipher is in a wrong state (e.g., has not been
-     *                initialized)
-     * @exception IllegalBlockSizeException
-     *                if this cipher is a block cipher, no padding has been
-     *                requested (only in encryption mode), and the total input
-     *                length of the data processed by this cipher is not a
-     *                multiple of block size; or if this encryption algorithm is
-     *                unable to process the input data provided.
-     * @exception BadPaddingException
-     *                if this cipher is in decryption mode, and (un)padding has
-     *                been requested, but the decrypted data is not bounded by
-     *                the appropriate padding bytes
-     * @exception BadTagException
-     *                if this cipher is decrypting in an AEAD mode (such as
-     *                GCM/CCM), and the received authentication tag does not
-     *                match the calculated value
+     * @throws IllegalStateException if this cipher is in a wrong state (e.g., has not been
+     *         initialized)
+     * @throws IllegalBlockSizeException if this cipher is a block cipher, no padding has been
+     *         requested (only in encryption mode), and the total input
+     *         length of the data processed by this cipher is not a
+     *         multiple of block size; or if this encryption algorithm is
+     *         unable to process the input data provided.
+     * @throws BadPaddingException if this cipher is in decryption mode, and (un)padding has
+     *         been requested, but the decrypted data is not bounded by
+     *         the appropriate padding bytes
+     * @throws BadTagException if this cipher is decrypting in an AEAD mode (such as
+     *         GCM/CCM), and the received authentication tag does not
+     *         match the calculated value
      */
     byte[] doFinal() throws IllegalBlockSizeException,
             BadPaddingException {
@@ -178,7 +174,7 @@ class CipherLite {
      * Encrypts or decrypts data in a single-part operation, or finishes a
      * multiple-part operation. The data is encrypted or decrypted, depending on
      * how the underlying cipher was initialized.
-     * 
+     *
      * <p>
      * The bytes in the <code>input</code> buffer, and any input bytes that may
      * have been buffered during a previous <code>update</code> operation, are
@@ -186,32 +182,26 @@ class CipherLite {
      * such as GCM/CCM is being used, the authentication tag is appended in the
      * case of encryption, or verified in the case of decryption. The result is
      * stored in a new buffer.
-     * 
+     *
      * <p>
      * Note: if any exception is thrown, a new instance of this cipher lite
      * object may need to be constructed before it can be used again.
-     * 
-     * @param input
-     *            the input buffer
-     * 
+     *
+     * @param input the input buffer
      * @return the new buffer with the result
-     * 
-     * @exception IllegalStateException
-     *                if this cipher is in a wrong state (e.g., has not been
-     *                initialized)
-     * @exception IllegalBlockSizeException
-     *                if this cipher is a block cipher, no padding has been
-     *                requested (only in encryption mode), and the total input
-     *                length of the data processed by this cipher is not a
-     *                multiple of block size; or if this encryption algorithm is
-     *                unable to process the input data provided.
-     * @exception BadPaddingException
-     *                if this cipher is in decryption mode, and (un)padding has
-     *                been requested, but the decrypted data is not bounded by
-     *                the appropriate padding bytes; or if this cipher is
-     *                decrypting in an AEAD mode (such as GCM/CCM), and the
-     *                received authentication tag does not match the calculated
-     *                value
+     * @throws IllegalStateException if this cipher is in a wrong state (e.g., has not been
+     *         initialized)
+     * @throws IllegalBlockSizeException if this cipher is a block cipher, no padding has been
+     *         requested (only in encryption mode), and the total input
+     *         length of the data processed by this cipher is not a
+     *         multiple of block size; or if this encryption algorithm is
+     *         unable to process the input data provided.
+     * @throws BadPaddingException if this cipher is in decryption mode, and (un)padding has
+     *         been requested, but the decrypted data is not bounded by
+     *         the appropriate padding bytes; or if this cipher is
+     *         decrypting in an AEAD mode (such as GCM/CCM), and the
+     *         received authentication tag does not match the calculated
+     *         value
      */
     byte[] doFinal(byte[] input) throws IllegalBlockSizeException,
             BadPaddingException {
@@ -222,7 +212,7 @@ class CipherLite {
      * Encrypts or decrypts data in a single-part operation, or finishes a
      * multiple-part operation. The data is encrypted or decrypted, depending on
      * how the underlying cipher was initialized.
-     * 
+     *
      * <p>
      * The first <code>inputLen</code> bytes in the <code>input</code> buffer,
      * starting at <code>inputOffset</code> inclusive, and any input bytes that
@@ -231,36 +221,28 @@ class CipherLite {
      * such as GCM/CCM is being used, the authentication tag is appended in the
      * case of encryption, or verified in the case of decryption. The result is
      * stored in a new buffer.
-     * 
+     *
      * <p>
      * Note: if any exception is thrown, a new instance of this cipher lite
      * object may need to be constructed before it can be used again.
-     * 
-     * @param input
-     *            the input buffer
-     * @param inputOffset
-     *            the offset in <code>input</code> where the input starts
-     * @param inputLen
-     *            the input length
-     * 
+     *
+     * @param input the input buffer
+     * @param inputOffset the offset in <code>input</code> where the input starts
+     * @param inputLen the input length
      * @return the new buffer with the result
-     * 
-     * @exception IllegalStateException
-     *                if this cipher is in a wrong state (e.g., has not been
-     *                initialized)
-     * @exception IllegalBlockSizeException
-     *                if this cipher is a block cipher, no padding has been
-     *                requested (only in encryption mode), and the total input
-     *                length of the data processed by this cipher is not a
-     *                multiple of block size; or if this encryption algorithm is
-     *                unable to process the input data provided.
-     * @exception BadPaddingException
-     *                if this cipher is in decryption mode, and (un)padding has
-     *                been requested, but the decrypted data is not bounded by
-     *                the appropriate padding bytes; or if this cipher is
-     *                decrypting in an AEAD mode (such as GCM/CCM), and the
-     *                received authentication tag does not match the calculated
-     *                value
+     * @throws IllegalStateException if this cipher is in a wrong state (e.g., has not been
+     *         initialized)
+     * @throws IllegalBlockSizeException if this cipher is a block cipher, no padding has been
+     *         requested (only in encryption mode), and the total input
+     *         length of the data processed by this cipher is not a
+     *         multiple of block size; or if this encryption algorithm is
+     *         unable to process the input data provided.
+     * @throws BadPaddingException if this cipher is in decryption mode, and (un)padding has
+     *         been requested, but the decrypted data is not bounded by
+     *         the appropriate padding bytes; or if this cipher is
+     *         decrypting in an AEAD mode (such as GCM/CCM), and the
+     *         received authentication tag does not match the calculated
+     *         value
      */
     byte[] doFinal(byte[] input, int inputOffset, int inputLen)
             throws IllegalBlockSizeException, BadPaddingException {
@@ -271,29 +253,23 @@ class CipherLite {
      * Continues a multiple-part encryption or decryption operation (depending
      * on how the underlying cipher was initialized), processing another data
      * part.
-     * 
+     *
      * <p>
      * The first <code>inputLen</code> bytes in the <code>input</code> buffer,
      * starting at <code>inputOffset</code> inclusive, are processed, and the
      * result is stored in a new buffer.
-     * 
+     *
      * <p>
      * If <code>inputLen</code> is zero, this method returns <code>null</code>.
-     * 
-     * @param input
-     *            the input buffer
-     * @param inputOffset
-     *            the offset in <code>input</code> where the input starts
-     * @param inputLen
-     *            the input length
-     * 
+     *
+     * @param input the input buffer
+     * @param inputOffset the offset in <code>input</code> where the input starts
+     * @param inputLen the input length
      * @return the new buffer with the result, or null if the underlying cipher
      *         is a block cipher and the input data is too short to result in a
      *         new block.
-     * 
-     * @exception IllegalStateException
-     *                if the underlying cipher is in a wrong state (e.g., has
-     *                not been initialized)
+     * @throws IllegalStateException if the underlying cipher is in a wrong state (e.g., has
+     *         not been initialized)
      */
     byte[] update(byte[] input, int inputOffset, int inputLen) {
         return cipher.update(input, inputOffset, inputLen);
@@ -340,8 +316,8 @@ class CipherLite {
      * decryption, where the IV is derived from a user-supplied password.
      *
      * @return the initialization vector in a new buffer, or null if the
-     * underlying algorithm does not use an IV, or if the IV has not yet
-     * been set.
+     *         underlying algorithm does not use an IV, or if the IV has not yet
+     *         been set.
      */
     final byte[] getIV() {
         return cipher.getIV();
@@ -351,7 +327,7 @@ class CipherLite {
      * Returns the block size (in bytes).
      *
      * @return the block size (in bytes), or 0 if the underlying algorithm is
-     * not a block cipher
+     *         not a block cipher
      */
     final int getBlockSize() {
         return cipher.getBlockSize();
@@ -366,7 +342,9 @@ class CipherLite {
      * and <code>reset</code> methods.  Returns false by default, but subclass
      * may override.
      */
-    boolean markSupported() { return false; }
+    boolean markSupported() {
+        return false;
+    }
 
     /**
      * Marks the current position in this cipher lite. A subsequent call to the
@@ -374,7 +352,7 @@ class CipherLite {
      * position so that subsequent crypto operations will be logically performed
      * in an idempotent manner as if the cipher has been rewinded back to the
      * marked position.
-     * 
+     *
      * <p>
      * The general contract of <code>mark</code> is that, if the method
      * <code>markSupported</code> returns <code>true</code>, the cipher lite
@@ -382,18 +360,20 @@ class CipherLite {
      * and stands ready to restore to the internal state so that it would be
      * able to produce the same output given the same input again if and
      * whenever the method <code>reset</code> is called.
-     * 
+     *
      * @return the current position marked or -1 if mark/reset is not supported.
      */
-    long mark() { return -1; }
+    long mark() {
+        return -1;
+    }
 
     /**
      * Repositions this cipher lite to the position at the time the
      * <code>mark</code> method was last called.
-     * 
+     *
      * <p>
      * The general contract of <code>reset</code> is:
-     * 
+     *
      * <p>
      * <ul>
      * <li>If the method <code>markSupported</code> returns <code>true</code>,
@@ -403,7 +383,7 @@ class CipherLite {
      * <code>udpate</code> or <code>doFinal</code> method would produce the same
      * output given the same input data identical to the input data after the
      * <code>mark</code> method was last called..</li>
-     * 
+     *
      * <li>If the method <code>markSupported</code> returns <code>false</code>,
      * then the call to <code>reset</code> may throw an
      * <code>IllegalStateException</code>.</li>

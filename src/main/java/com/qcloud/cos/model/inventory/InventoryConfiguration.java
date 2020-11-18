@@ -11,9 +11,10 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model.inventory;
 
 import java.io.Serializable;
@@ -22,25 +23,39 @@ import java.util.List;
 
 public class InventoryConfiguration implements Serializable {
 
-    /** The ID used to identify the inventory configuration. */
+    /**
+     * The ID used to identify the inventory configuration.
+     */
     private String id;
 
-    /** Contains information about where to publish the inventory results. */
+    /**
+     * Contains information about where to publish the inventory results.
+     */
     private InventoryDestination destination;
 
-    /** Specifies whether the inventory is enabled or disabled. */
+    /**
+     * Specifies whether the inventory is enabled or disabled.
+     */
     private Boolean isEnabled;
 
-    /** Specifies an inventory inventoryFilter. */
+    /**
+     * Specifies an inventory inventoryFilter.
+     */
     private InventoryFilter inventoryFilter;
 
-    /** Specifies which object version(s) to included in the inventory results. */
+    /**
+     * Specifies which object version(s) to included in the inventory results.
+     */
     private String includedObjectVersions;
 
-    /** List to store the optional fields that are included in the inventory results. */
+    /**
+     * List to store the optional fields that are included in the inventory results.
+     */
     private List<String> optionalFields;
 
-    /** Specifies the schedule for generating inventory results. */
+    /**
+     * Specifies the schedule for generating inventory results.
+     */
     private InventorySchedule schedule;
 
 
@@ -220,7 +235,7 @@ public class InventoryConfiguration implements Serializable {
         if (optionalField == null) {
             return;
         } else if (this.optionalFields == null) {
-            this.optionalFields = new ArrayList<String >();
+            this.optionalFields = new ArrayList<String>();
         }
         this.optionalFields.add(optionalField);
     }

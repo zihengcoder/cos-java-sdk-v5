@@ -23,6 +23,7 @@ public class JobDemo {
 
     /**
      * createMediaJobs 接口用于创建任务。
+     *
      * @param client
      */
     public static void createMediaJobs(COSClient client) throws UnsupportedEncodingException {
@@ -44,9 +45,10 @@ public class JobDemo {
 
     /**
      * describeMediaJob 根据jobId查询任务信息
+     *
      * @param client
      */
-    public static void describeMediaJob(COSClient client)  {
+    public static void describeMediaJob(COSClient client) {
         //1.创建任务请求对象
         MediaJobsRequest request = new MediaJobsRequest();
         //2.添加请求参数 参数详情请见api接口文档
@@ -59,9 +61,10 @@ public class JobDemo {
 
     /**
      * describeMediaJobs 查询任务列表
+     *
      * @param client
      */
-    public static void describeMediaJobs(COSClient client)  {
+    public static void describeMediaJobs(COSClient client) {
         //1.创建任务请求对象
         MediaJobsRequest request = new MediaJobsRequest();
         //2.添加请求参数 参数详情请见api接口文档
@@ -78,6 +81,7 @@ public class JobDemo {
 
     /**
      * cancelMediaJob 取消任务
+     *
      * @param client
      */
     public static void cancelMediaJob(COSClient client) {

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -22,7 +22,7 @@ package com.qcloud.cos.model;
 /*
  * Get The Location Of the Bucket
  */
-public class GetBucketLocationRequest extends GenericBucketRequest  {
+public class GetBucketLocationRequest extends GenericBucketRequest {
 
     public GetBucketLocationRequest(String bucketName) {
         super(bucketName);

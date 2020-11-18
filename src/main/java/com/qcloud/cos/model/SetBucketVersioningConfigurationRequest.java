@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -23,42 +23,40 @@ import java.io.Serializable;
 import com.qcloud.cos.internal.CosServiceRequest;
 
 public class SetBucketVersioningConfigurationRequest extends CosServiceRequest implements Serializable {
+
     /**
      * The bucket whose versioning configuration is being set.
      */
     private String bucketName;
-    
+
     /**
      * The new versioning configuration for the specified bucket.
      */
     private BucketVersioningConfiguration versioningConfiguration;
-    
+
     /**
-     * Constructs a new {@link SetBucketVersioningConfigurationRequest} 
+     * Constructs a new {@link SetBucketVersioningConfigurationRequest}
      * to set the bucket versioning configuration of
      * the specified bucket.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose versioning configuration is being
-     *            set.
-     * @param configuration
-     *            The new versioning configuration for the specified bucket.
-     *            
-     * @see SetBucketVersioningConfigurationRequest#SetBucketVersioningConfigurationRequest(String, BucketVersioningConfiguration, MultiFactorAuthentication)          
+     *
+     * @param bucketName The name of the bucket whose versioning configuration is being
+     *         set.
+     * @param configuration The new versioning configuration for the specified bucket.
+     * @see SetBucketVersioningConfigurationRequest#SetBucketVersioningConfigurationRequest(String,
+     *         BucketVersioningConfiguration, MultiFactorAuthentication)
      */
     public SetBucketVersioningConfigurationRequest(
             String bucketName, BucketVersioningConfiguration configuration) {
         this.bucketName = bucketName;
         this.versioningConfiguration = configuration;
     }
-    
+
     /**
      * Gets the name of the bucket whose versioning configuration is being
      * set.
-     * 
+     *
      * @return The name of the bucket whose versioning configuration is being
      *         set.
-     *         
      * @see SetBucketVersioningConfigurationRequest#setBucketName(String)
      */
     public String getBucketName() {
@@ -67,12 +65,10 @@ public class SetBucketVersioningConfigurationRequest extends CosServiceRequest i
 
     /**
      * Sets the name of the bucket whose versioning configuration is being set.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose versioning configuration is being
-     *            set.
-     *            
-     * @see SetBucketVersioningConfigurationRequest#getBucketName()           
+     *
+     * @param bucketName The name of the bucket whose versioning configuration is being
+     *         set.
+     * @see SetBucketVersioningConfigurationRequest#getBucketName()
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -82,15 +78,12 @@ public class SetBucketVersioningConfigurationRequest extends CosServiceRequest i
      * Sets the name of the bucket whose versioning configuration is being set,
      * and returns this object so that additional method calls may be chained
      * together.
-     * 
-     * @param bucketName
-     *            The name of the bucket whose versioning configuration is being
-     *            set.
-     * 
+     *
+     * @param bucketName The name of the bucket whose versioning configuration is being
+     *         set.
      * @return This {@link SetBucketVersioningConfigurationRequest} object so that
      *         additional method calls may be chained together.
-     *         
-     * @see SetBucketVersioningConfigurationRequest#setBucketName(String)       
+     * @see SetBucketVersioningConfigurationRequest#setBucketName(String)
      */
     public SetBucketVersioningConfigurationRequest withBucketName(String bucketName) {
         setBucketName(bucketName);
@@ -99,9 +92,8 @@ public class SetBucketVersioningConfigurationRequest extends CosServiceRequest i
 
     /**
      * Gets the new versioning configuration for the specified bucket.
-     * 
+     *
      * @return The new versioning configuration for the specified bucket.
-     * 
      * @see SetBucketVersioningConfigurationRequest#setVersioningConfiguration(BucketVersioningConfiguration)
      * @see SetBucketVersioningConfigurationRequest#withVersioningConfiguration(BucketVersioningConfiguration)
      */
@@ -111,11 +103,9 @@ public class SetBucketVersioningConfigurationRequest extends CosServiceRequest i
 
     /**
      * Sets the new versioning configuration for the specified bucket.
-     * 
-     * @param versioningConfiguration
-     *            The new versioning configuration for the specified bucket.
-     *            
-     * @see SetBucketVersioningConfigurationRequest#getVersioningConfiguration()           
+     *
+     * @param versioningConfiguration The new versioning configuration for the specified bucket.
+     * @see SetBucketVersioningConfigurationRequest#getVersioningConfiguration()
      * @see SetBucketVersioningConfigurationRequest#withVersioningConfiguration(BucketVersioningConfiguration)
      */
     public void setVersioningConfiguration(
@@ -127,15 +117,12 @@ public class SetBucketVersioningConfigurationRequest extends CosServiceRequest i
      * Sets the new versioning configuration for the specified bucket and
      * returns this object, enabling additional method calls to be chained
      * together.
-     * 
-     * @param versioningConfiguration
-     *            The new versioning configuration for the specified bucket.
-     * 
+     *
+     * @param versioningConfiguration The new versioning configuration for the specified bucket.
      * @return This {@link SetBucketVersioningConfigurationRequest} object, enabling that
      *         additional method calls may be chained together.
-     *         
-     * @see SetBucketVersioningConfigurationRequest#getVersioningConfiguration()  
-     * @see SetBucketVersioningConfigurationRequest#getVersioningConfiguration()               
+     * @see SetBucketVersioningConfigurationRequest#getVersioningConfiguration()
+     * @see SetBucketVersioningConfigurationRequest#getVersioningConfiguration()
      */
     public SetBucketVersioningConfigurationRequest withVersioningConfiguration(
             BucketVersioningConfiguration versioningConfiguration) {

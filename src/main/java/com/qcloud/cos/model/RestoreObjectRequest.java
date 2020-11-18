@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -23,6 +23,7 @@ import java.io.Serializable;
 import com.qcloud.cos.internal.CosServiceRequest;
 
 public class RestoreObjectRequest extends CosServiceRequest implements Serializable {
+
     private static final long serialVersionUID = 1L;
 
     /**
@@ -62,10 +63,9 @@ public class RestoreObjectRequest extends CosServiceRequest implements Serializa
      * </p>
      *
      * @param bucketName The name of the bucket containing the reference to the object to restore
-     *        which is now stored in CAS.
+     *         which is now stored in CAS.
      * @param key The key, the name of the reference to the object to restore, which is now stored
-     *        in CAS.
-     *
+     *         in CAS.
      * @see RestoreObjectRequest#RestoreObjectRequest(String, String, int)
      */
     public RestoreObjectRequest(String bucketName, String key) {
@@ -78,12 +78,11 @@ public class RestoreObjectRequest extends CosServiceRequest implements Serializa
      * </p>
      *
      * @param bucketName The name of the bucket containing the reference to the object to restore
-     *        which is now stored in CAS.
+     *         which is now stored in CAS.
      * @param key The key, the name of the reference to the object to restore, which is now stored
-     *        in CAS.
+     *         in CAS.
      * @param expirationInDays The time, in days, between when an object is restored to the bucket
-     *        and when it expires
-     *
+     *         and when it expires
      * @see RestoreObjectRequest#RestoreObjectRequest(String, String)
      */
     public RestoreObjectRequest(String bucketName, String key, int expirationInDays) {
@@ -215,7 +214,7 @@ public class RestoreObjectRequest extends CosServiceRequest implements Serializa
 
     /**
      * Sets CAS related prameters pertaining to this job.
-     * 
+     *
      * @param casJobParameters New value for CAS job parameters.
      */
     public void setCASJobParameters(CASJobParameters casJobParameters) {

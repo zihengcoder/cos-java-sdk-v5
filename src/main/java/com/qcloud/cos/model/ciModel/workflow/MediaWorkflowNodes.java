@@ -1,6 +1,7 @@
 package com.qcloud.cos.model.ciModel.workflow;
 
 public class MediaWorkflowNodes {
+
     private MediaWorkflowStart mediaWorkflowStart;
     private MediaWorkflowNode node;
     private MediaOperation operation;

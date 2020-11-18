@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -23,6 +23,7 @@ import java.io.Serializable;
 import com.qcloud.cos.internal.CosServiceRequest;
 
 public class GetObjectMetadataRequest extends CosServiceRequest implements SSECustomerKeyProvider, Serializable {
+
     /**
      * The name of the bucket containing the object's whose metadata is being
      * retrieved.
@@ -39,25 +40,22 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * retrieved. If not specified, the latest version will be used.
      */
     private String versionId;
-    
+
     /**
      * The optional customer-provided server-side encryption key to use when
      * retrieving the metadata of a server-side encrypted object.
      */
     private SSECustomerKey sseCustomerKey;
-    
+
     /**
      * Constructs a new
      * {@link GetObjectMetadataRequest}
      * used to retrieve a specified
      * object's metadata.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object whose metadata
-     *            is being retrieved.
-     * @param key
-     *            The key of the object whose metadata is being retrieved.
-     *
+     * @param bucketName The name of the bucket containing the object whose metadata
+     *         is being retrieved.
+     * @param key The key of the object whose metadata is being retrieved.
      * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String bucketName, String key, String versionId)
      */
     public GetObjectMetadataRequest(String bucketName, String key) {
@@ -70,15 +68,11 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * {@link GetObjectMetadataRequest}
      * with basic options.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object whose metadata
-     *            is being retrieved.
-     * @param key
-     *            The key of the object whose metadata is being retrieved.
-     * @param versionId
-     *            The version ID of the object version whose metadata is being
-     *            retrieved.
-     *
+     * @param bucketName The name of the bucket containing the object whose metadata
+     *         is being retrieved.
+     * @param key The key of the object whose metadata is being retrieved.
+     * @param versionId The version ID of the object version whose metadata is being
+     *         retrieved.
      * @see GetObjectMetadataRequest#GetObjectMetadataRequest(String bucketName, String key)
      */
     public GetObjectMetadataRequest(String bucketName, String key, String versionId) {
@@ -92,7 +86,6 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      *
      * @return The name of the bucket containing the object whose metadata is
      *         being retrieved.
-     *
      * @see GetObjectMetadataRequest#setBucketName(String bucketName)
      * @see GetObjectMetadataRequest#withBucketName(String)
      */
@@ -104,10 +97,8 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * Sets the name of the bucket containing the object whose metadata is
      * being retrieved.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object's whose metadata
-     *            is being retrieved.
-     *
+     * @param bucketName The name of the bucket containing the object's whose metadata
+     *         is being retrieved.
      * @see GetObjectMetadataRequest#getBucketName()
      * @see GetObjectMetadataRequest#withBucketName(String)
      */
@@ -121,13 +112,10 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * Returns this {@link GetObjectMetadataRequest}, enabling additional method
      * calls to be chained together.
      *
-     * @param bucketName
-     *            The name of the bucket containing the object's whose metadata
-     *            is being retrieved.
-     *
+     * @param bucketName The name of the bucket containing the object's whose metadata
+     *         is being retrieved.
      * @return This {@link GetObjectMetadataRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see GetObjectMetadataRequest#getBucketName()
      * @see GetObjectMetadataRequest#setBucketName(String bucketName)
      */
@@ -140,7 +128,6 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * Gets the key of the object whose metadata is being retrieved.
      *
      * @return The key of the object whose metadata is being retrieved.
-     *
      * @see GetObjectMetadataRequest#setKey(String)
      * @see GetObjectMetadataRequest#withKey(String)
      */
@@ -151,9 +138,7 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
     /**
      * Sets the key of the object whose metadata is being retrieved.
      *
-     * @param key
-     *            The key of the object whose metadata is being retrieved.
-     *
+     * @param key The key of the object whose metadata is being retrieved.
      * @see GetObjectMetadataRequest#getKey()
      * @see GetObjectMetadataRequest#withKey(String)
      */
@@ -166,12 +151,9 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * Returns this {@link GetObjectMetadataRequest}, enabling additional method
      * calls to be chained together.
      *
-     * @param key
-     *            The key of the object whose metadata is being retrieved.
-     *
+     * @param key The key of the object whose metadata is being retrieved.
      * @return This {@link GetObjectMetadataRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see GetObjectMetadataRequest#getKey()
      * @see GetObjectMetadataRequest#setKey(String)
      */
@@ -187,7 +169,6 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * @return The optional version ID of the object version whose metadata is
      *         being retrieved. If not specified, the latest version will be
      *         used.
-     *
      * @see GetObjectMetadataRequest#setVersionId(String)
      * @see GetObjectMetadataRequest#withVersionId(String)
      */
@@ -199,11 +180,9 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * Sets the optional version ID of the object version whose metadata is
      * being retrieved. If not specified, the latest version will be used.
      *
-     * @param versionId
-     *            The optional version ID of the object version whose metadata
-     *            is being retrieved. If not specified, the latest version will
-     *            be used.
-     *
+     * @param versionId The optional version ID of the object version whose metadata
+     *         is being retrieved. If not specified, the latest version will
+     *         be used.
      * @see GetObjectMetadataRequest#getVersionId()
      * @see GetObjectMetadataRequest#withVersionId(String)
      */
@@ -218,13 +197,10 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * calls to be chained together.
      * If not specified, the latest version will be used.
      *
-     * @param versionId
-     *            The optional version ID of the object version whose metadata
-     *            is being retrieved.
-     *
+     * @param versionId The optional version ID of the object version whose metadata
+     *         is being retrieved.
      * @return This {@link GetObjectMetadataRequest}, enabling additional method
      *         calls to be chained together.
-     *
      * @see GetObjectMetadataRequest#getVersionId()
      * @see GetObjectMetadataRequest#setVersionId(String)
      */
@@ -232,7 +208,7 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
         setVersionId(versionId);
         return this;
     }
-    
+
     @Override
     public SSECustomerKey getSSECustomerKey() {
         return sseCustomerKey;
@@ -242,10 +218,9 @@ public class GetObjectMetadataRequest extends CosServiceRequest implements SSECu
      * Sets the optional customer-provided server-side encryption key to use
      * when retrieving the metadata of a server-side encrypted object.
      *
-     * @param sseKey
-     *            The optional customer-provided server-side encryption key to
-     *            use when retrieving the metadata of a server-side encrypted
-     *            object.
+     * @param sseKey The optional customer-provided server-side encryption key to
+     *         use when retrieving the metadata of a server-side encrypted
+     *         object.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
         this.sseCustomerKey = sseKey;

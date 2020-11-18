@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.utils;
 
 /**
@@ -21,10 +22,11 @@ package com.qcloud.cos.utils;
  */
 
 public class ValidationUtils {
+
     /**
      * Asserts that the given number is positive (non-negative and non-zero).
      *
-     * @param num       Number to validate
+     * @param num Number to validate
      * @param fieldName Field name to display in exception message if not positive.
      * @return Number if positive.
      */
@@ -38,13 +40,10 @@ public class ValidationUtils {
     /**
      * Asserts that the given object is non-null and returns it.
      *
-     * @param object
-     *         Object to assert on
-     * @param fieldName
-     *         Field name to display in exception message if null
+     * @param object Object to assert on
+     * @param fieldName Field name to display in exception message if null
      * @return Object if non null
-     * @throws IllegalArgumentException
-     *         If object was null
+     * @throws IllegalArgumentException If object was null
      */
     public static <T> T assertNotNull(T object, String fieldName) throws IllegalArgumentException {
         if (object == null) {

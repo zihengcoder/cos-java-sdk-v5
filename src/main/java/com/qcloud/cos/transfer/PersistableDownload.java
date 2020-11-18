@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -32,19 +32,27 @@ public final class PersistableDownload extends PersistableTransfer {
     @JsonProperty
     private final String pauseType = TYPE;
 
-    /** The bucket name in Qcloud COS from where the object has to be downloaded. */
+    /**
+     * The bucket name in Qcloud COS from where the object has to be downloaded.
+     */
     @JsonProperty
     private final String bucketName;
 
-    /** The name of the object in Qcloud COS that has to be downloaded. */
+    /**
+     * The name of the object in Qcloud COS that has to be downloaded.
+     */
     @JsonProperty
     private final String key;
 
-    /** The version id of the object in Qcloud COS to download. */
+    /**
+     * The version id of the object in Qcloud COS to download.
+     */
     @JsonProperty
     private final String versionId;
 
-    /** Optional member indicating the byte range of data to retrieve */
+    /**
+     * Optional member indicating the byte range of data to retrieve
+     */
     @JsonProperty
     private final long[] range;
 
@@ -74,7 +82,7 @@ public final class PersistableDownload extends PersistableTransfer {
         this.bucketName = bucketName;
         this.key = key;
         this.versionId = versionId;
-        this.range = range  == null ? null : range.clone();
+        this.range = range == null ? null : range.clone();
         this.responseHeaders = responseHeaders;
         this.file = file;
     }
@@ -104,7 +112,7 @@ public final class PersistableDownload extends PersistableTransfer {
      * Returns the byte range of the object to download.
      */
     long[] getRange() {
-        return range  == null ? null : range.clone();
+        return range == null ? null : range.clone();
     }
 
     /**

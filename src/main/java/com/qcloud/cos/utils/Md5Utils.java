@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,6 +28,7 @@ import org.apache.commons.codec.binary.Hex;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class Md5Utils {
+
     public static byte[] computeMD5Hash(InputStream is) throws IOException {
         return DigestUtils.md5(is);
     }
@@ -61,7 +62,7 @@ public class Md5Utils {
     public static String md5Hex(String utf8Content) {
         return Hex.encodeHexString(computeMD5Hash(utf8Content.getBytes(StringUtils.UTF8)));
     }
-    
+
 
     public static String md5Hex(byte[] input) {
         return Hex.encodeHexString(computeMD5Hash(input));

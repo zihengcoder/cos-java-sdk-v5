@@ -3,11 +3,12 @@ package com.qcloud.cos.model.ciModel.workflow;
 import com.qcloud.cos.model.ciModel.common.MediaOutputObject;
 
 public class MediaOperation {
+
     private String templateId;
     private MediaOutputObject output;
 
     public MediaOutputObject getOutput() {
-        if (output == null){
+        if (output == null) {
             output = new MediaOutputObject();
         }
         return output;

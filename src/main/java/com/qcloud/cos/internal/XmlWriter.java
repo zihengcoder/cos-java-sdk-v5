@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -40,6 +40,7 @@ import java.util.List;
  * </pre>
  */
 public class XmlWriter {
+
     List<String> tags = new ArrayList<String>();
     StringBuilder sb = new StringBuilder();
 
@@ -68,14 +69,14 @@ public class XmlWriter {
     }
 
     public XmlWriter end() {
-        assert(tags.size() > 0);
+        assert (tags.size() > 0);
         String name = tags.remove(tags.size() - 1);
         sb.append("</").append(name).append(">");
         return this;
     }
 
     public byte[] getBytes() {
-        assert(tags.size() == 0);
+        assert (tags.size() == 0);
         return this.toString().getBytes(UTF8);
     }
 
@@ -99,16 +100,15 @@ public class XmlWriter {
      * replaced with the corresponding escape code) to the specified
      * StringBuilder.
      *
-     * @param s
-     *            The string to escape and append to the specified
-     *            StringBuilder.
-     * @param builder
-     *            The StringBuilder to which the escaped string should be
-     *            appened.
+     * @param s The string to escape and append to the specified
+     *         StringBuilder.
+     * @param builder The StringBuilder to which the escaped string should be
+     *         appened.
      */
     private void appendEscapedString(String s, StringBuilder builder) {
-        if (s == null)
+        if (s == null) {
             s = "";
+        }
         int pos;
         int start = 0;
         int len = s.length();
@@ -116,44 +116,47 @@ public class XmlWriter {
             char ch = s.charAt(pos);
             String escape;
             switch (ch) {
-            case '\t':
-                escape = "&#9;";
-                break;
-            case '\n':
-                escape = "&#10;";
-                break;
-            case '\r':
-                escape = "&#13;";
-                break;
-            case '&':
-                escape = "&amp;";
-                break;
-            case '"':
-                escape = "&quot;";
-                break;
-            case '<':
-                escape = "&lt;";
-                break;
-            case '>':
-                escape = "&gt;";
-                break;
-            default:
-                escape = null;
-                break;
+                case '\t':
+                    escape = "&#9;";
+                    break;
+                case '\n':
+                    escape = "&#10;";
+                    break;
+                case '\r':
+                    escape = "&#13;";
+                    break;
+                case '&':
+                    escape = "&amp;";
+                    break;
+                case '"':
+                    escape = "&quot;";
+                    break;
+                case '<':
+                    escape = "&lt;";
+                    break;
+                case '>':
+                    escape = "&gt;";
+                    break;
+                default:
+                    escape = null;
+                    break;
             }
 
             // If we found an escape character, write all the characters up to that
             // character, then write the escaped char and get back to scanning
             if (escape != null) {
-                if (start < pos)
+                if (start < pos) {
                     builder.append(s, start, pos);
+                }
                 sb.append(escape);
                 start = pos + 1;
             }
         }
 
         // Write anything that's left
-        if (start < pos) sb.append(s, start, pos);
+        if (start < pos) {
+            sb.append(s, start, pos);
+        }
     }
 
 }

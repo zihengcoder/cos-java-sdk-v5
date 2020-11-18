@@ -30,6 +30,7 @@ import com.qcloud.cos.region.Region;
 //使用客户端加密前的注意事项请参考接口文档
 //这里给出使用对称秘钥AES256加密每次生成的随机对称秘钥
 public class SymmetricKeyEncryptionClientDemo {
+
     private static final String keyFilePath = "secretFolder/secret.key";
 
     // 这里给出了一个产生和保存秘钥信息的示例, 推荐使用256位秘钥.
@@ -68,7 +69,6 @@ public class SymmetricKeyEncryptionClientDemo {
                 "YYZZZZZZZZZZZZZZZZZ");
         // 设置bucket的区域, COS地域的简称请参照 https://www.qcloud.com/document/product/436/6224
         ClientConfig clientConfig = new ClientConfig(new Region("ap-beijing-1"));
-
 
         // 加载保存在文件中的秘钥, 如果不存在，请先使用buildAndSaveSymmetricKey生成秘钥
         // buildAndSaveSymmetricKey();

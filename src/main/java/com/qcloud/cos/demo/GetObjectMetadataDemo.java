@@ -9,6 +9,7 @@ import com.qcloud.cos.region.Region;
 
 
 public class GetObjectMetadataDemo {
+
     public static void main(String[] args) {
         getObjectMetadataDemo();
     }

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,6 +27,7 @@ import com.qcloud.cos.transfer.TransferProgress;
  */
 public final class MultipleFileTransferProgressUpdatingListener extends
         TransferProgressUpdatingListener implements DeliveryMode {
+
     private final ProgressListenerChain progressListenerChain;
 
     public MultipleFileTransferProgressUpdatingListener(
@@ -45,6 +46,6 @@ public final class MultipleFileTransferProgressUpdatingListener extends
     @Override
     public boolean isSyncCallSafe() {
         return progressListenerChain == null
-            || progressListenerChain.isSyncCallSafe();
+                || progressListenerChain.isSyncCallSafe();
     }
 }

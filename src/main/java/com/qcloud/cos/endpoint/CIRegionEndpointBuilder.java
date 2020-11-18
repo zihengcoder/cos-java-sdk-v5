@@ -22,6 +22,7 @@ import com.qcloud.cos.internal.BucketNameUtils;
 import com.qcloud.cos.region.Region;
 
 public class CIRegionEndpointBuilder implements EndpointBuilder {
+
     private Region region;
 
     public CIRegionEndpointBuilder(Region region) {

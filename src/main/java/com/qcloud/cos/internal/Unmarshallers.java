@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -71,6 +71,7 @@ public class Unmarshallers {
      */
     public static final class ListBucketsUnmarshaller
             implements Unmarshaller<List<Bucket>, InputStream> {
+
         public List<Bucket> unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseListMyBucketsResponse(in).getBuckets();
         }
@@ -92,6 +93,7 @@ public class Unmarshallers {
      */
     public static final class ListObjectsUnmarshaller
             implements Unmarshaller<ObjectListing, InputStream> {
+
         private final boolean shouldSDKDecodeResponse;
 
         public ListObjectsUnmarshaller(final boolean shouldSDKDecodeResponse) {
@@ -109,13 +111,13 @@ public class Unmarshallers {
      */
     public static final class VersionListUnmarshaller
             implements Unmarshaller<VersionListing, InputStream> {
-        
+
         private final boolean shouldSDKDecodeResponse;
 
         public VersionListUnmarshaller(final boolean shouldSDKDecodeResponse) {
             this.shouldSDKDecodeResponse = shouldSDKDecodeResponse;
         }
-        
+
         public VersionListing unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseListVersionsResponse(in, shouldSDKDecodeResponse).getListing();
         }
@@ -126,6 +128,7 @@ public class Unmarshallers {
      */
     public static final class AccessControlListUnmarshaller
             implements Unmarshaller<AccessControlList, InputStream> {
+
         public AccessControlList unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseAccessControlListResponse(in)
                     .getAccessControlList();
@@ -143,16 +146,19 @@ public class Unmarshallers {
     // }
     // }
     //
+
     /**
      * Unmarshaller for the BucketLocation XML response.
      */
     public static final class BucketLocationUnmarshaller
             implements Unmarshaller<String, InputStream> {
+
         public String unmarshall(InputStream in) throws Exception {
             String location = new XmlResponsesSaxParser().parseBucketLocationResponse(in);
 
-            if (location == null)
+            if (location == null) {
                 location = "Unknown Region";
+            }
 
             return location;
         }
@@ -163,6 +169,7 @@ public class Unmarshallers {
      */
     public static final class BucketVersioningConfigurationUnmarshaller
             implements Unmarshaller<BucketVersioningConfiguration, InputStream> {
+
         public BucketVersioningConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseVersioningConfigurationResponse(in)
                     .getConfiguration();
@@ -174,6 +181,7 @@ public class Unmarshallers {
      */
     public static final class BucketTaggingConfigurationUnmarshaller implements
             Unmarshaller<BucketTaggingConfiguration, InputStream> {
+
         public BucketTaggingConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
                     .parseTaggingConfigurationResponse(in).getConfiguration();
@@ -219,6 +227,7 @@ public class Unmarshallers {
      */
     public static final class InputStreamUnmarshaller
             implements Unmarshaller<InputStream, InputStream> {
+
         public InputStream unmarshall(InputStream in) throws Exception {
             return in;
         }
@@ -229,6 +238,7 @@ public class Unmarshallers {
      */
     public static final class CopyObjectUnmarshaller
             implements Unmarshaller<CopyObjectResultHandler, InputStream> {
+
         public CopyObjectResultHandler unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseCopyObjectResponse(in);
         }
@@ -236,6 +246,7 @@ public class Unmarshallers {
 
     public static final class CompleteMultipartUploadResultUnmarshaller
             implements Unmarshaller<CompleteMultipartUploadHandler, InputStream> {
+
         public CompleteMultipartUploadHandler unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseCompleteMultipartUploadResponse(in);
         }
@@ -243,6 +254,7 @@ public class Unmarshallers {
 
     public static final class InitiateMultipartUploadResultUnmarshaller
             implements Unmarshaller<InitiateMultipartUploadResult, InputStream> {
+
         public InitiateMultipartUploadResult unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseInitiateMultipartUploadResponse(in)
                     .getInitiateMultipartUploadResult();
@@ -251,6 +263,7 @@ public class Unmarshallers {
 
     public static final class ListMultipartUploadsResultUnmarshaller
             implements Unmarshaller<MultipartUploadListing, InputStream> {
+
         public MultipartUploadListing unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseListMultipartUploadsResponse(in)
                     .getListMultipartUploadsResult();
@@ -259,6 +272,7 @@ public class Unmarshallers {
 
     public static final class ListPartsResultUnmarshaller
             implements Unmarshaller<PartListing, InputStream> {
+
         public PartListing unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseListPartsResponse(in).getListPartsResult();
         }
@@ -284,6 +298,7 @@ public class Unmarshallers {
 
     public static final class BucketCrossOriginConfigurationUnmarshaller
             implements Unmarshaller<BucketCrossOriginConfiguration, InputStream> {
+
         public BucketCrossOriginConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseBucketCrossOriginConfigurationResponse(in)
                     .getConfiguration();
@@ -292,6 +307,7 @@ public class Unmarshallers {
 
     public static final class BucketDomainConfigurationUnmarshaller
             implements Unmarshaller<BucketDomainConfiguration, InputStream> {
+
         public BucketDomainConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseBucketDomainConfigurationResponse(in)
                     .getConfiguration();
@@ -303,6 +319,7 @@ public class Unmarshallers {
      */
     public static final class BucketReplicationConfigurationUnmarshaller
             implements Unmarshaller<BucketReplicationConfiguration, InputStream> {
+
         public BucketReplicationConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser().parseReplicationConfigurationResponse(in)
                     .getConfiguration();
@@ -314,6 +331,7 @@ public class Unmarshallers {
      */
     public static final class BucketWebsiteConfigurationUnmarshaller implements
             Unmarshaller<BucketWebsiteConfiguration, InputStream> {
+
         public BucketWebsiteConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
                     .parseWebsiteConfigurationResponse(in).getConfiguration();
@@ -325,6 +343,7 @@ public class Unmarshallers {
      */
     public static final class BucketLoggingConfigurationnmarshaller implements
             Unmarshaller<BucketLoggingConfiguration, InputStream> {
+
         public BucketLoggingConfiguration unmarshall(InputStream in) throws Exception {
             return new XmlResponsesSaxParser()
                     .parseLoggingStatusResponse(in).getBucketLoggingConfiguration();
@@ -374,7 +393,9 @@ public class Unmarshallers {
             return new SetBucketInventoryConfigurationResult();
         }
     }
-    public static final class GetObjectTaggingResponseUnmarshaller implements Unmarshaller<GetObjectTaggingResult, InputStream> {
+
+    public static final class GetObjectTaggingResponseUnmarshaller implements
+            Unmarshaller<GetObjectTaggingResult, InputStream> {
 
         @Override
         public GetObjectTaggingResult unmarshall(InputStream in) throws Exception {
@@ -393,7 +414,8 @@ public class Unmarshallers {
         }
     }
 
-    public static final class SetObjectTaggingResponseUnmarshaller implements Unmarshaller<SetObjectTaggingResult, InputStream> {
+    public static final class SetObjectTaggingResponseUnmarshaller implements
+            Unmarshaller<SetObjectTaggingResult, InputStream> {
 
         @Override
         public SetObjectTaggingResult unmarshall(InputStream in) throws Exception {
@@ -401,7 +423,8 @@ public class Unmarshallers {
         }
     }
 
-    public static final class DeleteObjectTaggingResponseUnmarshaller implements Unmarshaller<DeleteObjectTaggingResult, InputStream> {
+    public static final class DeleteObjectTaggingResponseUnmarshaller implements
+            Unmarshaller<DeleteObjectTaggingResult, InputStream> {
 
         @Override
         public DeleteObjectTaggingResult unmarshall(InputStream in) throws Exception {

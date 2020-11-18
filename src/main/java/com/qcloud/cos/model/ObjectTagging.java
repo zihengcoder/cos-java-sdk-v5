@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 import com.qcloud.cos.model.Tag.Tag;
@@ -25,6 +26,7 @@ import java.util.List;
  * The tagging for an object.
  */
 public class ObjectTagging implements Serializable {
+
     private List<Tag> tagSet;
 
     /**
@@ -47,8 +49,7 @@ public class ObjectTagging implements Serializable {
     /**
      * Set the tag set for the object.
      *
-     * @param tagSet
-     *            The tag set.
+     * @param tagSet The tag set.
      */
     public void setTagSet(List<Tag> tagSet) {
         this.tagSet = tagSet;
@@ -57,10 +58,8 @@ public class ObjectTagging implements Serializable {
     /**
      * Set the tag set for the object.
      *
-     * @param tagSet
-     *            The tag set.
-     * @return
-     *            This object for chaining.
+     * @param tagSet The tag set.
+     * @return This object for chaining.
      */
     private ObjectTagging withTagSet(List<Tag> tagSet) {
         this.tagSet = tagSet;

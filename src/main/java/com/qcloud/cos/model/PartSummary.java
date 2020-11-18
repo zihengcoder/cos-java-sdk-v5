@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -34,13 +34,19 @@ public class PartSummary implements Serializable {
      */
     private int partNumber;
 
-    /** The date at which this part was last modified. */
+    /**
+     * The date at which this part was last modified.
+     */
     private Date lastModified;
 
-    /** The entity tag generated from the part content. */
+    /**
+     * The entity tag generated from the part content.
+     */
     private String eTag;
 
-    /** The size, in bytes, of the part. */
+    /**
+     * The size, in bytes, of the part.
+     */
     private long size;
 
 
@@ -62,10 +68,9 @@ public class PartSummary implements Serializable {
      * other parts in the multipart upload. Part number must be between 1 and
      * 10,000 (inclusive).
      *
-     * @param partNumber
-     *            the part number describing this part's position relative to
-     *            the other parts in the multipart upload. Part number must be
-     *            between 1 and 10,000 (inclusive).
+     * @param partNumber the part number describing this part's position relative to
+     *         the other parts in the multipart upload. Part number must be
+     *         between 1 and 10,000 (inclusive).
      */
     public void setPartNumber(int partNumber) {
         this.partNumber = partNumber;
@@ -83,8 +88,7 @@ public class PartSummary implements Serializable {
     /**
      * Sets the date this part was last modified.
      *
-     * @param lastModified
-     *            the date this part was last modified.
+     * @param lastModified the date this part was last modified.
      */
     public void setLastModified(Date lastModified) {
         this.lastModified = lastModified;
@@ -102,8 +106,7 @@ public class PartSummary implements Serializable {
     /**
      * Sets the entity tag generated from the part content.
      *
-     * @param eTag
-     *            the entity tag generated from the part content.
+     * @param eTag the entity tag generated from the part content.
      */
     public void setETag(String eTag) {
         this.eTag = eTag;
@@ -121,8 +124,7 @@ public class PartSummary implements Serializable {
     /**
      * Sets the size of this part, in bytes.
      *
-     * @param size
-     *            the size of this part, in bytes.
+     * @param size the size of this part, in bytes.
      */
     public void setSize(long size) {
         this.size = size;

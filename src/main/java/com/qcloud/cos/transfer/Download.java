@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,9 +28,9 @@ import com.qcloud.cos.model.ObjectMetadata;
  * <p>
  * See {@link TransferManager} for more information about creating transfers.
  * </p>
- * 
+ *
  * @see TransferManager#download(com.qcloud.cos.model.GetObjectRequest,
- *      java.io.File)
+ *         java.io.File)
  */
 public interface Download extends Transfer {
 
@@ -74,9 +74,8 @@ public interface Download extends Transfer {
      * CosClientException as authenticity cannot be guaranteed for a range
      * get operation.
      *
-     * @throws PauseException
-     *             If any errors were encountered while trying to pause the
-     *             download.
+     * @throws PauseException If any errors were encountered while trying to pause the
+     *         download.
      */
     public PersistableDownload pause() throws PauseException;
 }

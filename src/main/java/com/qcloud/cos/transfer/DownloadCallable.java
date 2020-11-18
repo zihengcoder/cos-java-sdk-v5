@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -40,6 +40,7 @@ import com.qcloud.cos.utils.ServiceUtils;
 import com.qcloud.cos.utils.ServiceUtils.RetryableCOSDownloadTask;
 
 final class DownloadCallable implements Callable<File> {
+
     private static final Logger log = LoggerFactory.getLogger(DownloadCallable.class);
 
     private final COS cos;
@@ -55,8 +56,9 @@ final class DownloadCallable implements Callable<File> {
     DownloadCallable(COS cos, CountDownLatch latch, GetObjectRequest req,
             boolean resumeExistingDownload, DownloadImpl download, File dstfile,
             long origStartingByte, long expectedFileLength) {
-        if (cos == null || latch == null || req == null || dstfile == null || download == null)
+        if (cos == null || latch == null || req == null || dstfile == null || download == null) {
             throw new IllegalArgumentException();
+        }
         this.cos = cos;
         this.latch = latch;
         this.req = req;
@@ -70,7 +72,7 @@ final class DownloadCallable implements Callable<File> {
     /**
      * This method must return a non-null object, or else the existing implementation in
      * {@link AbstractTransfer#waitForCompletion()} would block forever.
-     * 
+     *
      * @return the downloaded file
      */
     @Override
@@ -93,10 +95,11 @@ final class DownloadCallable implements Callable<File> {
             if (download.getState() != TransferState.Canceled) {
                 download.setState(TransferState.Failed);
             }
-            if (t instanceof Exception)
+            if (t instanceof Exception) {
                 throw (Exception) t;
-            else
+            } else {
                 throw (Error) t;
+            }
         }
     }
 
@@ -119,7 +122,7 @@ final class DownloadCallable implements Callable<File> {
                 expectedFileLength = dstfile.length();
                 long startingByte = this.origStartingByte + expectedFileLength;
                 log.info("Adjusting request range from " + Arrays.toString(range) + " to "
-                        + Arrays.toString(new long[] {startingByte, lastByte}) + " for file "
+                        + Arrays.toString(new long[]{startingByte, lastByte}) + " for file "
                         + dstfile);
                 req.setRange(startingByte, lastByte);
                 totalBytesToDownload = lastByte - startingByte + 1;
@@ -141,14 +144,15 @@ final class DownloadCallable implements Callable<File> {
             RetryableCOSDownloadTask retryableCOSDownloadTask, boolean appendData) {
         boolean hasRetried = false;
         COSObject cosObject;
-        for (;;) {
+        for (; ; ) {
             if (resumeExistingDownload && hasRetried) {
                 // Need to adjust the get range or else we risk corrupting the downloaded file
                 adjustRequest(req);
             }
             cosObject = retryableCOSDownloadTask.getCOSObjectStream();
-            if (cosObject == null)
+            if (cosObject == null) {
                 return null;
+            }
             try {
                 if (testing && resumeExistingDownload && !hasRetried) {
                     throw new CosClientException("testing");
@@ -158,8 +162,9 @@ final class DownloadCallable implements Callable<File> {
                         expectedFileLength);
                 return cosObject;
             } catch (CosClientException ace) {
-                if (!ace.isRetryable())
+                if (!ace.isRetryable()) {
                     throw ace;
+                }
                 // Determine whether an immediate retry is needed according to the captured
                 // CosClientException.
                 // (There are three cases when downloadObjectToFile() throws CosClientException:
@@ -172,9 +177,9 @@ final class DownloadCallable implements Callable<File> {
                         || ace.getCause() instanceof SSLProtocolException) {
                     throw ace;
                 } else {
-                    if (hasRetried)
+                    if (hasRetried) {
                         throw ace;
-                    else {
+                    } else {
                         log.info("Retry the download of object " + cosObject.getKey() + " (bucket "
                                 + cosObject.getBucketName() + ")", ace);
                         hasRetried = true;

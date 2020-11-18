@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -32,8 +32,7 @@ public class ListNextBatchOfObjectsRequest extends CosServiceRequest implements 
     /**
      * Creates a request object for listing next batch of objects.
      *
-     * @param previousObjectListing
-     *          The previous object listing whose features are to be fetched.
+     * @param previousObjectListing The previous object listing whose features are to be fetched.
      */
     public ListNextBatchOfObjectsRequest(ObjectListing previousObjectListing) {
         setPreviousObjectListing(previousObjectListing);
@@ -41,6 +40,7 @@ public class ListNextBatchOfObjectsRequest extends CosServiceRequest implements 
 
     /**
      * Returns the previous object listing.
+     *
      * @return The previous object listing.
      */
     public ObjectListing getPreviousObjectListing() {
@@ -49,11 +49,11 @@ public class ListNextBatchOfObjectsRequest extends CosServiceRequest implements 
 
     /**
      * Sets the previous object listing and all the features of the next object listing as well.
-     * @param previousObjectListing
-     *          This parameter must be specified.
+     *
+     * @param previousObjectListing This parameter must be specified.
      */
     public void setPreviousObjectListing(ObjectListing previousObjectListing) {
-        if(previousObjectListing == null) {
+        if (previousObjectListing == null) {
             throw new IllegalArgumentException("The parameter previousObjectListing must be specified.");
         }
         this.previousObjectListing = previousObjectListing;
@@ -63,8 +63,7 @@ public class ListNextBatchOfObjectsRequest extends CosServiceRequest implements 
      * Sets the previous object listing and returns the updated request object so that additional
      * method calls can be chained together.
      *
-     * @param previousObjectListing
-     *          The previous object listing whose features are to be fetched.
+     * @param previousObjectListing The previous object listing whose features are to be fetched.
      * @return The updated request object so that additional method calls can be chained together.
      */
     public ListNextBatchOfObjectsRequest withPreviousObjectListing(ObjectListing previousObjectListing) {
@@ -74,6 +73,7 @@ public class ListNextBatchOfObjectsRequest extends CosServiceRequest implements 
 
     /**
      * Creates a new {@link ListObjectsRequest} object using the previous object listing.
+     *
      * @return A new {@link ListObjectsRequest} object using the previous object listing.
      */
     public ListObjectsRequest toListObjectsRequest() {

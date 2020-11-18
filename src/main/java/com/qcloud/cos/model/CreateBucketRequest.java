@@ -24,7 +24,9 @@ import com.qcloud.cos.internal.CosServiceRequest;
 
 public class CreateBucketRequest extends CosServiceRequest implements Serializable {
 
-    /** The name of the Qcloud COS bucket to create. */
+    /**
+     * The name of the Qcloud COS bucket to create.
+     */
     private String bucketName;
 
     /**
@@ -54,7 +56,6 @@ public class CreateBucketRequest extends CosServiceRequest implements Serializab
      * Sets the name of the Qcloud COS bucket to create.
      *
      * @param bucketName The name of the Qcloud COS bucket to create.
-     *
      * @see CreateBucketRequest#getBucketName()
      */
     public void setBucketName(String bucketName) {
@@ -65,7 +66,6 @@ public class CreateBucketRequest extends CosServiceRequest implements Serializab
      * Gets the name of the Qcloud COS bucket to create.
      *
      * @return The name of the Qcloud COS bucket to create.
-     *
      * @see CreateBucketRequest#setBucketName(String)
      */
     public String getBucketName() {
@@ -96,7 +96,6 @@ public class CreateBucketRequest extends CosServiceRequest implements Serializab
      * that additional method calls can be chained together.
      *
      * @param cannedAcl The optional Canned ACL to set for the new bucket.
-     *
      * @return This updated object, so that additional method calls can be chained together.
      */
     public CreateBucketRequest withCannedAcl(CannedAccessControlList cannedAcl) {
@@ -115,7 +114,7 @@ public class CreateBucketRequest extends CosServiceRequest implements Serializab
     /**
      * Sets the optional access control list for the new bucket. If specified, cannedAcl will be
      * ignored.
-     * 
+     *
      * @param accessControlList The access control list for the new bucket.
      */
     public void setAccessControlList(AccessControlList accessControlList) {
@@ -126,7 +125,7 @@ public class CreateBucketRequest extends CosServiceRequest implements Serializab
      * Sets the optional access control list for the new bucket. If specified, cannedAcl will be
      * ignored. Returns this {@link CreateBucketRequest}, enabling additional method calls to be
      * chained together.
-     * 
+     *
      * @param accessControlList The access control list for the new bucket.
      */
     public CreateBucketRequest withAccessControlList(AccessControlList accessControlList) {

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -32,11 +32,12 @@ import org.slf4j.LoggerFactory;
  * <p>
  * The creator of this input stream should therefore always call {@link #release()} in a finally
  * block to truly release the underlying resources.
- * 
+ *
  * @see Releasable
  * @see ResettableInputStream
  */
 public class ReleasableInputStream extends SdkFilterInputStream implements Releasable {
+
     private static final Logger log = LoggerFactory.getLogger(ReleasableInputStream.class);
     /**
      * True if the close method is disabled; false otherwise. Default is false. In case the close
@@ -57,8 +58,9 @@ public class ReleasableInputStream extends SdkFilterInputStream implements Relea
      */
     @Override
     public final void close() {
-        if (!closeDisabled)
+        if (!closeDisabled) {
             doRelease();
+        }
     }
 
     /**
@@ -76,8 +78,9 @@ public class ReleasableInputStream extends SdkFilterInputStream implements Relea
         try {
             in.close();
         } catch (Exception ex) {
-            if (log.isDebugEnabled())
+            if (log.isDebugEnabled()) {
                 log.debug("FYI", ex);
+            }
         }
         if (in instanceof Releasable) {
             // This allows any underlying stream that has the close operation
@@ -113,10 +116,12 @@ public class ReleasableInputStream extends SdkFilterInputStream implements Relea
      * specific subclass of {@link ReleasableInputStream} will be returned.
      */
     public static ReleasableInputStream wrap(InputStream is) {
-        if (is instanceof ReleasableInputStream)
+        if (is instanceof ReleasableInputStream) {
             return (ReleasableInputStream) is; // already wrapped
-        if (is instanceof FileInputStream)
+        }
+        if (is instanceof FileInputStream) {
             return ResettableInputStream.newResettableInputStream((FileInputStream) is);
+        }
         return new ReleasableInputStream(is);
     }
 }

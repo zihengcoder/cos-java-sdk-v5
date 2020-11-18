@@ -22,6 +22,7 @@ package com.qcloud.cos.internal;
 import com.qcloud.cos.event.ProgressListener;
 
 public class CIServiceRequest extends CosServiceRequest {
+
     /**
      * BucketName e.g：bucketName-1234567
      */
@@ -36,6 +37,7 @@ public class CIServiceRequest extends CosServiceRequest {
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
     }
+
     public String getRequestId() {
         return requestId;
     }

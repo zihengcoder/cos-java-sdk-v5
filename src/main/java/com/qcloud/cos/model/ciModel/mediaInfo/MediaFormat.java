@@ -4,6 +4,7 @@ package com.qcloud.cos.model.ciModel.mediaInfo;
  * MediaInfo 格式详情实体类 详情见：https://cloud.tencent.com/document/product/460/38935
  */
 public class MediaFormat {
+
     /**
      * 比特率，单位为 kbps
      */
@@ -25,7 +26,7 @@ public class MediaFormat {
      */
     private String numProgram;
     /**
-     *	Stream（包含 Video、Audio、Subtitle）的数量
+     * Stream（包含 Video、Audio、Subtitle）的数量
      */
     private String numStream;
     /**

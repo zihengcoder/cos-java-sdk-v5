@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -22,6 +22,7 @@ package com.qcloud.cos.internal.crypto;
  * Factory for providing the latest encryption materials.
  */
 public interface EncryptionMaterialsFactory {
+
     /**
      * Returns EncryptionMaterials which the caller can use for encryption. Each implementation of
      * EncryptionMaterialsProvider can choose its own strategy for loading encryption material. For

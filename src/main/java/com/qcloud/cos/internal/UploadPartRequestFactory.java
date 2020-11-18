@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -37,6 +37,7 @@ import com.qcloud.cos.transfer.TransferManagerUtils;
  * while.
  */
 public class UploadPartRequestFactory {
+
     private final String bucketName;
     private final String key;
     private final String uploadId;
@@ -88,28 +89,30 @@ public class UploadPartRequestFactory {
         UploadPartRequest req = null;
         if (wrappedStream != null) {
             req = new UploadPartRequest()
-                .withBucketName(bucketName)
-                .withKey(key)
-                .withUploadId(uploadId)
-                .withInputStream(new InputSubstream(wrappedStream, 0, partSize, isLastPart))
-                .withPartNumber(partNumber++)
-                .withPartSize(partSize)
-                .withTrafficLimit(trafficLimit);
+                    .withBucketName(bucketName)
+                    .withKey(key)
+                    .withUploadId(uploadId)
+                    .withInputStream(new InputSubstream(wrappedStream, 0, partSize, isLastPart))
+                    .withPartNumber(partNumber++)
+                    .withPartSize(partSize)
+                    .withTrafficLimit(trafficLimit);
         } else {
             req = new UploadPartRequest()
-                .withBucketName(bucketName)
-                .withKey(key)
-                .withUploadId(uploadId)
-                .withFile(file)
-                .withFileOffset(offset)
-                .withPartNumber(partNumber++)
-                .withPartSize(partSize)
-                .withTrafficLimit(trafficLimit);
+                    .withBucketName(bucketName)
+                    .withKey(key)
+                    .withUploadId(uploadId)
+                    .withFile(file)
+                    .withFileOffset(offset)
+                    .withPartNumber(partNumber++)
+                    .withPartSize(partSize)
+                    .withTrafficLimit(trafficLimit);
         }
         TransferManager.appendMultipartUserAgent(req);
 
-        if (sseCustomerKey != null) req.setSSECustomerKey(sseCustomerKey);
-        if(origReq.getFixedEndpointAddr() != null) {
+        if (sseCustomerKey != null) {
+            req.setSSECustomerKey(sseCustomerKey);
+        }
+        if (origReq.getFixedEndpointAddr() != null) {
             req.setFixedEndpointAddr(origReq.getFixedEndpointAddr());
         }
         offset += partSize;
@@ -118,7 +121,7 @@ public class UploadPartRequestFactory {
         req.setLastPart(isLastPart);
 
         req.withGeneralProgressListener(origReq.getGeneralProgressListener())
-           ;
+        ;
         req.getRequestClientOptions().setReadLimit(origReq.getReadLimit());
         return req;
     }

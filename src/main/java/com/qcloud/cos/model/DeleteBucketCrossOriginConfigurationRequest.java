@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -22,7 +22,6 @@ import java.io.Serializable;
 
 /**
  * Request object for the parameters to delete a bucket's cross origin configuration.
- *
  */
 public class DeleteBucketCrossOriginConfigurationRequest extends GenericBucketRequest implements Serializable {
 
@@ -30,9 +29,8 @@ public class DeleteBucketCrossOriginConfigurationRequest extends GenericBucketRe
      * Creates a new request object, ready to be executed to delete the cross origin
      * configuration for the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket whose cross origin configuration is being
-     *            deleted.
+     * @param bucketName The name of the bucket whose cross origin configuration is being
+     *         deleted.
      */
     public DeleteBucketCrossOriginConfigurationRequest(String bucketName) {
         super(bucketName);

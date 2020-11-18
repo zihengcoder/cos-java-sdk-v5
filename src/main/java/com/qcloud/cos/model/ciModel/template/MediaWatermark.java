@@ -4,6 +4,7 @@ package com.qcloud.cos.model.ciModel.template;
  * 水印模板实体类 参数详情见:https://cloud.tencent.com/document/product/460/48176
  */
 public class MediaWatermark {
+
     /**
      * 水印类型 Text：文字水印 Image：图片水印
      */
@@ -99,7 +100,7 @@ public class MediaWatermark {
     }
 
     public MediaWaterMarkText getText() {
-        if (text==null){
+        if (text == null) {
             text = new MediaWaterMarkText();
         }
         return text;
@@ -110,7 +111,7 @@ public class MediaWatermark {
     }
 
     public MediaWaterMarkImage getImage() {
-        if (image==null){
+        if (image == null) {
             image = new MediaWaterMarkImage();
         }
         return image;

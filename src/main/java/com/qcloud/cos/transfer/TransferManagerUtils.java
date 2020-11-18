@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -50,25 +50,25 @@ public class TransferManagerUtils {
                 return thread;
             }
         };
-        return (ThreadPoolExecutor)Executors.newFixedThreadPool(1, threadFactory);
+        return (ThreadPoolExecutor) Executors.newFixedThreadPool(1, threadFactory);
     }
 
     /**
      * Returns true if the specified upload request can use parallel part
      * uploads for increased performance.
      *
-     * @param putObjectRequest
-     *            The request to check.
-     * @param isUsingEncryption
-     *            True if the upload is an encrypted upload, otherwise false.
-     *
+     * @param putObjectRequest The request to check.
+     * @param isUsingEncryption True if the upload is an encrypted upload, otherwise false.
      * @return True if this request can use parallel part uploads for faster
      *         uploads.
      */
-    public static boolean isUploadParallelizable(final PutObjectRequest putObjectRequest, final boolean isUsingEncryption) {
+    public static boolean isUploadParallelizable(final PutObjectRequest putObjectRequest,
+            final boolean isUsingEncryption) {
         // Each uploaded part in an encrypted upload depends on the encryption context
         // from the previous upload, so we cannot parallelize encrypted upload parts.
-        if (isUsingEncryption) return false;
+        if (isUsingEncryption) {
+            return false;
+        }
 
         // Otherwise, if there's a file, we can process the uploads concurrently.
         return (getRequestFile(putObjectRequest) != null);
@@ -78,15 +78,15 @@ public class TransferManagerUtils {
      * Returns the size of the data in this request, otherwise -1 if the content
      * length is unknown.
      *
-     * @param putObjectRequest
-     *            The request to check.
-     *
+     * @param putObjectRequest The request to check.
      * @return The size of the data in this request, otherwise -1 if the size of
      *         the data is unknown.
      */
     public static long getContentLength(PutObjectRequest putObjectRequest) {
         File file = getRequestFile(putObjectRequest);
-        if (file != null) return file.length();
+        if (file != null) {
+            return file.length();
+        }
 
         if (putObjectRequest.getInputStream() != null) {
             if (putObjectRequest.getMetadata().getContentLength() > 0) {
@@ -101,36 +101,32 @@ public class TransferManagerUtils {
      * Returns the optimal part size, in bytes, for each individual part upload
      * in a multipart upload.
      *
-     * @param putObjectRequest
-     *            The request containing all the details of the upload.
-     * @param configuration
-     *            Configuration values to use when calculating size.
-     *
+     * @param putObjectRequest The request containing all the details of the upload.
+     * @param configuration Configuration values to use when calculating size.
      * @return The optimal part size, in bytes, for each individual part upload
      *         in a multipart upload.
      */
-    public static long calculateOptimalPartSize(PutObjectRequest putObjectRequest, TransferManagerConfiguration configuration) {
+    public static long calculateOptimalPartSize(PutObjectRequest putObjectRequest,
+            TransferManagerConfiguration configuration) {
         double contentLength = TransferManagerUtils.getContentLength(putObjectRequest);
-        double optimalPartSize = (double)contentLength / (double)MAXIMUM_UPLOAD_PARTS;
+        double optimalPartSize = (double) contentLength / (double) MAXIMUM_UPLOAD_PARTS;
         // round up so we don't push the upload over the maximum number of parts
         optimalPartSize = Math.ceil(optimalPartSize);
-        return (long)Math.max(optimalPartSize, configuration.getMinimumUploadPartSize());
+        return (long) Math.max(optimalPartSize, configuration.getMinimumUploadPartSize());
     }
 
     /**
      * Returns true if the the specified request should be processed as a
      * multipart upload (instead of a single part upload).
      *
-     * @param putObjectRequest
-     *            The request containing all the details of the upload.
-     * @param configuration
-     *            Configuration settings controlling how transfer manager
-     *            processes requests.
-     *
+     * @param putObjectRequest The request containing all the details of the upload.
+     * @param configuration Configuration settings controlling how transfer manager
+     *         processes requests.
      * @return True if the the specified request should be processed as a
      *         multipart upload.
      */
-    public static boolean shouldUseMultipartUpload(PutObjectRequest putObjectRequest, TransferManagerConfiguration configuration) {
+    public static boolean shouldUseMultipartUpload(PutObjectRequest putObjectRequest,
+            TransferManagerConfiguration configuration) {
         long contentLength = TransferManagerUtils.getContentLength(putObjectRequest);
         return (contentLength >= configuration.getMultipartUploadThreshold());
     }
@@ -139,7 +135,9 @@ public class TransferManagerUtils {
      * Convenience method for getting the file specified in a request.
      */
     public static File getRequestFile(final PutObjectRequest putObjectRequest) {
-        if (putObjectRequest.getFile() != null) return putObjectRequest.getFile();
+        if (putObjectRequest.getFile() != null) {
+            return putObjectRequest.getFile();
+        }
         return null;
     }
 
@@ -147,12 +145,9 @@ public class TransferManagerUtils {
      * Calculates the optimal part size of each part request if the copy
      * operation is carried out as multi-part copy.
      *
-     * @param copyObjectRequest
-     *            the original request.
-     * @param configuration
-     *            configuration containing the default part size.
-     * @param contentLengthOfSource
-     *            content length of the Qcloud COS object.
+     * @param copyObjectRequest the original request.
+     * @param configuration configuration containing the default part size.
+     * @param contentLengthOfSource content length of the Qcloud COS object.
      * @return the optimal part size for a copy part request.
      */
     public static long calculateOptimalPartSizeForCopy(

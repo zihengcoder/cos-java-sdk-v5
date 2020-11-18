@@ -1,6 +1,7 @@
 package com.qcloud.cos.model.ciModel.workflow;
 
 public class MediaWorkflowInput {
+
     private String queueId;
     private String objectPrefix;
 

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -21,12 +21,14 @@ package com.qcloud.cos.model;
 import java.io.Serializable;
 
 /**
- * Specifies the days since the initiation of an Incomplete Multipart Upload that Lifecycle will wait before permanently removing all parts of the upload.
+ * Specifies the days since the initiation of an Incomplete Multipart Upload that Lifecycle will wait before permanently
+ * removing all parts of the upload.
  */
 public class AbortIncompleteMultipartUpload implements Serializable {
 
     /**
-     * Indicates the number of days that must pass since initiation for Lifecycle to abort an Incomplete Multipart Upload.
+     * Indicates the number of days that must pass since initiation for Lifecycle to abort an Incomplete Multipart
+     * Upload.
      */
     private int daysAfterInitiation;
 
@@ -45,8 +47,12 @@ public class AbortIncompleteMultipartUpload implements Serializable {
 
     @Override
     public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
 
         AbortIncompleteMultipartUpload that = (AbortIncompleteMultipartUpload) o;
 

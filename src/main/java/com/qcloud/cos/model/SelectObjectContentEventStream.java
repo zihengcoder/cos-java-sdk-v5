@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -54,6 +55,7 @@ import java.util.Queue;
  */
 @NotThreadSafe
 public class SelectObjectContentEventStream implements Closeable {
+
     private static final InputStream EMPTY_INPUT_STREAM = new ByteArrayInputStream(new byte[0]);
 
     private final SdkFilterInputStream inputStream;
@@ -65,7 +67,8 @@ public class SelectObjectContentEventStream implements Closeable {
     }
 
     /**
-     * Read all of the {@link SelectObjectContentEvent}s from this stream into memory. For large objects, lazy-loading using
+     * Read all of the {@link SelectObjectContentEvent}s from this stream into memory. For large objects, lazy-loading
+     * using
      * {@link #getEventsIterator()}, {@link #getRecordsInputStream()} or {@link #visitAllEvents(SelectObjectContentEventVisitor)}
      * should be used instead.
      *
@@ -84,10 +87,13 @@ public class SelectObjectContentEventStream implements Closeable {
     }
 
     /**
-     * Apply the provided {@link SelectObjectContentEventVisitor} to each {@link SelectObjectContentEvent} in this stream
-     * in the order they are returned by COS. This will lazily-load the events from COS, minimizing the amount of memory used.
+     * Apply the provided {@link SelectObjectContentEventVisitor} to each {@link SelectObjectContentEvent} in this
+     * stream
+     * in the order they are returned by COS. This will lazily-load the events from COS, minimizing the amount of memory
+     * used.
      *
-     * This will raise a runtime exception if {@link #getAllEvents()}, {@link #getRecordsInputStream()} or {@link #getEventsIterator()}
+     * This will raise a runtime exception if {@link #getAllEvents()}, {@link #getRecordsInputStream()} or {@link
+     * #getEventsIterator()}
      * have already been used.
      *
      * After using this method, you still must {@link #close()} this object to release the connection to COS.
@@ -102,7 +108,8 @@ public class SelectObjectContentEventStream implements Closeable {
     }
 
     /**
-     * Retrieve an iterator over the {@link SelectObjectContentEvent}s in this stream, in the order they are returned by COS. This
+     * Retrieve an iterator over the {@link SelectObjectContentEvent}s in this stream, in the order they are returned by
+     * COS. This
      * will lazily-load the events from COS, minimizing the amount of memory used.
      *
      * This will raise a runtime exception if {@link #getAllEvents()}, {@link #visitAllEvents(SelectObjectContentEventVisitor)}
@@ -116,8 +123,10 @@ public class SelectObjectContentEventStream implements Closeable {
     }
 
     /**
-     * Retrieve an input stream to the subset of the COS object that matched the query. This is equivalent to loading the content
-     * of all {@link SelectObjectContentEvent.RecordsEvent}s into an {@link InputStream}. This will lazily-load the content from
+     * Retrieve an input stream to the subset of the COS object that matched the query. This is equivalent to loading
+     * the content
+     * of all {@link SelectObjectContentEvent.RecordsEvent}s into an {@link InputStream}. This will lazily-load the
+     * content from
      * COS, minimizing the amount of memory used.
      *
      * This will raise a runtime exception if {@link #getAllEvents()}, {@link #visitAllEvents(SelectObjectContentEventVisitor)}
@@ -126,19 +135,25 @@ public class SelectObjectContentEventStream implements Closeable {
      * Like all streams, you should {@link SelectRecordsInputStream#close()} it after the content has been read. This
      * is equivalent to calling {@link #close()} on this {@link SelectObjectContentEventStream}.
      *
-     * @see #getRecordsInputStream(SelectObjectContentEventVisitor) to also process non-record events while reading the response.
+     * @see #getRecordsInputStream(SelectObjectContentEventVisitor) to also process non-record events while reading
+     *         the response.
      */
     public SelectRecordsInputStream getRecordsInputStream() throws SelectObjectContentEventException {
-        return getRecordsInputStream(new SelectObjectContentEventVisitor() {});
+        return getRecordsInputStream(new SelectObjectContentEventVisitor() {
+        });
     }
 
     /**
-     * Retrieve an input stream to the subset of the COS object that matched the query. This is equivalent to loading the content
-     * of all {@link SelectObjectContentEvent.RecordsEvent}s into an {@link InputStream}. This will lazily-load the content from
+     * Retrieve an input stream to the subset of the COS object that matched the query. This is equivalent to loading
+     * the content
+     * of all {@link SelectObjectContentEvent.RecordsEvent}s into an {@link InputStream}. This will lazily-load the
+     * content from
      * COS, minimizing the amount of memory used.
      *
-     * Unlike {@link #getRecordsInputStream()}, this allows you to provide a "listener" {@link SelectObjectContentEventVisitor}
-     * that intercepts the events returned by COS while the thread that called {@link SelectRecordsInputStream#read()} blocks
+     * Unlike {@link #getRecordsInputStream()}, this allows you to provide a "listener" {@link
+     * SelectObjectContentEventVisitor}
+     * that intercepts the events returned by COS while the thread that called {@link SelectRecordsInputStream#read()}
+     * blocks
      * waiting for COS to return a response.
      *
      * This will raise a runtime exception if {@link #getAllEvents()}, {@link #visitAllEvents(SelectObjectContentEventVisitor)}
@@ -152,7 +167,8 @@ public class SelectObjectContentEventStream implements Closeable {
      */
     public SelectRecordsInputStream getRecordsInputStream(SelectObjectContentEventVisitor listener)
             throws SelectObjectContentEventException {
-        InputStream recordInputStream = new SequenceInputStream(new EventStreamEnumeration(getEventsIterator(), listener));
+        InputStream recordInputStream = new SequenceInputStream(
+                new EventStreamEnumeration(getEventsIterator(), listener));
 
         // Ignore close() calls to the record stream. The sequence input stream would read the whole stream to close all of the
         // streams in the enum, and the streams in the enum aren't needed because they're byte array input streams.
@@ -162,9 +178,12 @@ public class SelectObjectContentEventStream implements Closeable {
     }
 
     /**
-     * Abort this stream, potentially before all events have been read. This should be used before {@link #close()} if there are
-     * still events pending on the stream. Using this method has a performance impact, because it will forcibly close the active
-     * connection to COS, whereas reading to end of the stream before calling {@link #close()} will still allow the connection to
+     * Abort this stream, potentially before all events have been read. This should be used before {@link #close()} if
+     * there are
+     * still events pending on the stream. Using this method has a performance impact, because it will forcibly close
+     * the active
+     * connection to COS, whereas reading to end of the stream before calling {@link #close()} will still allow the
+     * connection to
      * be reused.
      */
     public void abort() {
@@ -172,8 +191,10 @@ public class SelectObjectContentEventStream implements Closeable {
     }
 
     /**
-     * Close this stream, after all events have been read. If there are still pending events, an error will be logged. To prevent
-     * error logging on incomplete reads, you can call {@link #abort()} to signal an intent to only partially read events in the
+     * Close this stream, after all events have been read. If there are still pending events, an error will be logged.
+     * To prevent
+     * error logging on incomplete reads, you can call {@link #abort()} to signal an intent to only partially read
+     * events in the
      * stream.
      */
     public void close() throws IOException {
@@ -182,7 +203,8 @@ public class SelectObjectContentEventStream implements Closeable {
 
     private void readOptionChosen() {
         if (readOptionChosen) {
-            throw new IllegalStateException("Reading of the select event stream was already started by another method.");
+            throw new IllegalStateException(
+                    "Reading of the select event stream was already started by another method.");
         }
         readOptionChosen = true;
     }
@@ -191,6 +213,7 @@ public class SelectObjectContentEventStream implements Closeable {
      * An implementation of {@link LazyLoadedIterator} that returns events one-by-one from the underlying event stream.
      */
     private class SelectEventIterator extends LazyLoadedIterator<SelectObjectContentEvent> {
+
         private final MessageDecoder decoder = new MessageDecoder();
 
         @Override
@@ -201,7 +224,8 @@ public class SelectObjectContentEventStream implements Closeable {
                 int read = inputStream.read(payload);
                 if (read == -1) {
                     if (decoder.hasPendingContent()) {
-                        throw new SelectObjectContentEventException("Service stream ended before an event could be entirely decoded.");
+                        throw new SelectObjectContentEventException(
+                                "Service stream ended before an event could be entirely decoded.");
                     }
                     break;
                 }
@@ -218,16 +242,18 @@ public class SelectObjectContentEventStream implements Closeable {
     }
 
     /**
-     * An implementation of {@link LazyLoadedIterator} that returns an input stream to any {@link RecordsEvent} content from the
+     * An implementation of {@link LazyLoadedIterator} that returns an input stream to any {@link RecordsEvent} content
+     * from the
      * underlying event stream. Also implements {@link Enumeration} for use in a {@link SequenceInputStream}.
      */
     private class EventStreamEnumeration extends LazyLoadedIterator<InputStream> implements Enumeration<InputStream> {
+
         private final Iterator<SelectObjectContentEvent> selectEventIterator;
         private final SelectObjectContentEventVisitor additionalVisitor;
         private boolean initialized = false;
 
         private EventStreamEnumeration(Iterator<SelectObjectContentEvent> selectEventIterator,
-                                       SelectObjectContentEventVisitor additionalVisitor) {
+                SelectObjectContentEventVisitor additionalVisitor) {
             this.selectEventIterator = selectEventIterator;
             this.additionalVisitor = additionalVisitor;
         }
@@ -286,6 +312,7 @@ public class SelectObjectContentEventStream implements Closeable {
      * {@link #getNext()} method.
      */
     private abstract class LazyLoadedIterator<T> implements Iterator<T> {
+
         private final Queue<T> next = new ArrayDeque<T>();
         private boolean isDone = false;
 
@@ -323,7 +350,8 @@ public class SelectObjectContentEventStream implements Closeable {
         }
 
         /**
-         * Load any newly-available events. This can return any number of events, in the order they should be encountered by the
+         * Load any newly-available events. This can return any number of events, in the order they should be
+         * encountered by the
          * user of the iterator. This should return an empty collection if there are no remaining events in the stream.
          */
         protected abstract Collection<? extends T> getNext() throws IOException;

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -22,7 +22,7 @@ import java.io.Serializable;
 import com.qcloud.cos.utils.Jackson;
 
 /**
- * Destination configuration for Qcloud bucket replication rule. 
+ * Destination configuration for Qcloud bucket replication rule.
  */
 public class ReplicationDestinationConfig implements Serializable {
 
@@ -59,8 +59,8 @@ public class ReplicationDestinationConfig implements Serializable {
     /**
      * Sets the destination bucket QCS for the replication rule. Returns the updated object.
      *
-     * @throws IllegalArgumentException if the bucket qcs is null.
      * @return the updated {@link ReplicationDestinationConfig} object
+     * @throws IllegalArgumentException if the bucket qcs is null.
      */
     public ReplicationDestinationConfig withBucketQCS(String bucketARN) {
         setBucketQCS(bucketARN);

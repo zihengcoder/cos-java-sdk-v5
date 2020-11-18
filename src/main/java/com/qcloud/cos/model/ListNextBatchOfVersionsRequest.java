@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -38,7 +38,7 @@ public class ListNextBatchOfVersionsRequest extends CosServiceRequest {
 
     /**
      * Returns the previous version listing.
-     * 
+     *
      * @return The previous version listing.
      */
     public VersionListing getPreviousVersionListing() {
@@ -47,7 +47,7 @@ public class ListNextBatchOfVersionsRequest extends CosServiceRequest {
 
     /**
      * Sets the previous version listing and all the features of the next version listing as well.
-     * 
+     *
      * @param previousVersionListing This parameter must be specified.
      */
     public void setPreviousVersionListing(VersionListing previousVersionListing) {
@@ -63,7 +63,7 @@ public class ListNextBatchOfVersionsRequest extends CosServiceRequest {
      * method calls can be chained together.
      *
      * @param previousVersionListing The previous version listing object whose features are to be
-     *        fetched.
+     *         fetched.
      * @return This updated request object so that additional method calls can be chained together.
      */
     public ListNextBatchOfVersionsRequest withPreviousVersionListing(
@@ -74,7 +74,7 @@ public class ListNextBatchOfVersionsRequest extends CosServiceRequest {
 
     /**
      * Creates a new {@link ListVersionsRequest} object using the previous version listing.
-     * 
+     *
      * @return A new {@link ListVersionsRequest} object using the previous version listing.
      */
     public ListVersionsRequest toListVersionsRequest() {
@@ -83,6 +83,6 @@ public class ListNextBatchOfVersionsRequest extends CosServiceRequest {
                 previousVersionListing.getNextVersionIdMarker(),
                 previousVersionListing.getDelimiter(),
                 Integer.valueOf(previousVersionListing.getMaxKeys()))
-                        .withEncodingType(previousVersionListing.getEncodingType());
+                .withEncodingType(previousVersionListing.getEncodingType());
     }
 }

@@ -1,6 +1,7 @@
 package com.qcloud.cos.auth;
 
 public class InstanceCredentialsRetryPolicy implements CredentialsEndpointRetryPolicy {
+
     private static final int MAX_RETRIES = 5;
 
     private static InstanceCredentialsRetryPolicy instance;

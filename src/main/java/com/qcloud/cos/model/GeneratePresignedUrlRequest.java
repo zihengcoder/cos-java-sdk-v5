@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -26,13 +26,20 @@ import com.qcloud.cos.http.HttpMethodName;
 import com.qcloud.cos.internal.CosServiceRequest;
 
 public class GeneratePresignedUrlRequest extends CosServiceRequest {
-    /** The HTTP method (GET, PUT, DELETE, HEAD) to be used in this request and when the pre-signed URL is used */
+
+    /**
+     * The HTTP method (GET, PUT, DELETE, HEAD) to be used in this request and when the pre-signed URL is used
+     */
     private HttpMethodName method;
 
-    /** The name of the bucket involved in this request */
+    /**
+     * The name of the bucket involved in this request
+     */
     private String bucketName;
 
-    /** The key of the object involved in this request */
+    /**
+     * The key of the object involved in this request
+     */
     private String key;
 
     /**
@@ -41,10 +48,14 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      */
     private String versionId;
 
-    /** The optional Content-Type header that will be sent when the presigned URL is accessed */
+    /**
+     * The optional Content-Type header that will be sent when the presigned URL is accessed
+     */
     private String contentType;
 
-    /** The optional Content-MD5 header that will be sent when the presigned URL is accessed */
+    /**
+     * The optional Content-MD5 header that will be sent when the presigned URL is accessed
+     */
     private String contentMd5;
 
     /**
@@ -54,7 +65,9 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      */
     private Date expiration;
 
-    /** the optional signPrefixMode decide the presigned url whether start with 'sign=' and encode value  */
+    /**
+     * the optional signPrefixMode decide the presigned url whether start with 'sign=' and encode value
+     */
     private boolean signPrefixMode = true;
 
     /**
@@ -69,17 +82,15 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * Optional field that overrides headers on the response.
      */
     private ResponseHeaderOverrides responseHeaders;
-    
+
     /**
      * Creates a new request for generating a pre-signed URL that can be used as
      * part of an HTTP GET request to access the COS object stored under
      * the specified key in the specified bucket.
      *
-     * @param bucketName
-     *            The name of the bucket containing the desired COS
-     *            object.
-     * @param key
-     *            The key under which the desired COS object is stored.
+     * @param bucketName The name of the bucket containing the desired COS
+     *         object.
+     * @param key The key under which the desired COS object is stored.
      */
     public GeneratePresignedUrlRequest(String bucketName, String key) {
         this(bucketName, key, HttpMethodName.GET);
@@ -96,13 +107,10 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * URL.
      * </p>
      *
-     * @param bucketName
-     *            The name of the COS bucket involved in the operation.
-     * @param key
-     *            The key of the COS object involved in the operation.
-     * @param method
-     *            The HTTP method (GET, PUT, DELETE, HEAD) to be used in the
-     *            request when the pre-signed URL is used.
+     * @param bucketName The name of the COS bucket involved in the operation.
+     * @param key The key of the COS object involved in the operation.
+     * @param method The HTTP method (GET, PUT, DELETE, HEAD) to be used in the
+     *         request when the pre-signed URL is used.
      */
     public GeneratePresignedUrlRequest(String bucketName, String key, HttpMethodName method) {
         this.bucketName = bucketName;
@@ -127,9 +135,8 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * The same HTTP method <b>must</b> be used in the request when the
      * pre-signed URL is used.
      *
-     * @param method
-     *            The HTTP method (GET, PUT, DELETE, HEAD) to be used in this
-     *            request.
+     * @param method The HTTP method (GET, PUT, DELETE, HEAD) to be used in this
+     *         request.
      */
     public void setMethod(HttpMethodName method) {
         this.method = method;
@@ -143,10 +150,8 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * The same HTTP method <b>must</b> be used in the request when the
      * pre-signed URL is used.
      *
-     * @param method
-     *            The HTTP method (GET, PUT, DELETE, HEAD) to be used in this
-     *            request.
-     *
+     * @param method The HTTP method (GET, PUT, DELETE, HEAD) to be used in this
+     *         request.
      * @return The updated request object, so that additional method calls can
      *         be chained together.
      */
@@ -167,8 +172,7 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
     /**
      * Sets the name of the bucket involved in this request.
      *
-     * @param bucketName
-     *            the name of the bucket involved in this request.
+     * @param bucketName the name of the bucket involved in this request.
      */
     public void setBucketName(String bucketName) {
         this.bucketName = bucketName;
@@ -178,9 +182,7 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * Sets the name of the bucket involved in this request, and returns this
      * request object to enable additional method calls to be chained together.
      *
-     * @param bucketName
-     *            the name of the bucket involved in this request.
-     *
+     * @param bucketName the name of the bucket involved in this request.
      * @return The updated request object, so that additional method calls can
      *         be chained together.
      */
@@ -201,8 +203,7 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
     /**
      * Sets the key of the object involved in this request.
      *
-     * @param key
-     *            the key of the object involved in this request.
+     * @param key the key of the object involved in this request.
      */
     public void setKey(String key) {
         this.key = key;
@@ -212,9 +213,7 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * Sets the key of the object involved in this request, and returns this
      * request object to enable additional method calls to be chained together.
      *
-     * @param key
-     *            the key of the object involved in this request.
-     *
+     * @param key the key of the object involved in this request.
      * @return The updated request object, so that additional method calls can
      *         be chained together.
      */
@@ -238,9 +237,8 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * Sets the version ID of the object, only present if versioning has
      * been enabled for the bucket.
      *
-     * @param versionId
-     *            The version ID of the object, only present if versioning
-     *            has been enabled for the bucket.
+     * @param versionId The version ID of the object, only present if versioning
+     *         has been enabled for the bucket.
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;
@@ -251,10 +249,8 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * been enabled for the bucket. Returns the {@link GeneratePresignedUrlRequest}
      * object for method chanining.
      *
-     * @param versionId
-     *            The version ID of the object, only present if versioning
-     *            has been enabled for the bucket.
-     *
+     * @param versionId The version ID of the object, only present if versioning
+     *         has been enabled for the bucket.
      * @return This object for method chaining.
      */
     public GeneratePresignedUrlRequest withVersionId(String versionId) {
@@ -279,9 +275,8 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * longer be accepted by COS. If not specified, a default value will
      * be supplied.
      *
-     * @param expiration
-     *            The expiration date at which point the new pre-signed URL will
-     *            no longer be accepted by COS.
+     * @param expiration The expiration date at which point the new pre-signed URL will
+     *         no longer be accepted by COS.
      */
     public void setExpiration(Date expiration) {
         this.expiration = expiration;
@@ -294,10 +289,8 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * <p>
      * If not specified, a default value will be supplied.
      *
-     * @param expiration
-     *            The expiration date at which point the new pre-signed URL will
-     *            no longer be accepted by COS.
-     *
+     * @param expiration The expiration date at which point the new pre-signed URL will
+     *         no longer be accepted by COS.
      * @return The updated request object, so that additional method calls can
      *         be chained together.
      */
@@ -308,13 +301,11 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
 
     /**
      * Adds an additional request parameter to be included in the pre-signed
-     * URL. 
+     * URL.
      *
-     * @param key
-     *            The name of the request parameter, as it appears in the URL's
-     *            query string (e.g. versionId).
-     * @param value
-     *            The (optional) value of the request parameter being added.
+     * @param key The name of the request parameter, as it appears in the URL's
+     *         query string (e.g. versionId).
+     * @param value The (optional) value of the request parameter being added.
      */
     public void addRequestParameter(String key, String value) {
         requestParameters.put(key, value);
@@ -343,8 +334,7 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
     /**
      * Sets the headers to be overridden in the service response.
      *
-     * @param responseHeaders
-     *            The headers to be overridden in the service response.
+     * @param responseHeaders The headers to be overridden in the service response.
      */
     public void setResponseHeaders(ResponseHeaderOverrides responseHeaders) {
         this.responseHeaders = responseHeaders;
@@ -354,10 +344,7 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * Sets the headers to be overridden in the service response and returns
      * this object, for method chaining.
      *
-     * @param responseHeaders
-     *            The headers to be overridden in the service response.
-     *
-     *
+     * @param responseHeaders The headers to be overridden in the service response.
      * @return This {@link GeneratePresignedUrlRequest} for method chaining.
      */
     public GeneratePresignedUrlRequest withResponseHeaders(ResponseHeaderOverrides responseHeaders) {
@@ -378,8 +365,8 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
     /**
      * Sets the expected content-type of the request. The content-type is included in
      * the signature.
-     * @param contentType
-     *            The expected content-type
+     *
+     * @param contentType The expected content-type
      */
     public void setContentType(String contentType) {
         this.contentType = contentType;
@@ -389,10 +376,7 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * Sets the expected content-type of the request and returns
      * this object, for method chaining.
      *
-     * @param contentType
-     *            The expected content-type
-     *
-     *
+     * @param contentType The expected content-type
      * @return This {@link GeneratePresignedUrlRequest} for method chaining.
      */
     public GeneratePresignedUrlRequest withContentType(String contentType) {
@@ -415,9 +399,8 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * Sets the expected content-md5 header of the request. This header value
      * will be included when calculating the signature, and future requests must
      * include the same content-md5 header value to access the presigned URL.
-
-     * @param contentMd5
-     *            The expected content-md5 header value.
+     *
+     * @param contentMd5 The expected content-md5 header value.
      */
     public void setContentMd5(String contentMd5) {
         this.contentMd5 = contentMd5;
@@ -427,16 +410,14 @@ public class GeneratePresignedUrlRequest extends CosServiceRequest {
      * Sets the expected content-md5 header of the request and returns this
      * object, for method chaining.
      *
-     * @param contentMd5
-     *            The expected content-md5 header value.
-     *
+     * @param contentMd5 The expected content-md5 header value.
      * @return This {@link GeneratePresignedUrlRequest} for method chaining.
      */
     public GeneratePresignedUrlRequest withContentMd5(String contentMd5) {
         this.contentMd5 = contentMd5;
         return this;
     }
-    
+
     /**
      * Rejects any illegal input (as attributes of this request) by the user.
      *

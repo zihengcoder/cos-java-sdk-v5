@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -30,7 +30,7 @@ public class FilterRule implements Serializable {
 
     /**
      * Returns the name for this {@link FilterRule}.
-     * 
+     *
      * @return Name of this {@link FilterRule}
      */
     public String getName() {
@@ -39,9 +39,8 @@ public class FilterRule implements Serializable {
 
     /**
      * Sets the name for this {@link FilterRule}.
-     * 
-     * @param name
-     *            New name for this {@link FilterRule}.
+     *
+     * @param name New name for this {@link FilterRule}.
      */
     public void setName(String name) {
         if (name == null) {
@@ -52,9 +51,8 @@ public class FilterRule implements Serializable {
 
     /**
      * Sets the name for this {@link FilterRule} and returns this object for method chaining.
-     * 
-     * @param name
-     *            New name for this {@link FilterRule}.
+     *
+     * @param name New name for this {@link FilterRule}.
      * @return This object for method chaining
      */
     public FilterRule withName(String name) {
@@ -64,7 +62,7 @@ public class FilterRule implements Serializable {
 
     /**
      * Returns the value for this {@link FilterRule}
-     * 
+     *
      * @return Value for this {@link FilterRule}
      */
     public String getValue() {
@@ -73,9 +71,8 @@ public class FilterRule implements Serializable {
 
     /**
      * Sets the value for this {@link FilterRule}
-     * 
-     * @param value
-     *            New value for this {@link FilterRule}
+     *
+     * @param value New value for this {@link FilterRule}
      */
     public void setValue(String value) {
         this.value = value;
@@ -83,9 +80,8 @@ public class FilterRule implements Serializable {
 
     /**
      * Sets the value for this {@link FilterRule} and returns this object for method chaining
-     * 
-     * @param value
-     *            New value for this {@link FilterRule}
+     *
+     * @param value New value for this {@link FilterRule}
      * @return This object for method chaining
      */
     public FilterRule withValue(String value) {

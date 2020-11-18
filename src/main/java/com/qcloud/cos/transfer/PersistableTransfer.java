@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -72,8 +72,9 @@ public abstract class PersistableTransfer {
                 throw new IllegalArgumentException("Unrecognized input stream");
             }
             JsonNode pauseType = tree.get("pauseType");
-            if (pauseType == null)
+            if (pauseType == null) {
                 throw new IllegalArgumentException("Unrecognized serialized state");
+            }
             type = pauseType.asText();
         } catch (Exception e) {
             throw new IllegalArgumentException(e);
@@ -102,8 +103,9 @@ public abstract class PersistableTransfer {
      *         serialized representation is not supported.
      */
     public static <T extends PersistableTransfer> T deserializeFrom(String serialized) {
-        if (serialized == null)
+        if (serialized == null) {
             return null;
+        }
         ByteArrayInputStream byteStream = new ByteArrayInputStream(serialized.getBytes(UTF8));
         try {
             return deserializeFrom(byteStream);
@@ -111,7 +113,8 @@ public abstract class PersistableTransfer {
             try {
                 byteStream.close();
             } catch (IOException ioe) {
-            };
+            }
+            ;
         }
     }
 }

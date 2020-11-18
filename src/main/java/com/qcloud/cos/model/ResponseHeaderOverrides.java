@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -33,19 +33,19 @@ import com.qcloud.cos.internal.CosServiceRequest;
  * Content-Disposition header of a single object, so that it appears to have a
  * different file name for different callers. One client could be configured
  * return the object with
- * 
+ *
  * <pre>
  * Content-Disposition: attachment; filename=FileName1.exe
  * </pre>
- * 
+ *
  * while another could return that same object with headers
- * 
+ *
  * <pre>
  * Content-Disposition: attachment; filename=FileName2.pdf
  * </pre>
- * 
+ *
  * </p>
- * 
+ *
  * @see GetObjectRequest#setResponseHeaders(ResponseHeaderOverrides)
  * @see GeneratePresignedUrlRequest#setResponseHeaders(ResponseHeaderOverrides)
  */
@@ -71,14 +71,14 @@ public class ResponseHeaderOverrides implements Serializable {
      * reference only.
      */
     @SuppressWarnings("unused")
-    private static final String[] PARAMETER_ORDER = new String[] { RESPONSE_HEADER_CACHE_CONTROL,
+    private static final String[] PARAMETER_ORDER = new String[]{RESPONSE_HEADER_CACHE_CONTROL,
             RESPONSE_HEADER_CONTENT_DISPOSITION, RESPONSE_HEADER_CONTENT_ENCODING, RESPONSE_HEADER_CONTENT_LANGUAGE,
-            RESPONSE_HEADER_CONTENT_TYPE, RESPONSE_HEADER_EXPIRES, };
+            RESPONSE_HEADER_CONTENT_TYPE, RESPONSE_HEADER_EXPIRES,};
 
     /**
      * Returns the content type response header override if it has been
      * specified, or null otherwise.
-     * 
+     *
      * @return Returns the content type response header override if it has been
      *         specified, or null otherwise.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_TYPE
@@ -89,7 +89,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the content type response header override.
-     * 
+     *
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_TYPE
      */
     public void setContentType(String contentType) {
@@ -98,7 +98,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the content type response header override.
-     * 
+     *
      * @return This {@link ResponseHeaderOverrides} object for method chaining.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_TYPE
      */
@@ -110,7 +110,7 @@ public class ResponseHeaderOverrides implements Serializable {
     /**
      * Returns the content language response header override if it has been
      * specified, or null otherwise.
-     * 
+     *
      * @return Returns the content language response header override if it has
      *         been specified, or null otherwise.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_LANGUAGE
@@ -121,7 +121,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the content language response header override
-     * 
+     *
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_LANGUAGE
      */
     public void setContentLanguage(String contentLanguage) {
@@ -130,7 +130,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the content language response header override
-     * 
+     *
      * @return This {@link ResponseHeaderOverrides} object for method chaining.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_LANGUAGE
      */
@@ -142,7 +142,7 @@ public class ResponseHeaderOverrides implements Serializable {
     /**
      * Returns the expires response header override if it has been specified, or
      * null otherwise.
-     * 
+     *
      * @return Returns the expires response header override if it has been
      *         specified, or null otherwise.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_EXPIRES
@@ -153,7 +153,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the expires response header override.
-     * 
+     *
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_EXPIRES
      */
     public void setExpires(String expires) {
@@ -162,7 +162,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the expires response header override.
-     * 
+     *
      * @return This {@link ResponseHeaderOverrides} object for method chaining.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_EXPIRES
      */
@@ -174,7 +174,7 @@ public class ResponseHeaderOverrides implements Serializable {
     /**
      * Returns the cache control response header override if it has been
      * specified, or null otherwise.
-     * 
+     *
      * @return Returns the cache control response header override if it has been
      *         specified, or null otherwise.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CACHE_CONTROL
@@ -185,7 +185,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the cache control response header.
-     * 
+     *
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CACHE_CONTROL
      */
     public void setCacheControl(String cacheControl) {
@@ -194,7 +194,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the cache control response header.
-     * 
+     *
      * @return This {@link ResponseHeaderOverrides} object for method chaining.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CACHE_CONTROL
      */
@@ -206,7 +206,7 @@ public class ResponseHeaderOverrides implements Serializable {
     /**
      * Returns the content disposition response header override if it has been
      * specified, or null otherwise.
-     * 
+     *
      * @return Returns the content disposition response header override if it
      *         has been specified, or null otherwise.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_DISPOSITION
@@ -217,7 +217,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the content disposition response header override.
-     * 
+     *
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_DISPOSITION
      */
     public void setContentDisposition(String contentDisposition) {
@@ -226,7 +226,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the content disposition response header override.
-     * 
+     *
      * @return This {@link ResponseHeaderOverrides} object for method chaining.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_DISPOSITION
      */
@@ -238,7 +238,7 @@ public class ResponseHeaderOverrides implements Serializable {
     /**
      * Returns the content encoding response header override if it has been
      * specified, or null otherwise.
-     * 
+     *
      * @return Returns the content encoding response header override if it has
      *         been specified, or null otherwise.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_ENCODING
@@ -249,7 +249,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the content encoding response header override.
-     * 
+     *
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_ENCODING
      */
     public void setContentEncoding(String contentEncoding) {
@@ -258,7 +258,7 @@ public class ResponseHeaderOverrides implements Serializable {
 
     /**
      * Sets the content encoding response header override.
-     * 
+     *
      * @return This {@link ResponseHeaderOverrides} object for method chaining.
      * @see ResponseHeaderOverrides#RESPONSE_HEADER_CONTENT_ENCODING
      */

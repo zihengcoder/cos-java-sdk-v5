@@ -14,6 +14,7 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
@@ -200,28 +201,38 @@ public class SelectParameters implements Serializable, Cloneable {
         if (this == obj) {
             return true;
         }
-        if (obj == null || ! (obj instanceof SelectParameters)) {
+        if (obj == null || !(obj instanceof SelectParameters)) {
             return false;
         }
 
         final SelectParameters other = (SelectParameters) obj;
 
-        if (other.getInputSerialization() == null ^ this.getInputSerialization() == null)
+        if (other.getInputSerialization() == null ^ this.getInputSerialization() == null) {
             return false;
-        if (other.getInputSerialization() != null && !other.getInputSerialization().equals(this.getInputSerialization()))
+        }
+        if (other.getInputSerialization() != null && !other.getInputSerialization()
+                .equals(this.getInputSerialization())) {
             return false;
-        if (other.getExpressionType() == null ^ this.getExpressionType() == null)
+        }
+        if (other.getExpressionType() == null ^ this.getExpressionType() == null) {
             return false;
-        if (other.getExpressionType() != null && !other.getExpressionType().equals(this.getExpressionType()))
+        }
+        if (other.getExpressionType() != null && !other.getExpressionType().equals(this.getExpressionType())) {
             return false;
-        if (other.getExpression() == null ^ this.getExpression() == null)
+        }
+        if (other.getExpression() == null ^ this.getExpression() == null) {
             return false;
-        if (other.getExpression() != null && !other.getExpression().equals(this.getExpression()))
+        }
+        if (other.getExpression() != null && !other.getExpression().equals(this.getExpression())) {
             return false;
-        if (other.getOutputSerialization() == null ^ this.getOutputSerialization() == null)
+        }
+        if (other.getOutputSerialization() == null ^ this.getOutputSerialization() == null) {
             return false;
-        if (other.getOutputSerialization() != null && !other.getOutputSerialization().equals(this.getOutputSerialization()))
+        }
+        if (other.getOutputSerialization() != null && !other.getOutputSerialization()
+                .equals(this.getOutputSerialization())) {
             return false;
+        }
         return true;
     }
 
@@ -241,14 +252,18 @@ public class SelectParameters implements Serializable, Cloneable {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         sb.append("{");
-        if (getInputSerialization() != null)
+        if (getInputSerialization() != null) {
             sb.append("InputSerialization: ").append(getInputSerialization()).append(",");
-        if (getExpressionType() != null)
+        }
+        if (getExpressionType() != null) {
             sb.append("ExpressionType: ").append(getExpressionType()).append(",");
-        if (getExpression() != null)
+        }
+        if (getExpression() != null) {
             sb.append("Expression: ").append(getExpression()).append(",");
-        if (getOutputSerialization() != null)
+        }
+        if (getOutputSerialization() != null) {
             sb.append("OutputSerialization: ").append(getOutputSerialization());
+        }
         sb.append("}");
         return sb.toString();
     }
@@ -258,7 +273,8 @@ public class SelectParameters implements Serializable, Cloneable {
         try {
             return (SelectParameters) super.clone();
         } catch (CloneNotSupportedException e) {
-            throw new IllegalStateException("Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
+            throw new IllegalStateException(
+                    "Got a CloneNotSupportedException from Object.clone() " + "even though we're Cloneable!", e);
         }
     }
 }

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -19,19 +19,44 @@
 package com.qcloud.cos.internal.crypto;
 
 class AesCtr extends ContentCryptoScheme {
-    @Override String getKeyGeneratorAlgorithm() { return AES_GCM.getKeyGeneratorAlgorithm(); }
-    @Override String getCipherAlgorithm() { return "AES/CTR/NoPadding"; }
-    @Override int getKeyLengthInBits() { return AES_GCM.getKeyLengthInBits(); }
-    @Override int getBlockSizeInBytes() { return AES_GCM.getBlockSizeInBytes(); }
-    @Override int getIVLengthInBytes() { return 16; }
-    @Override long getMaxPlaintextSize() {  return MAX_CTR_BYTES;  }
+
+    @Override
+    String getKeyGeneratorAlgorithm() {
+        return AES_GCM.getKeyGeneratorAlgorithm();
+    }
+
+    @Override
+    String getCipherAlgorithm() {
+        return "AES/CTR/NoPadding";
+    }
+
+    @Override
+    int getKeyLengthInBits() {
+        return AES_GCM.getKeyLengthInBits();
+    }
+
+    @Override
+    int getBlockSizeInBytes() {
+        return AES_GCM.getBlockSizeInBytes();
+    }
+
+    @Override
+    int getIVLengthInBytes() {
+        return 16;
+    }
+
+    @Override
+    long getMaxPlaintextSize() {
+        return MAX_CTR_BYTES;
+    }
 
     @Override
     byte[] adjustIV(byte[] iv, long byteOffset) {
         // currently only support iv of length 12 for AES/GCM.
         // Anything else is quite a bit complicated.
-        if (iv.length != 12)
+        if (iv.length != 12) {
             throw new UnsupportedOperationException();
+        }
         final int blockSize = getBlockSizeInBytes();
         final long blockOffset = byteOffset / blockSize;
         if (blockOffset * blockSize != byteOffset) {
@@ -44,11 +69,11 @@ class AesCtr extends ContentCryptoScheme {
         return incrementBlocks(J0, blockOffset);
     }
 
-     private byte[] computeJ0(byte[] nonce) {
-         final int blockSize = getBlockSizeInBytes();
-         byte[] J0 = new byte[blockSize];
-         System.arraycopy(nonce, 0, J0, 0, nonce.length);
-         J0[blockSize - 1] = 0x01;
-         return incrementBlocks(J0, 1);
-     }
+    private byte[] computeJ0(byte[] nonce) {
+        final int blockSize = getBlockSizeInBytes();
+        byte[] J0 = new byte[blockSize];
+        System.arraycopy(nonce, 0, J0, 0, nonce.length);
+        J0[blockSize - 1] = 0x01;
+        return incrementBlocks(J0, 1);
+    }
 }

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -25,6 +25,7 @@ import java.io.InputStream;
 import com.qcloud.cos.exception.AbortedException;
 
 public class SdkBufferedInputStream extends BufferedInputStream {
+
     public SdkBufferedInputStream(InputStream in) {
         super(in);
     }
@@ -32,10 +33,11 @@ public class SdkBufferedInputStream extends BufferedInputStream {
     public SdkBufferedInputStream(InputStream in, int size) {
         super(in, size);
     }
-    
+
     /**
      * Aborts with subclass specific abortion logic executed if needed.
      * Note the interrupted status of the thread is cleared by this method.
+     *
      * @throws AbortedException if found necessary.
      */
     protected final void abortIfNeeded() {

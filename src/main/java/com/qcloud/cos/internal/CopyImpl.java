@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -50,15 +50,11 @@ public class CopyImpl extends AbstractTransfer implements Copy {
      * through this method.
      *
      * @return The result of this transfer.
-     *
      * @throws CosClientException If any errors are encountered in the client while making the
      *         request or handling the response.
-     *         
      * @throws CosServiceException If any errors occurred in COS while processing the request.
-     * 
-     * @throws InterruptedException
-     *             If this thread is interrupted while waiting for the upload to
-     *             complete.
+     * @throws InterruptedException If this thread is interrupted while waiting for the upload to
+     *         complete.
      */
     public CopyResult waitForCopyResult() throws CosClientException,
             CosServiceException, InterruptedException {

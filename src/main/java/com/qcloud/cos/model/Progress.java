@@ -14,12 +14,14 @@
 
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
 
 
 import java.io.Serializable;
 
 public class Progress implements Serializable {
+
     private Long bytesScanned;
     private Long bytesReturned;
     private Long bytesProcessed;

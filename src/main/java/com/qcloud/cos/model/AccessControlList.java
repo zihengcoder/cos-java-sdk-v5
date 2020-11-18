@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -60,6 +60,7 @@ import java.util.Set;
  * @see CannedAccessControlList
  */
 public class AccessControlList implements Serializable {
+
     private static final long serialVersionUID = 8095040648034788376L;
 
     // grant set is maintained for backwards compatibility. Both grantSet and
@@ -146,9 +147,8 @@ public class AccessControlList implements Serializable {
      * Gets the set of {@link Grant} objects in this access control list (ACL).
      *
      * @return The set of {@link Grant} objects in this ACL.
-     *
      * @deprecated This will remove the duplicate grants if received from Qcloud COS. Use
-     *             {@link AccessControlList#getGrantsAsList} instead.
+     *         {@link AccessControlList#getGrantsAsList} instead.
      */
     @Deprecated
     public Set<Grant> getGrants() {
@@ -199,51 +199,52 @@ public class AccessControlList implements Serializable {
 
     private boolean isAllUsersGrantee(Grantee grantee) {
         String identifier = grantee.getIdentifier();
-        return grantee.equals(GroupGrantee.AllUsers) ||(identifier != null &&
+        return grantee.equals(GroupGrantee.AllUsers) || (identifier != null &&
                 identifier.equals("qcs::cam::anyone:anyone"));
     }
+
     /**
      * according to the returned x-cos-acl header and grantList, to judge the bucket or object acl, the cases are below:
      *
      * 1. if the header returned x-cos-acl:default, return CannedAccessControlList.Default, only for object acl
      * 2. if the body have AllUsers's Read or Write permission, combine it to decide bucket or object acl to
-     *     CannedAccessControlList.PublicReadWrite or CannedAccessControlList.PublicRead
+     * CannedAccessControlList.PublicReadWrite or CannedAccessControlList.PublicRead
      * 3. for other cases, the object or bucket acl is CannedAccessControlList.Private
      *
      * @return CannedAccessControlList
      */
     public CannedAccessControlList getCannedAccessControl() {
-        if(grantList == null) {
+        if (grantList == null) {
             return null;
         }
         // if the returned header have x-cos-acl:default, the object acl is Default access control
         // attention: get bucket acl will not return this header
-        if(existDefaultAcl) {
+        if (existDefaultAcl) {
             return CannedAccessControlList.Default;
         }
 
         // check the object or bucket if have AllUsers Read and Write acl
         boolean allUsersRead = false;
         boolean allUsersWrite = false;
-        for(Grant grant:grantList) {
+        for (Grant grant : grantList) {
             Grantee grantee = grant.getGrantee();
             Permission permission = grant.getPermission();
-            if(grantee != null && permission != null && isAllUsersGrantee(grantee)) {
-                if(permission.equals(Permission.Read)) {
+            if (grantee != null && permission != null && isAllUsersGrantee(grantee)) {
+                if (permission.equals(Permission.Read)) {
                     allUsersRead = true;
                 }
-                if(permission.equals(Permission.Write)) {
+                if (permission.equals(Permission.Write)) {
                     allUsersWrite = true;
                 }
             }
         }
         // only bucket acl, will have public read and write acl
-        if(allUsersRead && allUsersWrite) {
+        if (allUsersRead && allUsersWrite) {
             return CannedAccessControlList.PublicReadWrite;
         }
 
         // bucket and object acl, may have public-read acl
-        if(allUsersRead) {
+        if (allUsersRead) {
             return CannedAccessControlList.PublicRead;
         }
 

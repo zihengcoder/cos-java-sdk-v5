@@ -3,9 +3,10 @@ package com.qcloud.cos.model.ciModel.bucket;
 import java.util.Date;
 
 /**
- *  数据万象bucket实体类 字段详情见 https://cloud.tencent.com/document/product/460/38914
+ * 数据万象bucket实体类 字段详情见 https://cloud.tencent.com/document/product/460/38914
  */
 public class CIBucketObject {
+
     /**
      * bucket id
      */

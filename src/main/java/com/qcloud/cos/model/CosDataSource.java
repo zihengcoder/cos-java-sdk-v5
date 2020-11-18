@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -31,9 +31,13 @@ import org.slf4j.Logger;
  * stream.
  */
 public interface CosDataSource {
+
     public File getFile();
+
     public void setFile(File file);
+
     public InputStream getInputStream();
+
     public void setInputStream(InputStream inputStream);
 
     /**
@@ -41,6 +45,7 @@ public interface CosDataSource {
      */
     public static enum Utils {
         ;
+
         /**
          * Clean up any temporary streams created during the execution,
          * and restore the original file and/or input stream.

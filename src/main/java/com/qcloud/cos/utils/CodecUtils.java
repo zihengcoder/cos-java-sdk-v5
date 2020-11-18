@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -25,11 +25,12 @@ import java.util.Map;
 
 /**
  * Codec internal utilities
- * 
+ *
  * @author Hanson Char
  */
 public enum CodecUtils {
     ;
+
     /**
      * Transforms the given string into the given destination byte array
      * truncating each character into a byte and skipping carriage returns and
@@ -42,51 +43,50 @@ public enum CodecUtils {
      * this implementation would truncate the result."
      * <p>
      * hchar:
-     * "Yes, but the truncation is the intentional behavior of this internal 
+     * "Yes, but the truncation is the intentional behavior of this internal
      * routine in that case."
-     * 
-     * @param singleOctets
-     *            non-null string containing only single octet characters
-     * @param dest
-     *            destination byte array
-     * 
+     *
+     * @param singleOctets non-null string containing only single octet characters
+     * @param dest destination byte array
      * @return the actual length of the destination byte array holding data
-     * @throws IllegalArgumentException
-     *             if the input string contains any multi-octet character
+     * @throws IllegalArgumentException if the input string contains any multi-octet character
      */
     static int sanitize(final String singleOctets, byte[] dest) {
         final int capacity = dest.length;
         final char[] src = singleOctets.toCharArray();
-        int limit=0;
+        int limit = 0;
 
-        for (int i=0; i < capacity; i++) {
+        for (int i = 0; i < capacity; i++) {
             final char c = src[i];
-            
-            if (c == '\r' || c == '\n' || c == ' ')
+
+            if (c == '\r' || c == '\n' || c == ' ') {
                 continue;
-            if (c > Byte.MAX_VALUE)
+            }
+            if (c > Byte.MAX_VALUE) {
                 throw new IllegalArgumentException("Invalid character found at position " + i + " for " + singleOctets);
-            dest[limit++] = (byte)c;
+            }
+            dest[limit++] = (byte) c;
         }
         return limit;
     }
-    
+
     /**
      * Returns a byte array representing the given string,
      * truncating each character into a byte directly.
-     * 
+     *
      * @throws IllegalArgumentException if the input string contains any multi-octet character
      */
     public static byte[] toBytesDirect(final String singleOctets) {
         final char[] src = singleOctets.toCharArray();
         final byte[] dest = new byte[src.length];
-        
-        for (int i=0; i < dest.length; i++) {
+
+        for (int i = 0; i < dest.length; i++) {
             final char c = src[i];
-            
-            if (c > Byte.MAX_VALUE)
+
+            if (c > Byte.MAX_VALUE) {
                 throw new IllegalArgumentException("Invalid character found at position " + i + " for " + singleOctets);
-            dest[i] = (byte)c;
+            }
+            dest[i] = (byte) c;
         }
         return dest;
     }
@@ -97,29 +97,30 @@ public enum CodecUtils {
      */
     public static String toStringDirect(final byte[] bytes) {
         final char[] dest = new char[bytes.length];
-        int i=0;
-        
-        for (byte b: bytes)
-            dest[i++] = (char)b;
-        
+        int i = 0;
+
+        for (byte b : bytes) {
+            dest[i++] = (char) b;
+        }
+
         return new String(dest);
     }
-    
-    /** 
+
+    /**
      * Sanity check the last decoded position is a possible value.
-     * 
+     *
      * @throws IllegalArgumentException if the given decoded position is
-     * not a possible value produced via the respective encoding 
+     *         not a possible value produced via the respective encoding
      */
     static void sanityCheckLastPos(int pos, int mask) {
         if ((pos & mask) != 0) {
             throw new IllegalArgumentException
-                ("Invalid last non-pad character detected");
+                    ("Invalid last non-pad character detected");
         }
     }
 
     public static String convertFromUtf8ToIso88591(String value) {
-        if(value == null) {
+        if (value == null) {
             return null;
         }
         try {
@@ -130,7 +131,7 @@ public enum CodecUtils {
     }
 
     public static String convertFromIso88591ToUtf8(String value) {
-        if(value == null) {
+        if (value == null) {
             return null;
         }
         try {

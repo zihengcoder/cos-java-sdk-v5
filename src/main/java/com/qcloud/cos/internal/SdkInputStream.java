@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -27,23 +27,25 @@ import com.qcloud.cos.exception.AbortedException;
 import com.qcloud.cos.utils.IOUtils;
 
 public abstract class SdkInputStream extends InputStream implements Releasable {
+
     /**
      * Returns the underlying input stream, if any, from the subclass; or null
      * if there is no underlying input stream.
      */
     abstract protected InputStream getWrappedInputStream();
-    
+
     /**
-    * Returns true if the current operation should abort; false otherwise.
-    * Note the interrupted status of the thread is cleared by this method.
-    */
-   protected static boolean shouldAbort() {
-       return Thread.interrupted();
-   }
-    
+     * Returns true if the current operation should abort; false otherwise.
+     * Note the interrupted status of the thread is cleared by this method.
+     */
+    protected static boolean shouldAbort() {
+        return Thread.interrupted();
+    }
+
     /**
      * Aborts with subclass specific abortion logic executed if needed.
      * Note the interrupted status of the thread is cleared by this method.
+     *
      * @throws AbortedException if found necessary.
      */
     protected final void abortIfNeeded() {
@@ -79,7 +81,7 @@ public abstract class SdkInputStream extends InputStream implements Releasable {
         if (in instanceof Releasable) {
             // This allows any underlying stream that has the close operation
             // disabled to be truly released
-            Releasable r = (Releasable)in;
+            Releasable r = (Releasable) in;
             r.release();
         }
     }

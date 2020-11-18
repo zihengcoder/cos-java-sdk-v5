@@ -9,6 +9,7 @@ import com.qcloud.cos.model.BucketPolicy;
 
 
 public class BucketPolicyDemo {
+
     public static void SetGetBucketPolicy() {
         // 1 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("SECRET_ID", "SECRET_KEY");
@@ -41,6 +42,7 @@ public class BucketPolicyDemo {
         BucketPolicy bucketPolicy = cosclient.getBucketPolicy(bucketName);
         System.out.println(bucketPolicy.getPolicyText());
     }
+
     public static void main(String[] args) {
         SetGetBucketPolicy();
     }

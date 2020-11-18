@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,13 +28,19 @@ package com.qcloud.cos.model;
  */
 public class CopyResult {
 
-    /** x-cos-requestid **/
+    /**
+     * x-cos-requestid
+     **/
     private String requestId;
 
-    /** date **/
+    /**
+     * date
+     **/
     private String dateStr;
-    
-    /** The name of the bucket containing the object to be copied */
+
+    /**
+     * The name of the bucket containing the object to be copied
+     */
     private String sourceBucketName;
 
     /**
@@ -43,7 +49,9 @@ public class CopyResult {
      */
     private String sourceKey;
 
-    /** The name of the bucket to contain the copy of the source object */
+    /**
+     * The name of the bucket to contain the copy of the source object
+     */
     private String destinationBucketName;
 
     /**
@@ -64,12 +72,14 @@ public class CopyResult {
      */
     private String versionId;
 
-    /** The crc64ecma value for this object */
+    /**
+     * The crc64ecma value for this object
+     */
     private String crc64Ecma;
 
     /**
      * get requestid for this upload
-     * 
+     *
      * @return requestid
      */
     public String getRequestId() {
@@ -78,7 +88,7 @@ public class CopyResult {
 
     /**
      * set requestId for this upload
-     * 
+     *
      * @param requestId the requestId for the upload
      */
 
@@ -88,7 +98,7 @@ public class CopyResult {
 
     /**
      * get date header for this upload
-     * 
+     *
      * @return date str
      */
     public String getDateStr() {
@@ -97,7 +107,7 @@ public class CopyResult {
 
     /**
      * set date str for this upload
-     * 
+     *
      * @param dateStr date str header
      */
     public void setDateStr(String dateStr) {
@@ -108,7 +118,6 @@ public class CopyResult {
      * Gets the name of the bucket containing the source object to be copied.
      *
      * @return The name of the bucket containing the source object to be copied.
-     *
      * @see CopyResult#setSourceBucketName(String sourceBucketName)
      */
     public String getSourceBucketName() {
@@ -118,9 +127,8 @@ public class CopyResult {
     /**
      * Sets the name of the bucket containing the source object to be copied.
      *
-     * @param sourceBucketName
-     *            The name of the bucket containing the source object to be
-     *            copied.
+     * @param sourceBucketName The name of the bucket containing the source object to be
+     *         copied.
      * @see CopyResult#getSourceBucketName()
      */
     public void setSourceBucketName(String sourceBucketName) {
@@ -133,7 +141,6 @@ public class CopyResult {
      *
      * @return The source bucket key under which the source object to be copied
      *         is stored.
-     *
      * @see CopyResult#setSourceKey(String sourceKey)
      */
     public String getSourceKey() {
@@ -144,10 +151,8 @@ public class CopyResult {
      * Sets the source bucket key under which the source object to be copied is
      * stored.
      *
-     * @param sourceKey
-     *            The source bucket key under which the source object to be
-     *            copied is stored.
-     *
+     * @param sourceKey The source bucket key under which the source object to be
+     *         copied is stored.
      * @see CopyResult#setSourceKey(String sourceKey)
      */
     public void setSourceKey(String sourceKey) {
@@ -160,7 +165,6 @@ public class CopyResult {
      *
      * @return The name of the destination bucket which will contain the new,
      *         copied object.
-     *
      * @see CopyResult#setDestinationBucketName(String destinationBucketName)
      */
     public String getDestinationBucketName() {
@@ -171,10 +175,8 @@ public class CopyResult {
      * Sets the destination bucket name which will contain the new, copied
      * object.
      *
-     * @param destinationBucketName
-     *            The name of the destination bucket which will contain the new,
-     *            copied object.
-     *
+     * @param destinationBucketName The name of the destination bucket which will contain the new,
+     *         copied object.
      * @see CopyResult#getDestinationBucketName()
      */
     public void setDestinationBucketName(String destinationBucketName) {
@@ -187,7 +189,6 @@ public class CopyResult {
      *
      * @return The destination bucket key under which the new, copied object
      *         will be stored.
-     *
      * @see CopyResult#setDestinationKey(String destinationKey)
      */
     public String getDestinationKey() {
@@ -198,10 +199,8 @@ public class CopyResult {
      * Sets the destination bucket key under which the new, copied object will
      * be stored.
      *
-     * @param destinationKey
-     *            The destination bucket key under which the new, copied object
-     *            will be stored.
-     *
+     * @param destinationKey The destination bucket key under which the new, copied object
+     *         will be stored.
      * @see CopyResult#getDestinationKey()
      */
     public void setDestinationKey(String destinationKey) {
@@ -223,8 +222,7 @@ public class CopyResult {
      * Sets the entity tag identifying the new object. An entity tag is an
      * opaque string that changes if and only if an object's data changes.
      *
-     * @param etag
-     *            The entity tag.
+     * @param etag The entity tag.
      */
     public void setETag(String etag) {
         this.eTag = etag;
@@ -245,9 +243,8 @@ public class CopyResult {
      * Sets the version ID of the new object, only present if versioning has
      * been enabled for the bucket.
      *
-     * @param versionId
-     *            The version ID of the new object, only present if versioning
-     *            has been enabled for the bucket.
+     * @param versionId The version ID of the new object, only present if versioning
+     *         has been enabled for the bucket.
      */
     public void setVersionId(String versionId) {
         this.versionId = versionId;

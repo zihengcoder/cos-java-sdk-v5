@@ -7,6 +7,7 @@ import org.slf4j.LoggerFactory;
 import java.util.concurrent.locks.ReentrantLock;
 
 public class InstanceCredentialsProvider implements COSCredentialsProvider {
+
     private static final Logger LOG = LoggerFactory.getLogger(InstanceCredentialsProvider.class);
 
     private static final long DEFAULT_REFRESH_INTERVAL_MILLISECONDS = 30 * 1000;
@@ -75,6 +76,7 @@ public class InstanceCredentialsProvider implements COSCredentialsProvider {
             return true;
         }
 
-        return System.currentTimeMillis() - this.lastFailedRefreshTimeInMilliseconds > this.refreshIntervalInMilliseconds;
+        return System.currentTimeMillis() - this.lastFailedRefreshTimeInMilliseconds
+                > this.refreshIntervalInMilliseconds;
     }
 }

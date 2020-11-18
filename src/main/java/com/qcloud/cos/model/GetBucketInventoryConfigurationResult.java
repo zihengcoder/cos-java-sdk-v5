@@ -11,11 +11,14 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
+
 package com.qcloud.cos.model;
+
 import com.qcloud.cos.model.inventory.InventoryConfiguration;
+
 /**
  * Result object to contain the response returned from
  * {@link com.qcloud.cos.COSClient#getBucketInventoryConfiguration(GetBucketInventoryConfigurationRequest)}
@@ -44,7 +47,8 @@ public class GetBucketInventoryConfigurationResult {
      * {@link GetBucketInventoryConfigurationResult} object
      * for method chaining.
      */
-    public GetBucketInventoryConfigurationResult withInventoryConfiguration(InventoryConfiguration inventoryConfiguration) {
+    public GetBucketInventoryConfigurationResult withInventoryConfiguration(
+            InventoryConfiguration inventoryConfiguration) {
         setInventoryConfiguration(inventoryConfiguration);
         return this;
     }

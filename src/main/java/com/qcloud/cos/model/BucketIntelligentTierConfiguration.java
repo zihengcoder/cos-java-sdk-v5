@@ -2,6 +2,7 @@ package com.qcloud.cos.model;
 
 
 public class BucketIntelligentTierConfiguration {
+
     /**
      * bucket intelligent tier status indicating that intelligent tier is suspended for a
      * bucket. Use the "Suspended" status when you want to disable intelligent tier on
@@ -16,13 +17,17 @@ public class BucketIntelligentTierConfiguration {
     public static final String ENABLED = "Enabled";
 
     public static class Transition {
+
         private int days = -1;
         private int requestFrequent = 1;
-        public Transition() {}
+
+        public Transition() {
+        }
 
         public Transition(int days) {
             this.days = days;
         }
+
         public int getDays() {
             return days;
         }
@@ -42,7 +47,7 @@ public class BucketIntelligentTierConfiguration {
 
     private String status;
 
-    private Transition transition ;
+    private Transition transition;
 
     /**
      * Creates a new bucket intelligent tier configuration,
@@ -50,7 +55,8 @@ public class BucketIntelligentTierConfiguration {
      * {@link com.qcloud.cos.COSClient#setBucketIntelligentTieringConfiguration(SetBucketIntelligentTierConfigurationRequest)}}
      * </p>
      */
-    public BucketIntelligentTierConfiguration() {}
+    public BucketIntelligentTierConfiguration() {
+    }
 
     public String getStatus() {
         return status;

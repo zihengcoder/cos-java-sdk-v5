@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -25,19 +25,30 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class VersionInfoUtils {
-    /** The COS SDK version info file with SDK versioning info */
+
+    /**
+     * The COS SDK version info file with SDK versioning info
+     */
     static final String VERSION_INFO_FILE = "/versionInfo.properties";
 
-    /** SDK version info */
+    /**
+     * SDK version info
+     */
     private static volatile String version;
 
-    /** SDK platform info */
+    /**
+     * SDK platform info
+     */
     private static volatile String platform;
 
-    /** User Agent info */
+    /**
+     * User Agent info
+     */
     private static volatile String userAgent;
 
-    /** Shared logger for any issues while loading version information */
+    /**
+     * Shared logger for any issues while loading version information
+     */
     private static final Logger log = LoggerFactory.getLogger(VersionInfoUtils.class);
 
     /**
@@ -51,8 +62,9 @@ public class VersionInfoUtils {
     public static String getVersion() {
         if (version == null) {
             synchronized (VersionInfoUtils.class) {
-                if (version == null)
+                if (version == null) {
                     initializeVersion();
+                }
             }
         }
         return version;
@@ -69,8 +81,9 @@ public class VersionInfoUtils {
     public static String getPlatform() {
         if (platform == null) {
             synchronized (VersionInfoUtils.class) {
-                if (platform == null)
+                if (platform == null) {
                     initializeVersion();
+                }
             }
         }
         return platform;
@@ -82,14 +95,14 @@ public class VersionInfoUtils {
      */
     public static String getUserAgent() {
         if (userAgent == null) {
-            synchronized(VersionInfoUtils.class) {
+            synchronized (VersionInfoUtils.class) {
                 if (userAgent == null) {
-                    userAgent =  String.format("cos-java-sdk-v%s/%s/jdk-%s/%s",
-                                               getVersion(),
-                                               System.getProperty("os.name"),
-                                               System.getProperty("java.version"),
-                                               System.getProperty("java.vm.name"));
-                } 
+                    userAgent = String.format("cos-java-sdk-v%s/%s/jdk-%s/%s",
+                            getVersion(),
+                            System.getProperty("os.name"),
+                            System.getProperty("java.version"),
+                            System.getProperty("java.vm.name"));
+                }
             }
         }
         return userAgent;
@@ -103,8 +116,9 @@ public class VersionInfoUtils {
         InputStream inputStream = VersionInfoUtils.class.getResourceAsStream(VERSION_INFO_FILE);
         Properties versionInfoProperties = new Properties();
         try {
-            if (inputStream == null)
+            if (inputStream == null) {
                 throw new Exception(VERSION_INFO_FILE + " not found on classpath");
+            }
 
             versionInfoProperties.load(inputStream);
             version = versionInfoProperties.getProperty("version");

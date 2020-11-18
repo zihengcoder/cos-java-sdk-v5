@@ -22,16 +22,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class BucketDomainConfiguration implements Serializable {
+
     private List<DomainRule> domainRules = new LinkedList<>();
     /* the x-cos-domain-txt-verification reponse header value */
     private String domainTxtVerification;
-    public BucketDomainConfiguration() { }
+
+    public BucketDomainConfiguration() {
+    }
 
     /**
      * Set the list of domain rules that can be used for configuring custom domain name
      *
-     * @param domainRules
-     *            The list of domain rules that can be used for configuring custom domain name
+     * @param domainRules The list of domain rules that can be used for configuring custom domain name
      */
     public void setDomainRules(List<DomainRule> domainRules) {
         this.domainRules = domainRules;
@@ -48,12 +50,10 @@ public class BucketDomainConfiguration implements Serializable {
     /**
      * Set the list of domain rules that can be used for configuring custom domain name
      *
-     * @param domainRules
-     *            The list of domain rules that can be used for configuring
-     *            custom domain name.
+     * @param domainRules The list of domain rules that can be used for configuring
+     *         custom domain name.
      * @return A reference to this object(BucketDomainConfiguration) for method
      *         chaining.
-     *
      */
     public BucketDomainConfiguration withDomainRules(List<DomainRule> domainRules) {
         this.domainRules = domainRules;

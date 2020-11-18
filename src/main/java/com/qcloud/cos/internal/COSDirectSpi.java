@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -40,6 +40,7 @@ import com.qcloud.cos.model.UploadPartResult;
  * client of an COS encryption client instance.
  */
 public interface COSDirectSpi {
+
     public PutObjectResult putObject(PutObjectRequest req);
 
     public COSObject getObject(GetObjectRequest req);

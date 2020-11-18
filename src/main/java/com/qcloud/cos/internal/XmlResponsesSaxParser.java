@@ -120,6 +120,7 @@ import com.qcloud.cos.model.GetObjectTaggingResult;
  * documents into objects.
  */
 public class XmlResponsesSaxParser {
+
     private static final Logger log = LoggerFactory.getLogger(XmlResponsesSaxParser.class);
 
     private XMLReader xr = null;
@@ -146,7 +147,6 @@ public class XmlResponsesSaxParser {
      *
      * @param handler the handler for the XML document
      * @param inputStream an input stream containing the XML document to parse
-     *
      * @throws IOException on error reading from the input stream (ie connection reset)
      * @throws CosClientException on error with malformed XML, etc
      */
@@ -247,7 +247,6 @@ public class XmlResponsesSaxParser {
      * returned.
      *
      * @param s The string to parse and return as an integer.
-     *
      * @return The integer value of the specified string, otherwise -1 if there were any problems
      *         parsing the string as an integer.
      */
@@ -266,7 +265,6 @@ public class XmlResponsesSaxParser {
      * NumberFormatException occurs while parsing the long, an error is logged and -1 is returned.
      *
      * @param s The string to parse and return as a long.
-     *
      * @return The long value of the specified string, otherwise -1 if there were any problems
      *         parsing the string as a long.
      */
@@ -289,10 +287,12 @@ public class XmlResponsesSaxParser {
      *         caller passed in.
      */
     private static String checkForEmptyString(String s) {
-        if (s == null)
+        if (s == null) {
             return null;
-        if (s.length() == 0)
+        }
+        if (s.length() == 0) {
             return null;
+        }
 
         return s;
     }
@@ -349,12 +349,12 @@ public class XmlResponsesSaxParser {
     }
 
     //
+
     /**
      * Parses an AccessControlListHandler response XML document from an input stream.
      *
      * @param inputStream XML data input stream.
      * @return the XML handler object populated with data parsed from the XML stream.
-     *
      * @throws CosClientException
      */
     public AccessControlListHandler parseAccessControlListResponse(InputStream inputStream)
@@ -498,11 +498,9 @@ public class XmlResponsesSaxParser {
      * Parses a LoggingStatus response XML document for a bucket from an input
      * stream.
      *
-     * @param inputStream
-     *            XML data input stream.
+     * @param inputStream XML data input stream.
      * @return the XML handler object populated with data parsed from the XML
      *         stream.
-     *
      * @throws CosClientException
      */
 
@@ -512,6 +510,7 @@ public class XmlResponsesSaxParser {
         parseXmlInputStream(handler, inputStream);
         return handler;
     }
+
     public GetBucketInventoryConfigurationHandler parseGetBucketInventoryConfigurationResponse(InputStream inputStream)
             throws IOException {
         GetBucketInventoryConfigurationHandler handler = new GetBucketInventoryConfigurationHandler();
@@ -519,7 +518,8 @@ public class XmlResponsesSaxParser {
         return handler;
     }
 
-    public ListBucketInventoryConfigurationsHandler parseBucketListInventoryConfigurationsResponse(InputStream inputStream)
+    public ListBucketInventoryConfigurationsHandler parseBucketListInventoryConfigurationsResponse(
+            InputStream inputStream)
             throws IOException {
         ListBucketInventoryConfigurationsHandler handler = new ListBucketInventoryConfigurationsHandler();
         parseXmlInputStream(handler, inputStream);
@@ -532,7 +532,8 @@ public class XmlResponsesSaxParser {
         return handler;
     }
 
-    public GetBucketIntelligentTierConfigurationHandler parseBucketIntelligentTierConfigurationsResponse(InputStream inputStream)
+    public GetBucketIntelligentTierConfigurationHandler parseBucketIntelligentTierConfigurationsResponse(
+            InputStream inputStream)
             throws IOException {
         GetBucketIntelligentTierConfigurationHandler handler = new GetBucketIntelligentTierConfigurationHandler();
         parseXmlInputStream(handler, inputStream);
@@ -674,9 +675,7 @@ public class XmlResponsesSaxParser {
                     currentObject = new COSObjectSummary();
                     currentObject.setBucketName(objectListing.getBucketName());
                 }
-            }
-
-            else if (in("ListBucketResult", "Contents")) {
+            } else if (in("ListBucketResult", "Contents")) {
                 if (name.equals("Owner")) {
                     currentOwner = new Owner();
                 }
@@ -711,9 +710,7 @@ public class XmlResponsesSaxParser {
                         objectListing.setNextMarker(nextMarker);
                     }
                 }
-            }
-
-            else if (in("ListBucketResult")) {
+            } else if (in("ListBucketResult")) {
                 if (name.equals("Name")) {
                     objectListing.setBucketName(getText());
                     if (log.isDebugEnabled()) {
@@ -758,9 +755,7 @@ public class XmlResponsesSaxParser {
                     objectListing.getObjectSummaries().add(currentObject);
                     currentObject = null;
                 }
-            }
-
-            else if (in("ListBucketResult", "Contents")) {
+            } else if (in("ListBucketResult", "Contents")) {
                 if (name.equals("Key")) {
                     lastKey = getText();
                     currentObject.setKey(decodeIfSpecified(lastKey, shouldSDKDecodeResponse));
@@ -780,18 +775,14 @@ public class XmlResponsesSaxParser {
                     currentObject.setOwner(currentOwner);
                     currentOwner = null;
                 }
-            }
-
-            else if (in("ListBucketResult", "Contents", "Owner")) {
+            } else if (in("ListBucketResult", "Contents", "Owner")) {
                 if (name.equals("ID")) {
                     currentOwner.setId(getText());
 
                 } else if (name.equals("DisplayName")) {
                     currentOwner.setDisplayName(getText());
                 }
-            }
-
-            else if (in("ListBucketResult", "CommonPrefixes")) {
+            } else if (in("ListBucketResult", "CommonPrefixes")) {
                 if (name.equals("Prefix")) {
                     objectListing.getCommonPrefixes()
                             .add(decodeIfSpecified(getText(), shouldSDKDecodeResponse));
@@ -850,16 +841,12 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("DisplayName")) {
                     bucketsOwner.setDisplayName(getText());
                 }
-            }
-
-            else if (in("ListAllMyBucketsResult", "Buckets")) {
+            } else if (in("ListAllMyBucketsResult", "Buckets")) {
                 if (name.equals("Bucket")) {
                     buckets.add(currentBucket);
                     currentBucket = null;
                 }
-            }
-
-            else if (in("ListAllMyBucketsResult", "Buckets", "Bucket")) {
+            } else if (in("ListAllMyBucketsResult", "Buckets", "Bucket")) {
                 if (name.equals("Name")) {
                     currentBucket.setName(getText());
 
@@ -903,9 +890,7 @@ public class XmlResponsesSaxParser {
                     accessControlList.setOwner(new Owner());
 
                 }
-            }
-
-            else if (in("AccessControlPolicy", "AccessControlList", "Grant")) {
+            } else if (in("AccessControlPolicy", "AccessControlList", "Grant")) {
                 if (name.equals("Grantee")) {
                     String type = XmlResponsesSaxParser.findAttributeValue("xsi:type", attrs);
 
@@ -929,24 +914,18 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("DisplayName")) {
                     accessControlList.getOwner().setDisplayName(getText());
                 }
-            }
-
-            else if (in("AccessControlPolicy", "AccessControlList")) {
+            } else if (in("AccessControlPolicy", "AccessControlList")) {
                 if (name.equals("Grant")) {
                     accessControlList.grantPermission(currentGrantee, currentPermission);
 
                     currentGrantee = null;
                     currentPermission = null;
                 }
-            }
-
-            else if (in("AccessControlPolicy", "AccessControlList", "Grant")) {
+            } else if (in("AccessControlPolicy", "AccessControlList", "Grant")) {
                 if (name.equals("Permission")) {
                     currentPermission = Permission.parsePermission(getText());
                 }
-            }
-
-            else if (in("AccessControlPolicy", "AccessControlList", "Grant", "Grantee")) {
+            } else if (in("AccessControlPolicy", "AccessControlList", "Grant", "Grantee")) {
                 if (name.equals("ID")) {
                     currentGrantee.setIdentifier(getText());
                 } else if (name.equals("URI")) {
@@ -957,7 +936,6 @@ public class XmlResponsesSaxParser {
             }
         }
     }
-
 
     /**
      * Handler for LoggingStatus response XML documents for a bucket. The document is parsed into an
@@ -1049,7 +1027,9 @@ public class XmlResponsesSaxParser {
         private String errorMessage = null;
         private String errorRequestId = null;
         private String errorHostId = null;
-        /** The crc64ecma value for this object */
+        /**
+         * The crc64ecma value for this object
+         */
         private String crc64Ecma;
         private boolean receivedErrorResponse = false;
 
@@ -1163,12 +1143,10 @@ public class XmlResponsesSaxParser {
                     result.setETag(StringUtils.removeQuotes(getText()));
                 } else if (name.equals("VersionId")) {
                     result.setVersionId(getText());
-                } else if(name.equals("CRC64")) {
+                } else if (name.equals("CRC64")) {
                     result.setCrc64Ecma(getText());
                 }
-            }
-
-            else if (in("Error")) {
+            } else if (in("Error")) {
                 if (name.equals("Code")) {
                     errorCode = getText();
                 } else if (name.equals("Message")) {
@@ -1181,7 +1159,6 @@ public class XmlResponsesSaxParser {
             }
         }
     }
-
 
     // /**
     // * Handler for parsing RequestPaymentConfiguration XML response associated
@@ -1215,6 +1192,7 @@ public class XmlResponsesSaxParser {
     // }
     // }
     //
+
     /**
      * Handler for ListVersionsResult XML document.
      */
@@ -1247,9 +1225,7 @@ public class XmlResponsesSaxParser {
                     currentVersionSummary.setBucketName(versionListing.getBucketName());
                     currentVersionSummary.setIsDeleteMarker(true);
                 }
-            }
-
-            else if (in("ListVersionsResult", "Version")
+            } else if (in("ListVersionsResult", "Version")
                     || in("ListVersionsResult", "DeleteMarker")) {
                 if (name.equals("Owner")) {
                     currentOwner = new Owner();
@@ -1299,17 +1275,13 @@ public class XmlResponsesSaxParser {
 
                     currentVersionSummary = null;
                 }
-            }
-
-            else if (in("ListVersionsResult", "CommonPrefixes")) {
+            } else if (in("ListVersionsResult", "CommonPrefixes")) {
                 if (name.equals("Prefix")) {
                     final String commonPrefix = checkForEmptyString(getText());
                     versionListing.getCommonPrefixes().add(shouldSDKDecodeResponse
                             ? UrlEncoderUtils.urlDecode(commonPrefix) : commonPrefix);
                 }
-            }
-
-            else if (in("ListVersionsResult", "Version")
+            } else if (in("ListVersionsResult", "Version")
                     || in("ListVersionsResult", "DeleteMarker")) {
 
                 if (name.equals("Key")) {
@@ -1338,9 +1310,7 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("StorageClass")) {
                     currentVersionSummary.setStorageClass(getText());
                 }
-            }
-
-            else if (in("ListVersionsResult", "Version", "Owner")
+            } else if (in("ListVersionsResult", "Version", "Owner")
                     || in("ListVersionsResult", "DeleteMarker", "Owner")) {
 
                 if (name.equals("ID")) {
@@ -1351,6 +1321,7 @@ public class XmlResponsesSaxParser {
             }
         }
     }
+
     //
     // public static class BucketWebsiteConfigurationHandler extends AbstractHandler {
     //
@@ -1502,6 +1473,7 @@ public class XmlResponsesSaxParser {
      */
     public static class CompleteMultipartUploadHandler extends AbstractSSEHandler
             implements ObjectExpirationResult, VIDResult {
+
         // Successful completion
         private CompleteMultipartUploadResult result;
 
@@ -1599,9 +1571,7 @@ public class XmlResponsesSaxParser {
                         cse.setTraceId(traceId);
                     }
                 }
-            }
-
-            else if (in("CompleteMultipartUploadResult")) {
+            } else if (in("CompleteMultipartUploadResult")) {
                 if (name.equals("Location")) {
                     result.setLocation(getText());
                 } else if (name.equals("Bucket")) {
@@ -1611,9 +1581,7 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("ETag")) {
                     result.setETag(StringUtils.removeQuotes(getText()));
                 }
-            }
-
-            else if (in("Error")) {
+            } else if (in("Error")) {
                 if (name.equals("Code")) {
                     errorCode = getText();
                 } else if (name.equals("Message")) {
@@ -1721,15 +1689,11 @@ public class XmlResponsesSaxParser {
                     result.getMultipartUploads().add(currentMultipartUpload);
                     currentMultipartUpload = null;
                 }
-            }
-
-            else if (in("ListMultipartUploadsResult", "CommonPrefixes")) {
+            } else if (in("ListMultipartUploadsResult", "CommonPrefixes")) {
                 if (name.equals("Prefix")) {
                     result.getCommonPrefixes().add(getText());
                 }
-            }
-
-            else if (in("ListMultipartUploadsResult", "Upload")) {
+            } else if (in("ListMultipartUploadsResult", "Upload")) {
                 if (name.equals("Key")) {
                     currentMultipartUpload.setKey(getText());
                 } else if (name.equals("UploadId")) {
@@ -1743,9 +1707,7 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("Initiated")) {
                     currentMultipartUpload.setInitiated(DateUtils.parseISO8601Date(getText()));
                 }
-            }
-
-            else if (in("ListMultipartUploadsResult", "Upload", "Owner")
+            } else if (in("ListMultipartUploadsResult", "Upload", "Owner")
                     || in("ListMultipartUploadsResult", "Upload", "Initiator")) {
 
                 if (name.equals("ID")) {
@@ -1812,9 +1774,7 @@ public class XmlResponsesSaxParser {
                     result.getParts().add(currentPart);
                     currentPart = null;
                 }
-            }
-
-            else if (in("ListPartsResult", "Part")) {
+            } else if (in("ListPartsResult", "Part")) {
                 if (name.equals("PartNumber")) {
                     currentPart.setPartNumber(Integer.parseInt(getText()));
                 } else if (name.equals("LastModified")) {
@@ -1824,9 +1784,7 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("Size")) {
                     currentPart.setSize(Long.parseLong(getText()));
                 }
-            }
-
-            else if (in("ListPartsResult", "Owner") || in("ListPartsResult", "Initiator")) {
+            } else if (in("ListPartsResult", "Owner") || in("ListPartsResult", "Initiator")) {
 
                 if (name.equals("ID")) {
                     currentOwner.setId(checkForEmptyString(getText()));
@@ -1838,8 +1796,9 @@ public class XmlResponsesSaxParser {
 
         private Integer parseInteger(String text) {
             text = checkForEmptyString(getText());
-            if (text == null)
+            if (text == null) {
                 return null;
+            }
             return Integer.parseInt(text);
         }
     }
@@ -1858,7 +1817,7 @@ public class XmlResponsesSaxParser {
         }
 
         @Override
-        protected  void doStartElement(
+        protected void doStartElement(
                 String uri,
                 String name,
                 String qName,
@@ -1868,15 +1827,11 @@ public class XmlResponsesSaxParser {
                 if (name.equals("RedirectAllRequestsTo")) {
                     currentRedirectRule = new RedirectRule();
                 }
-            }
-
-            else if (in("WebsiteConfiguration", "RoutingRules")) {
+            } else if (in("WebsiteConfiguration", "RoutingRules")) {
                 if (name.equals("RoutingRule")) {
                     currentRoutingRule = new RoutingRule();
                 }
-            }
-
-            else if (in("WebsiteConfiguration", "RoutingRules", "RoutingRule")) {
+            } else if (in("WebsiteConfiguration", "RoutingRules", "RoutingRule")) {
                 if (name.equals("Condition")) {
                     currentCondition = new RoutingRuleCondition();
                 } else if (name.equals("Redirect")) {
@@ -1892,28 +1847,20 @@ public class XmlResponsesSaxParser {
                     configuration.setRedirectAllRequestsTo(currentRedirectRule);
                     currentRedirectRule = null;
                 }
-            }
-
-            else if (in("WebsiteConfiguration", "IndexDocument")) {
+            } else if (in("WebsiteConfiguration", "IndexDocument")) {
                 if (name.equals("Suffix")) {
                     configuration.setIndexDocumentSuffix(getText());
                 }
-            }
-
-            else if (in("WebsiteConfiguration", "ErrorDocument")) {
+            } else if (in("WebsiteConfiguration", "ErrorDocument")) {
                 if (name.equals("Key")) {
                     configuration.setErrorDocument(getText());
                 }
-            }
-
-            else if (in("WebsiteConfiguration", "RoutingRules")) {
+            } else if (in("WebsiteConfiguration", "RoutingRules")) {
                 if (name.equals("RoutingRule")) {
                     configuration.getRoutingRules().add(currentRoutingRule);
                     currentRoutingRule = null;
                 }
-            }
-
-            else if (in("WebsiteConfiguration", "RoutingRules", "RoutingRule")) {
+            } else if (in("WebsiteConfiguration", "RoutingRules", "RoutingRule")) {
                 if (name.equals("Condition")) {
                     currentRoutingRule.setCondition(currentCondition);
                     currentCondition = null;
@@ -1921,17 +1868,13 @@ public class XmlResponsesSaxParser {
                     currentRoutingRule.setRedirect(currentRedirectRule);
                     currentRedirectRule = null;
                 }
-            }
-
-            else if (in("WebsiteConfiguration", "RoutingRules", "RoutingRule", "Condition")) {
+            } else if (in("WebsiteConfiguration", "RoutingRules", "RoutingRule", "Condition")) {
                 if (name.equals("KeyPrefixEquals")) {
                     currentCondition.setKeyPrefixEquals(getText());
                 } else if (name.equals("HttpErrorCodeReturnedEquals")) {
                     currentCondition.setHttpErrorCodeReturnedEquals(getText());
                 }
-            }
-
-            else if (in("WebsiteConfiguration", "RedirectAllRequestsTo")
+            } else if (in("WebsiteConfiguration", "RedirectAllRequestsTo")
                     || in("WebsiteConfiguration", "RoutingRules", "RoutingRule", "Redirect")) {
 
                 if (name.equals("Protocol")) {
@@ -2113,9 +2056,7 @@ public class XmlResponsesSaxParser {
                     response.getErrors().add(currentError);
                     currentError = null;
                 }
-            }
-
-            else if (in("DeleteResult", "Deleted")) {
+            } else if (in("DeleteResult", "Deleted")) {
                 if (name.equals("Key")) {
                     currentDeletedObject.setKey(getText());
 
@@ -2128,9 +2069,7 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("DeleteMarkerVersionId")) {
                     currentDeletedObject.setDeleteMarkerVersionId(getText());
                 }
-            }
-
-            else if (in("DeleteResult", "Error")) {
+            } else if (in("DeleteResult", "Error")) {
                 if (name.equals("Key")) {
                     currentError.setKey(getText());
 
@@ -2213,9 +2152,7 @@ public class XmlResponsesSaxParser {
                     configuration.getRules().add(currentRule);
                     currentRule = null;
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule")) {
+            } else if (in("LifecycleConfiguration", "Rule")) {
                 if (name.equals("ID")) {
                     currentRule.setId(getText());
 
@@ -2236,9 +2173,7 @@ public class XmlResponsesSaxParser {
                     currentRule.setFilter(currentFilter);
                     currentFilter = null;
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "Expiration")) {
+            } else if (in("LifecycleConfiguration", "Rule", "Expiration")) {
                 if (name.equals("Date")) {
                     currentRule.setExpirationDate(DateUtils.parseISO8601Date(getText()));
                 } else if (name.equals("Days")) {
@@ -2248,9 +2183,7 @@ public class XmlResponsesSaxParser {
                         currentRule.setExpiredObjectDeleteMarker(true);
                     }
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "Transition")) {
+            } else if (in("LifecycleConfiguration", "Rule", "Transition")) {
                 if (name.equals("StorageClass")) {
                     currentTransition.setStorageClass(getText());
                 } else if (name.equals("Date")) {
@@ -2259,30 +2192,22 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("Days")) {
                     currentTransition.setDays(Integer.parseInt(getText()));
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "NoncurrentVersionExpiration")) {
+            } else if (in("LifecycleConfiguration", "Rule", "NoncurrentVersionExpiration")) {
                 if (name.equals("NoncurrentDays")) {
                     currentRule.setNoncurrentVersionExpirationInDays(Integer.parseInt(getText()));
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "NoncurrentVersionTransition")) {
+            } else if (in("LifecycleConfiguration", "Rule", "NoncurrentVersionTransition")) {
                 if (name.equals("StorageClass")) {
                     currentNcvTransition.setStorageClass(getText());
                 } else if (name.equals("NoncurrentDays")) {
                     currentNcvTransition.setDays(Integer.parseInt(getText()));
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "AbortIncompleteMultipartUpload")) {
+            } else if (in("LifecycleConfiguration", "Rule", "AbortIncompleteMultipartUpload")) {
                 if (name.equals("DaysAfterInitiation")) {
                     abortIncompleteMultipartUpload
                             .setDaysAfterInitiation(Integer.parseInt(getText()));
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "Filter")) {
+            } else if (in("LifecycleConfiguration", "Rule", "Filter")) {
                 if (name.equals("Prefix")) {
                     currentFilter.setPredicate(new LifecyclePrefixPredicate(getText()));
                 } else if (name.equals("Tag")) {
@@ -2294,17 +2219,13 @@ public class XmlResponsesSaxParser {
                     currentFilter.setPredicate(new LifecycleAndOperator(andOperandsList));
                     andOperandsList = null;
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "Filter", "Tag")) {
+            } else if (in("LifecycleConfiguration", "Rule", "Filter", "Tag")) {
                 if (name.equals("Key")) {
                     currentTagKey = getText();
                 } else if (name.equals("Value")) {
                     currentTagValue = getText();
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "Filter", "And")) {
+            } else if (in("LifecycleConfiguration", "Rule", "Filter", "And")) {
                 if (name.equals("Prefix")) {
                     andOperandsList.add(new LifecyclePrefixPredicate(getText()));
                 } else if (name.equals("Tag")) {
@@ -2313,9 +2234,7 @@ public class XmlResponsesSaxParser {
                     currentTagKey = null;
                     currentTagValue = null;
                 }
-            }
-
-            else if (in("LifecycleConfiguration", "Rule", "Filter", "And", "Tag")) {
+            } else if (in("LifecycleConfiguration", "Rule", "Filter", "And", "Tag")) {
                 if (name.equals("Key")) {
                     currentTagKey = getText();
                 } else if (name.equals("Value")) {
@@ -2453,11 +2372,11 @@ public class XmlResponsesSaxParser {
             } else if (in("DomainConfiguration", "DomainRule")) {
                 if (name.equals("Status")) {
                     status = getText();
-                } else if(name.equals("Name")) {
+                } else if (name.equals("Name")) {
                     mname = getText();
-                } else if(name.equals("Type")) {
+                } else if (name.equals("Type")) {
                     type = getText();
-                } else if(name.equals("ForcedReplacement")) {
+                } else if (name.equals("ForcedReplacement")) {
                     forcedReplacement = getText();
                 }
             }
@@ -2488,8 +2407,7 @@ public class XmlResponsesSaxParser {
                 new BucketLoggingConfiguration();
 
         /**
-         * @return
-         * an object representing the bucket's LoggingStatus document.
+         * @return an object representing the bucket's LoggingStatus document.
          */
         public BucketLoggingConfiguration getBucketLoggingConfiguration() {
             return bucketLoggingConfiguration;
@@ -2545,11 +2463,11 @@ public class XmlResponsesSaxParser {
             if (in("InventoryConfiguration")) {
                 if (name.equals("Destination")) {
                     inventoryDestination = new InventoryDestination();
-                } else if(name.equals("Filter")) {
+                } else if (name.equals("Filter")) {
                     filter = new InventoryFilter();
-                } else if(name.equals("Schedule")) {
+                } else if (name.equals("Schedule")) {
                     inventorySchedule = new InventorySchedule();
-                } else if(name.equals("OptionalFields")) {
+                } else if (name.equals("OptionalFields")) {
                     optionalFields = new ArrayList<String>();
                 }
 
@@ -2591,7 +2509,7 @@ public class XmlResponsesSaxParser {
                 }
 
             } else if (in("InventoryConfiguration", "Destination")) {
-                if ( name.equals("COSBucketDestination") ) {
+                if (name.equals("COSBucketDestination")) {
                     inventoryDestination.setCosBucketDestination(cosBucketDestination);
                     cosBucketDestination = null;
                 }
@@ -2628,6 +2546,7 @@ public class XmlResponsesSaxParser {
         }
 
     }
+
     public static class BucketTaggingConfigurationHandler extends AbstractHandler {
 
         private final BucketTaggingConfiguration configuration =
@@ -2663,9 +2582,7 @@ public class XmlResponsesSaxParser {
                             .add(new TagSet(currentTagSet));
                     currentTagSet = null;
                 }
-            }
-
-            else if (in("Tagging", "TagSet")) {
+            } else if (in("Tagging", "TagSet")) {
                 if (name.equals("Tag")) {
                     if (currentTagKey != null && currentTagValue != null) {
                         currentTagSet.put(currentTagKey, currentTagValue);
@@ -2673,9 +2590,7 @@ public class XmlResponsesSaxParser {
                     currentTagKey = null;
                     currentTagValue = null;
                 }
-            }
-
-            else if (in("Tagging", "TagSet", "Tag")) {
+            } else if (in("Tagging", "TagSet", "Tag")) {
                 if (name.equals("Key")) {
                     currentTagKey = getText();
                 } else if (name.equals("Value")) {
@@ -2684,6 +2599,7 @@ public class XmlResponsesSaxParser {
             }
         }
     }
+
     /*
         HTTP/1.1 200 OK
         x-amz-id-2: ITnGT1y4RyTmXa3rPi4hklTXouTf0hccUjo0iCPjz6FnfIutBj3M7fPGlWO2SEWp
@@ -2734,11 +2650,11 @@ public class XmlResponsesSaxParser {
             } else if (in("ListInventoryConfigurationResult", "InventoryConfiguration")) {
                 if (name.equals("Destination")) {
                     currentDestination = new InventoryDestination();
-                } else if(name.equals("Filter")) {
+                } else if (name.equals("Filter")) {
                     currentFilter = new InventoryFilter();
-                } else if(name.equals("Schedule")) {
+                } else if (name.equals("Schedule")) {
                     currentSchedule = new InventorySchedule();
-                } else if(name.equals("OptionalFields")) {
+                } else if (name.equals("OptionalFields")) {
                     currentOptionalFieldsList = new ArrayList<String>();
                 }
 
@@ -2766,9 +2682,7 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("NextContinuationToken")) {
                     result.setNextContinuationToken(getText());
                 }
-            }
-
-            else if (in("ListInventoryConfigurationResult", "InventoryConfiguration")) {
+            } else if (in("ListInventoryConfigurationResult", "InventoryConfiguration")) {
                 if (name.equals("Id")) {
                     currentConfiguration.setId(getText());
 
@@ -2796,12 +2710,13 @@ public class XmlResponsesSaxParser {
                 }
 
             } else if (in("ListInventoryConfigurationResult", "InventoryConfiguration", "Destination")) {
-                if ( name.equals("COSBucketDestination") ) {
+                if (name.equals("COSBucketDestination")) {
                     currentDestination.setCosBucketDestination(currentCosBucketDestination);
                     currentCosBucketDestination = null;
                 }
 
-            } else if (in("ListInventoryConfigurationResult", "InventoryConfiguration", "Destination", "COSBucketDestination")) {
+            } else if (in("ListInventoryConfigurationResult", "InventoryConfiguration", "Destination",
+                    "COSBucketDestination")) {
                 if (name.equals("AccountId")) {
                     currentCosBucketDestination.setAccountId(getText());
                 } else if (name.equals("Bucket")) {
@@ -2811,7 +2726,8 @@ public class XmlResponsesSaxParser {
                 } else if (name.equals("Prefix")) {
                     currentCosBucketDestination.setPrefix(getText());
                 }
-            } else if (in("ListInventoryConfigurationResult", "InventoryConfiguration", "Destination", "COSBucketDestination", "Encryption")) {
+            } else if (in("ListInventoryConfigurationResult", "InventoryConfiguration", "Destination",
+                    "COSBucketDestination", "Encryption")) {
                 if (name.equals(SSE_COS)) {
                     currentCosBucketDestination.setEncryption(new ServerSideEncryptionCOS());
                 }
@@ -2837,23 +2753,24 @@ public class XmlResponsesSaxParser {
      * Handler for unmarshalling the response from GET Object Tagging.
      *
      * <Tagging>
-     *     <TagSet>
-     *         <Tag>
-     *             <Key>Foo</Key>
-     *             <Value>1</Value>
-     *         </Tag>
-     *         <Tag>
-     *             <Key>Bar</Key>
-     *             <Value>2</Value>
-     *         </Tag>
-     *         <Tag>
-     *             <Key>Baz</Key>
-     *             <Value>3</Value>
-     *         </Tag>
-     *     </TagSet>
+     * <TagSet>
+     * <Tag>
+     * <Key>Foo</Key>
+     * <Value>1</Value>
+     * </Tag>
+     * <Tag>
+     * <Key>Bar</Key>
+     * <Value>2</Value>
+     * </Tag>
+     * <Tag>
+     * <Key>Baz</Key>
+     * <Value>3</Value>
+     * </Tag>
+     * </TagSet>
      * </Tagging>
      */
     public static class GetObjectTaggingHandler extends AbstractHandler {
+
         private GetObjectTaggingResult getObjectTaggingResult;
         private List<Tag> tagSet;
         private String currentTagValue;
@@ -2925,10 +2842,10 @@ public class XmlResponsesSaxParser {
         @Override
         protected void doEndElement(String uri, String name, String qName) {
             if (in("IntelligentTieringConfiguration")) {
-                if(name.equals("Status")) {
+                if (name.equals("Status")) {
                     configuration.setStatus(getText());
                 }
-            } else if(in("IntelligentTieringConfiguration", "Transition")) {
+            } else if (in("IntelligentTieringConfiguration", "Transition")) {
                 if (name.equals("Days")) {
                     configuration.getTransition().setDays(Integer.parseInt(getText()));
                 }
@@ -2938,6 +2855,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class ListQueueHandler extends AbstractHandler {
+
         private MediaListQueueResponse response = new MediaListQueueResponse();
         boolean isNew = true;
         MediaQueueObject queueObject;
@@ -3048,6 +2966,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class ListMediaBucketHandler extends AbstractHandler {
+
         private MediaBucketResponse response = new MediaBucketResponse();
         boolean isNew = true;
         MediaBucketObject bucketObject;
@@ -3115,6 +3034,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class WorkflowListHandler extends AbstractHandler {
+
         private MediaWorkflowListResponse response = new MediaWorkflowListResponse();
         MediaWorkflowObject workflowObject;
 
@@ -3176,7 +3096,8 @@ public class XmlResponsesSaxParser {
                         break;
                 }
             } else if (in("Response", "MediaWorkflowList", "Topology", "Dependencies")) {
-                Map<String, MediaWorkflowDependency> dependencyMap = workflowObject.getTopology().getMediaWorkflowDependency();
+                Map<String, MediaWorkflowDependency> dependencyMap = workflowObject.getTopology()
+                        .getMediaWorkflowDependency();
                 MediaWorkflowDependency dependency = dependencyMap.get(name);
                 if (dependency == null) {
                     dependency = new MediaWorkflowDependency();
@@ -3190,7 +3111,7 @@ public class XmlResponsesSaxParser {
             for (String key : nodesMap.keySet()) {
                 MediaWorkflowNode workflowNode = nodesMap.get(key);
                 if (in("Response", "MediaWorkflowList", "Topology", "Nodes", key, "Operation")) {
-                    if ("TemplateId".equals(name)){
+                    if ("TemplateId".equals(name)) {
                         workflowNode.getOperation().setTemplateId(getText());
                     }
                 } else if (in("Response", "MediaWorkflowList", "Topology", "Nodes", key, "Operation", "Output")) {
@@ -3208,13 +3129,11 @@ public class XmlResponsesSaxParser {
                         default:
                             return;
                     }
-                } else if (in("Response", "MediaWorkflowList", "Topology", "Nodes", key)){
-                    if ("Type".equals(name)){
+                } else if (in("Response", "MediaWorkflowList", "Topology", "Nodes", key)) {
+                    if ("Type".equals(name)) {
                         workflowNode.setType(getText());
                     }
-                }
-
-                else if (in("Response", "MediaWorkflowList", "Topology", "Nodes", key, "Input")) {
+                } else if (in("Response", "MediaWorkflowList", "Topology", "Nodes", key, "Input")) {
                     MediaWorkflowInput input = workflowNode.getInput();
                     switch (name) {
                         case "ObjectPrefix":
@@ -3244,6 +3163,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class WorkflowHandler extends AbstractHandler {
+
         private MediaWorkflowResponse response = new MediaWorkflowResponse();
 
         @Override
@@ -3288,13 +3208,14 @@ public class XmlResponsesSaxParser {
 
 
     public static class WorkflowExecutionHandler extends AbstractHandler {
+
         private MediaWorkflowExecutionResponse response = new MediaWorkflowExecutionResponse();
         MediaWorkflowExecutionObject workflowObject = response.getWorkflowExecution();
 
         @Override
         protected void doStartElement(String uri, String name, String qName, Attributes attrs) {
 
-            if ("Tasks".equals(name)){
+            if ("Tasks".equals(name)) {
                 workflowObject.getTasks().addLast(new MediaTasks());
             }
 
@@ -3338,7 +3259,7 @@ public class XmlResponsesSaxParser {
                     default:
                         break;
                 }
-            }else if (in("Response", "WorkflowExecution","Tasks")){
+            } else if (in("Response", "WorkflowExecution", "Tasks")) {
                 MediaTasks tasks = workflowObject.getTasks().getLast();
                 switch (name) {
                     case "Type":
@@ -3362,9 +3283,9 @@ public class XmlResponsesSaxParser {
                     default:
                         break;
                 }
-            }
-            else if (in("Response", "WorkflowExecution", "Topology", "Dependencies")) {
-                Map<String, MediaWorkflowDependency> dependencyMap = workflowObject.getTopology().getMediaWorkflowDependency();
+            } else if (in("Response", "WorkflowExecution", "Topology", "Dependencies")) {
+                Map<String, MediaWorkflowDependency> dependencyMap = workflowObject.getTopology()
+                        .getMediaWorkflowDependency();
                 MediaWorkflowDependency dependency = dependencyMap.get(name);
                 if (dependency == null) {
                     dependency = new MediaWorkflowDependency();
@@ -3377,7 +3298,7 @@ public class XmlResponsesSaxParser {
             for (String key : nodesMap.keySet()) {
                 MediaWorkflowNode workflowNode = nodesMap.get(key);
                 if (in("Response", "WorkflowExecution", "Topology", "Nodes", key, "Operation")) {
-                    if ("TemplateId".equals(name)){
+                    if ("TemplateId".equals(name)) {
                         workflowNode.getOperation().setTemplateId(getText());
                     }
                 } else if (in("Response", "WorkflowExecution", "Topology", "Nodes", key, "Operation", "Output")) {
@@ -3395,13 +3316,11 @@ public class XmlResponsesSaxParser {
                         default:
                             return;
                     }
-                } else if (in("Response", "WorkflowExecution", "Topology", "Nodes", key)){
-                    if ("Type".equals(name)){
+                } else if (in("Response", "WorkflowExecution", "Topology", "Nodes", key)) {
+                    if ("Type".equals(name)) {
                         workflowNode.setType(getText());
                     }
-                }
-
-                else if (in("Response", "WorkflowExecution", "Topology", "Nodes", key, "Input")) {
+                } else if (in("Response", "WorkflowExecution", "Topology", "Nodes", key, "Input")) {
                     MediaWorkflowInput input = workflowNode.getInput();
                     switch (name) {
                         case "ObjectPrefix":
@@ -3427,6 +3346,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class MediaJobCreatHandler extends AbstractHandler {
+
         MediaJobResponse response = new MediaJobResponse();
 
         @Override
@@ -3474,7 +3394,7 @@ public class XmlResponsesSaxParser {
             } else if (in("Response", "JobsDetail", "Operation")) {
                 if ("TemplateId".equalsIgnoreCase(name)) {
                     jobsDetail.getOperation().setTemplateId(getText());
-                }else if ("WatermarkTemplateId".equalsIgnoreCase(name)){
+                } else if ("WatermarkTemplateId".equalsIgnoreCase(name)) {
                     jobsDetail.getOperation().getWatermarkTemplateId().add(getText());
                 }
             } else if (in("Response", "JobsDetail", "Operation", "MediaInfo", "Format")) {
@@ -3523,6 +3443,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class DescribeMediaJobHandler extends AbstractHandler {
+
         MediaJobResponse response = new MediaJobResponse();
 
         @Override
@@ -3571,7 +3492,7 @@ public class XmlResponsesSaxParser {
             } else if (in("Response", "JobsDetail", "Operation")) {
                 if ("TemplateId".equalsIgnoreCase(name)) {
                     jobsDetail.getOperation().setTemplateId(getText());
-                }else if ("WatermarkTemplateId".equalsIgnoreCase(name)){
+                } else if ("WatermarkTemplateId".equalsIgnoreCase(name)) {
                     jobsDetail.getOperation().getWatermarkTemplateId().add(getText());
                 }
             } else if (in("Response", "JobsDetail", "Operation", "MediaInfo", "Format")) {
@@ -3611,6 +3532,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class DescribeMediaJobsHandler extends AbstractHandler {
+
         MediaListJobResponse response = new MediaListJobResponse();
 
         @Override
@@ -3703,6 +3625,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class MediaQueueResponseHandler extends AbstractHandler {
+
         MediaQueueResponse response = new MediaQueueResponse();
 
         @Override
@@ -3773,6 +3696,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class MediaTemplateHandler extends AbstractHandler {
+
         MediaTemplateResponse response = new MediaTemplateResponse();
 
         @Override
@@ -3854,6 +3778,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class SnapshotHandler extends AbstractHandler {
+
         SnapshotResponse response = new SnapshotResponse();
 
         @Override
@@ -3881,6 +3806,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class MediaTemplatesHandler extends AbstractHandler {
+
         MediaListTemplateResponse response = new MediaListTemplateResponse();
 
         @Override
@@ -3983,6 +3909,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class GenerateMediainfoHandler extends AbstractHandler {
+
         MediaInfoResponse response = new MediaInfoResponse();
 
         @Override
@@ -4014,6 +3941,7 @@ public class XmlResponsesSaxParser {
     }
 
     public static class WorkflowExecutionsHandler extends AbstractHandler {
+
         MediaWorkflowExecutionsResponse response = new MediaWorkflowExecutionsResponse();
 
         @Override

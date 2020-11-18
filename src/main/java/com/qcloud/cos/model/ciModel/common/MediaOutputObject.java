@@ -5,6 +5,7 @@ package com.qcloud.cos.model.ciModel.common;
  * 媒体处理 输出信息实体
  */
 public class MediaOutputObject {
+
     private String region;
     private String bucket;
 

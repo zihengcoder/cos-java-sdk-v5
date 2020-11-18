@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -23,7 +23,10 @@ import java.io.Serializable;
 import com.qcloud.cos.internal.CosServiceRequest;
 
 public class ListVersionsRequest extends CosServiceRequest implements Serializable {
-    /** The name of the COS bucket whose versions are to be listed. */
+
+    /**
+     * The name of the COS bucket whose versions are to be listed.
+     */
     private String bucketName;
 
     /**
@@ -95,7 +98,8 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      *
      * @see ListVersionsRequest#ListVersionsRequest(String, String, String, String, String, Integer)
      */
-    public ListVersionsRequest() {}
+    public ListVersionsRequest() {
+    }
 
     /**
      * Constructs a new {@link ListVersionsRequest} object and initializes all required and optional
@@ -107,7 +111,6 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * @param versionIdMarker The version ID marker indicating where results should begin.
      * @param delimiter The delimiter for condensing common prefixes in returned results.
      * @param maxResults The maximum number of results to return.
-     *
      * @see ListVersionsRequest#ListVersionsRequest()
      */
     public ListVersionsRequest(String bucketName, String prefix, String keyMarker,
@@ -125,7 +128,6 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * Gets the name of the COS bucket whose versions are to be listed.
      *
      * @return The name of the COS bucket whose versions are to be listed.
-     *
      * @see ListVersionsRequest#setBucketName(String)
      * @see ListVersionsRequest#withBucketName(String)
      */
@@ -137,7 +139,6 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * Sets the name of the COS bucket whose versions are to be listed.
      *
      * @param bucketName The name of the COS bucket whose versions are to be listed.
-     *
      * @see ListVersionsRequest#getBucketName()
      * @see ListVersionsRequest#withBucketName(String)
      */
@@ -150,10 +151,8 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * {@link ListVersionsRequest}, enabling additional method calls to be chained together.
      *
      * @param bucketName The name of the COS bucket whose versions are to be listed.
-     *
      * @return This {@link ListVersionsRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see ListVersionsRequest#getBucketName()
      * @see ListVersionsRequest#setBucketName(String)
      */
@@ -169,7 +168,6 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      *
      * @return The optional prefix parameter restricting the response to keys that begin with the
      *         specified prefix.
-     *
      * @see ListVersionsRequest#setPrefix(String)
      * @see ListVersionsRequest#withPrefix(String)
      */
@@ -182,8 +180,7 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * specified prefix.
      *
      * @param prefix The optional prefix parameter restricting the response to keys that begin with
-     *        the specified prefix.
-     *
+     *         the specified prefix.
      * @see ListVersionsRequest#getPrefix()
      * @see ListVersionsRequest#withPrefix(String)
      */
@@ -197,11 +194,9 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * to be chained together.
      *
      * @param prefix The optional prefix parameter restricting the response to keys that begin with
-     *        the specified prefix.
-     *
+     *         the specified prefix.
      * @return This {@link ListVersionsRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see ListVersionsRequest#getPrefix()
      * @see ListVersionsRequest#setPrefix(String)
      */
@@ -223,7 +218,6 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      *
      * @return The optional <code>keyMarker</code> parameter indicating where in the sorted list of
      *         all versions in the specified bucket to begin returning results.
-     *
      * @see ListVersionsRequest#setKeyMarker(String)
      * @see ListVersionsRequest#withKeyMarker(String)
      */
@@ -236,8 +230,7 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * versions in the specified bucket to begin returning results.
      *
      * @param keyMarker The optional <code>keyMarker</code> parameter indicating where in the sorted
-     *        list of all versions in the specified bucket to begin returning results.
-     *
+     *         list of all versions in the specified bucket to begin returning results.
      * @see ListVersionsRequest#getKeyMarker()
      * @see ListVersionsRequest#withKeyMarker(String)
      */
@@ -251,11 +244,9 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * {@link ListVersionsRequest}, enabling additional method calls to be chained together.
      *
      * @param keyMarker The optional <code>keyMarker</code> parameter indicating where in the sorted
-     *        list of all versions in the specified bucket to begin returning results.
-     *
+     *         list of all versions in the specified bucket to begin returning results.
      * @return This {@link ListVersionsRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see ListVersionsRequest#getKeyMarker()
      * @see ListVersionsRequest#setKeyMarker(String)
      */
@@ -276,7 +267,6 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      *
      * @return The optional <code>versionIdMarker</code> parameter indicating where in the sorted
      *         list of all versions in the specified bucket to begin returning results.
-     *
      * @see ListVersionsRequest#setVersionIdMarker(String)
      * @see ListVersionsRequest#withVersionIdMarker(String)
      */
@@ -289,8 +279,7 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * of all versions in the specified bucket to begin returning results.
      *
      * @param versionIdMarker The optional <code>versionIdMarker</code> parameter indicating where
-     *        in the sorted list of all versions in the specified bucket to begin returning results.
-     *
+     *         in the sorted list of all versions in the specified bucket to begin returning results.
      * @see ListVersionsRequest#getVersionIdMarker()
      * @see ListVersionsRequest#withVersionIdMarker(String)
      */
@@ -304,11 +293,9 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * {@link ListVersionsRequest}, enabling additional method calls to be chained together.
      *
      * @param versionIdMarker The optional <code>versionIdMarker</code> parameter indicating where
-     *        in the sorted list of all versions in the specified bucket to begin returning results.
-     *
+     *         in the sorted list of all versions in the specified bucket to begin returning results.
      * @return This {@link ListVersionsRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see ListVersionsRequest#getVersionIdMarker()
      * @see ListVersionsRequest#setVersionIdMarker(String)
      */
@@ -330,7 +317,6 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * @return The optional delimiter parameter that causes keys that contain the same string
      *         between the prefix and the first occurrence of the delimiter to be combined into a
      *         single result element in the {@link VersionListing#getCommonPrefixes()} list.
-     *
      * @see ListVersionsRequest#setDelimiter(String)
      * @see ListVersionsRequest#withDelimiter(String)
      */
@@ -344,9 +330,8 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * element in the {@link VersionListing#getCommonPrefixes()} list.
      *
      * @param delimiter The optional delimiter parameter that causes keys that contain the same
-     *        string between the prefix and the first occurrence of the delimiter to be combined
-     *        into a single result element in the {@link VersionListing#getCommonPrefixes()} list.
-     *
+     *         string between the prefix and the first occurrence of the delimiter to be combined
+     *         into a single result element in the {@link VersionListing#getCommonPrefixes()} list.
      * @see ListVersionsRequest#getDelimiter()
      * @see ListVersionsRequest#withDelimiter(String)
      */
@@ -361,12 +346,10 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * {@link ListVersionsRequest}, enabling additional method calls to be chained together.
      *
      * @param delimiter The optional delimiter parameter that causes keys that contain the same
-     *        string between the prefix and the first occurrence of the delimiter to be combined
-     *        into a single result element in the {@link VersionListing#getCommonPrefixes()} list.
-     *
+     *         string between the prefix and the first occurrence of the delimiter to be combined
+     *         into a single result element in the {@link VersionListing#getCommonPrefixes()} list.
      * @return This {@link ListVersionsRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see ListVersionsRequest#getDelimiter()
      * @see ListVersionsRequest#setDelimiter(String)
      */
@@ -383,7 +366,6 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      *
      * @return The optional <code>maxResults</code> parameter indicating the maximum number of
      *         results
-     *
      * @see ListVersionsRequest#setMaxResults(Integer)
      * @see ListVersionsRequest#withMaxResults(Integer)
      */
@@ -396,8 +378,7 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * to include in the response.
      *
      * @param maxResults The optional <code>maxResults</code> parameter indicating the maximum
-     *        number of results to include in the response.
-     *
+     *         number of results to include in the response.
      * @see ListVersionsRequest#getMaxResults()
      * @see ListVersionsRequest#withMaxResults(Integer)
      */
@@ -411,11 +392,9 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * method calls to be chained together.
      *
      * @param maxResults The optional <code>maxResults</code> parameter indicating the maximum
-     *        number of results to include in the response.
-     *
+     *         number of results to include in the response.
      * @return This {@link ListVersionsRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see ListVersionsRequest#getMaxResults()
      * @see ListVersionsRequest#setMaxResults(Integer)
      */
@@ -427,7 +406,7 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
     /**
      * Gets the optional <code>encodingType</code> parameter indicating the encoding method to be
      * applied on the response.
-     * 
+     *
      * @return The encoding method to be applied on the response.
      */
     public String getEncodingType() {
@@ -440,9 +419,9 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * parser cannot parse some characters, such as characters with an ASCII value from 0 to 10. For
      * characters that are not supported in XML 1.0, you can add this parameter to request that COS
      * encode the keys in the response.
-     * 
+     *
      * @param encodingType The encoding method to be applied on the response. Valid values: null
-     *        (not encoded) or "url".
+     *         (not encoded) or "url".
      */
     public void setEncodingType(String encodingType) {
         this.encodingType = encodingType;
@@ -455,9 +434,9 @@ public class ListVersionsRequest extends CosServiceRequest implements Serializab
      * characters that are not supported in XML 1.0, you can add this parameter to request that COS
      * encode the keys in the response. Returns this {@link ListVersionsRequest}, enabling
      * additional method calls to be chained together.
-     * 
+     *
      * @param encodingType The encoding method to be applied on the response. Valid values: null
-     *        (not encoded) or "url".
+     *         (not encoded) or "url".
      */
     public ListVersionsRequest withEncodingType(String encodingType) {
         setEncodingType(encodingType);

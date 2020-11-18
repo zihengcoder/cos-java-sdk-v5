@@ -32,6 +32,7 @@ import com.qcloud.cos.region.Region;
 // 使用客户端加密前的注意事项请参考接口文档
 // 这里给出使用非对称秘钥RSA加密每次生成的随机对称秘钥
 public class AsymmetricKeyEncryptionClientDemo {
+
     private static final String pubKeyPath = "secretFolder/pub.key";
     private static final String priKeyPath = "secretFolder/pri.key";
     private static final SecureRandom srand = new SecureRandom();
@@ -80,14 +81,13 @@ public class AsymmetricKeyEncryptionClientDemo {
 
         return new KeyPair(publicKey, privateKey);
     }
-    
+
     public static void main(String[] args) throws Exception {
         // 初始化用户身份信息(secretId, secretKey)
         COSCredentials cred = new BasicCOSCredentials("AKIDXXXXXXXXXXXXXXXXXXXX",
                 "YYZZZZZZZZZZZZZZZZZZ");
         // 设置bucket的区域, COS地域的简称请参照 https://www.qcloud.com/document/product/436/6224
         ClientConfig clientConfig = new ClientConfig(new Region("ap-beijing-1"));
-
 
         // 加载保存在文件中的秘钥, 如果不存在，请先使用buildAndSaveAsymKeyPair生成秘钥
         buildAndSaveAsymKeyPair();

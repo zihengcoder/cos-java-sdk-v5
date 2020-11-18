@@ -9,6 +9,7 @@ import java.util.List;
  * 工作流相关接口demo 详情见 : https://cloud.tencent.com/document/product/460/45947
  */
 public class WorkFlowDemo {
+
     public static void main(String[] args) {
         // 1 初始化用户身份信息（secretId, secretKey）。
         COSClient client = ClientUtils.getTestClient();

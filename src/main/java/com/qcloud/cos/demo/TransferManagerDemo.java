@@ -30,6 +30,7 @@ import com.qcloud.cos.transfer.TransferManagerConfiguration;
 // TransferManager提供异步的上传文件, 下载文件，copy文件的高级API接口
 // 可以根据文件大小自动的选择上传接口或者copy接口,方便用户使用, 无需自行封装较复杂的分块上传或者分块copy
 public class TransferManagerDemo {
+
     // Prints progress while waiting for the transfer to finish.
     private static void showTransferProgress(Transfer transfer) {
         System.out.println(transfer.getDescription());
@@ -196,7 +197,6 @@ public class TransferManagerDemo {
             e.printStackTrace();
         }
 
-
         transferManager.shutdownNow();
         cosclient.shutdown();
     }
@@ -211,7 +211,6 @@ public class TransferManagerDemo {
         ClientConfig clientConfig = new ClientConfig(new Region("ap-beijing-1"));
         // 3 生成cos客户端
         COSClient cosclient = new COSClient(cred, clientConfig);
-
 
         ExecutorService threadPool = Executors.newFixedThreadPool(32);
         // 传入一个threadpool, 若不传入线程池, 默认TransferManager中会生成一个单线程的线程池。
@@ -258,12 +257,11 @@ public class TransferManagerDemo {
         // 3 生成cos客户端
         COSClient cosclient = new COSClient(cred, clientConfig);
 
-
         ExecutorService threadPool = Executors.newFixedThreadPool(32);
         // 传入一个threadpool, 若不传入线程池, 默认TransferManager中会生成一个单线程的线程池。
         TransferManager transferManager = new TransferManager(cosclient, threadPool);
         TransferManagerConfiguration transferManagerConfiguration = new TransferManagerConfiguration();
-        transferManagerConfiguration.setMultipartCopyThreshold(20*1024*1024);
+        transferManagerConfiguration.setMultipartCopyThreshold(20 * 1024 * 1024);
         transferManager.setConfiguration(transferManagerConfiguration);
 
         // 要拷贝的bucket region, 支持跨园区拷贝

@@ -11,7 +11,7 @@
  * on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either
  * express or implied. See the License for the specific language governing
  * permissions and limitations under the License.
- 
+
  * According to cos feature, we modify some class，comment, field name, etc.
  */
 
@@ -28,10 +28,14 @@ import com.qcloud.cos.internal.CosServiceRequest;
 public class GetObjectRequest extends CosServiceRequest
         implements SSECustomerKeyProvider, Serializable {
 
-    /** The name of the bucket containing the object to retrieve */
+    /**
+     * The name of the bucket containing the object to retrieve
+     */
     private String bucketName;
 
-    /** The key under which the desired object is stored */
+    /**
+     * The key under which the desired object is stored
+     */
     private String key;
 
     /**
@@ -43,7 +47,9 @@ public class GetObjectRequest extends CosServiceRequest
      */
     private String versionId;
 
-    /** Optional member indicating the byte range of data to retrieve */
+    /**
+     * Optional member indicating the byte range of data to retrieve
+     */
     private long[] range;
 
     /**
@@ -94,7 +100,6 @@ public class GetObjectRequest extends CosServiceRequest
      *
      * @param bucketName The name of the bucket containing the desired object.
      * @param key The key in the specified bucket under which the object is stored.
-     *
      * @see GetObjectRequest#GetObjectRequest(String, String, String)
      */
     public GetObjectRequest(String bucketName, String key) {
@@ -107,8 +112,7 @@ public class GetObjectRequest extends CosServiceRequest
      * @param bucketName The name of the bucket containing the desired object.
      * @param key The key in the specified bucket under which the object is stored.
      * @param versionId The Qcloud COS version ID specifying a specific version of the object to
-     *        download.
-     *
+     *         download.
      * @see GetObjectRequest#GetObjectRequest(String, String)
      */
     public GetObjectRequest(String bucketName, String key, String versionId) {
@@ -121,7 +125,6 @@ public class GetObjectRequest extends CosServiceRequest
      * Gets the name of the bucket containing the object to be downloaded.
      *
      * @return The name of the bucket containing the object to be downloaded.
-     *
      * @see GetObjectRequest#setBucketName(String)
      * @see GetObjectRequest#withBucketName(String)
      */
@@ -133,7 +136,6 @@ public class GetObjectRequest extends CosServiceRequest
      * Sets the name of the bucket containing the object to be downloaded.
      *
      * @param bucketName The name of the bucket containing the object to be downloaded.
-     *
      * @see GetObjectRequest#getBucketName()
      * @see GetObjectRequest#withBucketName(String)
      */
@@ -146,10 +148,8 @@ public class GetObjectRequest extends CosServiceRequest
      * {@link GetObjectRequest}, enabling additional method calls to be chained together.
      *
      * @param bucketName The name of the bucket containing the object to be downloaded.
-     *
      * @return This {@link GetObjectRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see GetObjectRequest#getBucketName()
      * @see GetObjectRequest#setBucketName(String)
      */
@@ -162,7 +162,6 @@ public class GetObjectRequest extends CosServiceRequest
      * Gets the key under which the object to be downloaded is stored.
      *
      * @return The key under which the object to be downloaded is stored.
-     *
      * @see GetObjectRequest#setKey(String)
      * @see GetObjectRequest#withKey(String)
      */
@@ -174,7 +173,6 @@ public class GetObjectRequest extends CosServiceRequest
      * Sets the key under which the object to be downloaded is stored.
      *
      * @param key The key under which the object to be downloaded is stored.
-     *
      * @see GetObjectRequest#getKey()
      * @see GetObjectRequest#withKey(String)
      */
@@ -187,10 +185,8 @@ public class GetObjectRequest extends CosServiceRequest
      * {@link GetObjectRequest}, enabling additional method calls to be chained together.
      *
      * @param key The key under which the object to be downloaded is stored.
-     *
      * @return This {@link GetObjectRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see GetObjectRequest#getKey()
      * @see GetObjectRequest#setKey(String)
      */
@@ -217,7 +213,6 @@ public class GetObjectRequest extends CosServiceRequest
      *
      * @return The optional version ID specifying which version of the object to download. If not
      *         specified, the most recent version will be downloaded.
-     *
      * @see GetObjectRequest#setVersionId(String)
      * @see GetObjectRequest#withVersionId(String)
      */
@@ -240,7 +235,6 @@ public class GetObjectRequest extends CosServiceRequest
      * </p>
      *
      * @param versionId The optional version ID specifying which version of the object to download.
-     *
      * @see GetObjectRequest#getVersionId()
      * @see GetObjectRequest#withVersionId(String)
      */
@@ -266,9 +260,7 @@ public class GetObjectRequest extends CosServiceRequest
      * </p>
      *
      * @param versionId The optional version ID specifying which version of the object to download.
-     *
      * @return The updated request object, enabling additional method calls to be chained together.
-     *
      * @see GetObjectRequest#getVersionId()
      * @see GetObjectRequest#setVersionId(String)
      */
@@ -292,11 +284,10 @@ public class GetObjectRequest extends CosServiceRequest
      * range. If no byte range has been specified, the entire object is downloaded and this method
      * returns <code>null</code>.
      * </p>
-     * 
+     *
      * @return A two element array indicating the inclusive start index and end index within the
      *         object being downloaded by this request. Returns <code>null</code> if no range has
      *         been specified, and the whole object is to be downloaded.
-     *
      * @see GetObjectMetadataRequest#setRange(long, long)
      * @see GetObjectRequest#withRange(long, long)
      */
@@ -319,12 +310,11 @@ public class GetObjectRequest extends CosServiceRequest
      *
      * @param start The start of the inclusive byte range to download.
      * @param end The end of the inclusive byte range to download.
-     *
      * @see GetObjectMetadataRequest#getRange()
      * @see GetObjectRequest#withRange(long, long)
      */
     public void setRange(long start, long end) {
-        range = new long[] {start, end};
+        range = new long[]{start, end};
     }
 
     /**
@@ -343,10 +333,8 @@ public class GetObjectRequest extends CosServiceRequest
      *
      * @param start The start of the inclusive byte range to download.
      * @param end The end of the inclusive byte range to download.
-     *
      * @return This {@link GetObjectRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see GetObjectRequest#getRange()
      * @see GetObjectRequest#setRange(long, long)
      */
@@ -362,7 +350,6 @@ public class GetObjectRequest extends CosServiceRequest
      *
      * @return The optional list of ETag constraints that when present <b>must</b> include a match
      *         for the object's current ETag in order for this request to be executed.
-     *
      * @see GetObjectRequest#setMatchingETagConstraints(List)
      * @see GetObjectRequest#withMatchingETagConstraint(String)
      */
@@ -377,8 +364,7 @@ public class GetObjectRequest extends CosServiceRequest
      * the list needs to match for the request to be executed by Qcloud COS.
      *
      * @param eTagList The optional list of ETag constraints that <b>must</b> include a match for
-     *        the object's current ETag in order for this request to be executed.
-     *
+     *         the object's current ETag in order for this request to be executed.
      * @see GetObjectRequest#getMatchingETagConstraints()
      * @see GetObjectRequest#withMatchingETagConstraint(String)
      */
@@ -396,10 +382,8 @@ public class GetObjectRequest extends CosServiceRequest
      * </p>
      *
      * @param eTag The matching ETag constraint to add to this request.
-     *
      * @return This {@link GetObjectRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see GetObjectRequest#getMatchingETagConstraints()
      * @see GetObjectRequest#setMatchingETagConstraints(List)
      */
@@ -416,7 +400,6 @@ public class GetObjectRequest extends CosServiceRequest
      *
      * @return The optional list of ETag constraints that when present, <b>must</b> not include a
      *         match for the object's current ETag in order for this request to be executed.
-     *
      * @see GetObjectRequest#setNonmatchingETagConstraints(List)
      * @see GetObjectRequest#withNonmatchingETagConstraint(String)
      */
@@ -431,8 +414,7 @@ public class GetObjectRequest extends CosServiceRequest
      * not</b> be executed by Qcloud COS.
      *
      * @param eTagList The list of ETag constraints that, when present, <b>must not</b> include a
-     *        match for the object's current ETag in order for this request to be executed.
-     *
+     *         match for the object's current ETag in order for this request to be executed.
      * @see GetObjectRequest#getNonmatchingETagConstraints()
      * @see GetObjectRequest#withNonmatchingETagConstraint(String)
      */
@@ -451,10 +433,8 @@ public class GetObjectRequest extends CosServiceRequest
      * </p>
      *
      * @param eTag The non-matching ETag constraint to add to this request.
-     *
      * @return This {@link GetObjectRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see GetObjectRequest#getNonmatchingETagConstraints()
      * @see GetObjectRequest#setNonmatchingETagConstraints(List)
      */
@@ -469,7 +449,6 @@ public class GetObjectRequest extends CosServiceRequest
      *
      * @return The optional unmodified constraint that restricts this request to executing only if
      *         the object has <b>not</b> been modified after the specified date.
-     *
      * @see GetObjectRequest#setUnmodifiedSinceConstraint(Date)
      * @see GetObjectRequest#withUnmodifiedSinceConstraint(Date)
      */
@@ -484,8 +463,7 @@ public class GetObjectRequest extends CosServiceRequest
      * Note that Qcloud COS will ignore any dates occurring in the future.
      *
      * @param date The unmodified constraint that restricts this request to executing only if the
-     *        object has <b>not</b> been modified after this date.
-     *
+     *         object has <b>not</b> been modified after this date.
      * @see GetObjectRequest#getUnmodifiedSinceConstraint()
      * @see GetObjectRequest#withUnmodifiedSinceConstraint(Date)
      */
@@ -501,11 +479,9 @@ public class GetObjectRequest extends CosServiceRequest
      * Note that Qcloud COS will ignore any dates occurring in the future.
      *
      * @param date The unmodified constraint that restricts this request to executing only if the
-     *        object has <b>not</b> been modified after this date.
-     *
+     *         object has <b>not</b> been modified after this date.
      * @return This {@link GetObjectRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see GetObjectRequest#getUnmodifiedSinceConstraint()
      * @see GetObjectRequest#setUnmodifiedSinceConstraint(Date)
      */
@@ -520,7 +496,6 @@ public class GetObjectRequest extends CosServiceRequest
      *
      * @return The optional modified constraint that restricts this request to executing only if the
      *         object <b>has</b> been modified after the specified date.
-     *
      * @see GetObjectRequest#setModifiedSinceConstraint(Date)
      * @see GetObjectRequest#withModifiedSinceConstraint(Date)
      */
@@ -536,8 +511,7 @@ public class GetObjectRequest extends CosServiceRequest
      * </p>
      *
      * @param date The modified constraint that restricts this request to executing only if the
-     *        object <b>has</b> been modified after the specified date.
-     *
+     *         object <b>has</b> been modified after the specified date.
      * @see GetObjectRequest#getModifiedSinceConstraint()
      * @see GetObjectRequest#withModifiedSinceConstraint(Date)
      */
@@ -553,11 +527,9 @@ public class GetObjectRequest extends CosServiceRequest
      * Note that Qcloud COS will ignore any dates occurring in the future.
      *
      * @param date The modified constraint that restricts this request to executing only if the
-     *        object <b>has</b> been modified after the specified date.
-     *
+     *         object <b>has</b> been modified after the specified date.
      * @return This {@link GetObjectRequest}, enabling additional method calls to be chained
      *         together.
-     *
      * @see GetObjectRequest#getModifiedSinceConstraint()
      * @see GetObjectRequest#setModifiedSinceConstraint(Date)
      */
@@ -589,7 +561,6 @@ public class GetObjectRequest extends CosServiceRequest
      * chaining.
      *
      * @param responseHeaders The headers to be overridden in the service response.
-     *
      * @return This {@link GetObjectRequest} for method chaining.
      */
     public GetObjectRequest withResponseHeaders(ResponseHeaderOverrides responseHeaders) {
@@ -606,7 +577,7 @@ public class GetObjectRequest extends CosServiceRequest
      * Sets the optional customer-provided server-side encryption key to use to decrypt this object.
      *
      * @param sseKey The optional customer-provided server-side encryption key to use to decrypt
-     *        this object.
+     *         this object.
      */
     public void setSSECustomerKey(SSECustomerKey sseKey) {
         this.sseCustomerKey = sseKey;
@@ -618,8 +589,7 @@ public class GetObjectRequest extends CosServiceRequest
      * together.
      *
      * @param sseKey The optional customer-provided server-side encryption key to use to decrypt
-     *        this object.
-     *
+     *         this object.
      * @return The optional customer-provided server-side encryption key to use to decrypt this
      *         object.
      */
@@ -627,7 +597,7 @@ public class GetObjectRequest extends CosServiceRequest
         setSSECustomerKey(sseKey);
         return this;
     }
-    
+
     public COSObjectId getCOSObjectId() {
         return new COSObjectId(bucketName, key, versionId);
     }
